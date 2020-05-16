@@ -7,7 +7,7 @@ public class Main {
 //		System.out.println(cust);sdvsdlkmvsdlkkvmsdlk
 		
 //		public Nitritionist(String firstName, String lastName, String phoneNumber, String emailAddress, String id,
-//				int licenseId , String emailAppPass , String password) {....;lk;l
+//				int licenseId , String emailAppPass , String password) {....
 		
 		
 		Nutritionist nutri = new Nutritionist("boris","mandelblat","0509588864","boris.mand89@gmail.com",

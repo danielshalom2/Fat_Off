@@ -118,7 +118,6 @@ public class Nutritionist extends Person {
 //		}
 //		else {
 //			System.out.println("Validation failed!  Please check your email for new validation code");
-//		adssvdvsdssdgsrglwkm
 //		}
 	}
 }
