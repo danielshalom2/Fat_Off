@@ -4322,3 +4322,31 @@ java.lang.Exception: Resource '/Fat_Off/.gitignore' already exists.
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2020-05-16 11:13:31.005
 !MESSAGE close() called when useCnt is already zero for Repository[/Users/borism/eclipse-FatOff/Fat_Off/.git]
+
+!ENTRY org.eclipse.egit.ui 4 0 2020-05-16 11:22:44.200
+!MESSAGE Applying stashed commit '9c016c1' failed due to 'Applying stashed changes resulted in a conflict'
+!STACK 1
+org.eclipse.team.core.TeamException: Applying stashed changes resulted in a conflict
+	at org.eclipse.egit.core.op.StashApplyOperation$1.run(StashApplyOperation.java:81)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.egit.core.op.StashApplyOperation.execute(StashApplyOperation.java:86)
+	at org.eclipse.egit.ui.internal.commit.command.StashApplyHandler$1.runInWorkspace(StashApplyHandler.java:54)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.team.core 4 0 2020-05-16 11:22:44.200
+!MESSAGE Applying stashed changes resulted in a conflict
+
+!ENTRY org.eclipse.egit.ui 4 0 2020-05-16 11:24:50.087
+!MESSAGE Applying stashed commit '9c016c1' failed due to 'Applying stashed changes resulted in a conflict'
+!STACK 1
+org.eclipse.team.core.TeamException: Applying stashed changes resulted in a conflict
+	at org.eclipse.egit.core.op.StashApplyOperation$1.run(StashApplyOperation.java:81)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.egit.core.op.StashApplyOperation.execute(StashApplyOperation.java:86)
+	at org.eclipse.egit.ui.internal.commit.command.StashApplyHandler$1.runInWorkspace(StashApplyHandler.java:54)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.team.core 4 0 2020-05-16 11:24:50.088
+!MESSAGE Applying stashed changes resulted in a conflict
