@@ -114,7 +114,7 @@ public class Nutritionist extends Person {
 //			else {
 //				System.out.println("The passwords don't match!\rPlease try again\r\r");
 //			}
-//			}while(!pass1.equals(pass2)); sdvskvlnsdvkln
+//			}while(!pass1.equals(pass2)); sdvskvlnsdvkln sdfsflkdjfskfj sadcslvkdnl
 //		}
 //		else {
 //			System.out.println("Validation failed!  Please check your email for new validation code");
