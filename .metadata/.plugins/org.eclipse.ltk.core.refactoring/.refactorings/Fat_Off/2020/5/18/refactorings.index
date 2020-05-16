@@ -1,0 +1,18 @@
+1588422938108	Encapsulate field 'firstName'
+1588422952369	Encapsulate field 'lastName'
+1588422960153	Encapsulate field 'phoneNumber'
+1588422965935	Encapsulate field 'emailAddress'
+1588422972025	Encapsulate field 'id'
+1588424174871	Encapsulate field 'gender'
+1588424611216	Encapsulate field 'sessionsMap'
+1588424617160	Encapsulate field 'measuresMap'
+1588424622530	Encapsulate field 'pesronalInterview'
+1588428685029	Encapsulate field 'emailAppPass'
+1588430773722	Move file
+1588430775181	Move file
+1588430781044	Move file
+1588430783772	Move file
+1588430786730	Move file
+1588430789970	Move file
+1588430987128	Delete element
+1588433844796	Rename type 'Nitritionist'
