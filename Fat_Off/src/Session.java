@@ -1,4 +1,54 @@
+/**
+ * This class represent any Session which will be created in the Fat_Off project
+ * 
+ * @author Fat_Off Development Team
+ *@version 1.0
+ */
+import java.util.*;
+
 
 public class Session {
+	private Date SessionDate;
+	private String EditIntrudation;
+	
+	public void AddCustomerMeasures()// need to write.
+	{
+		
+	}
+	
+	public void SendEmail()// need to write.
+	{
+		
+	}
+	
+	public void SummarySession()// need to write.
+	{
+		
+	}
+	
+	/**
+	 * @return the sessionDate
+	 */
+	public Date getSessionDate() {
+		return SessionDate;
+	}
+	/**
+	 * @param sessionDate the sessionDate to set
+	 */
+	public void setSessionDate(Date sessionDate) {
+		SessionDate = sessionDate;
+	}
+	/**
+	 * @return the editIntrudation
+	 */
+	public String getEditIntrudation() {
+		return EditIntrudation;
+	}
+	/**
+	 * @param editIntrudation the editIntrudation to set
+	 */
+	public void setEditIntrudation(String editIntrudation) {
+		EditIntrudation = editIntrudation;
+	}
 
 }
