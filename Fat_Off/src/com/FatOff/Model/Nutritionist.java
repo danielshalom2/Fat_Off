@@ -1,3 +1,4 @@
+package com.FatOff.Model;
 import com.FatOff.MailSender.*;
 import java.util.*;
 
@@ -98,27 +99,27 @@ public class Nutritionist extends Person {
 		
 		email.sendValidationCode(validation);
 		
-//		Scanner scan = new Scanner(System.in);
-//		System.out.println("A validation code was sent to your email!\r Please enter it here: ");
-//		if (scan.nextInt() == validation) {
-//			System.out.println("Validation succeed!");
-//			do {
-//			System.out.println("Please enter new password: ");
-//			pass1 = scan.next();
-//			System.out.println("Please repeat: ");
-//			pass2 = scan.next();
-//			if(pass1.equals(pass2)) {
-//				this.setPassword(pass1);
-//				System.out.println("Password has been changed successfully");
-//			}
-//			else {
-//				System.out.println("The passwords don't match!\rPlease try again\r\r");
-//			}
-//			}while(!pass1.equals(pass2)); sdvskvlnsdvkln sdfsflkdjfskfj sadcslvkdnl
-//		}
-//		else {
-//			System.out.println("Validation failed!  Please check your email for new validation code");
-//		
-//		}
+		Scanner scan = new Scanner(System.in);
+		System.out.println("A validation code was sent to your email!\r Please enter it here: ");
+		if (scan.nextInt() == validation) {
+			System.out.println("Validation succeed!");
+			do {
+			System.out.println("Please enter new password: ");
+			pass1 = scan.next();
+			System.out.println("Please repeat: ");
+			pass2 = scan.next();
+			if(pass1.equals(pass2)) {
+				this.setPassword(pass1);
+				System.out.println("Password has been changed successfully");
+			}
+			else {
+				System.out.println("The passwords don't match!\rPlease try again\r\r");
+			}
+			}while(!pass1.equals(pass2)); 
+		}
+		else {
+			System.out.println("Validation failed!  Please check your email for new validation code");
+		
+		}
 	}
 }

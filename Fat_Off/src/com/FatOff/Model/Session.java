@@ -1,3 +1,4 @@
+package com.FatOff.Model;
 /**
  * This class represent any Session which will be created in the Fat_Off project
  * 

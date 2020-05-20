@@ -1,3 +1,4 @@
+package com.FatOff.Model;
 /**
  * This class represent any Admin which will be created in the Fat_Off project
  * 

@@ -1,3 +1,4 @@
+package com.FatOff.Model;
 
 /**
  * This class represent any customer which will be created in the Fat_Off project
@@ -91,7 +92,7 @@ public class Customer extends Person {
 	 */
 	@Override
 	public String toString() {
-		return "Customer [" + super.toString() + "gender=" + gender + "]";
+		return super.toString() + "gender: " + gender ;
 	}
 
 }

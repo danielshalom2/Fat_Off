@@ -1,9 +1,18 @@
+package com.FatOff.Model;
 /**
  * This class represent any Introduction Meeting which will be created in the Fat_Off project
  * 
  * @author Fat_Off Development Team
  *@version 1.0
  */
-public abstract class Form {
+public class SaveRestore {
+	
+	public void SaveObject() {//need to write
+		
+	}
+	
+public void RestoreObject() {//need to write
+		
+	}
 
 }

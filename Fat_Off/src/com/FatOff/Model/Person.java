@@ -1,3 +1,4 @@
+package com.FatOff.Model;
 /**
  * This class represents any person object in the Fat_Off project
  * 
@@ -93,8 +94,6 @@ public class Person {
 	 */
 	@Override
 	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName
-				+ ", phoneNumber=" + phoneNumber
-				+ ", emailAddress=" + emailAddress + ", id=" + id + "]";
+		return ""+firstName + " " + lastName;
 	}
 }
