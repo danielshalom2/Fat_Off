@@ -4,35 +4,18 @@
 package com.FatOff.View;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
-import java.awt.FlowLayout;
 import javax.swing.JTextPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.MatteBorder;
-import javax.swing.border.LineBorder;
 
 
 /**
@@ -49,8 +32,17 @@ public class MainWin {
 	public MainWin() {
 		
 		JFrame mainFrame = new JFrame("Fat Off");
-		
+		mainFrame.setSize(1707, 954);
 		mainFrame.getContentPane().setLayout(null);
+		mainFrame.setExtendedState(mainFrame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		mainFrame.addComponentListener(new ComponentAdapter() {
+	        @Override
+	        public void componentResized(ComponentEvent event) {
+	            Dimension d = mainFrame.getContentPane().getSize();
+	            // code to save frame size or calculate internal frame sizes
+	            mainFrame.validate();
+	        }
+	    });
 		
 		
 		/**
@@ -58,7 +50,7 @@ public class MainWin {
 		 */
 		JPanel topDetailsPanel = new JPanel();
 		topDetailsPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		topDetailsPanel.setBounds(125, 6, 1574, 58);
+		topDetailsPanel.setBounds(125, 6, 1526, 58);
 		topDetailsPanel.setLayout(null);
 		
 		JLabel lblCustomerName = new JLabel("Customer Name:");
@@ -121,7 +113,7 @@ public class MainWin {
 		topDetailsPanel.add(eerArea);
 		
 		JButton signInBtn = new JButton("Sign In");
-		signInBtn.setBounds(1459, 11, 77, 26);
+		signInBtn.setBounds(1426, 16, 77, 26);
 		topDetailsPanel.add(signInBtn);
 		
 		mainFrame.getContentPane().add(topDetailsPanel);
@@ -152,7 +144,7 @@ public class MainWin {
 		JPanel topMenuPanel = new JPanel();
 		topMenuPanel.setForeground(Color.GRAY);
 		topMenuPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		topMenuPanel.setBounds(125, 65, 1574, 66);
+		topMenuPanel.setBounds(125, 65, 1526, 66);
 		mainFrame.getContentPane().add(topMenuPanel);
 		topMenuPanel.setLayout(null);
 		
@@ -162,7 +154,7 @@ public class MainWin {
 		 */
 		JPanel rightInfoSelectPanel = new JPanel();
 		rightInfoSelectPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		rightInfoSelectPanel.setBounds(6, 130, 730, 794);
+		rightInfoSelectPanel.setBounds(6, 130, 730, 735);
 		mainFrame.getContentPane().add(rightInfoSelectPanel);
 		rightInfoSelectPanel.setLayout(null);
 		
@@ -172,14 +164,16 @@ public class MainWin {
 		 */
 		JPanel sessionMenuSummPanel = new JPanel();
 		sessionMenuSummPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		sessionMenuSummPanel.setBounds(739, 130, 960, 794);
+		sessionMenuSummPanel.setBounds(739, 130, 912, 735);
 		mainFrame.getContentPane().add(sessionMenuSummPanel);
 		sessionMenuSummPanel.setLayout(null);
 		
 		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(1707, 954);
 		mainFrame.setVisible(true);
+
+
+
 		
 		
 	}

@@ -1,0 +1,53 @@
+/**
+ * 
+ */
+package com.FatOff.View;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
+import javax.swing.JLayeredPane;
+import java.awt.FlowLayout;
+import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.MatteBorder;
+
+
+/**
+ * This class represents the main program window
+ * @author FatOff Development Team
+ * @version 1.0
+ */
+public class MainWin {
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	
+	public MainWin() {
+		
+		JFrame mainFrame = new JFrame("Fat Off");
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+}

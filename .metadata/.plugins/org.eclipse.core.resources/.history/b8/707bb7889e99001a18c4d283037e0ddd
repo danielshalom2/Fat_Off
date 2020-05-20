@@ -1,0 +1,74 @@
+/**
+ * 
+ */
+package com.FatOff.View;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+
+/**
+ * This class represents the main program window
+ * @author FatOff Development Team
+ * @version 1.0
+ */
+public class MainWin extends JFrame {
+	private JTextField textField;
+	private JTextField textField_1;
+	
+	public MainWin() {
+		getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(840, 130, 859, 800);
+		getContentPane().add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(192, 6, 1507, 57);
+		getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Customer Name:");
+		lblNewLabel.setBounds(20, 35, 113, 16);
+		panel_1.add(lblNewLabel);
+		
+		JLabel lblDietitianName = new JLabel("Dietician Name:");
+		lblDietitianName.setBounds(20, 6, 104, 16);
+		panel_1.add(lblDietitianName);
+		
+		textField = new JTextField();
+		textField.setBounds(136, 1, 130, 21);
+		panel_1.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(136, 30, 130, 21);
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(0, 45, 1693, 12);
+		panel_1.add(separator);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(192, 64, 1507, 66);
+		getContentPane().add(panel_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(6, 130, 834, 800);
+		getContentPane().add(panel_3);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(6, 6, 184, 124);
+		getContentPane().add(panel_4);
+		panel_4.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(6, 5, 172, 113);
+		panel_4.add(lblNewLabel_1);
+		JFrame mainFrame = new JFrame();
+		mainFrame.setVisible(true);
+	}
+}

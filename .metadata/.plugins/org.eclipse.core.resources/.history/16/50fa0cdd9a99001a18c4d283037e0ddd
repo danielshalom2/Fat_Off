@@ -1,0 +1,18 @@
+/**
+ * 
+ */
+package com.FatOff.View;
+import javax.swing.JFrame;
+
+/**
+ * This class represents the main program window
+ * @author FatOff Development Team
+ * @version 1.0
+ */
+public class MainWin extends JFrame {
+	
+	public MainWin() {
+		JFrame mainFrame = new JFrame();
+		mainFrame.setVisible(true);
+	}
+}
