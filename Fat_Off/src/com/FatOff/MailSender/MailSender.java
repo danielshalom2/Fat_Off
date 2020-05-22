@@ -1,4 +1,6 @@
-package com.FatOff.MailSender;
+/**
+ * package com.FatOff.MailSender;
+
 
 import java.io.UnsupportedEncodingException;
 import java.util.*;
@@ -15,7 +17,7 @@ import javax.mail.internet.*;
  * that it was sent.
  * 
  * @author FatOff development team
- */
+
 public class MailSender {
 
 	private final String HOST = "smtp.gmail.com";
@@ -28,7 +30,7 @@ public class MailSender {
 	private Properties props;
 	private Session session;
 	private Authenticator auth;
-
+ */
 	/**
 	 * Constructor -- builds an MailSender object that initializes a session with 
 	 * the SMTP server and initializes the required parameters
@@ -38,6 +40,7 @@ public class MailSender {
 	 * @param displayName The sender display name
 	 * @param password The GMail application password
 	 */
+/**
 	public MailSender(String from , String displayName , String to , String password) {
 		
 		this.from = from;
@@ -63,7 +66,8 @@ public class MailSender {
 		// Create and SMTP session and authentication
 		session = Session.getDefaultInstance(props, this.auth);
 	}
-	
+	*/
+/**
 	public void sendValidationCode (int validationCode) {
 		
 	try
@@ -115,3 +119,4 @@ public class MailSender {
 
 
 }
+*/

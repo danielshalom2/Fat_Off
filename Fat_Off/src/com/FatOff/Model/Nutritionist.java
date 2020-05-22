@@ -89,8 +89,9 @@ public class Nutritionist extends Person {
 	public void addCustomer(Customer customerToAdd) {
 		this.customersList.add(customerToAdd);
 	}
-	
-	public void resetPassword() {
+} //remove after
+
+	/**public void resetPassword() {
 		String pass1;
 		String pass2;
 		int validation = new Random().nextInt(999999) + 100000;
@@ -123,3 +124,4 @@ public class Nutritionist extends Person {
 		}
 	}
 }
+*/

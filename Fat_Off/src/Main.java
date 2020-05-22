@@ -3,7 +3,7 @@ import com.FatOff.View.*;
 import java.io.File;
 import java.nio.file.Path;
 
-import com.FatOff.Controller.*;
+//import com.FatOff.Controller.*;
 import com.FatOff.Model.*;
 
 //
@@ -26,7 +26,10 @@ public class Main {
 			
 		}
 		else {
-			System.out.println("Failed");
+			path = System.getProperty("user.home") + "/.fat_off";
+			pathToFatOff = new File(path);
+			boolean test = pathToFatOff.mkdir();
+			System.out.println(test);
 		}
 		
 
