@@ -16,6 +16,11 @@ import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.LineBorder;
 
 
 /**
@@ -28,11 +33,12 @@ public class MainWin {
 	private JTextArea custNameArea;
 	private JTextArea dateArea;
 	private JTextArea sessionArea;
+	private JTable table;
 	
 	public MainWin() {
 		
 		JFrame mainFrame = new JFrame("Fat Off");
-		mainFrame.setSize(1707, 954);
+		mainFrame.setSize(1438, 731);
 		mainFrame.getContentPane().setLayout(null);
 		mainFrame.setExtendedState(mainFrame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		mainFrame.addComponentListener(new ComponentAdapter() {
@@ -50,7 +56,7 @@ public class MainWin {
 		 */
 		JPanel topDetailsPanel = new JPanel();
 		topDetailsPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		topDetailsPanel.setBounds(125, 6, 1526, 58);
+		topDetailsPanel.setBounds(125, 6, 1264, 58);
 		topDetailsPanel.setLayout(null);
 		
 		JLabel lblCustomerName = new JLabel("Customer Name:");
@@ -168,6 +174,24 @@ public class MainWin {
 		mainFrame.getContentPane().add(sessionMenuSummPanel);
 		sessionMenuSummPanel.setLayout(null);
 		
+
+		
+		String[] columnNames = {"","Proteins","Carbohidrates","Fat"};
+		String [][] data = {{"Breakfast","","",""},
+							{"Lunch","","",""},
+							{"Dinner","","",""}};
+        
+		MenuTableModel table = new MenuTableModel(data,columnNames);
+	
+
+		JTable menuTable = new JTable(data,columnNames);
+		menuTable.setRowHeight(70);
+		
+		
+		JScrollPane scrollPane = new JScrollPane(menuTable);
+		scrollPane.setBounds(226, 134, 592, 344);
+		sessionMenuSummPanel.add(scrollPane);
+		
 		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setVisible(true);
@@ -177,5 +201,4 @@ public class MainWin {
 		
 		
 	}
-
 }
