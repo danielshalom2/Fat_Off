@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class SignInWin {
 	private JTextField textField;
@@ -18,46 +20,28 @@ public class SignInWin {
 	public SignInWin() {
 
 		JFrame signInFrame = new JFrame("Sign In");
-		signInFrame.setResizable(false);
+		signInFrame.setResizable(true);
 		signInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		signInFrame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.DARK_GRAY));
-		panel.setBounds(0, 0, 405, 252);
-		signInFrame.getContentPane().add(panel);
-		panel.setLayout(null);
 		
 		JLabel logoLbl = new JLabel("");
 		logoLbl.setIcon(new ImageIcon(SignInWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
-		logoLbl.setBounds(17, 33, 108, 180);
-		panel.add(logoLbl);
 		
 		JLabel lblNewLabel = new JLabel("Username :");
-		lblNewLabel.setBounds(137, 71, 76, 31);
-		panel.add(lblNewLabel);
 		
 		JLabel passwordLbl = new JLabel("Password :");
-		passwordLbl.setBounds(137, 114, 76, 31);
-		panel.add(passwordLbl);
 		
 		textField = new JTextField();
-		textField.setBounds(215, 73, 168, 26);
-		panel.add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(215, 116, 168, 26);
-		panel.add(passwordField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Welcome to Fat Off");
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 16));
-		lblNewLabel_1.setBounds(148, 6, 168, 16);
-		panel.add(lblNewLabel_1);
 		
 		JButton signInBtn = new JButton("Sign In");
-		signInBtn.setBounds(277, 184, 117, 29);
-		panel.add(signInBtn);
 		
 		JButton cancelBtn = new JButton("Cancel");
 		cancelBtn.addActionListener(new ActionListener() {
@@ -65,14 +49,82 @@ public class SignInWin {
 				signInFrame.dispose();
 			}
 		});
-		cancelBtn.setBounds(148, 184, 117, 29);
-		panel.add(cancelBtn);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(147)
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(16)
+					.addComponent(logoLbl, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+							.addGap(2)
+							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+							.addGap(11))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(passwordLbl, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+							.addGap(2)
+							.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+							.addGap(11))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(signInBtn, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(5)
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(logoLbl, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(38)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(2)
+									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
+							.addGap(12)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(passwordLbl, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(2)
+									.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
+							.addGap(39)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(signInBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+								.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)))))
+		);
+		panel.setLayout(gl_panel);
 		
-		JLabel lblNewLabel_2 = new JLabel("All Right Reserved © Fat Off Developers 2020");
+		JLabel lblNewLabel_2 = new JLabel("All Rights Reserved\u00A9 Fat Off Developers 2020");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(10, 256, 373, 16);
-		signInFrame.getContentPane().add(lblNewLabel_2);
-		signInFrame.setSize(new Dimension(404, 298));
+		GroupLayout groupLayout = new GroupLayout(signInFrame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+					.addGap(12))
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(213, Short.MAX_VALUE)
+					.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(15))
+		);
+		signInFrame.getContentPane().setLayout(groupLayout);
+		signInFrame.setSize(new Dimension(409, 268));
 		signInFrame.setVisible(true);
 		
 	}
