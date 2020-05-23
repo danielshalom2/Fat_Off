@@ -1,9 +1,11 @@
 package com.FatOff.Model;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
@@ -21,6 +23,9 @@ public class SaveRestore <T> {
 	final private String pathToDieticions;
 	private ObjectOutputStream writeFile;
 	private FileOutputStream pathToObj;
+	private static FileInputStream fis;
+	private static ObjectInputStream ois;
+	
 	public SaveRestore (T obj ,String path) {
 		this.obj=obj;
 		this.path=path;
@@ -29,11 +34,7 @@ public class SaveRestore <T> {
 
 
 	
-	public void SaveObject() {//need to write
-		
-	}
-	
-	public boolean storeToFile() throws IOException  {
+	public void storeToFile() throws IOException  {
 		
 		if(this.obj.getClass().toString().contains("Nutritionist")) {
 			pathToDir= new File (pathToDieticions+ "/" + ((Nutritionist) this.obj).getId());
@@ -75,8 +76,24 @@ public class SaveRestore <T> {
 			
 		}
 		
-	
-		return false;
+		
 	}
 	
+	@SuppressWarnings("unchecked")
+	public  <T> Object RestoreFile(int i) throws IOException, ClassNotFoundException {
+	
+		T importObj;
+		try {
+			fis = new FileInputStream(pathToDieticions +"/"+ "i" +"/"+i +".txt");
+			ois = new ObjectInputStream(fis);
+			importObj = (T)ois.readObject();
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(((Nutritionist) importObj).getLicenseId());
+		return importObj;
+	}
 }

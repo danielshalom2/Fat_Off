@@ -45,7 +45,10 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+		
+		
+		SaveRestore<Nutritionist> test2 =  new SaveRestore<Nutritionist>(test ,path);
+				
 	}
 
 }

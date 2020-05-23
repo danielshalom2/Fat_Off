@@ -92,6 +92,8 @@ public class Nutritionist extends Person implements Serializable{
 	public void addCustomer(Customer customerToAdd) {
 		this.customersList.add(customerToAdd);
 	}
+
+
 } //remove after
 
 	/**public void resetPassword() {
