@@ -1,6 +1,8 @@
 package com.FatOff.Model;
+import java.io.Serializable;
 import com.FatOff.MailSender.*;
 import java.util.*;
+
 
 /**
  * This class represents the nutritionists which will use the Fat_Off project
@@ -11,13 +13,13 @@ import java.util.*;
  */
 
 
-public class Nutritionist extends Person {
+public class Nutritionist extends Person implements Serializable{
 	
 	private int licenseId;
 	private String emailAppPass;
 	private String password;
 	private ArrayList<Customer> customersList;
-
+	
 	/**
 	 * @param firstName the nutritionists' first name
 	 * @param lastName the nutritionists' last name
@@ -43,6 +45,7 @@ public class Nutritionist extends Person {
 	/**
 	 * @return the licenseId
 	 */
+	
 	public int getLicenseId() {
 		return licenseId;
 	}

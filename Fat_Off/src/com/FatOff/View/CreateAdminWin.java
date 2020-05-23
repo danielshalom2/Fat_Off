@@ -208,5 +208,6 @@ public class CreateAdminWin {
 		);
 		panel.setLayout(gl_panel);
 		adminCrtFrame.getContentPane().setLayout(groupLayout);
+		adminCrtFrame.pack();
 	}
 }
