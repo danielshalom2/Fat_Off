@@ -1,4 +1,7 @@
 package com.FatOff.Model;
+
+import java.io.Serializable;
+
 /**
  * This class represents any person object in the Fat_Off project
  * 
@@ -8,7 +11,7 @@ package com.FatOff.Model;
  */
 
 
-public class Person {
+public class Person implements Serializable{
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;

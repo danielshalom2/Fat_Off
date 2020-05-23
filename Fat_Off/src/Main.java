@@ -13,12 +13,12 @@ public class Main {
 
 	// TODO Auto-generated constructor stub
 	public static void main(String[] args) {
-		 SignInWin sign = new SignInWin();
-		 System.getProperties().list(System.out);
+		SignInWin sign = new SignInWin();
+		System.getProperties().list(System.out);
 		String path;
 		final File pathToFatOff;
 		final File pathToDieticion;
-		final File pathToAdmin; 
+		final File pathToAdmin;
 		final String os = System.getProperty("os.name");
 
 		if (!os.toLowerCase().startsWith("windows"))
@@ -29,26 +29,33 @@ public class Main {
 
 		pathToFatOff = new File(path);
 		pathToDieticion = new File(path + "/Dieticions");
-		pathToAdmin = new File(path + "/Admin"); 
-		if (!pathToFatOff.exists())
-		{
+		pathToAdmin = new File(path + "/Admin");
+		if (!pathToFatOff.exists()) {
 			pathToFatOff.mkdir();
-			pathToAdmin.mkdir(); 
+			pathToAdmin.mkdir();
 			pathToDieticion.mkdir();
 		}
-		
-		Nutritionist test = new Nutritionist("Galia","Shalos","144","fdgsdf","123",456,"gdf","123");
-		SaveRestore<Nutritionist> savetest = new SaveRestore<Nutritionist>(test ,path);
+
+		Nutritionist test = new Nutritionist("Galia", "Shalos", "144", "fdgsdf", "123", 456, "gdf", "123");
+		Nutritionist test2 = null;
+		SaveRestore<Nutritionist> savetest = new SaveRestore<Nutritionist>(test, path);
 		try {
 			savetest.storeToFile();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		SaveRestore<Nutritionist> test2 =  new SaveRestore<Nutritionist>(test ,path);
-				
+
+		try {
+			test2 = (Nutritionist)SaveRestore.restoreFromFile("Galia_Shalos_123", "Nutritionist");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println(test2+test2.getPhoneNumber());
+		// SaveRestore<Nutritionist> test2 = new SaveRestore<Nutritionist>(test ,path);
+
 	}
 
 }
