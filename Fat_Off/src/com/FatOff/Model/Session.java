@@ -1,4 +1,7 @@
 package com.FatOff.Model;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 /**
  * This class represent any Session which will be created in the Fat_Off project
  * 
@@ -8,9 +11,14 @@ package com.FatOff.Model;
 import java.util.*;
 
 
-public class Session {
-	private Date SessionDate;
+public class Session implements Serializable{
+	private String SessionDate;
 	private String EditIntrudation;
+	
+	public Session() {
+		LocalDateTime now = LocalDateTime.now();
+		setSessionDate(DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now));
+	}
 	
 	public void AddCustomerMeasures()// need to write.
 	{
@@ -30,14 +38,14 @@ public class Session {
 	/**
 	 * @return the sessionDate
 	 */
-	public Date getSessionDate() {
+	public String getSessionDate() {
 		return SessionDate;
 	}
 	/**
-	 * @param sessionDate the sessionDate to set
+	 * @param string the sessionDate to set
 	 */
-	public void setSessionDate(Date sessionDate) {
-		SessionDate = sessionDate;
+	public void setSessionDate(String string) {
+		SessionDate = string;
 	}
 	/**
 	 * @return the editIntrudation

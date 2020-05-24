@@ -38,19 +38,18 @@ public class Nutritionist extends Person implements Serializable {
 		this.licenseId = licenseId;
 		this.emailAppPass = emailAppPass;
 		this.password = password;
-		customersList = null;
+		customersList = new ArrayList<Customer>();
 	}
+	public Nutritionist(Nutritionist other) {
+		// Initialize super object
+		super(other.getFirstName(), other.getLastName(), other.getPhoneNumber(), other.getEmailAddress(), other.getId());
 
-//	public Nutritionist(Nutritionist other) {
-//// Initialize super object
-//		super(other.getFirstName(), other.getLastName(), other.getPhoneNumber(), other.getEmailAddress(), other.getId());
-//
-//// Initialize local private variables
-//		this.licenseId = other.licenseId;
-//		this.emailAppPass = other.emailAppPass;
-//		this.password = other.password;
-//		this.customersList = other.getCustomersList();
-//	}
+		// Initialize local private variables
+		this.licenseId = other.licenseId;
+		this.emailAppPass = other.emailAppPass;
+		this.password = other.password;
+		customersList = new ArrayList<Customer>();
+	}
 
 	/**
 	 * @return the licenseId
@@ -100,6 +99,7 @@ public class Nutritionist extends Person implements Serializable {
 	 * @param customerToAdd the customer that need to be added to the list
 	 */
 	public void addCustomer(Customer customerToAdd) {
+		System.out.println("Adding Cust");
 		this.customersList.add(customerToAdd);
 	}
 

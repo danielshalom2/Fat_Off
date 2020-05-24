@@ -1,5 +1,7 @@
 package com.FatOff.Model;
 
+import java.io.Serializable;
+
 /**
  * This class represent any customer which will be created in the Fat_Off project
  * 
@@ -9,7 +11,7 @@ package com.FatOff.Model;
 
 import java.util.*;
 
-public class Customer extends Person {
+public class Customer extends Person implements Serializable{
 	
 	private String gender;
 	private HashMap<Integer,Session> sessionsMap;
@@ -30,6 +32,10 @@ public class Customer extends Person {
 		super(firstName, lastName, phoneNumber, emailAddress, id);
 		//initialization of the local private variable
 		this.gender = gender;
+		sessionsMap = new HashMap<Integer,Session>();
+		measuresMap = new HashMap<Integer,Measures>();
+		this.addSession(new Session(), 1);
+		this.addMeasures(new Measures() , 1);
 	}
 
 	/**
@@ -52,6 +58,13 @@ public class Customer extends Person {
 	public HashMap<Integer,Session> getSessionsMap() {
 		return sessionsMap;
 	}
+	
+	/**
+	 * @param session The session to add
+	 */
+	public void addSession(Session sess , Integer serial) {
+		this.sessionsMap.put(serial, sess);
+	}
 
 	/**
 	 * @param sessionsMap the sessionsMap to set
@@ -72,6 +85,13 @@ public class Customer extends Person {
 	 */
 	public void setMeasuresMap(HashMap<Integer, Measures> measuresMap) {
 		this.measuresMap = measuresMap;
+	}
+	
+	/**
+	 * @param measure the measures to add
+	 */
+	public void addMeasures(Measures meas , Integer serial) {
+		this.measuresMap.put(serial, meas);
 	}
 
 	/**

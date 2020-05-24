@@ -1,5 +1,6 @@
 package com.FatOff.Model;
 
+import java.io.Serializable;
 /**
  * This class represent any Measures which will be created in the Fat_Off project
  * 
@@ -8,7 +9,7 @@ package com.FatOff.Model;
  */
 import java.util.*;
 
-public class Measures {
+public class Measures implements Serializable{
 
 	private float age;
 	private float weight;
