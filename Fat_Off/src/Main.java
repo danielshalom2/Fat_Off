@@ -36,26 +36,5 @@ public class Main {
 			pathToDieticion.mkdir();
 		}
 
-		Nutritionist test = new Nutritionist("Galia", "Shalos", "144", "fdgsdf", "123", 456, "gdf", "123");
-		Nutritionist test2 = null;
-		SaveRestore<Nutritionist> savetest = new SaveRestore<Nutritionist>(test, path);
-		try {
-			savetest.storeToFile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		try {
-			test2 = (Nutritionist)SaveRestore.restoreFromFile("Galia_Shalos_123", "Nutritionist");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		System.out.println(test2+test2.getPhoneNumber());
-		// SaveRestore<Nutritionist> test2 = new SaveRestore<Nutritionist>(test ,path);
-
-	}
 
 }
