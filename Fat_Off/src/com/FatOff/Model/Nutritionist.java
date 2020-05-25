@@ -86,12 +86,20 @@ public class Nutritionist extends Person implements Serializable {
 	public void setPassword(String newPass) {
 		this.password = newPass;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
 
 	/**
 	 * @param emailAppPass the emailAppPass to set
 	 */
 	public void setEmailAppPass(String emailAppPass) {
 		this.emailAppPass = emailAppPass;
+	}
+	
+	public String getEmailAppPass() {
+		return emailAppPass;
 	}
 
 	/**

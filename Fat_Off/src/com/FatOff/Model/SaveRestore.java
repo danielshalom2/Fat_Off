@@ -18,13 +18,14 @@ import java.util.ArrayList;
  */
 
 public class SaveRestore<T> {
-
+	
+	private T type;
 	private T obj;
 	private String path;
 	private File pathToDietitionDir;
 	private File pathToAdminDir;
 	private File pathToCustDir;
-	private static String pathToDieticions; 
+	private static String pathToDieticions;
 	private static String pathToAdmin;
 	private ObjectOutputStream writeFile;
 	private FileOutputStream pathToObj;
@@ -40,18 +41,16 @@ public class SaveRestore<T> {
 	public void storeToFile(String dietition) throws IOException {
 
 		if (this.obj.getClass().toString().contains("Nutritionist")) {
-			this.storeNutritionist(path, (Nutritionist)this.obj);
-		}
-		else if(this.obj.getClass().toString().contains("Admin")) {
-			this.storeAdmin(path, (Admin)this.obj);
-		}
-		else if(this.obj.getClass().toString().contains("Customer")) {
-			this.storeCustomer(pathToDieticions, (Customer)this.obj);
+			this.storeNutritionist(path, (Nutritionist) this.obj);
+		} else if (this.obj.getClass().toString().contains("Admin")) {
+			this.storeAdmin(path, (Admin) this.obj);
+		} else if (this.obj.getClass().toString().contains("Customer")) {
+			this.storeCustomer(pathToDieticions, (Customer) this.obj);
 		}
 
 	}
-	
-	public void storeNutritionist(String path , Nutritionist nut) throws IOException {
+
+	public void storeNutritionist(String path, Nutritionist nut) throws IOException {
 		String temp_path = ((Nutritionist) this.obj).getFirstName() + "_" + ((Nutritionist) this.obj).getLastName()
 				+ "_" + ((Nutritionist) this.obj).getId();
 		pathToDietitionDir = new File(pathToDieticions + "/" + temp_path);
@@ -67,20 +66,19 @@ public class SaveRestore<T> {
 			writeFile = new ObjectOutputStream(pathToObj);
 			writeFile.writeObject(this.obj);
 			writeFile.close();
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(Customer cust : nut.getCustomersList()) {
-			this.storeCustomer(pathToDieticions+"/" +temp_path+"/Customers", cust);
+		for (Customer cust : nut.getCustomersList()) {
+			this.storeCustomer(pathToDieticions + "/" + temp_path + "/Customers", cust);
 		}
-		
+
 	}
-	
-	public void storeAdmin(String path , Admin adm) throws IOException {
-		String temp_path = ((Admin) this.obj).getFirstName() + "_" + ((Admin) this.obj).getLastName()
-				+ "_" + ((Admin) this.obj).getId();
+
+	public void storeAdmin(String path, Admin adm) throws IOException {
+		String temp_path = ((Admin) this.obj).getFirstName() + "_" + ((Admin) this.obj).getLastName() + "_"
+				+ ((Admin) this.obj).getId();
 		pathToAdminDir = new File(pathToAdmin + "/" + temp_path);
 		pathToCustDir = new File(pathToAdminDir + "/Customers");
 		if (!pathToAdminDir.exists()) // folder Admin else create
@@ -94,16 +92,16 @@ public class SaveRestore<T> {
 			writeFile = new ObjectOutputStream(pathToObj);
 			writeFile.writeObject(this.obj);
 			writeFile.close();
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(Customer cust : adm.getCustomersList()) {
-			this.storeCustomer(pathToAdmin+"/" +temp_path+"/Customers", cust);
+		for (Customer cust : adm.getCustomersList()) {
+			this.storeCustomer(pathToAdmin + "/" + temp_path + "/Customers", cust);
 		}
-		
+
 	}
+
 	/**
 	 * 
 	 * @param path
@@ -114,12 +112,12 @@ public class SaveRestore<T> {
 	public void storeCustomer(String path, Customer cust) throws IOException {
 		String tempCustPath = cust.getFirstName() + "_" + cust.getLastName() + "_" + cust.getId();
 		File custDir = new File(path + "/" + tempCustPath);
-		if(!custDir.exists()) {
+		if (!custDir.exists()) {
 			custDir.mkdir();
 		}
 		try {
-			this.storeSessions(path + "/" + tempCustPath + "/" , cust);
-			this.storeMeasures(path + "/" + tempCustPath + "/" , cust);
+			this.storeSessions(path + "/" + tempCustPath + "/", cust);
+			this.storeMeasures(path + "/" + tempCustPath + "/", cust);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -134,6 +132,7 @@ public class SaveRestore<T> {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 
 	 * @param path
@@ -141,9 +140,9 @@ public class SaveRestore<T> {
 	 * @throws IOException
 	 */
 	private void storeSessions(String path, Customer cust) throws IOException {
-		
+
 		try {
-			pathToObj = new FileOutputStream(path+"Sessions.txt");
+			pathToObj = new FileOutputStream(path + "Sessions.txt");
 			writeFile = new ObjectOutputStream(pathToObj);
 			writeFile.writeObject(cust.getSessionsMap());
 			writeFile.close();
@@ -152,6 +151,7 @@ public class SaveRestore<T> {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 
 	 * @param path
@@ -159,9 +159,9 @@ public class SaveRestore<T> {
 	 * @throws IOException
 	 */
 	private void storeMeasures(String path, Customer cust) throws IOException {
-		
+
 		try {
-			pathToObj = new FileOutputStream(path+"Measures.txt");
+			pathToObj = new FileOutputStream(path + "Measures.txt");
 			writeFile = new ObjectOutputStream(pathToObj);
 			writeFile.writeObject(cust.getMeasuresMap());
 			writeFile.close();
@@ -171,52 +171,64 @@ public class SaveRestore<T> {
 	}
 
 	public static Object restoreFromFile(String name, String type, String path) throws IOException {
-		Nutritionist nut = null;
-		if (type == "Nutritionist") {
+
+		Object nut;
+		
+		if (type.equals("Nutritionist")) {
 			pathToDieticions = path + "/Dieticions";
-			File pathToCustomers = new File(pathToDieticions + "/" + name + "/Customers/");
-			File Dieticion = new File(pathToDieticions + "/" + name + "/" + name + ".txt");
-			if (!Dieticion.exists()) {
-				System.out.println("File " + Dieticion.toString() + "Not found");
-			}
-			fis = new FileInputStream(Dieticion);
-			ois = new ObjectInputStream(fis);
-			
-			try {
-				nut = new Nutritionist((Nutritionist)ois.readObject());
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			nut.setCustomersList(restoreCustomers(pathToCustomers.toString()));
+			nut = (Nutritionist) nut;
 		}
+
+		else {
+			pathToDieticions = path + "/Admin";
+			nut = (Admin) nut;
+		}
+
+		File pathToCustomers = new File(pathToDieticions + "/" + name + "/Customers/");
+		File Dieticion = new File(pathToDieticions + "/" + name + "/" + name + ".txt");
+		if (!Dieticion.exists()) {
+			System.out.println("File " + Dieticion.toString() + "Not found");
+		}
+		fis = new FileInputStream(Dieticion);
+		ois = new ObjectInputStream(fis);
+
+		try {
+			if (type.equals("Nutritionist"))
+				nut = new Nutritionist((Nutritionist) ois.readObject());
+			else
+				nut = new Admin((Admin) ois.readObject());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		((Nutritionist) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
+		
+		nut.getClass()
 		return nut;
 	}
-		
+
 	public static ArrayList<Customer> restoreCustomers(String pathToCust) throws IOException {
 		File path = new File(pathToCust);
 		ArrayList<Customer> custList = new ArrayList<Customer>();
-		if(path.list() == null) {
+		if (path.list() == null) {
 			return custList;
 		}
 		for (String file : path.list()) {
-			fis = new FileInputStream(path+"/"+file+"/"+file + ".txt");
+			fis = new FileInputStream(path + "/" + file + "/" + file + ".txt");
 			ois = new ObjectInputStream(fis);
 			try {
 				custList.add((Customer) ois.readObject());
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				e.printStackTrace();
-			}
-			catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return custList;
 	}
-	
+
 	public static String getPath() {
 		String path;
 		String os = System.getProperty("os.name");
@@ -227,6 +239,5 @@ public class SaveRestore<T> {
 			path = System.getProperty("user.home") + "/.fat_off";
 		return path;
 	}
-
 
 }

@@ -1,4 +1,5 @@
 package com.FatOff.Model;
+
 /**
  * This class represent any Admin which will be created in the Fat_Off project
  * 
@@ -8,26 +9,34 @@ package com.FatOff.Model;
 import java.util.*;
 
 public class Admin extends Nutritionist {
-	
+
 	private ArrayList<Nutritionist> nutriList;
 
-
 	/**
-	 * @param firstName the Admin first name
-	 * @param lastName the Admin last name
-	 * @param phoneNumber the Admin phone number
+	 * @param firstName    the Admin first name
+	 * @param lastName     the Admin last name
+	 * @param phoneNumber  the Admin phone number
 	 * @param emailAddress the Admin email address
-	 * @param id the Admin id
-	 * @param licenseId the Admin license id
+	 * @param id           the Admin id
+	 * @param licenseId    the Admin license id
 	 * @param emailAppPass the Admin email application password
-	 * @param password the Admin password to the system
+	 * @param password     the Admin password to the system
 	 */
-	
+
 	public Admin(String firstName, String lastName, String phoneNumber, String emailAddress, String id, int licenseId,
 			String emailAppPass, String password) {
 		super(firstName, lastName, phoneNumber, emailAddress, id, licenseId, emailAppPass, password);
 		setNutriList(new ArrayList<Nutritionist>());
 	}
+
+	public Admin(Admin other) {
+		// Initialize super object
+		super(other.getFirstName(), other.getLastName(), other.getPhoneNumber(), other.getEmailAddress(), other.getId(), other.getLicenseId(), other.getEmailAppPass(), other.getPassword());
+
+		// Initialize local private variables
+		setNutriList(new ArrayList<Nutritionist>());
+	}
+
 	/**
 	 * 
 	 * 
@@ -45,26 +54,24 @@ public class Admin extends Nutritionist {
 	public void setNutriList(ArrayList<Nutritionist> nutriList) {
 		this.nutriList = nutriList;
 	}
-	
+
 	/**
 	 * 
-	 * @param cust assign a customer to nutritionist
+	 * @param cust  assign a customer to nutritionist
 	 * @param nutri nutritionist to assigned a customer to
 	 */
-	public void assignCustumer(Customer cust,Nutritionist nutri )
-	{
+	public void assignCustumer(Customer cust, Nutritionist nutri) {
 		nutri.addCustomer(cust);
 	}
-	
-	public void deleteNut(Nutritionist nutri)
-	{
+
+	public void deleteNut(Nutritionist nutri) {
 		this.nutriList.remove(nutri);
 	}
-	
-	public void createNut(String firstName, String lastName, String phoneNumber, String emailAddress, String id, int licenseId,
-			String emailAppPass, String password)	{
-		this.nutriList.add(new Nutritionist(firstName,lastName,phoneNumber,emailAddress,id,licenseId,emailAppPass,password));
+
+	public void createNut(String firstName, String lastName, String phoneNumber, String emailAddress, String id,
+			int licenseId, String emailAppPass, String password) {
+		this.nutriList.add(new Nutritionist(firstName, lastName, phoneNumber, emailAddress, id, licenseId, emailAppPass,
+				password));
 	}
-	
 
 }
