@@ -22,8 +22,10 @@ public class SaveRestore<T> {
 	private T obj;
 	private String path;
 	private File pathToDietitionDir;
+	private File pathToAdminDir;
 	private File pathToCustDir;
 	private static String pathToDieticions; 
+	private static String pathToAdmin;
 	private ObjectOutputStream writeFile;
 	private FileOutputStream pathToObj;
 	private static FileInputStream fis;
@@ -32,6 +34,7 @@ public class SaveRestore<T> {
 	public SaveRestore(T obj, String path) {
 		this.obj = obj;
 		pathToDieticions = path + "/Dieticions";
+		pathToAdmin = path + "Admin";
 	}
 
 	public void storeToFile(String dietition) throws IOException {
@@ -39,8 +42,11 @@ public class SaveRestore<T> {
 		if (this.obj.getClass().toString().contains("Nutritionist")) {
 			this.storeNutritionist(path, (Nutritionist)this.obj);
 		}
+		else if(this.obj.getClass().toString().contains("Admin")) {
+			this.storeAdmin(path, (Admin)this.obj);
+		}
 		else if(this.obj.getClass().toString().contains("Customer")) {
-			this.storeCustomer(pathToDieticions, dietition, (Customer)this.obj);
+			this.storeCustomer(pathToDieticions, (Customer)this.obj);
 		}
 
 	}
@@ -67,7 +73,34 @@ public class SaveRestore<T> {
 			e.printStackTrace();
 		}
 		for(Customer cust : nut.getCustomersList()) {
-			this.storeCustomer(pathToDieticions+"/" +temp_path+"/Customers", nut.getFirstName(), cust);
+			this.storeCustomer(pathToDieticions+"/" +temp_path+"/Customers", cust);
+		}
+		
+	}
+	
+	public void storeAdmin(String path , Admin adm) throws IOException {
+		String temp_path = ((Admin) this.obj).getFirstName() + "_" + ((Admin) this.obj).getLastName()
+				+ "_" + ((Admin) this.obj).getId();
+		pathToAdminDir = new File(pathToAdmin + "/" + temp_path);
+		pathToCustDir = new File(pathToAdminDir + "/Customers");
+		if (!pathToAdminDir.exists()) // folder Admin else create
+		{
+			pathToAdminDir.mkdir();
+			pathToCustDir.mkdir();
+		}
+		try // insert data to file
+		{
+			pathToObj = new FileOutputStream(pathToAdminDir + "/" + temp_path + ".txt");
+			writeFile = new ObjectOutputStream(pathToObj);
+			writeFile.writeObject(this.obj);
+			writeFile.close();
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(Customer cust : adm.getCustomersList()) {
+			this.storeCustomer(pathToAdmin+"/" +temp_path+"/Customers", cust);
 		}
 		
 	}
@@ -78,7 +111,7 @@ public class SaveRestore<T> {
 	 * @param cust
 	 * @throws IOException
 	 */
-	public void storeCustomer(String path, String dieticion, Customer cust) throws IOException {
+	public void storeCustomer(String path, Customer cust) throws IOException {
 		String tempCustPath = cust.getFirstName() + "_" + cust.getLastName() + "_" + cust.getId();
 		File custDir = new File(path + "/" + tempCustPath);
 		if(!custDir.exists()) {
@@ -182,6 +215,17 @@ public class SaveRestore<T> {
 			}
 		}
 		return custList;
+	}
+	
+	public static String getPath() {
+		String path;
+		String os = System.getProperty("os.name");
+		if (!os.toLowerCase().startsWith("windows"))
+			path = System.getProperty("user.home") + "/Documents/.fat_off";
+
+		else
+			path = System.getProperty("user.home") + "/.fat_off";
+		return path;
 	}
 
 

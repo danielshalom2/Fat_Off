@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JPasswordField;
@@ -14,200 +15,324 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+
+import com.FatOff.Controller.AdminController;
+
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CreateAdminWin {
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	public CreateAdminWin(){
+	private JPasswordField passConfirmField;
+	private JPasswordField passField;
+	private JTextField licenseIdField;
+	private JTextField idField;
+	private JTextField emailAddrField;
+	private JTextField phoneNumField;
+	private JTextField lNameField;
+	private JTextField fNameField;
+	private JTextField mailAppPassField;
+
+	public CreateAdminWin() {
 		JFrame adminCrtFrame = new JFrame("Admin Creation");
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.GRAY));
-		
-		JLabel lblNewLabel_2 = new JLabel("All Rights Reserved\u00A9 Fat Off Developers 2020");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		adminCrtFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JPanel formPanel = new JPanel();
+		formPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.GRAY));
+
+		JLabel copyRightLbl = new JLabel("All Rights Reserved\u00A9 Fat Off Developers 2020");
+		copyRightLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		GroupLayout groupLayout = new GroupLayout(adminCrtFrame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addComponent(formPanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup().addGap(131)
+						.addComponent(copyRightLbl, GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE).addGap(105)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(131)
-					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-					.addGap(105))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
-		);
+						.addComponent(formPanel, GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(copyRightLbl, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)));
+
+		JLabel logoLbl = new JLabel("");
+		logoLbl.setIcon(new ImageIcon(
+				CreateAdminWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
+
+		JLabel fNameLbl = new JLabel("First Name: ");
+		fNameLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+
+		JLabel lNameLbl = new JLabel("Last Name: ");
+		lNameLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+
+		JLabel phoneNumLbl = new JLabel("Phone Number:");
+		phoneNumLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+
+		JLabel emailAddrLbl = new JLabel("Email Address:");
+		emailAddrLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+
+		JLabel idLbl = new JLabel("ID:");
+		idLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+
+		JLabel headerLbl = new JLabel("Welcome to Fat-Off admin creation");
+		headerLbl.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+
+		JLabel licenseIdLbl = new JLabel("License ID:");
+		licenseIdLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+
+		JLabel passLbl = new JLabel("Password: ");
+		passLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+
+		JLabel passConfirmLbl = new JLabel("Confirm Password: ");
+		passConfirmLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+
+		JLabel idWarnLbl = new JLabel("");
+		idWarnLbl.setForeground(Color.RED);
+		idWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+
+		JLabel phoneWarnLbl = new JLabel("");
+		phoneWarnLbl.setForeground(Color.RED);
+		phoneWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(CreateAdminWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
+		mailAppPassField = new JTextField();
+		mailAppPassField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("First Name: ");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		JLabel mailAppPassLbl = new JLabel("Mail App Pass:");
+		mailAppPassLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+
+		passConfirmField = new JPasswordField();
+
+		passField = new JPasswordField();
+
+		licenseIdField = new JTextField();
+		licenseIdField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String value = licenseIdField.getText();
+				int l = value.length();
+				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
+					licenseIdField.setEditable(true);
+					idWarnLbl.setText("");
+				} else {
+					licenseIdField.setEditable(false);
+					idWarnLbl.setText("* Enter only numeric digits(0-9)");
+				}
+			}
+		});
+		licenseIdField.setColumns(10);
+
+		idField = new JTextField();
+		idField.setColumns(10);
+
+		emailAddrField = new JTextField();
+		emailAddrField.setColumns(10);
+
+		phoneNumField = new JTextField();
+		phoneNumField.setColumns(10);
+		phoneNumField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String value = phoneNumField.getText();
+				int l = value.length();
+				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
+					phoneNumField.setEditable(true);
+					phoneWarnLbl.setText("");
+				} else {
+					phoneNumField.setEditable(false);
+					phoneWarnLbl.setText("* Enter only numeric digits(0-9)");
+				}
+			}
+		});
+
+		lNameField = new JTextField();
+		lNameField.setColumns(10);
+
+		fNameField = new JTextField();
+		fNameField.setColumns(10);
+
+		JButton clearBtn = new JButton("Clear");
+		clearBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fNameField.setText("");
+				lNameField.setText("");
+				phoneNumField.setText("");
+				emailAddrField.setText("");
+				idField.setText("");
+				licenseIdField.setText("");
+				passField.setText("");
+				passConfirmField.setText("");
+				mailAppPassField.setText("");
+			}
+		});
+
+		JButton cancelBtn = new JButton("Cancel");
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				adminCrtFrame.dispose();
+			}
+		});
+
+		JButton createBtn = new JButton("Create");
+		createBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (fNameField.getText().equals("") || lNameField.getText().equals("") || phoneNumField.getText().equals("")
+						|| emailAddrField.getText().equals("") || idField.getText().equals("") || licenseIdField.getText().equals("")
+						|| mailAppPassField.getText().equals("")
+						|| passField.getPassword().length == 0 || passConfirmField.getPassword().length == 0) {
+					JOptionPane.showMessageDialog(null, "All the fields are required for admin creation!");
+				} 
+				else if(!new String(passField.getPassword()).equals(new String(passConfirmField.getPassword()))) {
+					JOptionPane.showMessageDialog(null, "The password confirmation does not match");
+					passField.setText("");
+					passConfirmField.setText("");
+				}
+				else {
+					if(AdminController.createAdmin(fNameField.getText(), lNameField.getText(), phoneNumField.getText(), 
+							emailAddrField.getText(), idField.getText(), Integer.parseInt(licenseIdField.getText()), 
+							mailAppPassField.getText(), new String(passField.getPassword()))) {
+						JOptionPane.showMessageDialog(null, "Admin was created succesfully");
+						SignInWin signIn = new SignInWin();
+						adminCrtFrame.dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Admin Creation Failed");
+					}
+				}
+			}
+		});
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Last Name: ");
-		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		
-		JLabel lblNewLabel_1_2 = new JLabel("Phone Number:");
-		lblNewLabel_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		
-		JLabel lblNewLabel_1_3 = new JLabel("Email Address:");
-		lblNewLabel_1_3.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		
-		JLabel lblNewLabel_1_4 = new JLabel("ID:");
-		lblNewLabel_1_4.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		
-		JLabel lblNewLabel_1_5 = new JLabel("Welcome to Fat-Off admin creation");
-		lblNewLabel_1_5.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
-		
-		JLabel lblNewLabel_1_4_1 = new JLabel("License ID:");
-		lblNewLabel_1_4_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		
-		JLabel lblNewLabel_1_4_1_1 = new JLabel("Password: ");
-		lblNewLabel_1_4_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		
-		JLabel lblNewLabel_1_4_1_1_1 = new JLabel("Confirm Password: ");
-		lblNewLabel_1_4_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		
-		passwordField = new JPasswordField();
-		
-		passwordField_1 = new JPasswordField();
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Clear");
-		
-		JButton btnCancel = new JButton("Cancel");
-		
-		JButton btnCreate = new JButton("Create");
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
+
+		GroupLayout gl_formPanel = new GroupLayout(formPanel);
+		gl_formPanel.setHorizontalGroup(
+			gl_formPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_formPanel.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-							.addComponent(lblNewLabel_1_5, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
-							.addGap(104))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblNewLabel_1_4_1_1_1, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-									.addGap(18))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblNewLabel_1_4, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addComponent(lblNewLabel_1_4_1_1, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-								.addComponent(lblNewLabel_1_4_1, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblNewLabel_1_3, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblNewLabel_1_2, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-									.addGap(2)))
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-								.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-								.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-								.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-								.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-								.addComponent(passwordField_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(btnCancel)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnCreate))
-								.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))))
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_formPanel.createSequentialGroup()
+							.addComponent(logoLbl)
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_formPanel.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+									.addComponent(headerLbl, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
+									.addGap(104))
+								.addGroup(gl_formPanel.createSequentialGroup()
+									.addGap(18)
+									.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_formPanel.createSequentialGroup()
+											.addComponent(phoneNumLbl, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+											.addPreferredGap(ComponentPlacement.RELATED))
+										.addGroup(gl_formPanel.createSequentialGroup()
+											.addComponent(lNameLbl, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+											.addPreferredGap(ComponentPlacement.RELATED))
+										.addGroup(gl_formPanel.createSequentialGroup()
+											.addComponent(licenseIdLbl, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED))
+										.addGroup(gl_formPanel.createSequentialGroup()
+											.addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED))
+										.addGroup(gl_formPanel.createSequentialGroup()
+											.addComponent(fNameLbl, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+											.addGap(2))
+										.addGroup(Alignment.TRAILING, gl_formPanel.createSequentialGroup()
+											.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
+												.addComponent(emailAddrLbl, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+												.addComponent(idLbl, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+												.addComponent(mailAppPassLbl, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+											.addPreferredGap(ComponentPlacement.RELATED)))
+									.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_formPanel.createSequentialGroup()
+											.addGap(136)
+											.addComponent(cancelBtn)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(createBtn))
+										.addGroup(gl_formPanel.createSequentialGroup()
+											.addGap(6)
+											.addComponent(idWarnLbl, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
+										.addComponent(lNameField, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+										.addComponent(emailAddrField, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+										.addGroup(gl_formPanel.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(licenseIdField, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+										.addComponent(idField, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+										.addComponent(phoneWarnLbl, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+										.addComponent(phoneNumField, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+										.addGroup(Alignment.TRAILING, gl_formPanel.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(mailAppPassField, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+											.addPreferredGap(ComponentPlacement.RELATED))
+										.addComponent(fNameField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)))))
+						.addGroup(gl_formPanel.createSequentialGroup()
+							.addGap(119)
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(passConfirmLbl, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+								.addComponent(passLbl, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(passField, GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+								.addComponent(passConfirmField, GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))))
 					.addGap(66))
 		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
+		gl_formPanel.setVerticalGroup(
+			gl_formPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_formPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblNewLabel_1_5, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_formPanel.createSequentialGroup()
+							.addComponent(headerLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 							.addGap(29)
-							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_1)
-								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_1_3, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(lblNewLabel))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1_4, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1_4_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1_4_1_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(passwordField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1_4_1_1_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCreate)
-						.addComponent(btnCancel)
-						.addComponent(btnNewButton))
-					.addContainerGap(39, Short.MAX_VALUE))
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(fNameLbl)
+								.addComponent(fNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(14)
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lNameLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+							.addGap(14)
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(phoneNumField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(phoneNumLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(phoneWarnLbl)
+							.addGap(9)
+							.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(emailAddrField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(emailAddrLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(logoLbl))
+					.addGap(14)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(idField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(idLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+					.addGap(13)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(licenseIdField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(licenseIdLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(idWarnLbl)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(mailAppPassField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(mailAppPassLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+					.addGap(8)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(passField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(passLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+					.addGap(7)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(passConfirmField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(passConfirmLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(createBtn)
+						.addComponent(cancelBtn)
+						.addComponent(clearBtn))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-		panel.setLayout(gl_panel);
+		formPanel.setLayout(gl_formPanel);
 		adminCrtFrame.getContentPane().setLayout(groupLayout);
+		adminCrtFrame.setVisible(true);
 		adminCrtFrame.pack();
 	}
 }

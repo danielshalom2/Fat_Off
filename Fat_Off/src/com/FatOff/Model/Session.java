@@ -1,33 +1,30 @@
 package com.FatOff.Model;
+import com.FatOff.MailSender.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-/**
- * This class represent any Session which will be created in the Fat_Off project
- * 
- * @author Fat_Off Development Team
- *@version 1.0
- */
-import java.util.*;
 
 
 public class Session implements Serializable{
-	private String SessionDate;
-	private String EditIntrudation;
 	
-	public Session() {
+	private String SessionDate;
+	private int sessionNum;
+	
+	public Session(int sessionNum) {
 		LocalDateTime now = LocalDateTime.now();
 		setSessionDate(DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now));
+		setSessionNum(sessionNum);
+		
 	}
 	
-	public void AddCustomerMeasures()// need to write.
+	public void AddCustomerMeasures(Customer cust , Measures meas)// need to write.
 	{
-		
+		cust.addMeasures(meas, this.sessionNum);
 	}
 	
 	public void SendEmail()// need to write.
 	{
-		
+		//MailSender mail = new MailSender();
 	}
 	
 	public void SummarySession()// need to write.
@@ -47,17 +44,20 @@ public class Session implements Serializable{
 	public void setSessionDate(String string) {
 		SessionDate = string;
 	}
+
 	/**
-	 * @return the editIntrudation
+	 * @return the sessionNum
 	 */
-	public String getEditIntrudation() {
-		return EditIntrudation;
+	public int getSessionNum() {
+		return sessionNum;
 	}
+
 	/**
-	 * @param editIntrudation the editIntrudation to set
+	 * @param sessionNum the sessionNum to set
 	 */
-	public void setEditIntrudation(String editIntrudation) {
-		EditIntrudation = editIntrudation;
+	public void setSessionNum(int sessionNum) {
+		this.sessionNum = sessionNum;
 	}
+
 
 }

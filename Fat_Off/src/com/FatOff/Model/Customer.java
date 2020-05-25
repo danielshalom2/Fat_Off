@@ -34,7 +34,7 @@ public class Customer extends Person implements Serializable{
 		this.gender = gender;
 		sessionsMap = new HashMap<Integer,Session>();
 		measuresMap = new HashMap<Integer,Measures>();
-		this.addSession(new Session(), 1);
+		this.addSession(new Session(1),1);
 		this.addMeasures(new Measures() , 1);
 	}
 
