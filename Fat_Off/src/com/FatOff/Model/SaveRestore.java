@@ -35,7 +35,7 @@ public class SaveRestore<T> {
 	public SaveRestore(T obj, String path) {
 		this.obj = obj;
 		pathToDieticions = path + "/Dieticions";
-		pathToAdmin = path + "Admin";
+		pathToAdmin = path + "/Admin";
 	}
 
 	public void storeToFile(String dietition) throws IOException {
@@ -172,7 +172,7 @@ public class SaveRestore<T> {
 
 	public static Object restoreFromFile(String name, String type, String path) throws IOException {
 
-		Object nut;
+		Object nut = null;
 		
 		if (type.equals("Nutritionist")) {
 			pathToDieticions = path + "/Dieticions";
@@ -202,9 +202,12 @@ public class SaveRestore<T> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		((Nutritionist) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
-		
-		nut.getClass()
+		if(type.equals("Nutritionist")){
+			((Nutritionist) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
+		}
+		else {
+			((Admin) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
+		}
 		return nut;
 	}
 

@@ -3,6 +3,7 @@
  */
 package com.FatOff.Controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import com.FatOff.Model.Admin;
@@ -31,6 +32,17 @@ public class AdminController {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public static Admin restoreAdmin(String adminName) {
+		Admin adm = null;
+		try {
+			adm = (Admin)SaveRestore.restoreFromFile(adminName, "Admin", SaveRestore.getPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return adm;
 	}
 
 }

@@ -1,204 +1,193 @@
-/**
- * 
- */
 package com.FatOff.View;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import javax.swing.JLayeredPane;
-import javax.swing.JTextPane;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.border.MatteBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.JPanel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import javax.swing.border.TitledBorder;
+import java.awt.Color;
 import javax.swing.border.LineBorder;
+import javax.swing.JTextPane;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
 
 
-/**
- * This class represents the main program window
- * @author FatOff Development Team
- * @version 1.0
- */
 public class MainWin {
-	private JTextArea diatitionNameArea;
-	private JTextArea custNameArea;
-	private JTextArea dateArea;
-	private JTextArea sessionArea;
-	private JTable table;
-	
-	public MainWin() {
-		
-		JFrame mainFrame = new JFrame("Fat Off");
-		mainFrame.setSize(1438, 731);
-		mainFrame.getContentPane().setLayout(null);
-		mainFrame.setExtendedState(mainFrame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		mainFrame.addComponentListener(new ComponentAdapter() {
-	        @Override
-	        public void componentResized(ComponentEvent event) {
-	            Dimension d = mainFrame.getContentPane().getSize();
-	            // code to save frame size or calculate internal frame sizes
-	            mainFrame.validate();
-	        }
-	    });
-		
-		
-		/**
-		 * Top Details Panel ---  Session information and sign in
-		 */
-		JPanel topDetailsPanel = new JPanel();
-		topDetailsPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		topDetailsPanel.setBounds(125, 6, 1264, 58);
-		topDetailsPanel.setLayout(null);
-		
-		JLabel lblCustomerName = new JLabel("Customer Name:");
-		lblCustomerName.setBounds(20, 35, 113, 16);
-		lblCustomerName.setVisible(true);
-		topDetailsPanel.add(lblCustomerName);
-		
-		JLabel lblDietitianName = new JLabel("Dietician Name:");
-		lblDietitianName.setBounds(20, 6, 104, 16);
-		topDetailsPanel.add(lblDietitianName);
-		
-		diatitionNameArea = new JTextArea();
-		diatitionNameArea.setEditable(false);
-		diatitionNameArea.setBounds(136, 1, 130, 21);
-		topDetailsPanel.add(diatitionNameArea);
-		diatitionNameArea.setColumns(10);
-		
-		custNameArea = new JTextArea();
-		custNameArea.setEditable(false);
-		custNameArea.setBounds(136, 30, 130, 21);
-		topDetailsPanel.add(custNameArea);
-		custNameArea.setColumns(10);
-		
-		JLabel lblDate = new JLabel("Date:");
-		lblDate.setBounds(353, 6, 61, 16);
-		topDetailsPanel.add(lblDate);
-		
-		JLabel lblSession = new JLabel("Session:");
-		lblSession.setBounds(353, 35, 61, 16);
-		topDetailsPanel.add(lblSession);
-		
-		dateArea = new JTextArea();
-		dateArea.setEditable(false);
-		dateArea.setBounds(426, 1, 130, 21);
-		topDetailsPanel.add(dateArea);
-		dateArea.setColumns(10);
-		
-		sessionArea = new JTextArea();
-		sessionArea.setEditable(false);
-		sessionArea.setBounds(426, 30, 130, 21);
-		topDetailsPanel.add(sessionArea);
-		sessionArea.setColumns(10);
-		
-		JLabel lblBmi = new JLabel("BMI :");
-		lblBmi.setBounds(647, 6, 54, 45);
-		topDetailsPanel.add(lblBmi);
-		
-		JLabel lblEer = new JLabel("EER :");
-		lblEer.setBounds(915, 6, 47, 45);
-		topDetailsPanel.add(lblEer);
-		
-		JTextPane bmiArea = new JTextPane();
-		bmiArea.setEditable(false);
-		bmiArea.setBounds(683, 16, 77, 21);
-		topDetailsPanel.add(bmiArea);
-		
-		JTextPane eerArea = new JTextPane();
-		eerArea.setEditable(false);
-		eerArea.setBounds(952, 16, 77, 21);
-		topDetailsPanel.add(eerArea);
-		
-		JButton signInBtn = new JButton("Sign In");
-		signInBtn.setBounds(1426, 16, 77, 26);
-		topDetailsPanel.add(signInBtn);
-		
-		mainFrame.getContentPane().add(topDetailsPanel);
-		
-		
-		/**
-		 * Logo Panel
-		 */
-		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setForeground(new Color(211, 211, 211));
-		layeredPane.setBackground(new Color(211, 211, 211));
-		layeredPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		layeredPane.setBounds(6, 0, 120, 194);
-		layeredPane.setLayout(null);
-		layeredPane.setOpaque(true);
-		mainFrame.getContentPane().add(layeredPane);
-		
-		
-		JLabel logoLabel = new JLabel("");
-		logoLabel.setBounds(14, 6, 100, 182);
-		layeredPane.add(logoLabel);
-		logoLabel.setIcon(new ImageIcon(MainWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
-		
-		
-		/**
-		 * Top Menu Panel ---  Open customer / Create customer 
-		 */
-		JPanel topMenuPanel = new JPanel();
-		topMenuPanel.setForeground(Color.GRAY);
-		topMenuPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		topMenuPanel.setBounds(125, 65, 1526, 66);
-		mainFrame.getContentPane().add(topMenuPanel);
-		topMenuPanel.setLayout(null);
-		
-		
-		/**
-		 * Right panel with info and select
-		 */
-		JPanel rightInfoSelectPanel = new JPanel();
-		rightInfoSelectPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		rightInfoSelectPanel.setBounds(6, 130, 730, 735);
-		mainFrame.getContentPane().add(rightInfoSelectPanel);
-		rightInfoSelectPanel.setLayout(null);
-		
-		
-		/**
-		 * Left panel with Recommended menu table
-		 */
-		JPanel sessionMenuSummPanel = new JPanel();
-		sessionMenuSummPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		sessionMenuSummPanel.setBounds(739, 130, 912, 735);
-		mainFrame.getContentPane().add(sessionMenuSummPanel);
-		sessionMenuSummPanel.setLayout(null);
-		
 
+	public MainWin(Object nut , String type) {
+		// TODO Auto-generated constructor stub
+		JFrame newFrame = new JFrame("Fat Off");
+		newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		String[] columnNames = {"","Proteins","Carbohidrates","Fat"};
-		String [][] data = {{"Breakfast","","",""},
-							{"Lunch","","",""},
-							{"Dinner","","",""}};
-        
-		MenuTableModel table = new MenuTableModel(data,columnNames);
-	
-
-		JTable menuTable = new JTable(data,columnNames);
-		menuTable.setRowHeight(70);
+		JPanel mainPanel = new JPanel();
 		
+		JPanel logoPanel = new JPanel();
+		logoPanel.setBorder(null);
+		FlowLayout fl_logoPanel = (FlowLayout) logoPanel.getLayout();
+		fl_logoPanel.setVgap(2);
+		fl_logoPanel.setHgap(2);
 		
-		JScrollPane scrollPane = new JScrollPane(menuTable);
-		scrollPane.setBounds(226, 134, 592, 344);
-		sessionMenuSummPanel.add(scrollPane);
+		JPanel sessionDataPanel = new JPanel();
+		sessionDataPanel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Session Data", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(64, 64, 64)));
+		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
+		gl_mainPanel.setHorizontalGroup(
+			gl_mainPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_mainPanel.createSequentialGroup()
+					.addComponent(logoPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(sessionDataPanel, GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+					.addGap(7))
+		);
+		gl_mainPanel.setVerticalGroup(
+			gl_mainPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_mainPanel.createSequentialGroup()
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(logoPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(sessionDataPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(443, Short.MAX_VALUE))
+		);
 		
-		mainFrame.setResizable(false);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setVisible(true);
-
-
-
+		JLabel diaticianNameLbl = new JLabel("Dietician Name:");
 		
+		JLabel customerNameLbl = new JLabel("Customer name:");
 		
+		JTextPane dieticianNameTxtPane = new JTextPane();
+		dieticianNameTxtPane.setEditable(false);
+		
+		JTextPane customerNameTxtPane = new JTextPane();
+		customerNameTxtPane.setEditable(false);
+		
+		JLabel dateLbl = new JLabel("Date:");
+		
+		JLabel sessionNumLbl = new JLabel("Session:");
+		
+		JTextPane dateTxtPane = new JTextPane();
+		dateTxtPane.setEditable(false);
+		
+		JTextPane sessionNumTxtPane = new JTextPane();
+		sessionNumTxtPane.setEditable(false);
+		
+		JLabel bmiLbl = new JLabel("BMI :");
+		
+		JLabel eerLbl = new JLabel("EER :");
+		
+		JTextPane bmiTxtPane = new JTextPane();
+		bmiTxtPane.setEditable(false);
+		
+		JTextPane eerTxtPane = new JTextPane();
+		eerTxtPane.setEditable(false);
+		GroupLayout gl_sessionDataPanel = new GroupLayout(sessionDataPanel);
+		gl_sessionDataPanel.setHorizontalGroup(
+			gl_sessionDataPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_sessionDataPanel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_sessionDataPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(diaticianNameLbl, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+						.addComponent(customerNameLbl, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_sessionDataPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(customerNameTxtPane, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+						.addComponent(dieticianNameTxtPane, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_sessionDataPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(dateLbl, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+						.addComponent(sessionNumLbl, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_sessionDataPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(sessionNumTxtPane)
+						.addComponent(dateTxtPane, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(gl_sessionDataPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_sessionDataPanel.createSequentialGroup()
+							.addComponent(bmiLbl, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(bmiTxtPane, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
+						.addGroup(gl_sessionDataPanel.createSequentialGroup()
+							.addComponent(eerLbl, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(eerTxtPane, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))
+					.addGap(133))
+		);
+		gl_sessionDataPanel.setVerticalGroup(
+			gl_sessionDataPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_sessionDataPanel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_sessionDataPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_sessionDataPanel.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(bmiTxtPane, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(bmiLbl, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(dieticianNameTxtPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(diaticianNameLbl, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+						.addComponent(dateLbl, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(dateTxtPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_sessionDataPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(sessionNumLbl, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(customerNameLbl)
+						.addComponent(eerLbl, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(eerTxtPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(customerNameTxtPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(sessionNumTxtPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(7))
+		);
+		sessionDataPanel.setLayout(gl_sessionDataPanel);
+		gl_mainPanel.setHonorsVisibility(false);
+		
+		JLabel logoLbl = new JLabel("");
+		logoLbl.setIcon(new ImageIcon(MainWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
+		logoPanel.add(logoLbl);
+		mainPanel.setLayout(gl_mainPanel);
+		GroupLayout groupLayout = new GroupLayout(newFrame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addComponent(mainPanel, GroupLayout.PREFERRED_SIZE, 900, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(mainPanel, GroupLayout.PREFERRED_SIZE, 631, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		newFrame.getContentPane().setLayout(groupLayout);
+		
+		JMenuBar menuBar = new JMenuBar();
+		newFrame.setJMenuBar(menuBar);
+		
+		JMenu menuMenuItem = new JMenu("Menu");
+		menuBar.add(menuMenuItem);
+		
+		JMenuItem createCustomerMenuItem = new JMenuItem("Create customer");
+		menuMenuItem.add(createCustomerMenuItem);
+		
+		JMenuItem openCustomerMenuItem = new JMenuItem("Open customer");
+		menuMenuItem.add(openCustomerMenuItem);
+		
+		JMenu customerMenu = new JMenu("Customer");
+		menuBar.add(customerMenu);
+		
+		JMenuItem openIntroMeeting = new JMenuItem("Open intoductory summary");
+		customerMenu.add(openIntroMeeting);
+		
+		JMenuItem prevSumMenuItem = new JMenuItem("Open summary of previous meeting");
+		customerMenu.add(prevSumMenuItem);
+		
+		JMenuItem helpMenuItem = new JMenuItem("Help");
+		helpMenuItem.setHorizontalAlignment(SwingConstants.TRAILING);
+		helpMenuItem.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		helpMenuItem.setPreferredSize(new Dimension(10, 0));
+		menuBar.add(helpMenuItem);
+		
+		newFrame.getContentPane().add(mainPanel);
+		newFrame.setVisible(true);
 	}
 }
