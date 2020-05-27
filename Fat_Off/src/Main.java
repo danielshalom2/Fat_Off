@@ -34,7 +34,11 @@ public class Main {
 			pathToFatOff.mkdir();
 			pathToAdmin.mkdir();
 			pathToDieticion.mkdir();
+			CreateAdminWin admWin = new CreateAdminWin();
+		}
+		else {
+			SignInWin signIn = new SignInWin();
 		}
 
-
+	}
 }

@@ -181,6 +181,15 @@ public class mainWinTest {
 		JMenuItem prevSumMenuItem = new JMenuItem("Open summary of previous meeting");
 		customerMenu.add(prevSumMenuItem);
 		
+		JMenu menuAdminItem = new JMenu("Admin");
+		menuBar.add(menuAdminItem);
+		
+		JMenuItem addDieticion = new JMenuItem("Add Dieticion");
+		menuAdminItem.add(addDieticion);
+		
+		JMenuItem removeDieticion = new JMenuItem("Remov Dieticion");
+		menuAdminItem.add(removeDieticion);
+		
 		JMenuItem helpMenuItem = new JMenuItem("Help");
 		helpMenuItem.setHorizontalAlignment(SwingConstants.TRAILING);
 		helpMenuItem.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);

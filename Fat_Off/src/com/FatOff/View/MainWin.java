@@ -181,6 +181,23 @@ public class MainWin {
 		JMenuItem prevSumMenuItem = new JMenuItem("Open summary of previous meeting");
 		customerMenu.add(prevSumMenuItem);
 		
+		if(type.equals("Admin")) // decide if to show the Admin menu
+		{
+		
+			JMenu AdminMenu = new JMenu("Admin");
+		menuBar.add(AdminMenu);
+		
+		JMenuItem AddDieticionItem = new JMenuItem("Add Dieticion");
+		AdminMenu.add(AddDieticionItem);
+		
+		JMenuItem RemoveDieticionItem = new JMenuItem("Remove Dieticion");
+		AdminMenu.add(RemoveDieticionItem);
+		
+		JMenuItem MoveCustomerItem = new JMenuItem("Move Customer");
+		AdminMenu.add(MoveCustomerItem);
+		
+		}
+		
 		JMenuItem helpMenuItem = new JMenuItem("Help");
 		helpMenuItem.setHorizontalAlignment(SwingConstants.TRAILING);
 		helpMenuItem.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
