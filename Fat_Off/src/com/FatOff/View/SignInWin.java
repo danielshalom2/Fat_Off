@@ -85,7 +85,9 @@ public class SignInWin {
 					File pathToAdmin = new File(path + "/Admin");
 					File pathToDieticion = new File(path + "/Dieticions");
 					for (String desired : pathToAdmin.list()) {
-						if (desired.contains(yourIdField.getText())) {
+						String ID [] = desired.split("_");
+						
+						if (ID[2].equals(yourIdField.getText())) {
 							found = true;
 							Admin adm = AdminController.restoreAdmin(desired);
 							if (new String(passwordField.getPassword()).equals(adm.getPassword())) {
@@ -98,7 +100,9 @@ public class SignInWin {
 						}
 					}
 					for (String desired : pathToDieticion.list()) {
-						if (desired.contains(yourIdField.getText())) {
+						
+						String ID [] = desired.split("_");
+						if (ID[2].equals(yourIdField.getText())) {
 							found = true;
 							Nutritionist nut = NutritionistController.restoreNut(desired);
 							if (new String(passwordField.getPassword()).equals(nut.getPassword())) {
