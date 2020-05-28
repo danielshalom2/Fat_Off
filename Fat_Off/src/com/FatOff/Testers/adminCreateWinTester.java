@@ -23,13 +23,13 @@ public class adminCreateWinTester {
 		pathToDieticion = new File(path + "/Dieticions");
 		pathToAdmin = new File(path + "/Admin");
 		if (!pathToFatOff.exists()) {
-			CreateAdminWin admWin = new CreateAdminWin();
+			new CreateAdminWin();
 			pathToFatOff.mkdir();
 			pathToAdmin.mkdir();
 			pathToDieticion.mkdir();
 		}
 		else {
-			SignInWin signIn = new SignInWin();
+			new SignInWin();
 		}
 		
 		

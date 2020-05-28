@@ -35,6 +35,7 @@ public class AdminTester {
 		Admin adm = new Admin("danie", "sdfa", "1243155111", "dasdas@gmasil.com", "123456", 123,
 				"dgsadfgasdfgasfdg", "123456");
 		
+		
 		adm.addCustomer(new Customer("vlad", "gasin", "1233", 
 							"boobies@gmail.com", "123", "Unknown"));
 		SaveRestore<Admin> temp = new SaveRestore<Admin>(adm,SaveRestore.getPath());
@@ -48,36 +49,35 @@ public class AdminTester {
 		Admin artem = null;
 		try {
 			adm2 = (Admin)SaveRestore.restoreFromFile("danie_sdfa_123456", "Admin", SaveRestore.getPath());
-			artem = (Admin)SaveRestore.restoreFromFile("artem_soldin_300000999", "Admin", SaveRestore.getPath());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		System.out.println(adm2.getCustomersList());
-		System.out.println(artem.getFirstName() + " " + artem.getLastName() + " " + artem.getPhoneNumber());
-		
-		artem.setPhoneNumber("0505050050");
+		System.out.println(adm2.getPhoneNumber());
 		
 		
-		SaveRestore<Admin> temp2 = new SaveRestore<Admin>(artem,SaveRestore.getPath());
+		adm2.setPhoneNumber("0505050050");
+		
+		
+		SaveRestore<Admin> temp2 = new SaveRestore<Admin>(adm2,SaveRestore.getPath());
 		try {
-			temp.storeToFile("");
+			temp2.storeToFile("");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		Admin artem2 = null;
+		Admin test2 = null;
 		
 		try {
-			artem2 = (Admin)SaveRestore.restoreFromFile("artem_soldin_300000999", "Admin", SaveRestore.getPath());
+			test2 = (Admin)SaveRestore.restoreFromFile("danie_sdfa_123456", "Admin", SaveRestore.getPath());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		System.out.println(artem.getFirstName() + " " + artem.getLastName() + " " + artem.getPhoneNumber());
+		System.out.println(test2.getFirstName() + " " + test2.getLastName() + " " + test2.getPhoneNumber());
 
 	}
 

@@ -2,7 +2,6 @@ package com.FatOff.View;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -15,16 +14,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
-
-import com.FatOff.Controller.AdminController;
-
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+import com.FatOff.Controller.AdminController;
+
 
 public class CreateAdminWin {
 	private JPasswordField passConfirmField;
@@ -110,8 +107,6 @@ public class CreateAdminWin {
 		licenseIdField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				String value = licenseIdField.getText();
-				int l = value.length();
 				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
 					licenseIdField.setEditable(true);
 					idWarnLbl.setText("");
@@ -134,8 +129,6 @@ public class CreateAdminWin {
 		phoneNumField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				String value = phoneNumField.getText();
-				int l = value.length();
 				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
 					phoneNumField.setEditable(true);
 					phoneWarnLbl.setText("");
@@ -194,7 +187,7 @@ public class CreateAdminWin {
 							emailAddrField.getText(), idField.getText(), Integer.parseInt(licenseIdField.getText()), 
 							mailAppPassField.getText(), new String(passField.getPassword()))) {
 						JOptionPane.showMessageDialog(null, "Admin was created succesfully");
-						SignInWin signIn = new SignInWin();
+						new SignInWin();
 						adminCrtFrame.dispose();
 					}
 					else {

@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class SaveRestore<T> {
 	
-	private T type;
 	private T obj;
 	private String path;
 	private File pathToDietitionDir;

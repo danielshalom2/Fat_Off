@@ -15,6 +15,11 @@ import javax.swing.SwingConstants;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import javax.swing.border.TitledBorder;
+
+import com.FatOff.Model.Admin;
+import com.FatOff.Model.Nutritionist;
+import com.FatOff.Model.SaveRestore;
+
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextPane;
@@ -172,6 +177,15 @@ public class MainWin {
 		menuBar.add(menuMenuItem);
 
 		JMenuItem createCustomerMenuItem = new JMenuItem("Create customer");
+		createCustomerMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (type.equals("Admin")) {
+					new CreateCustomerWin(SaveRestore.getPath() + "/Admin", (Admin) nut);
+				} else {
+					new CreateCustomerWin(SaveRestore.getPath() + "/Dieticions", (Nutritionist) nut);
+				}
+			}
+		});
 		menuMenuItem.add(createCustomerMenuItem);
 
 		JMenuItem openCustomerMenuItem = new JMenuItem("Open customer");
@@ -185,7 +199,7 @@ public class MainWin {
 
 		JMenuItem prevSumMenuItem = new JMenuItem("Open summary of previous meeting");
 		customerMenu.add(prevSumMenuItem);
-		
+
 		JMenu menuAdminItem = new JMenu("Admin");
 		menuBar.add(menuAdminItem);
 		menuAdminItem.setVisible(false);
@@ -205,17 +219,12 @@ public class MainWin {
 
 		if (type.equals("Admin")) // decide if to show the Admin menu
 			menuAdminItem.setVisible(true);
-	
-		
-
-	
 
 		JMenuItem helpMenuItem = new JMenuItem("Help");
 		helpMenuItem.setHorizontalAlignment(SwingConstants.TRAILING);
 		helpMenuItem.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		helpMenuItem.setPreferredSize(new Dimension(10, 0));
 		menuBar.add(helpMenuItem);
-		
 
 		newFrame.getContentPane().add(mainPanel);
 		newFrame.pack();
