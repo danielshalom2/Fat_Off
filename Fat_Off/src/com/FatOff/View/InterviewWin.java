@@ -146,7 +146,8 @@ public class InterviewWin {
 		);
 		panel.setLayout(gl_panel);
 		interviewFrame.getContentPane().setLayout(groupLayout);
-										
+		interviewFrame.pack();
+		interviewFrame.setVisible(true);
 		
 	}
 }
