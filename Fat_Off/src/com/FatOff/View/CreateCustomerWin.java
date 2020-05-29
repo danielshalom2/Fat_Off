@@ -164,7 +164,7 @@ public class CreateCustomerWin {
 														emailField.getText(), idField.getText(), getSelectedButtonText(radios),pathToCust + "/Customers");
 					
 					((Nutritionist)nut).addCustomer(cust);
-					new InterviewWin(cust);
+					new InterviewWin(cust , pathToCust);
 					customerCrtFrame.dispose();
 				}
 			}

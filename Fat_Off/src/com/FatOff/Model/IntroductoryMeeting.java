@@ -13,16 +13,42 @@ public class IntroductoryMeeting {
 	private String WhyGoToNut;
 	private String WhatTarget;
 	private String SomeoneSentYou;
-	private boolean HaveYouBeenToNut;
+	private String HaveYouBeenToNut;
 	private String Weakness;
 	private String StomackIssue;
 	private String TypicalDay;
-	private String YearstdayEat;
+	private String YesterdayEat;
 	private String Allergies;
 	private String DislikeFood;
 	private String Medication;
-	private Date DateOfBirth;
+	private String concentrationIssue;
+	private String gainedLostWeight;
 	
+	
+	/**
+	 * @return the gainedLostWeight
+	 */
+	public String getGainedLostWeight() {
+		return gainedLostWeight;
+	}
+	/**
+	 * @param gainedLostWeight the gainedLostWeight to set
+	 */
+	public void setGainedLostWeight(String gainedLostWeight) {
+		this.gainedLostWeight = gainedLostWeight;
+	}
+	/**
+	 * @return the concentrationIssue
+	 */
+	public String getConcentrationIssue() {
+		return concentrationIssue;
+	}
+	/**
+	 * @param concentrationIssue the concentrationIssue to set
+	 */
+	public void setConcentrationIssue(String concentrationIssue) {
+		this.concentrationIssue = concentrationIssue;
+	}
 	/**
 	 * @return the whatTarget
 	 */
@@ -52,16 +78,16 @@ public class IntroductoryMeeting {
 			return SomeoneSentYou;
 	}
 	/**
-	 * @return the haveYouBeenToNut
-	 */
-	public boolean isHaveYouBeenToNut() {
-		return HaveYouBeenToNut;
-	}
-	/**
 	 * @param haveYouBeenToNut the haveYouBeenToNut to set
 	 */
-	public void setHaveYouBeenToNut(boolean haveYouBeenToNut) {
+	public void setHaveYouBeenToNut(String haveYouBeenToNut) {
 		HaveYouBeenToNut = haveYouBeenToNut;
+	}
+	/**
+	 * 
+	 */
+	public String getHaveYouBeenToNut() {
+		return HaveYouBeenToNut;
 	}
 	/**
 	 * @return the weakness
@@ -102,14 +128,14 @@ public class IntroductoryMeeting {
 	/**
 	 * @return the yearstdayEat
 	 */
-	public String getYearstdayEat() {
-		return YearstdayEat;
+	public String getYesterdayEat() {
+		return YesterdayEat;
 	}
 	/**
 	 * @param yearstdayEat the yearstdayEat to set
 	 */
-	public void setYearstdayEat(String yearstdayEat) {
-		YearstdayEat = yearstdayEat;
+	public void setYesterdayEat(String yearstdayEat) {
+		YesterdayEat = yearstdayEat;
 	}
 	/**
 	 * @return the allergies
