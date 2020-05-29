@@ -12,7 +12,7 @@ public class IntroductoryMeeting {
 	
 	private String WhyGoToNut;
 	private String WhatTarget;
-	private boolean SomeoneSentYou;
+	private String SomeoneSentYou;
 	private boolean HaveYouBeenToNut;
 	private String Weakness;
 	private String StomackIssue;
@@ -38,14 +38,18 @@ public class IntroductoryMeeting {
 	/**
 	 * @return the someoneSentYou
 	 */
-	public boolean isSomeoneSentYou() {
+	public String isSomeoneSentYou() {
 		return SomeoneSentYou;
 	}
 	/**
 	 * @param someoneSentYou the someoneSentYou to set
 	 */
-	public void setSomeoneSentYou(boolean someoneSentYou) {
+	public void setSomeoneSentYou(String someoneSentYou) {
 		SomeoneSentYou = someoneSentYou;
+	}
+	
+	public String getSomeoneSentYou() {
+			return SomeoneSentYou;
 	}
 	/**
 	 * @return the haveYouBeenToNut

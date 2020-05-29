@@ -1,5 +1,4 @@
 package com.FatOff.Model;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,6 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocWriter;
 
 /**
  * This class represent any Introduction Meeting which will be created in the
@@ -37,6 +38,8 @@ public class SaveRestore<T> {
 		pathToAdmin = path + "/Admin";
 	}
 
+	
+	
 	public void storeToFile(String dietition) throws IOException {
 
 		if (this.obj.getClass().toString().contains("Nutritionist")) {
