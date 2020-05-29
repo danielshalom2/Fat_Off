@@ -34,6 +34,7 @@ public class SignInWin {
 		signInFrame.setResizable(true);
 		signInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		signInFrame.setLocationRelativeTo(null);
+	
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.DARK_GRAY));

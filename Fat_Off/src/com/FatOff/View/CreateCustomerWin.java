@@ -156,7 +156,7 @@ public class CreateCustomerWin {
 					JOptionPane.showMessageDialog(null, "All Fileds are required for customer creation!");
 				}
 				else if(idField.getText().length() != 9) {
-					JOptionPane.showMessageDialog(null, "Id must contain exactly 9 numeric characters!");
+					JOptionPane.showMessageDialog(null, "ID must contain exactly 9 numeric characters!");
 				}
 				else {
 					String pathToCust = path + "/" + ((Nutritionist)nut).getFirstName() + "_" + ((Nutritionist)nut).getLastName() + "_" + ((Nutritionist)nut).getId();

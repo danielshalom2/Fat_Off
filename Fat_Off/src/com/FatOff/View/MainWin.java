@@ -194,7 +194,7 @@ public class MainWin {
 		JMenu customerMenu = new JMenu("Customer");
 		menuBar.add(customerMenu);
 
-		JMenuItem openIntroMeeting = new JMenuItem("Open intoductory summary");
+		JMenuItem openIntroMeeting = new JMenuItem("Open introductory summary");
 		customerMenu.add(openIntroMeeting);
 
 		JMenuItem prevSumMenuItem = new JMenuItem("Open summary of previous meeting");

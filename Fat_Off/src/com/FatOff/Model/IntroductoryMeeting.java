@@ -173,18 +173,6 @@ public class IntroductoryMeeting {
 	public void setMedication(String medication) {
 		Medication = medication;
 	}
-	/**
-	 * @return the dateOfBirth
-	 */
-	public Date getDateOfBirth() {
-		return DateOfBirth;
-	}
-	/**
-	 * @param dateOfBirth the dateOfBirth to set
-	 */
-	public void setDateOfBirth(Date dateOfBirth) {
-		DateOfBirth = dateOfBirth;
-	}
 
 	/**
 	 * @return the whyGoToNut

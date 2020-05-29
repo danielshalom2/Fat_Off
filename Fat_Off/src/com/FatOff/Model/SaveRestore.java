@@ -1,4 +1,5 @@
 package com.FatOff.Model;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -6,13 +7,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -30,7 +35,7 @@ import com.itextpdf.text.DocWriter;
  */
 
 public class SaveRestore<T> {
-	
+
 	private T obj;
 	private String path;
 	private File pathToDietitionDir;
@@ -42,14 +47,13 @@ public class SaveRestore<T> {
 	private FileOutputStream pathToObj;
 	private static FileInputStream fis;
 	private static ObjectInputStream ois;
-	
+
 	// Fonts for the PDFs
 	private static String FILE = "c:/temp/FirstPdf.pdf";
-    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-    private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14,Font.NORMAL, BaseColor.BLACK);
-    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,Font.BOLD);
-    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,Font.BOLD);
-    
+	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL, BaseColor.BLACK);
+	private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
+	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
 	public SaveRestore(T obj, String path) {
 		this.obj = obj;
@@ -57,8 +61,6 @@ public class SaveRestore<T> {
 		pathToAdmin = path + "/Admin";
 	}
 
-	
-	
 	public void storeToFile(String dietition) throws IOException {
 
 		if (this.obj.getClass().toString().contains("Nutritionist")) {
@@ -190,23 +192,35 @@ public class SaveRestore<T> {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void storeInterviewToPdf(String path) throws FileNotFoundException, DocumentException {
-		String temp_path = ((Customer)obj).getFirstName() + "_" + ((Customer)obj).getLastName() + "_" + ((Customer)obj).getId();
-		FileOutputStream fos = new FileOutputStream(path + "/" + temp_path +"/Interview.pdf");
+		String temp_path = ((Customer) obj).getFirstName() + "_" + ((Customer) obj).getLastName() + "_"
+				+ ((Customer) obj).getId();
+		FileOutputStream fos = new FileOutputStream(path + "/" + temp_path + "/Interview.pdf");
 		Document newDoc = new Document();
 		PdfWriter.getInstance(newDoc, fos);
 		newDoc.open();
-        addTitlePage(newDoc , (Customer)obj);
-        addInterviewContent(newDoc , ((Customer)obj).getPesronalInterview());
-        newDoc.close();
-		
+		try {
+			addTitlePage(newDoc, (Customer) obj);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		addInterviewContent(newDoc, ((Customer) obj).getPesronalInterview());
+		newDoc.close();
+
 	}
 
 	public static Object restoreFromFile(String name, String type, String path) throws IOException {
 
 		Object nut = null;
-		
+
 		if (type.equals("Nutritionist")) {
 			pathToDieticions = path + "/Dieticions";
 			nut = (Nutritionist) nut;
@@ -235,10 +249,9 @@ public class SaveRestore<T> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if(type.equals("Nutritionist")){
+		if (type.equals("Nutritionist")) {
 			((Nutritionist) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
-		}
-		else {
+		} else {
 			((Admin) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
 		}
 		return nut;
@@ -275,14 +288,12 @@ public class SaveRestore<T> {
 			path = System.getProperty("user.home") + "/.fat_off";
 		return path;
 	}
-	
-	
-	
-	
-	// ############################################### PDF Writer #################################################
-	   // iText allows to add metadata to the PDF which can be viewed in your Adobe
-    // Reader
-    // under File -> Properties
+
+	// ############################################### PDF Writer
+	// #################################################
+	// iText allows to add metadata to the PDF which can be viewed in your Adobe
+	// Reader
+	// under File -> Properties
 //    private static void addMetaData(Document document) {
 //        document.addTitle("Introductory Meeting");
 //        document.addSubject("Interview");
@@ -291,98 +302,116 @@ public class SaveRestore<T> {
 //        document.addCreator("Lars Vogel");
 //    }
 
-    private static void addTitlePage(Document document , Customer cust) throws DocumentException {
-    	LocalDateTime now = LocalDateTime.now();
-		
-        Paragraph preface = new Paragraph();
-        // We add one empty line
-        addEmptyLine(preface, 1);
-        // Lets write a big header
-        preface.add(new Paragraph("Introductory Meeting", catFont));
+	private static void addTitlePage(Document document, Customer cust)
+			throws DocumentException, MalformedURLException, IOException {
+		LocalDateTime now = LocalDateTime.now();
 
-        addEmptyLine(preface, 1);
-        // Will create: Report generated by: _name, _date
-        preface.add(new Paragraph(
-                "Report generated by: " + System.getProperty("Fat_Off") + ", " 
-                + DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now).toString(), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                smallBold));
-        
-        addEmptyLine(preface, 3);
-        preface.add(new Paragraph(
-                "The Customer: ",
-                smallBold));
+		try {
+			document.open();
 
-        addEmptyLine(preface, 1);
+			Image image = Image.getInstance("com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png");
+			document.add(image);
 
-        preface.add(new Paragraph("Full Name: " +cust.getFirstName() + " " + cust.getLastName(),blackFont));
-        preface.add(new Paragraph("Phone Number: " + cust.getPhoneNumber(),blackFont));
-        preface.add(new Paragraph("Email Address: " + cust.getEmailAddress(),blackFont));
-        preface.add(new Paragraph("Customer ID: " + cust.getId(),blackFont));
-        preface.add(new Paragraph("Gender: " + cust.getGender(),blackFont));
+			image = Image.getInstance(new URL("com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png"));
+			// set Absolute Position
+			image.setAbsolutePosition(220f, 550f);
+			// set Scaling
+			// image.scalePercent(100f);
+			// set Rotation
+			// image.setRotationDegrees(45f);
+			document.add(image);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        document.add(preface);
-        // Start a new page
-        document.newPage();
-    }
+		Paragraph preface = new Paragraph();
+		// We add one empty line
+		addEmptyLine(preface, 1);
+		// Lets write a big header
+		preface.add(new Paragraph("Introductory Meeting", catFont));
 
-    private static void addInterviewContent(Document document , IntroductoryMeeting intro) throws DocumentException {
-     
-        // Second parameter is the number of the chapter
-        Chapter catPart = new Chapter(new Paragraph(), 1);
+		addEmptyLine(preface, 1);
+		// Will create: Report generated by: _name, _date
+		preface.add(new Paragraph(
+				"Report generated by: FatOff, " + DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now).toString(), //$NON-NLS-2$ //$NON-NLS-2$
+																													// //$NON-NLS-3$
+				smallBold));
 
-        Paragraph subPara = new Paragraph("Why have you decided to come to a dietician?", subFont);
-        Section subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getWhyGoToNut()));
+		addEmptyLine(preface, 2);
+		preface.add(new Paragraph("The Customer: ", smallBold));
 
-        subPara = new Paragraph("What is your goal?", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getWhatTarget()));
-        
-        subPara = new Paragraph("Has someone pushed you to go to a dietician? Please elaborate..", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getSomeoneSentYou()));
-        
-        subPara = new Paragraph("Have you ever started a process with a dietician? Please elaborate..", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getHaveYouBeenToNut()));
-        
-        subPara = new Paragraph("Do you have troubles with concentrating recently?", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getConcentrationIssue()));
-        
-        subPara = new Paragraph("Have you recently gained or lost weight unexpectedly?", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getGainedLostWeight()));
-        
-        subPara = new Paragraph("Where there any digestion problems (diarrhea, vomiting, Lack of appetite)?", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getStomackIssue()));
-        
-        subPara = new Paragraph("Typical day (Wakeup time, daily activity, work hours, work type,"+"\n"+"sport actvity (How often))...", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getTypicalDay()));
-        
-        subPara = new Paragraph("Describe what you ate yesterday (or any other specific day).", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getYesterdayEat()));
-        
-        subPara = new Paragraph("Do you have any alergies? Please elaborate..", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getAllergies()));
-        
-        subPara = new Paragraph("Are there any food product you don't like? Please elaborate..", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getDislikeFood()));
-        
-        subPara = new Paragraph("Are there any backgroud diseases? Any medications you take?", subFont);
-        subCatPart = catPart.addSection(subPara);
-        subCatPart.add(new Paragraph(intro.getMedication()));
-        
-        document.add(catPart);
-        
-    }
+		addEmptyLine(preface, 1);
 
-        // add a list
+		preface.add(new Paragraph("Full Name: " + cust.getFirstName() + " " + cust.getLastName(), blackFont));
+		preface.add(new Paragraph("Phone Number: " + cust.getPhoneNumber(), blackFont));
+		preface.add(new Paragraph("Email Address: " + cust.getEmailAddress(), blackFont));
+		preface.add(new Paragraph("Customer ID: " + cust.getId(), blackFont));
+		preface.add(new Paragraph("Gender: " + cust.getGender(), blackFont));
+
+		document.add(preface);
+		// Start a new page
+		document.newPage();
+	}
+
+	private static void addInterviewContent(Document document, IntroductoryMeeting intro) throws DocumentException {
+
+		// Second parameter is the number of the chapter
+		Chapter catPart = new Chapter(new Paragraph(), 1);
+
+		Paragraph subPara = new Paragraph("Why have you decided to come to a dietician?", subFont);
+		Section subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getWhyGoToNut()));
+
+		subPara = new Paragraph("What is your goal?", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getWhatTarget()));
+
+		subPara = new Paragraph("Has someone pushed you to go to a dietician? Please elaborate..", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getSomeoneSentYou()));
+
+		subPara = new Paragraph("Have you ever started a process with a dietician? Please elaborate..", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getHaveYouBeenToNut()));
+
+		subPara = new Paragraph("Do you have troubles with concentrating recently?", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getConcentrationIssue()));
+
+		subPara = new Paragraph("Have you recently gained or lost weight unexpectedly?", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getGainedLostWeight()));
+
+		subPara = new Paragraph("Where there any digestion problems (diarrhea, vomiting, Lack of appetite)?", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getStomackIssue()));
+
+		subPara = new Paragraph("Typical day (Wakeup time, daily activity, work hours, work type," + "\n"
+				+ "sport actvity (How often))...", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getTypicalDay()));
+
+		subPara = new Paragraph("Describe what you ate yesterday (or any other specific day).", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getYesterdayEat()));
+
+		subPara = new Paragraph("Do you have any alergies? Please elaborate..", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getAllergies()));
+
+		subPara = new Paragraph("Are there any food product you don't like? Please elaborate..", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getDislikeFood()));
+
+		subPara = new Paragraph("Are there any backgroud diseases? Any medications you take?", subFont);
+		subCatPart = catPart.addSection(subPara);
+		subCatPart.add(new Paragraph(intro.getMedication()));
+
+		document.add(catPart);
+
+	}
+
+	// add a list
 //        createList(subCatPart);
 //        Paragraph paragraph = new Paragraph();
 //        addEmptyLine(paragraph, 5);
@@ -447,11 +476,9 @@ public class SaveRestore<T> {
 //        subCatPart.add(list);
 //    }
 
-    private static void addEmptyLine(Paragraph paragraph, int number) {
-        for (int i = 0; i < number; i++) {
-            paragraph.add(new Paragraph(" "));
-        }
-    }
+	private static void addEmptyLine(Paragraph paragraph, int number) {
+		for (int i = 0; i < number; i++) {
+			paragraph.add(new Paragraph(" "));
+		}
+	}
 }
-
-
