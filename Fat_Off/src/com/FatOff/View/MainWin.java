@@ -3,6 +3,7 @@ package com.FatOff.View;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,6 +18,7 @@ import java.awt.Dimension;
 import javax.swing.border.TitledBorder;
 
 import com.FatOff.Model.Admin;
+import com.FatOff.Model.Customer;
 import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.SaveRestore;
 
@@ -189,6 +191,26 @@ public class MainWin {
 		menuMenuItem.add(createCustomerMenuItem);
 
 		JMenuItem openCustomerMenuItem = new JMenuItem("Open customer");
+		openCustomerMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				JComboBox<Customer> comboBox = new JComboBox<>(((Nutritionist) nut).getCustomersList()
+						.toArray(new Customer[((Nutritionist) nut).getCustomersList().size()]));
+				CustomerSearchDecorator<Customer> decorate = CustomerSearchDecorator.decorate(comboBox, MainWin::customerFilter);
+				comboBox.setRenderer(new CustomComboRenderer(decorate.getFilterLabel()));
+
+				JPanel panel = new JPanel();
+				panel.add(comboBox);
+
+				JFrame frame = new JFrame("JComboBox Filter Example");
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setSize(new Dimension(600, 300));
+				frame.add(panel);
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+
+			}
+		});
 		menuMenuItem.add(openCustomerMenuItem);
 
 		JMenu customerMenu = new JMenu("Customer");
@@ -229,5 +251,12 @@ public class MainWin {
 		newFrame.getContentPane().add(mainPanel);
 		newFrame.pack();
 		newFrame.setVisible(true);
+	}
+
+	private static boolean customerFilter(Customer cust, String textToFilter) {
+		if (textToFilter.isEmpty()) {
+			return true;
+		}
+		return CustomComboRenderer.getCustomerDisplayText(cust).toLowerCase().contains(textToFilter.toLowerCase());
 	}
 }
