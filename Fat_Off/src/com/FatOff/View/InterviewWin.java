@@ -281,6 +281,15 @@ public class InterviewWin {
 		interviewPanel.setLayout(gl_interviewPanel);
 
 		JButton cancelBtn = new JButton("Cancel");
+		cancelBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				interviewFrame.dispose();
+				
+			}
+		});
 
 		ButtonGroup radios = new ButtonGroup();
 
@@ -307,6 +316,7 @@ public class InterviewWin {
 							typicalDayATPane.getText(), whatAteATPane.getText(), alergiesATPane.getText(),
 							foodNotLikeATPane.getText(), deseasMedATPane.getText(), concentrationATPane.getText(),
 							gainedLostATPane.getText(), cust, pathToCust);
+					interviewFrame.dispose();
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

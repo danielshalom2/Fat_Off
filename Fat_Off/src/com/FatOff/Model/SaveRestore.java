@@ -102,7 +102,7 @@ public class SaveRestore<T> {
 			pathToAdmin.mkdir();
 			pathToDieticion.mkdir();
 		}
-		String temp_path = ((Admin) this.obj).getFirstName() + "" + ((Admin) this.obj).getLastName() + ""
+		String temp_path = ((Admin) this.obj).getFirstName() + "_" + ((Admin) this.obj).getLastName() + "_"
 				+ ((Admin) this.obj).getId();
 		pathToAdminDir = new File(pathToAdmin + "/" + temp_path);
 		pathToCustDir = new File(pathToAdminDir + "/Customers");
@@ -135,7 +135,7 @@ public class SaveRestore<T> {
 	 * @throws IOException
 	 */
 	public void storeCustomer(String path, Customer cust) throws IOException {
-		String tempCustPath = cust.getFirstName() + "" + cust.getLastName() + "" + cust.getId();
+		String tempCustPath = cust.getFirstName() + "_" + cust.getLastName() + "_" + cust.getId();
 		File custDir = new File(path + "/" + tempCustPath);
 		if (!custDir.exists()) {
 			custDir.mkdir();
@@ -196,7 +196,7 @@ public class SaveRestore<T> {
 	}
 
 	public void storeInterviewToPdf(String path) throws FileNotFoundException, DocumentException {
-		String temp_path = ((Customer) obj).getFirstName() + "" + ((Customer) obj).getLastName() + ""
+		String temp_path = ((Customer) obj).getFirstName() + "_" + ((Customer) obj).getLastName() + "_"
 				+ ((Customer) obj).getId();
 		FileOutputStream fos = new FileOutputStream(path + "/" + temp_path + "/Interview.pdf");
 		Document newDoc = new Document();

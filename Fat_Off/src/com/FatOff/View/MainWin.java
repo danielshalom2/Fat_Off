@@ -203,7 +203,7 @@ public class MainWin {
 				panel.add(comboBox);
 
 				JFrame frame = new JFrame("JComboBox Filter Example");
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setSize(new Dimension(600, 300));
 				frame.add(panel);
 				frame.setLocationRelativeTo(null);
