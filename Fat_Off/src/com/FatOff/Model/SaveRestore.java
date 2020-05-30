@@ -8,23 +8,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chapter;
-import com.itextpdf.text.DocWriter;
 
 /**
  * This class represent any Introduction Meeting which will be created in the
@@ -48,11 +41,9 @@ public class SaveRestore<T> {
 	private static FileInputStream fis;
 	private static ObjectInputStream ois;
 
-	// Fonts for the PDFs
-	private static String FILE = "c:/temp/FirstPdf.pdf";
 	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.NORMAL, BaseColor.BLACK);
-	private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
+	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.NORMAL, BaseColor.BLACK);
+	private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
 	public SaveRestore(T obj, String path) {
@@ -217,17 +208,16 @@ public class SaveRestore<T> {
 
 	}
 
-	public static Object restoreFromFile(String name, String type, String path) throws IOException {
-
+	public static Object restoreFromFile(String name, String type) throws IOException {
 		Object nut = null;
 
 		if (type.equals("Nutritionist")) {
-			pathToDieticions = path + "/Dieticions";
+			pathToDieticions = getPath() + "/Dieticions";
 			nut = (Nutritionist) nut;
 		}
 
 		else {
-			pathToDieticions = path + "/Admin";
+			pathToDieticions = getPath() + "/Admin";
 			nut = (Admin) nut;
 		}
 
@@ -240,8 +230,9 @@ public class SaveRestore<T> {
 		ois = new ObjectInputStream(fis);
 
 		try {
-			if (type.equals("Nutritionist"))
+			if (type.equals("Nutritionist")) {
 				nut = new Nutritionist((Nutritionist) ois.readObject());
+			}
 			else
 				nut = new Admin((Admin) ois.readObject());
 		} catch (ClassNotFoundException e) {
@@ -264,6 +255,9 @@ public class SaveRestore<T> {
 			return custList;
 		}
 		for (String file : path.list()) {
+			if(file.equals(".DS_Store")) {
+				continue;
+			}
 			fis = new FileInputStream(path + "/" + file + "/" + file + ".txt");
 			ois = new ObjectInputStream(fis);
 			try {
@@ -309,16 +303,11 @@ public class SaveRestore<T> {
 		try {
 			document.open();
 
-			Image image = Image.getInstance("com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png");
-			document.add(image);
+			Image image = Image.getInstance("Image/imgonline-com-ua-resize-5aRADIEx30404X17.png");
 
-			image = Image.getInstance(new URL("com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png"));
 			// set Absolute Position
-			image.setAbsolutePosition(220f, 550f);
-			// set Scaling
-			// image.scalePercent(100f);
-			// set Rotation
-			// image.setRotationDegrees(45f);
+			//image.setAbsolutePosition(220f, 550f);
+
 			document.add(image);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -354,60 +343,128 @@ public class SaveRestore<T> {
 	}
 
 	private static void addInterviewContent(Document document, IntroductoryMeeting intro) throws DocumentException {
+		
+		try {
+			Image image = Image.getInstance("Image/imgonline-com-ua-resize-5aRADIEx30404X17.png");
+
+			// set Absolute Position
+			//image.setAbsolutePosition(220f, 550f);
+
+			document.add(image);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// Second parameter is the number of the chapter
-		Chapter catPart = new Chapter(new Paragraph(), 1);
-
-		Paragraph subPara = new Paragraph("Why have you decided to come to a dietician?", subFont);
-		Section subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getWhyGoToNut()));
-
-		subPara = new Paragraph("What is your goal?", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getWhatTarget()));
-
-		subPara = new Paragraph("Has someone pushed you to go to a dietician? Please elaborate..", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getSomeoneSentYou()));
-
-		subPara = new Paragraph("Have you ever started a process with a dietician? Please elaborate..", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getHaveYouBeenToNut()));
-
-		subPara = new Paragraph("Do you have troubles with concentrating recently?", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getConcentrationIssue()));
-
-		subPara = new Paragraph("Have you recently gained or lost weight unexpectedly?", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getGainedLostWeight()));
-
-		subPara = new Paragraph("Where there any digestion problems (diarrhea, vomiting, Lack of appetite)?", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getStomackIssue()));
-
-		subPara = new Paragraph("Typical day (Wakeup time, daily activity, work hours, work type," + "\n"
-				+ "sport actvity (How often))...", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getTypicalDay()));
-
-		subPara = new Paragraph("Describe what you ate yesterday (or any other specific day).", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getYesterdayEat()));
-
-		subPara = new Paragraph("Do you have any alergies? Please elaborate..", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getAllergies()));
-
-		subPara = new Paragraph("Are there any food product you don't like? Please elaborate..", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getDislikeFood()));
-
-		subPara = new Paragraph("Are there any backgroud diseases? Any medications you take?", subFont);
-		subCatPart = catPart.addSection(subPara);
-		subCatPart.add(new Paragraph(intro.getMedication()));
-
+		Paragraph catPart = new Paragraph(new Paragraph("1. Why have you decided to come to a dietician?", subFont));
+		Paragraph subPara = new Paragraph(intro.getWhyGoToNut(), blackFont);
 		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//		Section subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getWhyGoToNut()));
+////
+//		subPara = new Paragraph("What is your goal?", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getWhatTarget()));
+		catPart = new Paragraph(new Paragraph("2. What is your goal?", subFont));
+		subPara = new Paragraph(intro.getWhatTarget(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+//		subPara = new Paragraph("Has someone pushed you to go to a dietician? Please elaborate..", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getSomeoneSentYou()));
+		catPart = new Paragraph(new Paragraph("3. Has someone pushed you to go to a dietician? Please elaborate..", subFont));
+		subPara = new Paragraph(intro.getSomeoneSentYou(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+//		subPara = new Paragraph("Have you ever started a process with a dietician? Please elaborate..", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getHaveYouBeenToNut()));
+		catPart = new Paragraph(new Paragraph("4. Have you ever started a process with a dietician? Please elaborate..", subFont));
+		subPara = new Paragraph(intro.getHaveYouBeenToNut(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+//		subPara = new Paragraph("Do you have troubles with concentrating recently?", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getConcentrationIssue()));
+		catPart = new Paragraph(new Paragraph("5. Do you have troubles with concentrating recently?", subFont));
+		subPara = new Paragraph(intro.getConcentrationIssue(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+//		subPara = new Paragraph("Have you recently gained or lost weight unexpectedly?", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getGainedLostWeight()));
+		catPart = new Paragraph(new Paragraph("6. Have you recently gained or lost weight unexpectedly?", subFont));
+		subPara = new Paragraph(intro.getGainedLostWeight(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+//		subPara = new Paragraph("Where there any digestion problems (diarrhea, vomiting, Lack of appetite)?", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getStomackIssue()));
+		catPart = new Paragraph(new Paragraph("7. Where there any digestion problems (diarrhea, vomiting, Lack of appetite)?", subFont));
+		subPara = new Paragraph(intro.getStomackIssue(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+//		subPara = new Paragraph("Typical day (Wakeup time, daily activity, work hours, work type," + "\n"
+//				+ "sport actvity (How often))...", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getTypicalDay()));
+		catPart = new Paragraph(new Paragraph("8. Typical day (Wakeup time, daily activity, work hours, work type," + "\n"
+				+ "sport actvity (How often))...", subFont));
+		subPara = new Paragraph(intro.getTypicalDay(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+		
+//		subPara = new Paragraph("Describe what you ate yesterday (or any other specific day).", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getYesterdayEat()));
+		catPart = new Paragraph(new Paragraph("9. Describe what you ate yesterday (or any other specific day).", subFont));
+		subPara = new Paragraph(intro.getYesterdayEat(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+//		subPara = new Paragraph("Do you have any alergies? Please elaborate..", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getAllergies()));
+		catPart = new Paragraph(new Paragraph("10. Do you have any alergies? Please elaborate..", subFont));
+		subPara = new Paragraph(intro.getAllergies(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+//		subPara = new Paragraph("Are there any food product you don't like? Please elaborate..", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getDislikeFood()));
+		catPart = new Paragraph(new Paragraph("11. Are there any food product you don't like? Please elaborate..", subFont));
+		subPara = new Paragraph(intro.getDislikeFood(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
+//
+//		subPara = new Paragraph("Are there any backgroud diseases? Any medications you take?", subFont);
+//		subCatPart = catPart.addSection(subPara);
+//		subCatPart.add(new Paragraph(intro.getMedication()));
+		catPart = new Paragraph(new Paragraph("12. Are there any backgroud diseases? Any medications you take?", subFont));
+		subPara = new Paragraph(intro.getMedication(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara,1);
 
 	}
 

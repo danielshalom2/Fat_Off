@@ -25,7 +25,7 @@ public class NutritionistController {
 	public static Nutritionist restoreNut(String NutName) {
 		Nutritionist nut = null;
 		try {
-			nut = (Nutritionist)SaveRestore.restoreFromFile(NutName, "Nutritionist", SaveRestore.getPath());
+			nut = (Nutritionist)SaveRestore.restoreFromFile(NutName, "Nutritionist");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

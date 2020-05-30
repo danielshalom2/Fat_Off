@@ -37,7 +37,7 @@ public class AdminController {
 	public static Admin restoreAdmin(String adminName) {
 		Admin adm = null;
 		try {
-			adm = (Admin)SaveRestore.restoreFromFile(adminName, "Admin", SaveRestore.getPath());
+			adm = (Admin)SaveRestore.restoreFromFile(adminName, "Admin");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

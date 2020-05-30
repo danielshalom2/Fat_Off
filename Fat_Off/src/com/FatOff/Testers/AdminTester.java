@@ -48,7 +48,7 @@ public class AdminTester {
 		Admin adm2 = null;
 		Admin artem = null;
 		try {
-			adm2 = (Admin)SaveRestore.restoreFromFile("danie_sdfa_123456", "Admin", SaveRestore.getPath());
+			adm2 = (Admin)SaveRestore.restoreFromFile("danie_sdfa_123456", "Admin");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,7 +71,7 @@ public class AdminTester {
 		Admin test2 = null;
 		
 		try {
-			test2 = (Admin)SaveRestore.restoreFromFile("danie_sdfa_123456", "Admin", SaveRestore.getPath());
+			test2 = (Admin)SaveRestore.restoreFromFile("danie_sdfa_123456", "Admin");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

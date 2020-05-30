@@ -2,7 +2,6 @@
 package com.FatOff.View;
 
 import javax.swing.*;
-import java.awt.HeadlessException;
 import javax.swing.JFrame;
 import java.awt.Font;
 import javax.swing.border.MatteBorder;
@@ -18,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import javax.swing.GroupLayout.Alignment;
@@ -40,8 +38,7 @@ public class SignInWin {
 		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.DARK_GRAY));
 
 		JLabel logoLbl = new JLabel("");
-		logoLbl.setIcon(new ImageIcon(
-				SignInWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
+		logoLbl.setIcon(new ImageIcon(SignInWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
 
 		JLabel yourIdWarnLbl = new JLabel("");
 		yourIdWarnLbl.setForeground(Color.RED);
@@ -56,8 +53,6 @@ public class SignInWin {
 		yourIdField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				String value = yourIdField.getText();
-				int l = value.length();
 				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
 					yourIdField.setEditable(true);
 					yourIdWarnLbl.setText("");
@@ -86,8 +81,10 @@ public class SignInWin {
 					File pathToAdmin = new File(path + "/Admin");
 					File pathToDieticion = new File(path + "/Dieticions");
 					for (String desired : pathToAdmin.list()) {
+						if(desired.equals(".DS_Store")) {
+							continue;
+						}
 						String ID [] = desired.split("_");
-						
 						if (ID[2].equals(yourIdField.getText())) {
 							found = true;
 							Admin adm = AdminController.restoreAdmin(desired);
@@ -101,7 +98,9 @@ public class SignInWin {
 						}
 					}
 					for (String desired : pathToDieticion.list()) {
-						
+						if(desired.equals(".DS_Store")) {
+							continue;
+						}
 						String ID [] = desired.split("_");
 						if (ID[2].equals(yourIdField.getText())) {
 							found = true;
@@ -131,59 +130,70 @@ public class SignInWin {
 		});
 
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addGap(147).addComponent(headerLbl,
-						GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup().addGap(16)
-						.addComponent(logoLbl, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE).addGap(12)
-						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel
-								.createSequentialGroup()
-								.addComponent(yourIdLbl, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createSequentialGroup().addGap(2)
-												.addComponent(yourIdField, GroupLayout.DEFAULT_SIZE, 182,
-														Short.MAX_VALUE)
-												.addGap(11))
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(16)
+					.addComponent(logoLbl, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(23)
+							.addComponent(headerLbl, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(12)
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(yourIdLbl, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_panel.createSequentialGroup()
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(yourIdWarnLbl)
-												.addContainerGap())))
+											.addGap(2)
+											.addComponent(yourIdField, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+											.addGap(11))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(yourIdWarnLbl)
+											.addContainerGap())))
 								.addGroup(gl_panel.createSequentialGroup()
-										.addComponent(passwordLbl, GroupLayout.PREFERRED_SIZE, 76,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(2)
-										.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-										.addGap(11))
+									.addComponent(passwordLbl, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+									.addGap(2)
+									.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+									.addGap(11))
 								.addGroup(gl_panel.createSequentialGroup()
-										.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 117,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(signInBtn,
-												GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
-				.createSequentialGroup().addGap(5)
-				.addComponent(headerLbl, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE).addGap(11)
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(logoLbl, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup().addGap(38).addGroup(gl_panel
-								.createParallelGroup(Alignment.LEADING)
+									.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(signInBtn, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))))))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(5, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(headerLbl, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+							.addGap(49)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(yourIdLbl, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel.createSequentialGroup().addGap(2).addComponent(yourIdField,
-										GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
-								.addGap(12)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(passwordLbl, GroupLayout.PREFERRED_SIZE, 31,
-												GroupLayout.PREFERRED_SIZE)
-										.addGroup(gl_panel.createSequentialGroup().addGap(2).addComponent(passwordField,
-												GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
-								.addGap(39)
-								.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(signInBtn, GroupLayout.PREFERRED_SIZE, 29,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 29,
-												GroupLayout.PREFERRED_SIZE)))))
-				.addGroup(Alignment.TRAILING,
-						gl_panel.createSequentialGroup().addContainerGap(100, Short.MAX_VALUE)
-								.addComponent(yourIdWarnLbl, GroupLayout.PREFERRED_SIZE, 9, GroupLayout.PREFERRED_SIZE)
-								.addGap(120)));
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(2)
+									.addComponent(yourIdField, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
+							.addGap(12)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(passwordLbl, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(2)
+									.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
+							.addGap(39)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(signInBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+								.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(yourIdWarnLbl, GroupLayout.PREFERRED_SIZE, 9, GroupLayout.PREFERRED_SIZE)
+							.addGap(120))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(logoLbl, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addContainerGap())))
+		);
 		panel.setLayout(gl_panel);
 
 		JLabel copyrightLbl = new JLabel("All Rights Reserved\u00A9 Fat Off Developers 2020");

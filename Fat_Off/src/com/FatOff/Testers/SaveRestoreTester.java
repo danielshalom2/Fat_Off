@@ -72,7 +72,7 @@ public class SaveRestoreTester {
 		System.out.println("------> Test 2 before restore: " + test2);
 		System.out.println("------> Temp Path is: " + temp_path);
 		
-		try { test2 = (Nutritionist)SaveRestore.restoreFromFile(temp_path, "Nutritionist", path); } 
+		try { test2 = (Nutritionist)SaveRestore.restoreFromFile(temp_path, "Nutritionist"); } 
 		catch (IOException e) { e.printStackTrace(); }
 		
 		System.out.println("------> Test 2 after restore: \n"
@@ -105,7 +105,7 @@ public class SaveRestoreTester {
 		catch (IOException e) { e.printStackTrace(); }
 	
 		System.out.println("------> Test 3 before restore " + test3);
-		try { test3 = (Nutritionist)SaveRestore.restoreFromFile("Galia_Shalos_123", "Nutritionist", path); } 
+		try { test3 = (Nutritionist)SaveRestore.restoreFromFile("Galia_Shalos_123", "Nutritionist"); } 
 		catch (IOException e) { e.printStackTrace(); }
 
 		System.out.println("Test 3 after restore " + test3 + " " + test3.getPhoneNumber() + " " + test3.getCustomersList());
