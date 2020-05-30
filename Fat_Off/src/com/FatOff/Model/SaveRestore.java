@@ -452,7 +452,7 @@ public class SaveRestore<T> {
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
+
 //		subPara = new Paragraph("Do you have any alergies? Please elaborate..", subFont);
 //		subCatPart = catPart.addSection(subPara);
 //		subCatPart.add(new Paragraph(intro.getAllergies()));
