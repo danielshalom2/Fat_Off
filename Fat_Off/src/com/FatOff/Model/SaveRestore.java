@@ -35,7 +35,6 @@ public class SaveRestore<T> {
 	private File pathToAdminDir;
 	private File pathToCustDir;
 	private static String pathToDieticions;
-	private static String pathToAdmin;
 	private ObjectOutputStream writeFile;
 	private FileOutputStream pathToObj;
 	private static FileInputStream fis;
@@ -49,7 +48,6 @@ public class SaveRestore<T> {
 	public SaveRestore(T obj, String path) {
 		this.obj = obj;
 		pathToDieticions = path + "/Dieticions";
-		pathToAdmin = path + "/Admin";
 	}
 
 	public void storeToFile(String dietition) throws IOException {
@@ -57,7 +55,7 @@ public class SaveRestore<T> {
 		if (this.obj.getClass().toString().contains("Nutritionist")) {
 			this.storeNutritionist(path, (Nutritionist) this.obj);
 		} else if (this.obj.getClass().toString().contains("Admin")) {
-			this.storeAdmin(path, (Admin) this.obj);
+			this.storeAdmin((Admin) this.obj);
 		} else if (this.obj.getClass().toString().contains("Customer")) {
 			this.storeCustomer(pathToDieticions, (Customer) this.obj);
 		}
@@ -90,7 +88,20 @@ public class SaveRestore<T> {
 
 	}
 
-	public void storeAdmin(String path, Admin adm) throws IOException {
+	public void storeAdmin(Admin adm) throws IOException {
+		File pathToFatOff;
+		File pathToDieticion;
+		File pathToAdmin;
+		String path = getPath();
+		
+		pathToFatOff = new File(path);
+		pathToDieticion = new File(path + "/Dieticions");
+		pathToAdmin = new File(path + "/Admin");
+		if (!pathToFatOff.exists()) {
+			pathToFatOff.mkdir();
+			pathToAdmin.mkdir();
+			pathToDieticion.mkdir();
+		}
 		String temp_path = ((Admin) this.obj).getFirstName() + "_" + ((Admin) this.obj).getLastName() + "_"
 				+ ((Admin) this.obj).getId();
 		pathToAdminDir = new File(pathToAdmin + "/" + temp_path);
