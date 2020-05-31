@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class MainWin2 {
+	 
 	private JTextField txtEnterWeight;
 	private JTextField txtHeight;
 	private JTextField txtEnterAge;
@@ -47,7 +48,7 @@ public class MainWin2 {
 	private JTextField txtEnterSnack2;
 	private JTextField txtEnterSnack3;
 	
-	public MainWin2() {
+	public MainWin2(Object cus, String type) {
 		JFrame customerframe = new JFrame("custmer");
 		customerframe.getContentPane().setBackground(new Color(36, 47, 65));
 		customerframe.getContentPane().setLayout(null);
