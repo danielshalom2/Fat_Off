@@ -263,7 +263,4 @@ public class MainWin {
 		}
 		return CustomComboRenderer.getCustomerDisplayText(cust).toLowerCase().contains(textToFilter.toLowerCase());
 	}
-	
-	///sdvsdvsdvsd
-	sdvsdvsv
 }
