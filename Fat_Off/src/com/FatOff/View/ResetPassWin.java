@@ -149,6 +149,8 @@ public class ResetPassWin {
 		IDreset.setBounds(158, 24, 130, 26);
 		resetFrame.getContentPane().add(IDreset);
 		IDreset.setColumns(10);
+		
+		resetFrame.setVisible(true);
 	}
 	
 	
