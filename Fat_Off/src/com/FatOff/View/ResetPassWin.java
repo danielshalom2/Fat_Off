@@ -152,9 +152,12 @@ public class ResetPassWin {
 		resetFrame.getContentPane().add(IDreset);
 		IDreset.setColumns(10);
 		
+<<<<<<< HEAD
 		resetFrame.setSize(new Dimension(600, 300));
 		
 		resetFrame.setLocationRelativeTo(null);
+=======
+>>>>>>> refs/remotes/origin/master
 		resetFrame.setVisible(true);
 	}
 	
