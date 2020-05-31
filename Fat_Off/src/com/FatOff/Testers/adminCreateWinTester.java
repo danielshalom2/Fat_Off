@@ -33,7 +33,7 @@ public class adminCreateWinTester {
 			new CreateAdminWin();
 		}
 		else {
-			new SignInTest2();
+			new SignInWin();
 		}
 	}
 
