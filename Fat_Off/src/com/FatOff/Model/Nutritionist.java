@@ -17,7 +17,7 @@ public class Nutritionist extends Person implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = -4702547271836868397L;
 	private int licenseId;
 	private String emailAppPass;
 	private String password;

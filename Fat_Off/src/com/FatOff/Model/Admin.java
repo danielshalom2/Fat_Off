@@ -8,7 +8,7 @@ package com.FatOff.Model;
  */
 import java.util.*;
 
-public class Admin extends Nutritionist {
+public class Admin extends Nutritionist  {
 
 	private ArrayList<Nutritionist> nutriList;
 

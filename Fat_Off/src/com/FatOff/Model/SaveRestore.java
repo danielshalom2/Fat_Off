@@ -313,7 +313,7 @@ public class SaveRestore<T> {
 		try {
 			document.open();
 
-			Image image = Image.getInstance("Image/imgonline-com-ua-resize-5aRADIEx30404X17.png");
+			Image image = Image.getInstance("Image/fat_off_logo.png");
 
 			// set Absolute Position
 			// image.setAbsolutePosition(220f, 550f);
