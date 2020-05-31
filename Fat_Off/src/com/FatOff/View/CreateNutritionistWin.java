@@ -65,7 +65,7 @@ public class CreateNutritionistWin {
 		JLabel logoLbl = new JLabel("");
 		logoLbl.setBounds(11, 11, 121, 191);
 		logoLbl.setIcon(new ImageIcon(
-				CreateNutritionistWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
+				CreateNutritionistWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
 
 		JLabel fNameLbl = new JLabel("First Name: ");
 		fNameLbl.setForeground(new Color(255, 255, 255));
@@ -93,6 +93,7 @@ public class CreateNutritionistWin {
 		idLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel headerLbl = new JLabel("Welcome to Fat-Off nutritionist creation");
+		headerLbl.setForeground(new Color(255, 255, 255));
 		headerLbl.setBounds(172, 11, 315, 17);
 		headerLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 16));
 

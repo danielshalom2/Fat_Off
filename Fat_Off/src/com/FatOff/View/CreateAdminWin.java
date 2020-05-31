@@ -61,7 +61,7 @@ public class CreateAdminWin {
 		JLabel logoLbl = new JLabel("");
 		logoLbl.setBounds(11, 11, 121, 191);
 		logoLbl.setIcon(new ImageIcon(
-				CreateAdminWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
+				CreateAdminWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
 
 		JLabel fNameLbl = new JLabel("First Name: ");
 		fNameLbl.setForeground(new Color(255, 255, 255));
