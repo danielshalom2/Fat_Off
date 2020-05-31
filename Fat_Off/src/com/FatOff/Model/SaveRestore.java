@@ -39,6 +39,8 @@ public class SaveRestore<T> {
 	private FileOutputStream pathToObj;
 	private static FileInputStream fis;
 	private static ObjectInputStream ois;
+	
+	 
 
 	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
 	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.NORMAL, BaseColor.BLACK);
@@ -186,6 +188,7 @@ public class SaveRestore<T> {
 	private void storeMeasures(String path, Customer cust) throws IOException {
 
 		try {
+			
 			pathToObj = new FileOutputStream(path + "Measures.txt");
 			writeFile = new ObjectOutputStream(pathToObj);
 			writeFile.writeObject(cust.getMeasuresMap());

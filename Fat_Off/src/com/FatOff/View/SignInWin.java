@@ -279,7 +279,7 @@ public class SignInWin {
 			}
 		});
 		signInFrame.getContentPane().add(contentPane);
-		signInFrame.setSize(new Dimension(660, 515));
+		signInFrame.setSize(new Dimension(657, 476));
 		signInFrame.setVisible(true);
 
 	}

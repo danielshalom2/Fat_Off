@@ -12,11 +12,14 @@ import java.io.Serializable;
 
 
 public class Person implements Serializable{
+
+	
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
 	private String emailAddress;
 	private String id;
+	
 	
 	/**	
 	 * @param firstName the persons first name
