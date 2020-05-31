@@ -164,7 +164,15 @@ public class MainWin {
 				frame.getContentPane().add(panel);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
-
+				
+				comboBox.addActionListener(new java.awt.event.ActionListener() {
+				    public void actionPerformed(java.awt.event.ActionEvent evt) {
+				    	
+				    	Customer temp = (Customer) comboBox.getSelectedItem();
+						System.out.println(temp.getFirstName());
+						frame.setVisible(false);
+				    }
+				});
 			}
 		});
 		menuMenuItem.add(openCustomerMenuItem);
