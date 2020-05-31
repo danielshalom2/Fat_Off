@@ -129,6 +129,10 @@ public class SignInWin {
 				lbl.setForeground(Color.WHITE);
 				lbl.setText( String.format( "<html>%s<</html>", "forgot password" ) );
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new ResetPassWin();
+			}
 		});
 		lblForgotPassword.setForeground(Color.WHITE);
 		lblForgotPassword.setFont(new Font("Century Gothic", Font.PLAIN, 12));

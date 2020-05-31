@@ -14,6 +14,10 @@ import java.util.*;
 
 public class Nutritionist extends Person implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int licenseId;
 	private String emailAppPass;
 	private String password;
@@ -40,9 +44,11 @@ public class Nutritionist extends Person implements Serializable {
 		this.password = password;
 		customersList = new ArrayList<Customer>();
 	}
+
 	public Nutritionist(Nutritionist other) {
 		// Initialize super object
-		super(other.getFirstName(), other.getLastName(), other.getPhoneNumber(), other.getEmailAddress(), other.getId());
+		super(other.getFirstName(), other.getLastName(), other.getPhoneNumber(), other.getEmailAddress(),
+				other.getId());
 
 		// Initialize local private variables
 		this.licenseId = other.licenseId;
@@ -86,7 +92,7 @@ public class Nutritionist extends Person implements Serializable {
 	public void setPassword(String newPass) {
 		this.password = newPass;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -97,7 +103,7 @@ public class Nutritionist extends Person implements Serializable {
 	public void setEmailAppPass(String emailAppPass) {
 		this.emailAppPass = emailAppPass;
 	}
-	
+
 	public String getEmailAppPass() {
 		return emailAppPass;
 	}
@@ -111,26 +117,13 @@ public class Nutritionist extends Person implements Serializable {
 		this.customersList.add(customerToAdd);
 	}
 
-} // remove after
+	public String resetPassword() { 
 
-/**
- * public void resetPassword() { String pass1; String pass2; int validation =
- * new Random().nextInt(999999) + 100000; MailSender email = new
- * MailSender(this.getEmailAddress() , "Fat_Off_Password_Reset",
- * this.getEmailAddress(), this.emailAppPass);
- * 
- * email.sendValidationCode(validation);
- * 
- * Scanner scan = new Scanner(System.in); System.out.println("A validation code
- * was sent to your email!\r Please enter it here: "); if (scan.nextInt() ==
- * validation) { System.out.println("Validation succeed!"); do {
- * System.out.println("Please enter new password: "); pass1 = scan.next();
- * System.out.println("Please repeat: "); pass2 = scan.next();
- * if(pass1.equals(pass2)) { this.setPassword(pass1);
- * System.out.println("Password has been changed successfully"); } else {
- * System.out.println("The passwords don't match!\rPlease try again\r\r"); }
- * }while(!pass1.equals(pass2)); } else { System.out.println("Validation failed!
- * Please check your email for new validation code");
- * 
- * } } }
- */
+		int validation = new Random().nextInt(999999) + 100000;
+		MailSender email = new MailSender(this.getEmailAddress(),"Fat_Off_Password_Reset",this.getEmailAddress(),this.getEmailAppPass());
+		email.sendValidationCode(validation);
+	
+		return String.valueOf(validation);
+	}
+}
+
