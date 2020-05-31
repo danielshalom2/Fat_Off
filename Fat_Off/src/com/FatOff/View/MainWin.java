@@ -248,7 +248,7 @@ public class MainWin {
 		separator_2_1.setBounds(343, 77, 145, 6);
 		sessionDataPanel.add(separator_2_1);
 
-		Logolbl.setIcon(new ImageIcon(MainWin.class.getResource("/com/FatOff/View/fat_off_no_bc.pnggnd.png")));
+		Logolbl.setIcon(new ImageIcon(MainWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
 		Logolbl.setForeground(Color.WHITE);
 		Logolbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		Logolbl.setBounds(0, 0, 133, 199);
