@@ -39,6 +39,8 @@ import javax.swing.JSeparator;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.MouseMotionAdapter;
+
 
 public class SignInWin {
 	private JTextField yourIdField;
@@ -111,6 +113,29 @@ public class SignInWin {
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		contentPane.add(lblPassword);
+		
+		JLabel lblForgotPassword = new JLabel("forgot password");
+		lblForgotPassword.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				JLabel lbl = (JLabel) e.getComponent();
+				lbl.setForeground(Color.BLUE);
+				lbl.setText( String.format( "<html><u>%s</u><</html>", "forgot password" ) );
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				JLabel lbl = (JLabel) e.getComponent();
+				lbl.setForeground(Color.WHITE);
+				lbl.setText( String.format( "<html>%s<</html>", "forgot password" ) );
+			}
+		});
+		lblForgotPassword.setForeground(Color.WHITE);
+		lblForgotPassword.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		lblForgotPassword.setBounds(324, 224, 101, 20);
+		
+		contentPane.add(lblForgotPassword);
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(324, 138, 229, 27);
@@ -175,19 +200,19 @@ public class SignInWin {
 		contentPane.add(lblSignInOr);
 
 		JButton signInBtn = new JButton("Sign In");
-		signInBtn.setBounds(324, 344, 127, 40);
+		signInBtn.setBounds(324, 314, 127, 40);
 		signInBtn.setBorder(null);
 		signInBtn.setBackground(new Color(97, 212, 195));
 		signInBtn.setForeground(new Color(255, 255, 255));
 		signInBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		contentPane.add(signInBtn);
 
-		JButton cancelBtn = new JButton("Cancel");
-		cancelBtn.setBounds(324, 395, 127, 40);
+		JButton cancelBtn = new JButton("EXIT");
+		cancelBtn.setBounds(324, 364, 127, 40);
 		cancelBtn.setForeground(Color.WHITE);
 		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		cancelBtn.setBorder(null);
-		cancelBtn.setBackground(new Color(97, 212, 195));
+		cancelBtn.setBackground(new Color(255, 0, 0));
 		contentPane.add(cancelBtn);
 
 		cancelBtn.addActionListener(new ActionListener() {
@@ -248,6 +273,8 @@ public class SignInWin {
 			}
 		});
 		signInFrame.getContentPane().add(contentPane);
+		
+		
 		signInFrame.setSize(new Dimension(616, 470));
 		signInFrame.setVisible(true);
 
