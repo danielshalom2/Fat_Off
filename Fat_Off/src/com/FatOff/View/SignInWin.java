@@ -41,7 +41,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseMotionAdapter;
 
-
 public class SignInWin {
 	private JTextField yourIdField;
 	private JPasswordField passwordField;
@@ -61,7 +60,7 @@ public class SignInWin {
 		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 314, 443);
+		panel.setBounds(0, 0, 314, 490);
 		panel.setBackground(new Color(97, 212, 195));
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -81,7 +80,7 @@ public class SignInWin {
 		panel.add(lblNewLabel_1);
 
 		JLabel yourIdWarnLbl = new JLabel("");
-		yourIdWarnLbl.setBounds(324, 138, 276, 27);
+		yourIdWarnLbl.setBounds(324, 138, 323, 27);
 		yourIdWarnLbl.setFont(new Font("Century Gothic", Font.BOLD, 10));
 		yourIdWarnLbl.setForeground(new Color(255, 0, 0));
 		contentPane.add(yourIdWarnLbl);
@@ -178,20 +177,27 @@ public class SignInWin {
 		yourIdField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
-					yourIdField.setEditable(true);
-					yourIdWarnLbl.setText("");
-				} else {
-					yourIdField.setEditable(false);
-					yourIdWarnLbl.setText("* Enter only numeric digits(0-9)");
-				}
-				if (yourIdField.getText().length() > 9) {
-					yourIdField.setEditable(false);
-					yourIdWarnLbl.setText("Username must contain exactly 9 numeric characters!");
-				}
+					if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
+						yourIdField.setEditable(true);
+						yourIdWarnLbl.setText("");
+					} else {
+						yourIdField.setEditable(false);
+						yourIdWarnLbl.setText("* Enter only numeric digits(0-9)");
+					}
+					if (yourIdField.getText().length() < 9 || e.getKeyChar() == '\b')
+					{
+						yourIdField.setEditable(true);
+						yourIdWarnLbl.setText("");
+					}
+					else {
+						yourIdField.setEditable(false);
+						yourIdWarnLbl.setText("Username must contain exactly 9 numeric characters!");
+					}
 			}
+		}
+					
 
-		});
+		);
 
 		JLabel lblSignInOr = new JLabel("Sign In or contact admin...");
 		lblSignInOr.setBounds(323, 11, 288, 40);
@@ -200,7 +206,7 @@ public class SignInWin {
 		contentPane.add(lblSignInOr);
 
 		JButton signInBtn = new JButton("Sign In");
-		signInBtn.setBounds(324, 314, 127, 40);
+		signInBtn.setBounds(324, 389, 127, 40);
 		signInBtn.setBorder(null);
 		signInBtn.setBackground(new Color(97, 212, 195));
 		signInBtn.setForeground(new Color(255, 255, 255));
@@ -208,7 +214,7 @@ public class SignInWin {
 		contentPane.add(signInBtn);
 
 		JButton cancelBtn = new JButton("EXIT");
-		cancelBtn.setBounds(324, 364, 127, 40);
+		cancelBtn.setBounds(497, 389, 127, 40);
 		cancelBtn.setForeground(Color.WHITE);
 		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		cancelBtn.setBorder(null);
@@ -273,9 +279,7 @@ public class SignInWin {
 			}
 		});
 		signInFrame.getContentPane().add(contentPane);
-		
-		
-		signInFrame.setSize(new Dimension(616, 470));
+		signInFrame.setSize(new Dimension(660, 515));
 		signInFrame.setVisible(true);
 
 	}

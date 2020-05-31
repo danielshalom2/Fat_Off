@@ -183,9 +183,14 @@ public class CreateCustomerWin {
 					idField.setEditable(false);
 					idWarnLbl.setText("* Enter only numeric digits(0-9)");
 				}
-				if (idField.getText().length() > 9) {
+				if (idField.getText().length() < 9 || e.getKeyChar() == '\b')
+				{
+					idField.setEditable(true);
+					idWarnLbl.setText("");
+				}
+				else {
 					idField.setEditable(false);
-					idWarnLbl.setText("Username must contain exactly 9 numeric characters!");
+					idWarnLbl.setText("ID must contain exactly 9 numeric characters!");
 				}		
 				
 			}

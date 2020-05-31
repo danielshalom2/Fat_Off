@@ -78,6 +78,7 @@ public class InterviewWin {
 		txtpnWelcomeToThe.setDropMode(DropMode.INSERT);
 
 		JScrollPane interviewScrollPane = new JScrollPane();
+		interviewScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		interviewScrollPane.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(64, 64, 64)),
 				"Interview Questions", TitledBorder.CENTER, TitledBorder.TOP, null, Color.BLACK));
 		interviewScrollPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -89,6 +90,7 @@ public class InterviewWin {
 		interviewPanel.setAutoscrolls(true);
 		interviewPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		interviewPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.GRAY));
+		
 		interviewScrollPane.setViewportView(interviewPanel);
 
 		JLabel decisionQtLbl = new JLabel("Why have you decided to come to a dietician?");
@@ -132,6 +134,7 @@ public class InterviewWin {
 		typicalDayQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane typicalDayAScroll = new JScrollPane();
+		
 
 		JLabel whatAteQLbl = new JLabel("Describe what you ate yesterday (or any other specific day).");
 		whatAteQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));

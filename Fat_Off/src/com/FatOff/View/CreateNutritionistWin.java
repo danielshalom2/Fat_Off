@@ -69,28 +69,35 @@ public class CreateNutritionistWin {
 
 		JLabel fNameLbl = new JLabel("First Name: ");
 		fNameLbl.setForeground(new Color(255, 255, 255));
-		fNameLbl.setBounds(128, 57, 143, 17);
+		fNameLbl.setBounds(131, 52, 133, 19);
 		fNameLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel lNameLbl = new JLabel("Last Name: ");
 		lNameLbl.setForeground(new Color(255, 255, 255));
-		lNameLbl.setBounds(128, 84, 143, 17);
+		lNameLbl.setBounds(128, 84, 133, 17);
 		lNameLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel phoneNumLbl = new JLabel("Phone Number:");
 		phoneNumLbl.setForeground(new Color(255, 255, 255));
-		phoneNumLbl.setBounds(130, 123, 141, 17);
+		phoneNumLbl.setBounds(130, 123, 133, 17);
 		phoneNumLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel emailAddrLbl = new JLabel("Email Address:");
 		emailAddrLbl.setForeground(new Color(255, 255, 255));
-		emailAddrLbl.setBounds(130, 157, 141, 17);
+		emailAddrLbl.setBounds(130, 157, 133, 17);
 		emailAddrLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel idLbl = new JLabel("ID:");
 		idLbl.setForeground(new Color(255, 255, 255));
-		idLbl.setBounds(130, 221, 141, 17);
+		idLbl.setBounds(130, 196, 133, 17);
 		idLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel idWarnLbl_1 = new JLabel("");
+		idWarnLbl_1.setForeground(Color.RED);
+		idWarnLbl_1.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		idWarnLbl_1.setBounds(263, 212, 277, 17);
+		formPanel.add(idWarnLbl_1);
+		
 
 		JLabel headerLbl = new JLabel("Welcome to Fat-Off nutritionist creation");
 		headerLbl.setForeground(new Color(255, 255, 255));
@@ -99,46 +106,46 @@ public class CreateNutritionistWin {
 
 		JLabel licenseIdLbl = new JLabel("License ID:");
 		licenseIdLbl.setForeground(new Color(255, 255, 255));
-		licenseIdLbl.setBounds(130, 248, 141, 17);
+		licenseIdLbl.setBounds(130, 232, 133, 17);
 		licenseIdLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel passLbl = new JLabel("Password: ");
 		passLbl.setForeground(new Color(255, 255, 255));
-		passLbl.setBounds(130, 306, 141, 17);
+		passLbl.setBounds(130, 304, 133, 17);
 		passLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel passConfirmLbl = new JLabel("Confirm Password: ");
 		passConfirmLbl.setForeground(new Color(255, 255, 255));
-		passConfirmLbl.setBounds(130, 332, 141, 17);
+		passConfirmLbl.setBounds(130, 340, 133, 17);
 		passConfirmLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
-		JLabel idWarnLbl = new JLabel("");
-		idWarnLbl.setBounds(310, 273, 230, 0);
-		idWarnLbl.setForeground(Color.RED);
-		idWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		JLabel licidWarnLbl = new JLabel("");
+		licidWarnLbl.setBounds(263, 252, 277, 17);
+		licidWarnLbl.setForeground(Color.RED);
+		licidWarnLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 
 		JLabel phoneWarnLbl = new JLabel("");
-		phoneWarnLbl.setBounds(310, 148, 230, 0);
+		phoneWarnLbl.setBounds(263, 157, 277, -17);
 		phoneWarnLbl.setForeground(Color.RED);
 		phoneWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		
 		mailAppPassField = new JTextField();
-		mailAppPassField.setBounds(264, 279, 276, 19);
+		mailAppPassField.setBounds(263, 268, 277, 19);
 		mailAppPassField.setColumns(10);
 		
 		JLabel mailAppPassLbl = new JLabel("Mail App Pass:");
 		mailAppPassLbl.setForeground(new Color(255, 255, 255));
-		mailAppPassLbl.setBounds(130, 275, 141, 17);
+		mailAppPassLbl.setBounds(130, 268, 133, 17);
 		mailAppPassLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		passConfirmField = new JPasswordField();
-		passConfirmField.setBounds(264, 332, 276, 19);
+		passConfirmField.setBounds(263, 340, 277, 19);
 
 		passField = new JPasswordField();
-		passField.setBounds(264, 306, 276, 19);
+		passField.setBounds(263, 304, 277, 19);
 
 		licenseIdField = new JTextField();
-		licenseIdField.setBounds(264, 248, 276, 19);
+		licenseIdField.setBounds(263, 232, 277, 19);
 		licenseIdField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -146,25 +153,47 @@ public class CreateNutritionistWin {
 				int l = value.length();
 				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
 					licenseIdField.setEditable(true);
-					idWarnLbl.setText("");
+					licidWarnLbl.setText("");
 				} else {
 					licenseIdField.setEditable(false);
-					idWarnLbl.setText("* Enter only numeric digits(0-9)");
+					licidWarnLbl.setText("* Enter only numeric digits(0-9)");
 				}
 			}
 		});
 		licenseIdField.setColumns(10);
 
 		idField = new JTextField();
-		idField.setBounds(264, 216, 276, 19);
+		idField.setBounds(263, 196, 277, 19);
 		idField.setColumns(10);
+		
+		idField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
+					idField.setEditable(true);
+					idWarnLbl_1.setText("");
+				} else {
+					idField.setEditable(false);
+					idWarnLbl_1.setText("* Enter only numeric digits(0-9)");
+				}
+				if (idField.getText().length() < 9 || e.getKeyChar() == '\b')
+				{
+					idField.setEditable(true);
+					idWarnLbl_1.setText("");
+				}
+				else {
+					idField.setEditable(false);
+					idWarnLbl_1.setText("ID must contain exactly 9 numeric characters!");
+				}
+			}
+		});
 
 		emailAddrField = new JTextField();
-		emailAddrField.setBounds(264, 157, 276, 19);
+		emailAddrField.setBounds(263, 160, 277, 19);
 		emailAddrField.setColumns(10);
 
 		phoneNumField = new JTextField();
-		phoneNumField.setBounds(264, 123, 276, 19);
+		phoneNumField.setBounds(263, 124, 277, 19);
 		phoneNumField.setColumns(10);
 		phoneNumField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -182,11 +211,11 @@ public class CreateNutritionistWin {
 		});
 
 		lNameField = new JTextField();
-		lNameField.setBounds(264, 90, 276, 19);
+		lNameField.setBounds(263, 88, 277, 19);
 		lNameField.setColumns(10);
 
 		fNameField = new JTextField();
-		fNameField.setBounds(264, 57, 276, 19);
+		fNameField.setBounds(263, 52, 277, 19);
 		fNameField.setColumns(10);
 
 		JButton clearBtn = new JButton("Clear");
@@ -194,7 +223,7 @@ public class CreateNutritionistWin {
 		clearBtn.setBackground(new Color(97, 212, 195));
 		clearBtn.setBorder(null);
 		clearBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
-		clearBtn.setBounds(171, 357, 77, 30);
+		clearBtn.setBounds(172, 385, 77, 30);
 		clearBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fNameField.setText("");
@@ -210,7 +239,7 @@ public class CreateNutritionistWin {
 		});
 
 		JButton cancelBtn = new JButton("Cancel");
-		cancelBtn.setBounds(375, 357, 77, 30);
+		cancelBtn.setBounds(376, 385, 77, 30);
 		cancelBtn.setForeground(Color.WHITE);
 		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		cancelBtn.setBorder(null);
@@ -222,7 +251,7 @@ public class CreateNutritionistWin {
 		});
 
 		JButton createBtn = new JButton("Create");
-		createBtn.setBounds(462, 357, 77, 30);
+		createBtn.setBounds(463, 385, 77, 30);
 		createBtn.setBackground(new Color(97, 212, 195));
 		createBtn.setBorder(null);
 		createBtn.setForeground(new Color(255, 255, 255));
@@ -266,7 +295,7 @@ public class CreateNutritionistWin {
 		formPanel.add(mailAppPassLbl);
 		formPanel.add(cancelBtn);
 		formPanel.add(createBtn);
-		formPanel.add(idWarnLbl);
+		formPanel.add(licidWarnLbl);
 		formPanel.add(lNameField);
 		formPanel.add(emailAddrField);
 		formPanel.add(licenseIdField);
@@ -280,6 +309,8 @@ public class CreateNutritionistWin {
 		formPanel.add(passLbl);
 		formPanel.add(passField);
 		formPanel.add(passConfirmField);
+		
+		
 		nutritionistCrtFrame.getContentPane().setLayout(groupLayout);
 		nutritionistCrtFrame.setVisible(true);
 		nutritionistCrtFrame.pack();

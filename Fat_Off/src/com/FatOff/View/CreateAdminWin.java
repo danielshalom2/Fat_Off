@@ -65,28 +65,34 @@ public class CreateAdminWin {
 
 		JLabel fNameLbl = new JLabel("First Name: ");
 		fNameLbl.setForeground(new Color(255, 255, 255));
-		fNameLbl.setBounds(131, 38, 122, 19);
-		fNameLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		fNameLbl.setBounds(131, 52, 133, 19);
+		fNameLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel lNameLbl = new JLabel("Last Name: ");
 		lNameLbl.setForeground(new Color(255, 255, 255));
-		lNameLbl.setBounds(131, 67, 122, 19);
-		lNameLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		lNameLbl.setBounds(131, 88, 133, 19);
+		lNameLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel phoneNumLbl = new JLabel("Phone Number:");
 		phoneNumLbl.setForeground(new Color(255, 255, 255));
-		phoneNumLbl.setBounds(131, 98, 122, 19);
-		phoneNumLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		phoneNumLbl.setBounds(131, 124, 133, 19);
+		phoneNumLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel emailAddrLbl = new JLabel("Email Address:");
 		emailAddrLbl.setForeground(new Color(255, 255, 255));
-		emailAddrLbl.setBounds(131, 127, 122, 19);
-		emailAddrLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		emailAddrLbl.setBounds(131, 160, 133, 19);
+		emailAddrLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel idLbl = new JLabel("ID:");
 		idLbl.setForeground(new Color(255, 255, 255));
-		idLbl.setBounds(131, 156, 122, 19);
-		idLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		idLbl.setBounds(131, 196, 133, 19);
+		idLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel idWarnLbl_1 = new JLabel("");
+		idWarnLbl_1.setForeground(Color.RED);
+		idWarnLbl_1.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		idWarnLbl_1.setBounds(263, 232, 277, -17);
+		formPanel.add(idWarnLbl_1);
 
 		JLabel headerLbl = new JLabel("Welcome to Fat-Off admin creation");
 		headerLbl.setForeground(new Color(255, 255, 255));
@@ -95,70 +101,99 @@ public class CreateAdminWin {
 
 		JLabel licenseIdLbl = new JLabel("License ID:");
 		licenseIdLbl.setForeground(new Color(255, 255, 255));
-		licenseIdLbl.setBounds(131, 183, 122, 19);
-		licenseIdLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		licenseIdLbl.setBounds(131, 232, 133, 19);
+		licenseIdLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel passLbl = new JLabel("Password: ");
 		passLbl.setForeground(new Color(255, 255, 255));
-		passLbl.setBounds(131, 239, 122, 19);
-		passLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		passLbl.setBounds(131, 304, 133, 19);
+		passLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel passConfirmLbl = new JLabel("Confirm Password: ");
 		passConfirmLbl.setForeground(new Color(255, 255, 255));
-		passConfirmLbl.setBounds(131, 273, 122, 19);
-		passConfirmLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		passConfirmLbl.setBounds(131, 340, 133, 19);
+		passConfirmLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
-		JLabel idWarnLbl = new JLabel("");
-		idWarnLbl.setBounds(253, 273, 230, 0);
-		idWarnLbl.setForeground(Color.RED);
-		idWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		JLabel licidWarnLbl = new JLabel("");
+		licidWarnLbl.setBounds(263, 268, 277, -19);
+		licidWarnLbl.setForeground(Color.RED);
+		licidWarnLbl.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 
 		JLabel phoneWarnLbl = new JLabel("");
-		phoneWarnLbl.setBounds(247, 148, 230, 0);
+		phoneWarnLbl.setBounds(263, 154, 272, -11);
 		phoneWarnLbl.setForeground(Color.RED);
-		phoneWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		phoneWarnLbl.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		
 		mailAppPassField = new JTextField();
-		mailAppPassField.setBounds(263, 212, 277, 19);
+		mailAppPassField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		mailAppPassField.setBounds(263, 268, 277, 19);
 		mailAppPassField.setColumns(10);
 		
 		JLabel mailAppPassLbl = new JLabel("Mail App Pass:");
 		mailAppPassLbl.setForeground(new Color(255, 255, 255));
-		mailAppPassLbl.setBounds(131, 212, 122, 17);
-		mailAppPassLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		mailAppPassLbl.setBounds(131, 268, 133, 17);
+		mailAppPassLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		passConfirmField = new JPasswordField();
-		passConfirmField.setBounds(263, 270, 277, 19);
+		passConfirmField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		passConfirmField.setBounds(263, 340, 277, 19);
 
 		passField = new JPasswordField();
-		passField.setBounds(263, 241, 277, 19);
+		passField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		passField.setBounds(263, 304, 277, 19);
 
 		licenseIdField = new JTextField();
-		licenseIdField.setBounds(263, 184, 277, 19);
+		licenseIdField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		licenseIdField.setBounds(263, 232, 277, 19);
 		licenseIdField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
 					licenseIdField.setEditable(true);
-					idWarnLbl.setText("");
+					licidWarnLbl.setText("");
 				} else {
 					licenseIdField.setEditable(false);
-					idWarnLbl.setText("* Enter only numeric digits(0-9)");
+					licidWarnLbl.setText("* Enter only numeric digits(0-9)");
 				}
 			}
 		});
 		licenseIdField.setColumns(10);
 
 		idField = new JTextField();
-		idField.setBounds(263, 157, 277, 19);
+		idField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		idField.setBounds(263, 196, 277, 19);
 		idField.setColumns(10);
+		
+		idField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
+					idField.setEditable(true);
+					idWarnLbl_1.setText("");
+				} else {
+					idField.setEditable(false);
+					idWarnLbl_1.setText("* Enter only numeric digits(0-9)");
+				}
+				if (idField.getText().length() < 9 || e.getKeyChar() == '\b')
+				{
+					idField.setEditable(true);
+					idWarnLbl_1.setText("");
+				}
+				else {
+					idField.setEditable(false);
+					idWarnLbl_1.setText("ID must contain exactly 9 numeric characters!");
+				}
+			}
+		});
 
 		emailAddrField = new JTextField();
-		emailAddrField.setBounds(263, 128, 277, 19);
+		emailAddrField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		emailAddrField.setBounds(263, 160, 277, 19);
 		emailAddrField.setColumns(10);
 
 		phoneNumField = new JTextField();
-		phoneNumField.setBounds(263, 99, 277, 19);
+		phoneNumField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		phoneNumField.setBounds(263, 124, 277, 19);
 		phoneNumField.setColumns(10);
 		phoneNumField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -174,11 +209,13 @@ public class CreateAdminWin {
 		});
 
 		lNameField = new JTextField();
-		lNameField.setBounds(263, 69, 277, 19);
+		lNameField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		lNameField.setBounds(263, 88, 277, 19);
 		lNameField.setColumns(10);
 
 		fNameField = new JTextField();
-		fNameField.setBounds(263, 39, 277, 19);
+		fNameField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		fNameField.setBounds(263, 52, 277, 19);
 		fNameField.setColumns(10);
 
 		JButton clearBtn = new JButton("Clear");
@@ -186,7 +223,7 @@ public class CreateAdminWin {
 		clearBtn.setBackground(new Color(97, 212, 195));
 		clearBtn.setBorder(null);
 		clearBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
-		clearBtn.setBounds(150, 348, 77, 30);
+		clearBtn.setBounds(131, 385, 77, 30);
 		clearBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fNameField.setText("");
@@ -203,7 +240,7 @@ public class CreateAdminWin {
 
 		JButton cancelBtn = new JButton("Cancel");
 		
-		cancelBtn.setBounds(369, 348, 77, 30);
+		cancelBtn.setBounds(368, 385, 77, 30);
 		cancelBtn.setForeground(Color.WHITE);
 		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		cancelBtn.setBorder(null);
@@ -219,7 +256,7 @@ public class CreateAdminWin {
 		createBtn.setBorder(null);
 		createBtn.setForeground(new Color(255, 255, 255));
 		createBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
-		createBtn.setBounds(452, 348, 77, 30);
+		createBtn.setBounds(463, 385, 77, 30);
 		createBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -261,7 +298,7 @@ public class CreateAdminWin {
 		formPanel.add(mailAppPassLbl);
 		formPanel.add(cancelBtn);
 		formPanel.add(createBtn);
-		formPanel.add(idWarnLbl);
+		formPanel.add(licidWarnLbl);
 		formPanel.add(lNameField);
 		formPanel.add(emailAddrField);
 		formPanel.add(licenseIdField);
@@ -274,6 +311,8 @@ public class CreateAdminWin {
 		formPanel.add(passLbl);
 		formPanel.add(passField);
 		formPanel.add(passConfirmField);
+		
+	
 		adminCrtFrame.getContentPane().setLayout(groupLayout);
 		adminCrtFrame.setVisible(true);
 		adminCrtFrame.pack();
