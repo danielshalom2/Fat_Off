@@ -71,9 +71,9 @@ public class SignInTest2 {
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(105, 114, 121, 253);
+		lblNewLabel_1.setBounds(89, 86, 127, 228);
 		lblNewLabel_1.setIcon(new ImageIcon(
-				SignInTest2.class.getResource("/com/FatOff/View/fat_off_no_bcgnd.png")));
+				SignInTest2.class.getResource("/com/FatOff/View/fat_off_white.png")));
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		panel.add(lblNewLabel_1);
