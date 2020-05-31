@@ -2,6 +2,8 @@ package com.FatOff.View;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JTextField;
 
 import com.FatOff.Controller.AdminController;
@@ -29,7 +31,7 @@ public class ResetPassWin {
 	
 	public ResetPassWin() {
 		JFrame resetFrame= new JFrame("PassReset");
-		resetFrame.getContentPane().setLayout(null);
+		//resetFrame.getContentPane().setLayout(null);
 		ResetEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (IDreset.getText().equals("")) {
@@ -149,6 +151,11 @@ public class ResetPassWin {
 		IDreset.setBounds(158, 24, 130, 26);
 		resetFrame.getContentPane().add(IDreset);
 		IDreset.setColumns(10);
+		
+		resetFrame.setSize(new Dimension(600, 300));
+		
+		resetFrame.setLocationRelativeTo(null);
+		resetFrame.setVisible(true);
 	}
 	
 	
