@@ -39,12 +39,17 @@ public class CreateNutritionistWin {
 
 	public CreateNutritionistWin() {
 		JFrame nutritionistCrtFrame = new JFrame("Nutritionist Creation");
+		nutritionistCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		nutritionistCrtFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel formPanel = new JPanel();
+		formPanel.setBackground(new Color(36, 47, 65));
 		formPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.GRAY));
 
 		JLabel copyRightLbl = new JLabel("All Rights Reserved\u00A9 Fat Off Developers 2020");
+		copyRightLbl.setBackground(new Color(36, 47, 65));
+		copyRightLbl.setForeground(new Color(255, 255, 255));
+		copyRightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		copyRightLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		GroupLayout groupLayout = new GroupLayout(nutritionistCrtFrame.getContentPane());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -58,55 +63,81 @@ public class CreateNutritionistWin {
 						.addComponent(copyRightLbl, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)));
 
 		JLabel logoLbl = new JLabel("");
+		logoLbl.setBounds(11, 11, 121, 191);
 		logoLbl.setIcon(new ImageIcon(
 				CreateNutritionistWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
 
 		JLabel fNameLbl = new JLabel("First Name: ");
-		fNameLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		fNameLbl.setForeground(new Color(255, 255, 255));
+		fNameLbl.setBounds(128, 57, 143, 17);
+		fNameLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel lNameLbl = new JLabel("Last Name: ");
-		lNameLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lNameLbl.setForeground(new Color(255, 255, 255));
+		lNameLbl.setBounds(128, 84, 143, 17);
+		lNameLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel phoneNumLbl = new JLabel("Phone Number:");
-		phoneNumLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		phoneNumLbl.setForeground(new Color(255, 255, 255));
+		phoneNumLbl.setBounds(130, 123, 141, 17);
+		phoneNumLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel emailAddrLbl = new JLabel("Email Address:");
-		emailAddrLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		emailAddrLbl.setForeground(new Color(255, 255, 255));
+		emailAddrLbl.setBounds(130, 157, 141, 17);
+		emailAddrLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel idLbl = new JLabel("ID:");
-		idLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		idLbl.setForeground(new Color(255, 255, 255));
+		idLbl.setBounds(130, 221, 141, 17);
+		idLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel headerLbl = new JLabel("Welcome to Fat-Off nutritionist creation");
-		headerLbl.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		headerLbl.setBounds(172, 11, 315, 17);
+		headerLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 16));
 
 		JLabel licenseIdLbl = new JLabel("License ID:");
-		licenseIdLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		licenseIdLbl.setForeground(new Color(255, 255, 255));
+		licenseIdLbl.setBounds(130, 248, 141, 17);
+		licenseIdLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel passLbl = new JLabel("Password: ");
-		passLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		passLbl.setForeground(new Color(255, 255, 255));
+		passLbl.setBounds(130, 306, 141, 17);
+		passLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel passConfirmLbl = new JLabel("Confirm Password: ");
-		passConfirmLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		passConfirmLbl.setForeground(new Color(255, 255, 255));
+		passConfirmLbl.setBounds(130, 332, 141, 17);
+		passConfirmLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		JLabel idWarnLbl = new JLabel("");
+		idWarnLbl.setBounds(310, 273, 230, 0);
 		idWarnLbl.setForeground(Color.RED);
 		idWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 
 		JLabel phoneWarnLbl = new JLabel("");
+		phoneWarnLbl.setBounds(310, 148, 230, 0);
 		phoneWarnLbl.setForeground(Color.RED);
 		phoneWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		
 		mailAppPassField = new JTextField();
+		mailAppPassField.setBounds(264, 279, 276, 19);
 		mailAppPassField.setColumns(10);
 		
 		JLabel mailAppPassLbl = new JLabel("Mail App Pass:");
-		mailAppPassLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		mailAppPassLbl.setForeground(new Color(255, 255, 255));
+		mailAppPassLbl.setBounds(130, 275, 141, 17);
+		mailAppPassLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		passConfirmField = new JPasswordField();
+		passConfirmField.setBounds(264, 332, 276, 19);
 
 		passField = new JPasswordField();
+		passField.setBounds(264, 306, 276, 19);
 
 		licenseIdField = new JTextField();
+		licenseIdField.setBounds(264, 248, 276, 19);
 		licenseIdField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -124,12 +155,15 @@ public class CreateNutritionistWin {
 		licenseIdField.setColumns(10);
 
 		idField = new JTextField();
+		idField.setBounds(264, 216, 276, 19);
 		idField.setColumns(10);
 
 		emailAddrField = new JTextField();
+		emailAddrField.setBounds(264, 157, 276, 19);
 		emailAddrField.setColumns(10);
 
 		phoneNumField = new JTextField();
+		phoneNumField.setBounds(264, 123, 276, 19);
 		phoneNumField.setColumns(10);
 		phoneNumField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -147,12 +181,19 @@ public class CreateNutritionistWin {
 		});
 
 		lNameField = new JTextField();
+		lNameField.setBounds(264, 90, 276, 19);
 		lNameField.setColumns(10);
 
 		fNameField = new JTextField();
+		fNameField.setBounds(264, 57, 276, 19);
 		fNameField.setColumns(10);
 
 		JButton clearBtn = new JButton("Clear");
+		clearBtn.setForeground(new Color(255, 255, 255));
+		clearBtn.setBackground(new Color(97, 212, 195));
+		clearBtn.setBorder(null);
+		clearBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		clearBtn.setBounds(171, 357, 77, 30);
 		clearBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fNameField.setText("");
@@ -168,6 +209,11 @@ public class CreateNutritionistWin {
 		});
 
 		JButton cancelBtn = new JButton("Cancel");
+		cancelBtn.setBounds(375, 357, 77, 30);
+		cancelBtn.setForeground(Color.WHITE);
+		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		cancelBtn.setBorder(null);
+		cancelBtn.setBackground(new Color(97, 212, 195));
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nutritionistCrtFrame.dispose();
@@ -175,6 +221,11 @@ public class CreateNutritionistWin {
 		});
 
 		JButton createBtn = new JButton("Create");
+		createBtn.setBounds(462, 357, 77, 30);
+		createBtn.setBackground(new Color(97, 212, 195));
+		createBtn.setBorder(null);
+		createBtn.setForeground(new Color(255, 255, 255));
+		createBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		createBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -202,135 +253,32 @@ public class CreateNutritionistWin {
 				}
 			}
 		});
-		
-
-		GroupLayout gl_formPanel = new GroupLayout(formPanel);
-		gl_formPanel.setHorizontalGroup(
-			gl_formPanel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_formPanel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_formPanel.createSequentialGroup()
-							.addComponent(logoLbl)
-							.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_formPanel.createSequentialGroup()
-									.addGap(18)
-									.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_formPanel.createSequentialGroup()
-											.addComponent(licenseIdLbl, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED))
-										.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
-											.addGroup(gl_formPanel.createSequentialGroup()
-												.addComponent(phoneNumLbl, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-												.addPreferredGap(ComponentPlacement.RELATED))
-											.addGroup(gl_formPanel.createSequentialGroup()
-												.addComponent(lNameLbl, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-												.addPreferredGap(ComponentPlacement.RELATED))
-											.addGroup(gl_formPanel.createSequentialGroup()
-												.addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED))
-											.addGroup(gl_formPanel.createSequentialGroup()
-												.addComponent(fNameLbl, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-												.addGap(2))
-											.addGroup(gl_formPanel.createSequentialGroup()
-												.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
-													.addComponent(emailAddrLbl, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-													.addComponent(idLbl, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-													.addComponent(mailAppPassLbl, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-												.addPreferredGap(ComponentPlacement.RELATED))))
-									.addGroup(gl_formPanel.createParallelGroup(Alignment.TRAILING)
-										.addGroup(gl_formPanel.createSequentialGroup()
-											.addGap(136)
-											.addComponent(cancelBtn)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(createBtn))
-										.addGroup(gl_formPanel.createSequentialGroup()
-											.addGap(6)
-											.addComponent(idWarnLbl, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lNameField, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-										.addComponent(emailAddrField, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-										.addGroup(gl_formPanel.createSequentialGroup()
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(licenseIdField, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
-										.addComponent(idField, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-										.addComponent(phoneWarnLbl, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-										.addComponent(phoneNumField, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-										.addGroup(gl_formPanel.createSequentialGroup()
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(mailAppPassField, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-											.addPreferredGap(ComponentPlacement.RELATED))
-										.addComponent(fNameField, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)))
-								.addGroup(gl_formPanel.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(headerLbl, GroupLayout.PREFERRED_SIZE, 315, GroupLayout.PREFERRED_SIZE)
-									.addGap(53))))
-						.addGroup(gl_formPanel.createSequentialGroup()
-							.addGap(119)
-							.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(passConfirmLbl, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-								.addComponent(passLbl, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(passField, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-								.addComponent(passConfirmField, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))))
-					.addGap(66))
-		);
-		gl_formPanel.setVerticalGroup(
-			gl_formPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_formPanel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_formPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_formPanel.createSequentialGroup()
-							.addComponent(headerLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-							.addGap(29)
-							.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(fNameLbl)
-								.addComponent(fNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(14)
-							.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lNameLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-							.addGap(14)
-							.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(phoneNumField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(phoneNumLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(phoneWarnLbl)
-							.addGap(9)
-							.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(emailAddrField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(emailAddrLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(logoLbl))
-					.addGap(14)
-					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(idField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(idLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-					.addGap(13)
-					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(licenseIdField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(licenseIdLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(idWarnLbl)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(mailAppPassField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(mailAppPassLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-					.addGap(8)
-					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(passField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(passLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-					.addGap(7)
-					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(passConfirmField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(passConfirmLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_formPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(createBtn)
-						.addComponent(cancelBtn)
-						.addComponent(clearBtn))
-					.addContainerGap(57, Short.MAX_VALUE))
-		);
-		formPanel.setLayout(gl_formPanel);
+		formPanel.setLayout(null);
+		formPanel.add(logoLbl);
+		formPanel.add(licenseIdLbl);
+		formPanel.add(phoneNumLbl);
+		formPanel.add(lNameLbl);
+		formPanel.add(clearBtn);
+		formPanel.add(fNameLbl);
+		formPanel.add(emailAddrLbl);
+		formPanel.add(idLbl);
+		formPanel.add(mailAppPassLbl);
+		formPanel.add(cancelBtn);
+		formPanel.add(createBtn);
+		formPanel.add(idWarnLbl);
+		formPanel.add(lNameField);
+		formPanel.add(emailAddrField);
+		formPanel.add(licenseIdField);
+		formPanel.add(idField);
+		formPanel.add(phoneWarnLbl);
+		formPanel.add(phoneNumField);
+		formPanel.add(mailAppPassField);
+		formPanel.add(fNameField);
+		formPanel.add(headerLbl);
+		formPanel.add(passConfirmLbl);
+		formPanel.add(passLbl);
+		formPanel.add(passField);
+		formPanel.add(passConfirmField);
 		nutritionistCrtFrame.getContentPane().setLayout(groupLayout);
 		nutritionistCrtFrame.setVisible(true);
 		nutritionistCrtFrame.pack();
