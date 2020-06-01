@@ -2,6 +2,7 @@ package com.FatOff.Controller;
 
 import java.io.IOException;
 
+import com.FatOff.Model.Admin;
 import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.SaveRestore;
 
@@ -14,6 +15,17 @@ public class NutritionistController {
 					password);
 			SaveRestore<Nutritionist> saveNutritionist = new SaveRestore<Nutritionist>(nut, SaveRestore.getPath()+"/");
 			saveNutritionist.storeToFile("");
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public static boolean storeNutritionist(Nutritionist nut) {
+		try {
+			SaveRestore<Nutritionist> saveNut = new SaveRestore<Nutritionist>(nut, SaveRestore.getPath()+"/");
+			saveNut.storeToFile("");
 			return true;
 		} catch (IOException e) {
 			e.printStackTrace();

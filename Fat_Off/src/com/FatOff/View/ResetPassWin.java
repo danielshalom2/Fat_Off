@@ -15,6 +15,7 @@ import com.FatOff.Model.SaveRestore;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -26,11 +27,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class ResetPassWin {
 	private final JButton ResetEmail = new JButton("Send Validation Code");
 	private JTextField validCode;
-	private JTextField newPass;
-	private JTextField confPass;
+	private JPasswordField newPass;
+	private JPasswordField confPass;
 	private String valCode;
 	private Object nut;
 	private JTextField IDreset;
+	private String type;
 	
 	public ResetPassWin() {
 		JFrame resetFrame= new JFrame("PassReset");
@@ -51,7 +53,8 @@ public class ResetPassWin {
 						String ID[] = desired.split("_");
 						if (ID[2].equals(IDreset.getText())) {
 							found = true;
-							 nut = AdminController.restoreAdmin(desired);
+							type = "Admin";
+							nut = AdminController.restoreAdmin(desired);
 							valCode=((Nutritionist) nut).resetPassword();
 						}
 					}
@@ -62,6 +65,7 @@ public class ResetPassWin {
 						String ID[] = desired.split("_");
 						if (ID[2].equals(IDreset.getText())) {
 							found = true;
+							type = "Nutritionist";
 							 nut = NutritionistController.restoreNut(desired);
 							valCode=((Nutritionist) nut).resetPassword();
 							
@@ -88,20 +92,32 @@ public class ResetPassWin {
 		JButton changeBtn = new JButton("Confirm");
 		changeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(newPass.getText().equals(confPass.getText()))
+				if(new String(newPass.getPassword()).equals(new String(confPass.getPassword())))
 				{
-					((Nutritionist)nut).setPassword(newPass.getText());
-					JOptionPane.showMessageDialog(null, "Pass Reset");
+					((Nutritionist)nut).setPassword(new String(newPass.getPassword()));
+					if(type.equals("Admin")) {
+						if(AdminController.storeAdmin((Admin)nut)) {
+							JOptionPane.showMessageDialog(null, "Your password has been changed");
+						}
+					}
+					else {
+						if(type.equals("Nutritionist")) {
+							if(NutritionistController.storeNutritionist((Nutritionist)nut)) {
+								JOptionPane.showMessageDialog(null, "Your password has been changed");
+							}
+						}
+					}
 				}
-				else {
-					JOptionPane.showMessageDialog(null, "Different Passwords");
+				else 
+				{
+					JOptionPane.showMessageDialog(null, "The confirmation password didn't match");
 				}
 			}
 		});
 		changeBtn.setEnabled(false);
 		changeBtn.setBounds(300, 161, 117, 29);
 		
-		JButton checkBtn = new JButton("Check Code");
+		JButton checkBtn = new JButton("Validate");
 		checkBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if( valCode.equals(validCode.getText())) {
@@ -124,13 +140,13 @@ public class ResetPassWin {
 		JLabel text2 = new JLabel("Confirm Password");
 		text2.setBounds(16, 166, 114, 16);
 		
-		newPass = new JTextField();
+		newPass = new JPasswordField();
 		newPass.setEnabled(false);
 		newPass.setEditable(false);
 		newPass.setBounds(158, 133, 130, 26);
 		newPass.setColumns(10);
 		
-		confPass = new JTextField();
+		confPass = new JPasswordField();
 		confPass.setEnabled(false);
 		confPass.setEditable(false);
 		confPass.setBounds(158, 161, 130, 26);
