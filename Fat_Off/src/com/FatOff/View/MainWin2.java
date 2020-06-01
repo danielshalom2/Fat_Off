@@ -52,7 +52,7 @@ public class MainWin2 {
 		JFrame customerframe = new JFrame("custmer");
 		customerframe.getContentPane().setBackground(new Color(36, 47, 65));
 		customerframe.getContentPane().setLayout(null);
-		
+		/////////////////////
 		///MenuBar + need to add  link to intrudactory meeting + help
 		JMenuBar menuBar = new JMenuBar();
 		customerframe.setJMenuBar(menuBar);
@@ -388,6 +388,14 @@ public class MainWin2 {
 		txtEnterSnack3.setColumns(10);
 		txtEnterSnack3.setBounds(418, 518, 589, 21);
 		customerframe.getContentPane().add(txtEnterSnack3);
+		
+		JButton btnGraph = new JButton("Graph");
+		btnGraph.setForeground(Color.WHITE);
+		btnGraph.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		btnGraph.setBorder(null);
+		btnGraph.setBackground(new Color(97, 212, 195));
+		btnGraph.setBounds(766, 609, 106, 33);
+		customerframe.getContentPane().add(btnGraph);
 		
 
 		
