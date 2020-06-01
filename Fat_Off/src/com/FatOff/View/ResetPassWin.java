@@ -23,6 +23,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JSeparator;
 
 public class ResetPassWin {
 	private final JButton ResetEmail = new JButton("Send Validation Code");
@@ -36,8 +39,65 @@ public class ResetPassWin {
 	
 	public ResetPassWin() {
 		JFrame resetFrame= new JFrame("PassReset");
-		//resetFrame.getContentPane().setLayout(null);
-		ResetEmail.addActionListener(new ActionListener() {
+		resetFrame.getContentPane().setBackground(new Color(36, 47, 65));
+//		ResetEmail.setBackground(new Color(97, 212, 195));
+//		ResetEmail.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+//		//resetFrame.getContentPane().setLayout(null);
+//		ResetEmail.setLayout(null);
+//		ResetEmail.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				if (IDreset.getText().equals("")) {
+//					JOptionPane.showMessageDialog(null, "Your ID is required in order to identify you!");
+//				} else {
+//					boolean found = false;
+//					String path = SaveRestore.getPath();
+//					File pathToAdmin = new File(path + "/Admin");
+//					File pathToDieticion = new File(path + "/Dieticions");
+//					for (String desired : pathToAdmin.list()) {
+//						if (desired.equals(".DS_Store")) {
+//							continue;
+//						}
+//						String ID[] = desired.split("_");
+//						if (ID[2].equals(IDreset.getText())) {
+//							found = true;
+//							type = "Admin";
+//							nut = AdminController.restoreAdmin(desired);
+//							valCode=((Nutritionist) nut).resetPassword();
+//						}
+//					}
+//					for (String desired : pathToDieticion.list()) {
+//						if (desired.equals(".DS_Store")) {
+//							continue;
+//						}
+//						String ID[] = desired.split("_");
+//						if (ID[2].equals(IDreset.getText())) {
+//							found = true;
+//							type = "Nutritionist";
+//							 nut = NutritionistController.restoreNut(desired);
+//							valCode=((Nutritionist) nut).resetPassword();
+//							
+//						}
+//					}
+//					if (!found) {
+//						JOptionPane.showMessageDialog(null, "No such user found!");
+//						// signInFrame.dispose();
+//					}
+//				}
+//				
+//				
+//			}
+//		});
+//		ResetEmail.setBounds(396, 29, 180, 21);
+		
+		JButton sendValidBtn = new JButton("Send Validation Code");
+		sendValidBtn.setForeground(Color.WHITE);
+		sendValidBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		sendValidBtn.setBorder(null);
+		sendValidBtn.setBackground(new Color(97, 212, 195));
+		sendValidBtn.setBounds(396, 18, 180, 38);
+		resetFrame.getContentPane().add(sendValidBtn);
+		
+		sendValidBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (IDreset.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Your ID is required in order to identify you!");
@@ -56,6 +116,7 @@ public class ResetPassWin {
 							type = "Admin";
 							nut = AdminController.restoreAdmin(desired);
 							valCode=((Nutritionist) nut).resetPassword();
+							JOptionPane.showMessageDialog(null, "Validation code sent to your E-Mail!");
 						}
 					}
 					for (String desired : pathToDieticion.list()) {
@@ -68,6 +129,7 @@ public class ResetPassWin {
 							type = "Nutritionist";
 							 nut = NutritionistController.restoreNut(desired);
 							valCode=((Nutritionist) nut).resetPassword();
+							JOptionPane.showMessageDialog(null, "Validation code sent to your E-Mail!");
 							
 						}
 					}
@@ -80,17 +142,50 @@ public class ResetPassWin {
 				
 			}
 		});
-		ResetEmail.setBounds(0, 57, 450, 29);
 		
-		JLabel lblNewLabel = new JLabel("Validation Code");
-		lblNewLabel.setBounds(16, 98, 138, 16);
+		JButton btnChange = new JButton("Change");
+		btnChange.setEnabled(false);
+		btnChange.setForeground(Color.WHITE);
+		btnChange.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		btnChange.setBorder(null);
+		btnChange.setBackground(new Color(97, 212, 195));
+		btnChange.setBounds(158, 201, 180, 38);
+		JButton validBtn = new JButton("Validate");
+		validBtn.setForeground(Color.WHITE);
+		validBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		validBtn.setBorder(null);
+		validBtn.setBackground(new Color(97, 212, 195));
+		validBtn.setBounds(396, 106, 180, 38);
+		resetFrame.getContentPane().add(validBtn);
 		
-		validCode = new JTextField();
-		validCode.setBounds(158, 95, 130, 26);
-		validCode.setColumns(10);
+		validBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if( valCode.equals(validCode.getText())) {
+					newPass.setEnabled(true);
+					newPass.setEditable(true);
+					confPass.setEnabled(true);
+					confPass.setEditable(true);
+					btnChange.setEnabled(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Wrong Validation Code");
+				}
+			}
+		});
 		
+<<<<<<< HEAD
 		JButton changeBtn = new JButton("Change");
 		changeBtn.addActionListener(new ActionListener() {
+=======
+		
+		
+		
+		
+		
+		
+		resetFrame.getContentPane().add(btnChange);
+		btnChange.addActionListener(new ActionListener() {
+>>>>>>> stash
 			public void actionPerformed(ActionEvent e) {
 				if(new String(newPass.getPassword()).equals(new String(confPass.getPassword())))
 				{
@@ -98,12 +193,14 @@ public class ResetPassWin {
 					if(type.equals("Admin")) {
 						if(AdminController.storeAdmin((Admin)nut)) {
 							JOptionPane.showMessageDialog(null, "Your password has been changed");
+							resetFrame.dispose();							
 						}
 					}
 					else {
 						if(type.equals("Nutritionist")) {
 							if(NutritionistController.storeNutritionist((Nutritionist)nut)) {
 								JOptionPane.showMessageDialog(null, "Your password has been changed");
+								resetFrame.dispose();
 							}
 						}
 					}
@@ -114,50 +211,51 @@ public class ResetPassWin {
 				}
 			}
 		});
-		changeBtn.setEnabled(false);
-		changeBtn.setBounds(300, 161, 117, 29);
+		btnChange.setBounds(158, 201, 180, 21);
 		
-		JButton checkBtn = new JButton("Validate");
-		checkBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if( valCode.equals(validCode.getText())) {
-					newPass.setEnabled(true);
-					newPass.setEditable(true);
-					confPass.setEnabled(true);
-					confPass.setEditable(true);
-					changeBtn.setEnabled(true);
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Wrong Validation Code");
-				}
-			}
-		});
-		checkBtn.setBounds(300, 95, 117, 29);
+		JLabel lblNewLabel = new JLabel("Validation Code:");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		lblNewLabel.setBounds(16, 106, 138, 19);
 		
-		JLabel text = new JLabel("New Password");
-		text.setBounds(16, 138, 104, 16);
+		validCode = new JTextField();
+		validCode.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		validCode.setBounds(158, 106, 192, 19);
+		validCode.setColumns(10);
 		
-		JLabel text2 = new JLabel("Confirm Password");
-		text2.setBounds(16, 166, 114, 16);
+
+		
+		JLabel text = new JLabel("New Password:");
+		text.setForeground(new Color(255, 255, 255));
+		text.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		text.setBounds(16, 146, 133, 19);
+		
+		JLabel text2 = new JLabel("Confirm Password:");
+		text2.setForeground(new Color(255, 255, 255));
+		text2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		text2.setBounds(16, 174, 138, 19);
 		
 		newPass = new JPasswordField();
-		newPass.setEnabled(false);
-		newPass.setEditable(false);
-		newPass.setBounds(158, 133, 130, 26);
+		newPass.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		newPass.setBounds(158, 144, 192, 19);
 		newPass.setColumns(10);
 		
 		confPass = new JPasswordField();
-		confPass.setEnabled(false);
-		confPass.setEditable(false);
-		confPass.setBounds(158, 161, 130, 26);
+		confPass.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		confPass.setBounds(158, 172, 192, 19);
 		confPass.setColumns(10);
 		
 		
-		JLabel lblNewLabel_1 = new JLabel("Enter ID Account");
-		lblNewLabel_1.setBounds(6, 29, 117, 16);
+		JLabel lblNewLabel_1 = new JLabel("Enter ID Account:");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(16, 29, 133, 19);
 		
 		IDreset = new JTextField();
+		IDreset.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		IDreset.setBounds(157, 31, 193, 19);
 		IDreset.setColumns(10);
+<<<<<<< HEAD
 		GroupLayout groupLayout = new GroupLayout(resetFrame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -224,6 +322,28 @@ public class ResetPassWin {
 					.addContainerGap(56, Short.MAX_VALUE))
 		);
 		resetFrame.getContentPane().setLayout(groupLayout);
+=======
+		resetFrame.getContentPane().setLayout(null);
+		resetFrame.getContentPane().add(confPass);
+		resetFrame.getContentPane().add(validCode);
+		resetFrame.getContentPane().add(validBtn);
+		resetFrame.getContentPane().add(lblNewLabel_1);
+		resetFrame.getContentPane().add(IDreset);
+		resetFrame.getContentPane().add(newPass);
+		resetFrame.getContentPane().add(text2);
+		resetFrame.getContentPane().add(lblNewLabel);
+		resetFrame.getContentPane().add(btnChange);
+		resetFrame.getContentPane().add(ResetEmail);
+		resetFrame.getContentPane().add(text);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(16, 76, 560, 2);
+		resetFrame.getContentPane().add(separator);
+		
+
+		
+		
+>>>>>>> stash
 		
 
 		resetFrame.setSize(new Dimension(453, 270));
@@ -232,7 +352,4 @@ public class ResetPassWin {
 
 		resetFrame.setVisible(true);
 	}
-	
-	
-	
 }

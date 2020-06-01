@@ -58,6 +58,7 @@ public class MailSender {
 		props.put("mail.smtp.port", this.PORT);
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.ssl.trust", "*");
 
 		// Create and SMTP session and authentication
 		session = Session.getDefaultInstance(props, this.auth);
