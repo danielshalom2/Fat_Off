@@ -150,6 +150,7 @@ public class SignInWin {
 		contentPane.add(separator_2_1);
 
 		passwordField = new JPasswordField();
+		passwordField.setCaretColor(Color.WHITE);
 		passwordField.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		passwordField.setBounds(324, 195, 229, 20);
 		passwordField.setBorder(null);
@@ -158,6 +159,7 @@ public class SignInWin {
 		contentPane.add(passwordField);
 
 		yourIdField = new JTextField();
+		yourIdField.setCaretColor(Color.WHITE);
 		yourIdField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
