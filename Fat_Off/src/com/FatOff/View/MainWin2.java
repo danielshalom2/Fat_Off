@@ -396,6 +396,8 @@ public class MainWin2 {
 		btnGraph.setBackground(new Color(97, 212, 195));
 		btnGraph.setBounds(766, 609, 106, 33);
 		customerframe.getContentPane().add(btnGraph);
+
+		customerframe.setVisible(true);
 		
 
 		

@@ -33,6 +33,7 @@ public class CreateCustomerWin {
 	private JTextField idField;
 
 	public CreateCustomerWin(String path , Object nut) {
+		System.out.println("from create customer, " + path);
 		JFrame customerCrtFrame = new JFrame("Customer Creation");
 		customerCrtFrame.setResizable(false);
 		customerCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
@@ -74,7 +75,7 @@ public class CreateCustomerWin {
 		
 		JLabel lblWelcomeToFatoff = new JLabel("Fat-Off customer creation");
 		lblWelcomeToFatoff.setForeground(new Color(255, 255, 255));
-		lblWelcomeToFatoff.setBounds(218, 7, 200, 17);
+		lblWelcomeToFatoff.setBounds(218, 7, 222, 17);
 		lblWelcomeToFatoff.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 16));
 		
 		JLabel firstNameLbl = new JLabel("First Name:");
@@ -123,6 +124,7 @@ public class CreateCustomerWin {
 		
 		
 		firstNameField = new JTextField();
+		firstNameField.setCaretColor(Color.WHITE);
 		firstNameField.setBorder(null);
 		firstNameField.setBackground(new Color(36, 47, 65));
 		firstNameField.setForeground(new Color(255, 255, 255));
@@ -131,6 +133,7 @@ public class CreateCustomerWin {
 		firstNameField.setColumns(10);
 		
 		lastNameField = new JTextField();
+		lastNameField.setCaretColor(Color.WHITE);
 		lastNameField.setBorder(null);
 		lastNameField.setBackground(new Color(36, 47, 65));
 		lastNameField.setForeground(new Color(255, 255, 255));
@@ -139,6 +142,7 @@ public class CreateCustomerWin {
 		lastNameField.setColumns(10);
 		
 		phoneField = new JTextField();
+		phoneField.setCaretColor(Color.WHITE);
 		phoneField.setBorder(null);
 		phoneField.setBackground(new Color(36, 47, 65));
 		phoneField.setForeground(new Color(255, 255, 255));
@@ -159,6 +163,7 @@ public class CreateCustomerWin {
 		});
 		
 		emailField = new JTextField();
+		emailField.setCaretColor(Color.WHITE);
 		emailField.setBorder(null);
 		emailField.setBackground(new Color(36, 47, 65));
 		emailField.setForeground(new Color(255, 255, 255));
@@ -167,6 +172,7 @@ public class CreateCustomerWin {
 		emailField.setColumns(10);
 		
 		idField = new JTextField();
+		idField.setCaretColor(Color.WHITE);
 		idField.setBorder(null);
 		idField.setBackground(new Color(36, 47, 65));
 		idField.setForeground(new Color(255, 255, 255));

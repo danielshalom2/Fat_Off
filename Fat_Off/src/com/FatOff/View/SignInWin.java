@@ -1,11 +1,7 @@
 
 package com.FatOff.View;
 
-import javax.swing.*;
-
 import java.awt.Font;
-import javax.swing.border.MatteBorder;
-
 import com.FatOff.Controller.AdminController;
 import com.FatOff.Controller.NutritionistController;
 import com.FatOff.Model.Admin;
@@ -21,16 +17,8 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -39,7 +27,6 @@ import javax.swing.JSeparator;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.event.MouseMotionAdapter;
 
 public class SignInWin {
 	private JTextField yourIdField;
@@ -250,7 +237,7 @@ public class SignInWin {
 							found = true;
 							Admin adm = AdminController.restoreAdmin(desired);
 							if (new String(passwordField.getPassword()).equals(adm.getPassword())) {
-								new MainWin(adm, "Admin");
+								new InitialWin(pathToAdmin,adm);
 								signInFrame.dispose();
 							} else {
 								JOptionPane.showMessageDialog(null, "Wrong Password!");
@@ -266,7 +253,7 @@ public class SignInWin {
 							found = true;
 							Nutritionist nut = NutritionistController.restoreNut(desired);
 							if (new String(passwordField.getPassword()).equals(nut.getPassword())) {
-								new MainWin(nut, "Nutritionist");
+								new InitialWin(pathToDieticion, nut);
 								signInFrame.dispose();
 							} else {
 								JOptionPane.showMessageDialog(null, "Wrong Password!");

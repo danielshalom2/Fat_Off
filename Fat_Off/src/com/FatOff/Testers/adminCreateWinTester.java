@@ -10,6 +10,7 @@ public class adminCreateWinTester {
 		// TODO Auto-generated method stub
 //		String path;
 		final File pathToFatOff;
+		
 //		final File pathToDieticion;
 //		final File pathToAdmin;
 //		final String os = System.getProperty("os.name");

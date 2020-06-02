@@ -4,16 +4,21 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.*;
+
+import com.FatOff.Model.SaveRestore;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class InitialWin {
 	private JMenuItem resetPassNut2;
 	///need to check what need to be X
-	public InitialWin(String X,Object nut) {
+	public InitialWin(File path,Object nut) {
 	
 		JFrame initailframe =new JFrame("Initial Window - FatOff");
+		initailframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initailframe.getContentPane().setBackground(new Color(36, 47, 65));
 		initailframe.getContentPane().setLayout(null);
 		
@@ -40,7 +45,7 @@ public class InitialWin {
 		initailframe.getContentPane().add(lblPleaseChooseYour);
 		
 		JButton openCus = new JButton("Open Existing Customer");
-		openCus.setBorderPainted(false);
+		//openCus.setBorderPainted(false);
 		openCus.setForeground(Color.WHITE);
 		openCus.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		openCus.setBorder(null);
@@ -51,7 +56,7 @@ public class InitialWin {
 		JButton createCus = new JButton("Create New Customer");
 		createCus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CreateCustomerWin();
+				new CreateCustomerWin(path.toString() , nut);
 			}
 		});
 		createCus.setForeground(Color.WHITE);
@@ -62,11 +67,16 @@ public class InitialWin {
 		initailframe.getContentPane().add(createCus);
 		
 		JButton quitbtn = new JButton("Quit");
+		quitbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				initailframe.dispose();
+			}
+		});
 		quitbtn.setForeground(Color.WHITE);
 		quitbtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		quitbtn.setBorder(null);
 		quitbtn.setBackground(new Color(97, 212, 195));
-		quitbtn.setBounds(563, 327, 67, 19);
+		quitbtn.setBounds(489, 251, 67, 19);
 		initailframe.getContentPane().add(quitbtn);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -89,6 +99,8 @@ public class InitialWin {
 		
 		JMenuItem moveCus = new JMenuItem("Move Customer");
 		adminMenu.add(moveCus);
+		
+		initailframe.setVisible(true);
 		
 		
 	}
