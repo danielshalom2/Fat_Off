@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import javax.print.DocFlavor.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 import javax.swing.JPasswordField;
@@ -38,7 +38,10 @@ public class SignInWin {
 		signInFrame.setResizable(false);
 		signInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		signInFrame.setLocationRelativeTo(null);
-
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/fat_off_no_bcgnd.png");
+		signInFrame.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
 		JPanel contentPane = new JPanel();
 		contentPane.setBackground(new Color(36, 47, 65));
 		contentPane.setBorder(null);
@@ -270,6 +273,8 @@ public class SignInWin {
 		signInFrame.getContentPane().add(contentPane);
 		signInFrame.setSize(new Dimension(657, 476));
 		signInFrame.setVisible(true);
+	
+
 
 	}
 
