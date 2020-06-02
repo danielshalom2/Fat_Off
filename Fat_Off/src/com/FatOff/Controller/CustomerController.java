@@ -12,9 +12,10 @@ public class CustomerController {
 	}
 	
 	public static Customer createCustomer(String fName , String lName , String phone , String email , String id , String gender , String pathToCustomer) {
+		System.out.println("From customer controller + " +pathToCustomer  );
 		
 		Customer cust = new Customer(fName, lName, phone, email, id, gender);
-		SaveRestore<Customer> saveCust = new SaveRestore<Customer>(cust , SaveRestore.getPath());
+		SaveRestore<Customer> saveCust = new SaveRestore<Customer>(cust , pathToCustomer);
 		
 		try {
 			saveCust.storeCustomer(pathToCustomer, cust);
