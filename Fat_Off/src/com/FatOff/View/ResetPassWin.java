@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
@@ -40,6 +41,12 @@ public class ResetPassWin {
 	public ResetPassWin() {
 		JFrame resetFrame= new JFrame("PassReset");
 		resetFrame.getContentPane().setBackground(new Color(36, 47, 65));
+		
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		resetFrame.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
+		
 //		ResetEmail.setBackground(new Color(97, 212, 195));
 //		ResetEmail.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 //		//resetFrame.getContentPane().setLayout(null);

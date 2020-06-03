@@ -53,6 +53,12 @@ public class MainWin2 {
 		customerframe.getContentPane().setBackground(new Color(36, 47, 65));
 		customerframe.getContentPane().setLayout(null);
 		/////////////////////
+		
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		customerframe.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
+		
 		///MenuBar + need to add  link to intrudactory meeting + help
 		JMenuBar menuBar = new JMenuBar();
 		customerframe.setJMenuBar(menuBar);

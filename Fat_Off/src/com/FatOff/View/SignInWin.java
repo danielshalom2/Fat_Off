@@ -39,7 +39,7 @@ public class SignInWin {
 		signInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		signInFrame.setLocationRelativeTo(null);
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/fat_off_no_bcgnd.png");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
 		signInFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 		JPanel contentPane = new JPanel();

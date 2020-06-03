@@ -36,6 +36,11 @@ public class InterviewWin {
 		interviewFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		interviewFrame.getContentPane().setPreferredSize(new Dimension(10, 0));
 		interviewFrame.getContentPane().setMaximumSize(new Dimension(32000, 32000));
+		
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		interviewFrame.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.DARK_GRAY));

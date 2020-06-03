@@ -41,6 +41,11 @@ public class CreateNutritionistWin {
 		JFrame nutritionistCrtFrame = new JFrame("Nutritionist Creation");
 		nutritionistCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		nutritionistCrtFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		nutritionistCrtFrame.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
 
 		JPanel formPanel = new JPanel();
 		formPanel.setBackground(new Color(36, 47, 65));

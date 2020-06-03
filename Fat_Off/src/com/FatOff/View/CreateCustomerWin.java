@@ -38,6 +38,10 @@ public class CreateCustomerWin {
 		customerCrtFrame.setResizable(false);
 		customerCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		customerCrtFrame.setBackground(new Color(36, 47, 65));
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		customerCrtFrame.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(36, 47, 65));

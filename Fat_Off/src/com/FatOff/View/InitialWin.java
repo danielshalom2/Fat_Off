@@ -22,6 +22,11 @@ public class InitialWin {
 		initailframe.getContentPane().setBackground(new Color(36, 47, 65));
 		initailframe.getContentPane().setLayout(null);
 		
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		initailframe.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
+		
 		
 		JLabel Logolbl = new JLabel("");
 		Logolbl.setIcon(new ImageIcon(MainWin2.class.getResource("/com/FatOff/View/fat_off_white.png")));
