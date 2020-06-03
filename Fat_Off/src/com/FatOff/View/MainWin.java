@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-public class MainWin2 {
+public class MainWin {
 	 
 	private JTextField txtEnterWeight;
 	private JTextField txtHeight;
@@ -48,7 +48,7 @@ public class MainWin2 {
 	private JTextField txtEnterSnack2;
 	private JTextField txtEnterSnack3;
 	
-	public MainWin2(Object cus, String type) {
+	public MainWin(Object cus, String type) {
 		JFrame customerframe = new JFrame("custmer");
 		customerframe.getContentPane().setBackground(new Color(36, 47, 65));
 		customerframe.getContentPane().setLayout(null);
@@ -73,7 +73,7 @@ public class MainWin2 {
 		
 		/// adding LOGO to window
 		JLabel Logolbl = new JLabel("");
-		Logolbl.setIcon(new ImageIcon(MainWin2.class.getResource("/com/FatOff/View/fat_off_white.png")));
+		Logolbl.setIcon(new ImageIcon(MainWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
 		Logolbl.setForeground(Color.WHITE);
 		Logolbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		Logolbl.setBounds(0, 0, 133, 199);

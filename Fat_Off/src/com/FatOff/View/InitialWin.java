@@ -1,6 +1,7 @@
 
 package com.FatOff.View;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.*;
@@ -13,11 +14,12 @@ import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class InitialWin {
-	private JMenuItem resetPassNut2;
+	private JMenuItem changePassNut2;
 	///need to check what need to be X
 	public InitialWin(File path,Object nut) {
 	
 		JFrame initailframe =new JFrame("Initial Window - FatOff");
+		initailframe.setResizable(false);
 		initailframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initailframe.getContentPane().setBackground(new Color(36, 47, 65));
 		initailframe.getContentPane().setLayout(null);
@@ -29,7 +31,7 @@ public class InitialWin {
 		
 		
 		JLabel Logolbl = new JLabel("");
-		Logolbl.setIcon(new ImageIcon(MainWin2.class.getResource("/com/FatOff/View/fat_off_white.png")));
+		Logolbl.setIcon(new ImageIcon(MainWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
 		Logolbl.setForeground(Color.WHITE);
 		Logolbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		Logolbl.setBounds(0, 44, 133, 199);
@@ -90,8 +92,8 @@ public class InitialWin {
 		JMenu nutriMenu = new JMenu("Nutritionist Menu");
 		menuBar.add(nutriMenu);
 		
-		resetPassNut2 = new JMenuItem("Reset Password");
-		nutriMenu.add(resetPassNut2);
+		changePassNut2 = new JMenuItem("Change Password");
+		nutriMenu.add(changePassNut2);
 		
 		JMenu adminMenu = new JMenu("Admin Menu");
 		menuBar.add(adminMenu);
@@ -100,13 +102,20 @@ public class InitialWin {
 		adminMenu.add(resetPassNut1);
 		
 		JMenuItem createNut = new JMenuItem("Create Nutritionist");
+		createNut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			new CreateNutritionistWin();
+			}
+		});
 		adminMenu.add(createNut);
 		
 		JMenuItem moveCus = new JMenuItem("Move Customer");
 		adminMenu.add(moveCus);
 		
 		initailframe.setVisible(true);
+		initailframe.setSize(new Dimension(621, 351));
+		initailframe.setLocationRelativeTo(null);
+	}		
 		
-		
-	}
+
 }
