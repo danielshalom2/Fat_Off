@@ -1,6 +1,10 @@
 
 package com.FatOff.View;
 import javax.swing.*;
+
+import com.FatOff.Model.Customer;
+import com.FatOff.Model.Nutritionist;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -48,14 +52,14 @@ public class MainWin {
 	private JTextField txtEnterSnack2;
 	private JTextField txtEnterSnack3;
 	
-	public MainWin(Object cus, String type) {
+	public MainWin(Nutritionist nut , Customer cust) {
 		JFrame customerframe = new JFrame("custmer");
 		customerframe.getContentPane().setBackground(new Color(36, 47, 65));
 		customerframe.getContentPane().setLayout(null);
 		/////////////////////
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/ï¿½ï¿½IconFatOff.PNG");
 		customerframe.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 		
@@ -228,9 +232,9 @@ public class MainWin {
 		txtCustomerNameSholud.setEditable(false);
 		txtCustomerNameSholud.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCustomerNameSholud.setForeground(new Color(255, 255, 255));
-		txtCustomerNameSholud.setText("Customer name sholud appear");
+		txtCustomerNameSholud.setText(cust.getFirstName() + " " + cust.getLastName());
 		txtCustomerNameSholud.setBackground(null);
-		txtCustomerNameSholud.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		txtCustomerNameSholud.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		txtCustomerNameSholud.setColumns(10);
 		txtCustomerNameSholud.setBounds(487, 31, 234, 29);
 		customerframe.getContentPane().add(txtCustomerNameSholud);

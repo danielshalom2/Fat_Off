@@ -34,6 +34,9 @@ public class CustomComboRenderer extends DefaultListCellRenderer {
     }
 
     public static String getCustomerDisplayText(Customer cust) {
-        return String.format("%s [%s]", cust.getFirstName() + " " + cust.getLastName(), cust.getId());
+        if (cust == null) {
+            return "";
+        }
+        return String.format("%s,  [%s]", cust.getFirstName() + "_" + cust.getLastName(), cust.getId());
     }
 }

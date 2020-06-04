@@ -1,11 +1,14 @@
 
 package com.FatOff.View;
+import java.util.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.*;
 
+import com.FatOff.Model.Customer;
+import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.SaveRestore;
 
 import java.awt.BorderLayout;
@@ -25,7 +28,7 @@ public class InitialWin {
 		initailframe.getContentPane().setLayout(null);
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/ï¿½ï¿½IconFatOff.PNG");
 		initailframe.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 		
@@ -52,6 +55,39 @@ public class InitialWin {
 		initailframe.getContentPane().add(lblPleaseChooseYour);
 		
 		JButton openCus = new JButton("Open Existing Customer");
+		openCus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame("Search Customer");
+				List<Customer> customers = ((Nutritionist)nut).getCustomersList();
+		        JComboBox<Customer> comboBox = new JComboBox<>(
+		                customers.toArray(new Customer[customers.size()]));
+
+		        CustomerSearchDecorator<Customer> decorate = CustomerSearchDecorator.decorate(comboBox,InitialWin::customerFilter);
+
+		        comboBox.setRenderer(new CustomComboRenderer(decorate.getFilterLabel()));
+		        
+		        JButton selectBtn = new JButton("Select");
+		        selectBtn.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        		Customer selected = (Customer) comboBox.getSelectedItem();
+		        		new MainWin(((Nutritionist)nut),selected);
+		        		initailframe.dispose();	
+		        		frame.dispose();
+		        		}
+		        });
+		        JPanel panel = new JPanel();
+				panel.add(comboBox);
+				panel.add(selectBtn);
+
+				
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setSize(new Dimension(350, 200));
+				frame.add(panel);
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+
+			}
+		});
 		//openCus.setBorderPainted(false);
 		openCus.setForeground(Color.WHITE);
 		openCus.setFont(new Font("Century Gothic", Font.BOLD, 14));
@@ -117,5 +153,12 @@ public class InitialWin {
 		initailframe.setLocationRelativeTo(null);
 	}		
 		
+	private static boolean customerFilter(Customer cust, String textToFilter) {
+        if (textToFilter.isEmpty()) {
+            return true;
+        }
+        return CustomComboRenderer.getCustomerDisplayText(cust).toLowerCase()
+                                  .contains(textToFilter.toLowerCase());
+    }
 
 }
