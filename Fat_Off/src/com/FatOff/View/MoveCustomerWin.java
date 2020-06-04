@@ -22,7 +22,7 @@ public class MoveCustomerWin {
 	
 	public MoveCustomerWin (Admin adm) throws IOException {
 		
-		JFrame moveFrame = new JFrame("Assign Customer");	
+		JFrame moveFrame = new JFrame("Assign Customer");
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(36, 47, 65));
@@ -36,7 +36,9 @@ public class MoveCustomerWin {
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-		);
+		);	
+
+		moveFrame.getContentPane().setLayout(groupLayout);
 		
 		JLabel srcNutSelectLbl = new JLabel("Pick source a dietician:");
 		srcNutSelectLbl.setFont(new Font("Dialog", Font.PLAIN, 13));
@@ -44,27 +46,26 @@ public class MoveCustomerWin {
 
 		// Nutritionist Combo Box Model
 		List<Nutritionist> nuts = AdminController.getNutsList();
+		nuts.add(adm);
 		DefaultComboBoxModel<Nutritionist> nutsComboModel = new DefaultComboBoxModel<Nutritionist>(nuts.toArray(new Nutritionist[nuts.size()]));
 
 		// Source Nut Combo Box
 		JComboBox<Nutritionist> srcNutsComboBox = new JComboBox<>(nutsComboModel);
-		CustomerSearchDecorator<Nutritionist> decorate = CustomerSearchDecorator.decorate(srcNutsComboBox,MoveCustomerWin::nutFilter);
-        srcNutsComboBox.setRenderer(new CustomComboRenderer(decorate.getFilterLabel()));
-        
-        JButton selectBtn = new JButton("Select");
-        selectBtn.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		Nutritionist selected = (Nutritionist) srcNutsComboBox.getSelectedItem();
-        		}
-        });
-
-		moveFrame.getContentPane().setLayout(groupLayout);
+		CustomerSearchDecorator<Nutritionist> nutDecorate = CustomerSearchDecorator.decorate(srcNutsComboBox,MoveCustomerWin::nutFilter);
+        srcNutsComboBox.setRenderer(new CustomComboRenderer(nutDecorate.getFilterLabel()));
 		
 		JLabel custToMoveLbl = new JLabel("Pick a customer to assign:");
 		custToMoveLbl.setForeground(Color.WHITE);
 		custToMoveLbl.setFont(new Font("Dialog", Font.PLAIN, 13));
 		
-		JComboBox custComboBox = new JComboBox();
+		// Customer Combo Box Model
+		List<Customer> custs = ((Nutritionist)srcNutsComboBox.getSelectedItem()).getCustomersList();
+		DefaultComboBoxModel<Customer> custComboModel = new DefaultComboBoxModel<Customer>(custs.toArray(new Customer[custs.size()]));
+		
+		// Source Nut Combo Box
+		JComboBox<Customer> custComboBox = new JComboBox<>(custComboModel);
+		CustomerSearchDecorator<Customer> custDecorate = CustomerSearchDecorator.decorate(custComboBox,MoveCustomerWin::nutFilter);
+		srcNutsComboBox.setRenderer(new CustomComboRenderer(custDecorate.getFilterLabel()));
 		
 		JLabel lblPickDieticianTo = new JLabel("Pick dietician to assign to:");
 		lblPickDieticianTo.setForeground(Color.WHITE);
@@ -158,7 +159,7 @@ public class MoveCustomerWin {
 		
 	}
 	
-	private static boolean nutFilter(Nutritionist nut, String textToFilter) {
+	private static boolean nutFilter(Person nut, String textToFilter) {
         if (textToFilter.isEmpty()) {
             return true;
         }
