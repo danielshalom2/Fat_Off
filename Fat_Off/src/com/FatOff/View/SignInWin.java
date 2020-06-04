@@ -27,6 +27,7 @@ import javax.swing.JSeparator;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.border.MatteBorder;
 
 public class SignInWin {
 	private JTextField yourIdField;
@@ -39,7 +40,7 @@ public class SignInWin {
 		signInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		signInFrame.setLocationRelativeTo(null);
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/ï¿½ï¿½IconFatOff.PNG");
 		signInFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 		JPanel contentPane = new JPanel();
@@ -199,7 +200,7 @@ public class SignInWin {
 
 		JButton signInBtn = new JButton("Sign In");
 		signInBtn.setBounds(324, 389, 127, 40);
-		signInBtn.setBorder(null);
+		signInBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		signInBtn.setBackground(new Color(97, 212, 195));
 		signInBtn.setForeground(new Color(255, 255, 255));
 		signInBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
@@ -209,7 +210,7 @@ public class SignInWin {
 		cancelBtn.setBounds(497, 389, 127, 40);
 		cancelBtn.setForeground(Color.WHITE);
 		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		cancelBtn.setBorder(null);
+		cancelBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		cancelBtn.setBackground(new Color(255, 0, 0));
 		contentPane.add(cancelBtn);
 

@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
+import com.FatOff.Model.Customer;
+import com.FatOff.Model.Nutritionist;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -217,4 +220,5 @@ public class CustomerSearchDecorator<T> {
             return editing;
         }
     }
+
 }

@@ -3,6 +3,7 @@ package com.FatOff.View;
 import javax.swing.*;
 
 import com.FatOff.Model.Customer;
+import com.FatOff.Model.Person;
 
 import java.awt.*;
 
@@ -20,11 +21,11 @@ public class CustomComboRenderer extends DefaultListCellRenderer {
                                                   boolean isSelected, boolean cellHasFocus) {
         super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-        Customer cust = (Customer) value;
-        if (cust == null) {
+        Object pers = (Person) value;
+        if (pers == null) {
             return this;
         }
-        String text = getCustomerDisplayText(cust);
+        String text = getCustomerDisplayText(pers);
         text = HtmlHighlighter.highlightText(text, searchLabel.getText());
         this.setText(text);
         if (!isSelected) {
@@ -33,10 +34,10 @@ public class CustomComboRenderer extends DefaultListCellRenderer {
         return this;
     }
 
-    public static String getCustomerDisplayText(Customer cust) {
-        if (cust == null) {
+    public static String getCustomerDisplayText(Object pers) {
+        if (pers == null) {
             return "";
         }
-        return String.format("%s,  [%s]", cust.getFirstName() + "_" + cust.getLastName(), cust.getId());
+        return String.format("%s,  [%s]", ((Person)pers).getFirstName() + "_" + ((Person)pers).getLastName(), ((Person)pers).getId());
     }
 }

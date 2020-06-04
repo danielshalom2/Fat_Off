@@ -103,7 +103,7 @@ public class CreateNutritionistWin {
 		formPanel.add(idWarnLbl_1);
 		
 
-		JLabel headerLbl = new JLabel("Welcome to Fat-Off nutritionist creation");
+		JLabel headerLbl = new JLabel("Fat-Off nutritionist creation");
 		headerLbl.setForeground(new Color(255, 255, 255));
 		headerLbl.setBounds(172, 11, 315, 17);
 		headerLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 16));

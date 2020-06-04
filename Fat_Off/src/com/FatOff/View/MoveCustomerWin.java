@@ -1,0 +1,168 @@
+package com.FatOff.View;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.List;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+
+import com.FatOff.Controller.AdminController;
+import com.FatOff.Model.Admin;
+import com.FatOff.Model.Customer;
+import com.FatOff.Model.Nutritionist;
+import com.FatOff.Model.Person;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+
+
+public class MoveCustomerWin {
+	
+	public MoveCustomerWin (Admin adm) throws IOException {
+		
+		JFrame moveFrame = new JFrame("Assign Customer");	
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(36, 47, 65));
+		GroupLayout groupLayout = new GroupLayout(moveFrame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+		);
+		
+		JLabel srcNutSelectLbl = new JLabel("Pick source a dietician:");
+		srcNutSelectLbl.setFont(new Font("Dialog", Font.PLAIN, 13));
+		srcNutSelectLbl.setForeground(Color.WHITE);
+
+		// Nutritionist Combo Box Model
+		List<Nutritionist> nuts = AdminController.getNutsList();
+		DefaultComboBoxModel<Nutritionist> nutsComboModel = new DefaultComboBoxModel<Nutritionist>(nuts.toArray(new Nutritionist[nuts.size()]));
+
+		// Source Nut Combo Box
+		JComboBox<Nutritionist> srcNutsComboBox = new JComboBox<>(nutsComboModel);
+		CustomerSearchDecorator<Nutritionist> decorate = CustomerSearchDecorator.decorate(srcNutsComboBox,MoveCustomerWin::nutFilter);
+        srcNutsComboBox.setRenderer(new CustomComboRenderer(decorate.getFilterLabel()));
+        
+        JButton selectBtn = new JButton("Select");
+        selectBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Nutritionist selected = (Nutritionist) srcNutsComboBox.getSelectedItem();
+        		}
+        });
+
+		moveFrame.getContentPane().setLayout(groupLayout);
+		
+		JLabel custToMoveLbl = new JLabel("Pick a customer to assign:");
+		custToMoveLbl.setForeground(Color.WHITE);
+		custToMoveLbl.setFont(new Font("Dialog", Font.PLAIN, 13));
+		
+		JComboBox custComboBox = new JComboBox();
+		
+		JLabel lblPickDieticianTo = new JLabel("Pick dietician to assign to:");
+		lblPickDieticianTo.setForeground(Color.WHITE);
+		lblPickDieticianTo.setFont(new Font("Dialog", Font.PLAIN, 13));
+		
+		JComboBox destNutComboBox = new JComboBox();
+		
+		JLabel lblNewLabel = new JLabel("Re-Assign Customer To Dietician");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.ITALIC, 16));
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(Color.WHITE);
+		
+		JButton cancelBtn = new JButton("Cancel");
+		
+		JButton assignBtn = new JButton("Re-Assign");
+		
+		JLabel lblNewLabel_1 = new JLabel("-------->");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("-------->");
+		lblNewLabel_1_1.setForeground(Color.WHITE);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addGap(217)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(227))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(14)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(srcNutSelectLbl)
+							.addContainerGap())
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(separator, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(srcNutsComboBox, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(custToMoveLbl, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(custComboBox, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_panel.createSequentialGroup()
+											.addGap(6)
+											.addComponent(destNutComboBox, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+										.addComponent(lblPickDieticianTo))))
+							.addGap(22))))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(263)
+					.addComponent(cancelBtn)
+					.addGap(18)
+					.addComponent(assignBtn)
+					.addContainerGap(227, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNewLabel)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(srcNutSelectLbl)
+						.addComponent(custToMoveLbl)
+						.addComponent(lblPickDieticianTo))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(srcNutsComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_1)
+						.addComponent(lblNewLabel_1_1)
+						.addComponent(custComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(destNutComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(48)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(assignBtn)
+						.addComponent(cancelBtn))
+					.addContainerGap())
+		);
+		panel.setLayout(gl_panel);
+		
+	}
+	
+	private static boolean nutFilter(Nutritionist nut, String textToFilter) {
+        if (textToFilter.isEmpty()) {
+            return true;
+        }
+        return CustomComboRenderer.getCustomerDisplayText(nut).toLowerCase()
+                                  .contains(textToFilter.toLowerCase());
+    }
+}

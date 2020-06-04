@@ -59,6 +59,7 @@ public class InitialWin {
 		openCus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame frame = new JFrame("Search Customer");
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				List<Customer> customers = ((Nutritionist)nut).getCustomersList();
 		        JComboBox<Customer> comboBox = new JComboBox<>(
 		                customers.toArray(new Customer[customers.size()]));
