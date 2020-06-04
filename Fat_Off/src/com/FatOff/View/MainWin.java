@@ -54,6 +54,7 @@ public class MainWin {
 	
 	public MainWin(Nutritionist nut , Customer cust) {
 		JFrame customerframe = new JFrame("custmer");
+		customerframe.setTitle("Session");
 		customerframe.getContentPane().setBackground(new Color(36, 47, 65));
 		customerframe.getContentPane().setLayout(null);
 		/////////////////////

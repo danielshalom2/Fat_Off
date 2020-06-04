@@ -15,6 +15,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
+import javax.swing.border.MatteBorder;
 
 public class InitialWin {
 	private JMenuItem changePassNut2;
@@ -82,7 +83,7 @@ public class InitialWin {
 				
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setSize(new Dimension(350, 200));
-				frame.add(panel);
+				frame.getContentPane().add(panel);
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
 
@@ -91,7 +92,7 @@ public class InitialWin {
 		//openCus.setBorderPainted(false);
 		openCus.setForeground(Color.WHITE);
 		openCus.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		openCus.setBorder(null);
+		openCus.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		openCus.setBackground(new Color(97, 212, 195));
 		openCus.setBounds(241, 112, 199, 45);
 		initailframe.getContentPane().add(openCus);
@@ -104,7 +105,7 @@ public class InitialWin {
 		});
 		createCus.setForeground(Color.WHITE);
 		createCus.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		createCus.setBorder(null);
+		createCus.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		createCus.setBackground(new Color(97, 212, 195));
 		createCus.setBounds(241, 168, 199, 45);
 		initailframe.getContentPane().add(createCus);
@@ -117,7 +118,7 @@ public class InitialWin {
 		});
 		quitbtn.setForeground(Color.WHITE);
 		quitbtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		quitbtn.setBorder(null);
+		quitbtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		quitbtn.setBackground(new Color(97, 212, 195));
 		quitbtn.setBounds(489, 251, 67, 19);
 		initailframe.getContentPane().add(quitbtn);

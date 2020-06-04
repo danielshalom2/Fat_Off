@@ -38,7 +38,7 @@ public class InterviewWin {
 		interviewFrame.getContentPane().setMaximumSize(new Dimension(32000, 32000));
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/ï¿½ï¿½IconFatOff.PNG");
 		interviewFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 
@@ -300,7 +300,7 @@ public class InterviewWin {
 		JButton cancelBtn = new JButton("Cancel");
 		cancelBtn.setForeground(new Color(255, 255, 255));
 		cancelBtn.setBackground(new Color(97, 212, 195));
-		cancelBtn.setBorder(null);
+		cancelBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		cancelBtn.addActionListener(new ActionListener() {
 			
@@ -341,7 +341,7 @@ public class InterviewWin {
 		JButton saveBtn = new JButton("Save");
 		saveBtn.setForeground(new Color(255, 255, 255));
 		saveBtn.setBackground(new Color(97, 212, 195));
-		saveBtn.setBorder(null);
+		saveBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		saveBtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		saveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

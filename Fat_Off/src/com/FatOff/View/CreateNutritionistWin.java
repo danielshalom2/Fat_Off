@@ -39,7 +39,7 @@ public class CreateNutritionistWin {
 	public CreateNutritionistWin() {
 		JFrame nutritionistCrtFrame = new JFrame("Nutritionist Creation");
 		nutritionistCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
-		nutritionistCrtFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		nutritionistCrtFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		/////////////////////////////// set icon //////////////////////////////////
 		ImageIcon icon = new ImageIcon("src/com/FatOff/View/��IconFatOff.PNG");
@@ -216,7 +216,7 @@ public class CreateNutritionistWin {
 		JButton clearBtn = new JButton("Clear");
 		clearBtn.setForeground(new Color(255, 255, 255));
 		clearBtn.setBackground(new Color(97, 212, 195));
-		clearBtn.setBorder(null);
+		clearBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		clearBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		clearBtn.setBounds(172, 385, 77, 30);
 		clearBtn.addActionListener(new ActionListener() {
@@ -236,7 +236,7 @@ public class CreateNutritionistWin {
 		cancelBtn.setBounds(376, 385, 77, 30);
 		cancelBtn.setForeground(Color.WHITE);
 		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
-		cancelBtn.setBorder(null);
+		cancelBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		cancelBtn.setBackground(new Color(97, 212, 195));
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -247,7 +247,7 @@ public class CreateNutritionistWin {
 		JButton createBtn = new JButton("Create");
 		createBtn.setBounds(463, 385, 77, 30);
 		createBtn.setBackground(new Color(97, 212, 195));
-		createBtn.setBorder(null);
+		createBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		createBtn.setForeground(new Color(255, 255, 255));
 		createBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		createBtn.addActionListener(new ActionListener() {

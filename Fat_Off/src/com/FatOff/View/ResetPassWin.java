@@ -27,6 +27,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JSeparator;
+import javax.swing.border.MatteBorder;
 
 public class ResetPassWin {
 	private final JButton ResetEmail = new JButton("Send Validation Code");
@@ -43,7 +44,7 @@ public class ResetPassWin {
 		resetFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/ï¿½ï¿½IconFatOff.PNG");
 		resetFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 		
@@ -99,7 +100,7 @@ public class ResetPassWin {
 		JButton sendValidBtn = new JButton("Send Validation Code");
 		sendValidBtn.setForeground(Color.WHITE);
 		sendValidBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		sendValidBtn.setBorder(null);
+		sendValidBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		sendValidBtn.setBackground(new Color(97, 212, 195));
 		sendValidBtn.setBounds(396, 18, 180, 38);
 		resetFrame.getContentPane().add(sendValidBtn);
@@ -152,13 +153,13 @@ public class ResetPassWin {
 		btnChange.setEnabled(false);
 		btnChange.setForeground(Color.WHITE);
 		btnChange.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		btnChange.setBorder(null);
+		btnChange.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		btnChange.setBackground(new Color(97, 212, 195));
-		btnChange.setBounds(158, 201, 180, 38);
+		btnChange.setBounds(162, 201, 108, 21);
 		JButton validBtn = new JButton("Validate");
 		validBtn.setForeground(Color.WHITE);
 		validBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		validBtn.setBorder(null);
+		validBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		validBtn.setBackground(new Color(97, 212, 195));
 		validBtn.setBounds(396, 106, 180, 38);
 		resetFrame.getContentPane().add(validBtn);

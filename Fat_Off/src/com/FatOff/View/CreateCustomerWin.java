@@ -39,7 +39,7 @@ public class CreateCustomerWin {
 		customerCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		customerCrtFrame.setBackground(new Color(36, 47, 65));
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/ï¿½ï¿½IconFatOff.PNG");
 		customerCrtFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 		
@@ -105,7 +105,7 @@ public class CreateCustomerWin {
 		JLabel idLbl = new JLabel("ID:");
 		idLbl.setForeground(new Color(255, 255, 255));
 		idLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		idLbl.setBounds(139, 187, 79, 13);
+		idLbl.setBounds(139, 190, 79, 13);
 		
 		JLabel genderLbl = new JLabel("Gender:");
 		genderLbl.setForeground(new Color(255, 255, 255));
@@ -113,7 +113,7 @@ public class CreateCustomerWin {
 		genderLbl.setBounds(139, 247, 63, 13);
 		
 		JLabel phoneWarnLbl = new JLabel("");
-		phoneWarnLbl.setBounds(211, 149, 229, 20);
+		phoneWarnLbl.setBounds(211, 152, 229, 20);
 		phoneWarnLbl.setForeground(Color.RED);
 		phoneWarnLbl.setFont(new Font("Century Gothic", Font.PLAIN, 9));
 		panel.add(phoneWarnLbl);
@@ -223,7 +223,7 @@ public class CreateCustomerWin {
 		
 		JButton clearBtn = new JButton("Clear");
 		clearBtn.setBounds(139, 270, 63, 21);
-		clearBtn.setBorder(null);
+		clearBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		clearBtn.setBackground(new Color(97, 212, 195));
 		clearBtn.setForeground(new Color(255, 255, 255));
 		clearBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
@@ -243,7 +243,7 @@ public class CreateCustomerWin {
 		JButton cancelBtn = new JButton("Cancel");
 		cancelBtn.setBackground(new Color(97, 212, 195));
 		cancelBtn.setForeground(new Color(255, 255, 255));
-		cancelBtn.setBorder(null);
+		cancelBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		cancelBtn.setBounds(239, 270, 79, 21);
 		cancelBtn.addActionListener(new ActionListener() {
@@ -255,7 +255,7 @@ public class CreateCustomerWin {
 		JButton createBtn = new JButton("Create");
 		createBtn.setBackground(new Color(97, 212, 195));
 		createBtn.setForeground(new Color(255, 255, 255));
-		createBtn.setBorder(null);
+		createBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		createBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		createBtn.setBounds(328, 270, 79, 21);
 		createBtn.addActionListener(new ActionListener() {
@@ -322,11 +322,11 @@ public class CreateCustomerWin {
 		JSeparator separator_2_4 = new JSeparator();
 		separator_2_4.setInheritsPopupMenu(true);
 		separator_2_4.setForeground(Color.WHITE);
-		separator_2_4.setBounds(211, 204, 229, 27);
+		separator_2_4.setBounds(211, 204, 229, 12);
 		panel.add(separator_2_4);
 		
 		customerCrtFrame.getContentPane().add(panel);
-		customerCrtFrame.setSize(new Dimension(616, 470));
+		customerCrtFrame.setSize(new Dimension(557, 392));
 		customerCrtFrame.setVisible(true);
 		
 		

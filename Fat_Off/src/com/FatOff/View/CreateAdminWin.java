@@ -221,7 +221,7 @@ public class CreateAdminWin {
 		JButton clearBtn = new JButton("Clear");
 		clearBtn.setForeground(new Color(255, 255, 255));
 		clearBtn.setBackground(new Color(97, 212, 195));
-		clearBtn.setBorder(null);
+		clearBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		clearBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		clearBtn.setBounds(131, 385, 77, 30);
 		clearBtn.addActionListener(new ActionListener() {
@@ -243,7 +243,7 @@ public class CreateAdminWin {
 		cancelBtn.setBounds(368, 385, 77, 30);
 		cancelBtn.setForeground(Color.WHITE);
 		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
-		cancelBtn.setBorder(null);
+		cancelBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		cancelBtn.setBackground(new Color(97, 212, 195));
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -253,7 +253,7 @@ public class CreateAdminWin {
 
 		JButton createBtn = new JButton("Create");
 		createBtn.setBackground(new Color(97, 212, 195));
-		createBtn.setBorder(null);
+		createBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		createBtn.setForeground(new Color(255, 255, 255));
 		createBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		createBtn.setBounds(463, 385, 77, 30);
