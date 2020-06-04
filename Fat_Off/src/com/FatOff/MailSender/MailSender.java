@@ -1,11 +1,16 @@
 
 package com.FatOff.MailSender;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+
+import com.FatOff.Controller.AdminController;
+import com.FatOff.Model.Admin;
+import com.FatOff.Model.SaveRestore;
 
 /**
  * This is an email sender class. It responsible for creating an email SMTP
@@ -37,12 +42,12 @@ public class MailSender {
 	 * @param password    The GMail application password
 	 */
 
-	public MailSender(String from, String displayName, String to, String password) {
-
-		this.from = from;
+	public MailSender(String displayName, String to) {
+		
+		this.from = getAdminEmailAddress();
 		this.displayName = displayName;
 		this.to = to;
-		this.password = password;
+		this.password = getAdminAppPass();
 
 		// Create authenticator for GMail connection
 		this.auth = new Authenticator() {
@@ -92,5 +97,29 @@ public class MailSender {
 		} catch (MessagingException | UnsupportedEncodingException mex) {
 			mex.printStackTrace();
 		}
+	}
+	
+	private String getAdminAppPass() {
+		String adminName = "";
+		File adminToRestore = new File(SaveRestore.getPath() + "/Admin");
+		String [] desired = adminToRestore.list();
+		for(int i = 0 ; i < desired.length ; i++) {
+			if(!desired[i].equals(".DS_Store"))
+				adminName = desired[i];
+		}
+		Admin adm = AdminController.restoreAdmin(adminName);
+		return adm.getEmailAppPass();
+	}
+	
+	private String getAdminEmailAddress() {
+		String adminName = "";
+		File adminToRestore = new File(SaveRestore.getPath() + "/Admin");
+		String [] desired = adminToRestore.list();
+		for(int i = 0 ; i < desired.length ; i++) {
+			if(!desired[i].equals(".DS_Store"))
+				adminName = desired[i];
+		}
+		Admin adm = AdminController.restoreAdmin(adminName);
+		return adm.getEmailAddress();
 	}
 }

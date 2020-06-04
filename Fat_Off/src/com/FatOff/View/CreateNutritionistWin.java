@@ -35,7 +35,6 @@ public class CreateNutritionistWin {
 	private JTextField phoneNumField;
 	private JTextField lNameField;
 	private JTextField fNameField;
-	private JTextField mailAppPassField;
 
 	public CreateNutritionistWin() {
 		JFrame nutritionistCrtFrame = new JFrame("Nutritionist Creation");
@@ -43,7 +42,7 @@ public class CreateNutritionistWin {
 		nutritionistCrtFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/þþIconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/ï¿½ï¿½IconFatOff.PNG");
 		nutritionistCrtFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 
@@ -133,15 +132,6 @@ public class CreateNutritionistWin {
 		phoneWarnLbl.setBounds(263, 157, 277, -17);
 		phoneWarnLbl.setForeground(Color.RED);
 		phoneWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
-		
-		mailAppPassField = new JTextField();
-		mailAppPassField.setBounds(263, 268, 277, 19);
-		mailAppPassField.setColumns(10);
-		
-		JLabel mailAppPassLbl = new JLabel("Mail App Pass:");
-		mailAppPassLbl.setForeground(new Color(255, 255, 255));
-		mailAppPassLbl.setBounds(130, 268, 133, 17);
-		mailAppPassLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 
 		passConfirmField = new JPasswordField();
 		passConfirmField.setBounds(263, 340, 277, 19);
@@ -239,7 +229,6 @@ public class CreateNutritionistWin {
 				licenseIdField.setText("");
 				passField.setText("");
 				passConfirmField.setText("");
-				mailAppPassField.setText("");
 			}
 		});
 
@@ -266,7 +255,6 @@ public class CreateNutritionistWin {
 			public void actionPerformed(ActionEvent e) {
 				if (fNameField.getText().equals("") || lNameField.getText().equals("") || phoneNumField.getText().equals("")
 						|| emailAddrField.getText().equals("") || idField.getText().equals("") || licenseIdField.getText().equals("")
-						|| mailAppPassField.getText().equals("")
 						|| passField.getPassword().length == 0 || passConfirmField.getPassword().length == 0) {
 					JOptionPane.showMessageDialog(null, "All the fields are required for nutritionist creation!");
 				} 
@@ -278,7 +266,7 @@ public class CreateNutritionistWin {
 				else {
 					if(NutritionistController.createNutritionist(fNameField.getText(), lNameField.getText(), phoneNumField.getText(), 
 							emailAddrField.getText(), idField.getText(), Integer.parseInt(licenseIdField.getText()), 
-							mailAppPassField.getText(), new String(passField.getPassword()))) {
+							new String(passField.getPassword()))) {
 						JOptionPane.showMessageDialog(null, "Nutritionist was created succesfully");
 						nutritionistCrtFrame.dispose();
 					}
@@ -297,7 +285,6 @@ public class CreateNutritionistWin {
 		formPanel.add(fNameLbl);
 		formPanel.add(emailAddrLbl);
 		formPanel.add(idLbl);
-		formPanel.add(mailAppPassLbl);
 		formPanel.add(cancelBtn);
 		formPanel.add(createBtn);
 		formPanel.add(licidWarnLbl);
@@ -307,7 +294,6 @@ public class CreateNutritionistWin {
 		formPanel.add(idField);
 		formPanel.add(phoneWarnLbl);
 		formPanel.add(phoneNumField);
-		formPanel.add(mailAppPassField);
 		formPanel.add(fNameField);
 		formPanel.add(headerLbl);
 		formPanel.add(passConfirmLbl);

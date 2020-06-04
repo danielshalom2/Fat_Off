@@ -40,7 +40,7 @@ public class SaveRestoreTester {
 		
 		System.out.println("TEST 1 ----- TESTING SAVE NUTRITIONIST WITHOUT CUSTOMERS\n"
 						+ "##########################################################\n");
-		Nutritionist test1 = new Nutritionist("Galia", "Shalos", "144", "fdgsdf", "123", 456, "gdf", "123");
+		Nutritionist test1 = new Nutritionist("Galia", "Shalos", "144", "fdgsdf", "123", 456, "123");
 		SaveRestore<Nutritionist> savetest = new SaveRestore<Nutritionist>(test1, path);
 		
 		try { savetest.storeToFile(""); }

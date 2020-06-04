@@ -9,9 +9,9 @@ import com.FatOff.Model.SaveRestore;
 public class NutritionistController {
 	
 	public static boolean createNutritionist(String firstName, String lastName, String phoneNumber, String emailAddress,
-			String id, int licenseId, String emailAppPass, String password) {
+			String id, int licenseId, String password) {
 		try {
-			Nutritionist nut = new Nutritionist(firstName, lastName, phoneNumber, emailAddress, id, licenseId, emailAppPass,
+			Nutritionist nut = new Nutritionist(firstName, lastName, phoneNumber, emailAddress, id, licenseId,
 					password);
 			SaveRestore<Nutritionist> saveNutritionist = new SaveRestore<Nutritionist>(nut, SaveRestore.getPath()+"/");
 			saveNutritionist.storeToFile("");

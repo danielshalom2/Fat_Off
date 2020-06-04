@@ -17,7 +17,7 @@ public class Nutritionist extends Person implements Serializable {
 
 	
 	private int licenseId;
-	private String emailAppPass;
+	//private String emailAppPass;
 	private String password;
 	private ArrayList<Customer> customersList;
 
@@ -32,13 +32,13 @@ public class Nutritionist extends Person implements Serializable {
 	 * @param password     the nutritionists' password to the system
 	 */
 	public Nutritionist(String firstName, String lastName, String phoneNumber, String emailAddress, String id,
-			int licenseId, String emailAppPass, String password) {
+			int licenseId, /*String emailAppPass,*/ String password) {
 		// Initialize super object
 		super(firstName, lastName, phoneNumber, emailAddress, id);
 
 		// Initialize local private variables
 		this.licenseId = licenseId;
-		this.emailAppPass = emailAppPass;
+		//this.emailAppPass = emailAppPass;
 		this.password = password;
 		customersList = new ArrayList<Customer>();
 	}
@@ -50,7 +50,7 @@ public class Nutritionist extends Person implements Serializable {
 
 		// Initialize local private variables
 		this.licenseId = other.licenseId;
-		this.emailAppPass = other.emailAppPass;
+		//this.emailAppPass = other.emailAppPass;
 		this.password = other.password;
 		customersList = new ArrayList<Customer>();
 	}
@@ -98,13 +98,13 @@ public class Nutritionist extends Person implements Serializable {
 	/**
 	 * @param emailAppPass the emailAppPass to set
 	 */
-	public void setEmailAppPass(String emailAppPass) {
-		this.emailAppPass = emailAppPass;
-	}
+//	public void setEmailAppPass(String emailAppPass) {
+//		this.emailAppPass = emailAppPass;
+//	}
 
-	public String getEmailAppPass() {
-		return emailAppPass;
-	}
+//	public String getEmailAppPass() {
+//		return emailAppPass;
+//	}
 
 	/**
 	 * 
@@ -118,7 +118,7 @@ public class Nutritionist extends Person implements Serializable {
 	public String resetPassword() { 
 
 		int validation = new Random().nextInt(999999) + 100000;
-		MailSender email = new MailSender(this.getEmailAddress(),"Fat_Off_Password_Reset",this.getEmailAddress(),this.getEmailAppPass());
+		MailSender email = new MailSender("Fat_Off_Password_Reset",this.getEmailAddress()/*,this.getEmailAppPass()*/);
 		email.sendValidationCode(validation);
 	
 		return String.valueOf(validation);

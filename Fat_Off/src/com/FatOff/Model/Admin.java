@@ -11,6 +11,7 @@ import java.util.*;
 public class Admin extends Nutritionist  {
 
 	private ArrayList<Nutritionist> nutriList;
+	private String emailAppPass;
 
 	/**
 	 * @param firstName    the Admin first name
@@ -25,16 +26,18 @@ public class Admin extends Nutritionist  {
 
 	public Admin(String firstName, String lastName, String phoneNumber, String emailAddress, String id, int licenseId,
 			String emailAppPass, String password) {
-		super(firstName, lastName, phoneNumber, emailAddress, id, licenseId, emailAppPass, password);
+		super(firstName, lastName, phoneNumber, emailAddress, id, licenseId, password);
 		setNutriList(new ArrayList<Nutritionist>());
+		this.emailAppPass = emailAppPass;
 	}
 
 	public Admin(Admin other) {
 		// Initialize super object
-		super(other.getFirstName(), other.getLastName(), other.getPhoneNumber(), other.getEmailAddress(), other.getId(), other.getLicenseId(), other.getEmailAppPass(), other.getPassword());
+		super(other.getFirstName(), other.getLastName(), other.getPhoneNumber(), other.getEmailAddress(), other.getId(), other.getLicenseId(), other.getPassword());
 
 		// Initialize local private variables
 		setNutriList(new ArrayList<Nutritionist>());
+		this.emailAppPass = other.getEmailAppPass();
 	}
 
 	/**
@@ -45,6 +48,10 @@ public class Admin extends Nutritionist  {
 
 	public ArrayList<Nutritionist> getNutriList() {
 		return nutriList;
+	}
+	
+	public String getEmailAppPass() {
+		return emailAppPass;
 	}
 
 	/**
@@ -70,7 +77,7 @@ public class Admin extends Nutritionist  {
 
 	public void createNut(String firstName, String lastName, String phoneNumber, String emailAddress, String id,
 			int licenseId, String emailAppPass, String password) {
-		this.nutriList.add(new Nutritionist(firstName, lastName, phoneNumber, emailAddress, id, licenseId, emailAppPass,
+		this.nutriList.add(new Nutritionist(firstName, lastName, phoneNumber, emailAddress, id, licenseId,
 				password));
 	}
 
