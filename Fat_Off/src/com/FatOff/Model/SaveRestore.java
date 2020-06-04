@@ -94,13 +94,16 @@ public class SaveRestore<T> {
 		File pathToFatOff;
 		File pathToDieticion;
 		File pathToAdmin;
+		File customersPathList;
 		String path = getPath();
 
 		pathToFatOff = new File(path);
+		customersPathList = new File(pathToFatOff + "/custPathList.txt");
 		pathToDieticion = new File(path + "/Dieticions");
 		pathToAdmin = new File(path + "/Admin");
 		if (!pathToFatOff.exists()) {
 			pathToFatOff.mkdir();
+			customersPathList.createNewFile();
 			pathToAdmin.mkdir();
 			pathToDieticion.mkdir();
 		}

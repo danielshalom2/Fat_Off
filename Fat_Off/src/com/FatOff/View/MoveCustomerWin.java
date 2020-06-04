@@ -15,6 +15,7 @@ import com.FatOff.Model.Customer;
 import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.Person;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.MatteBorder;
 
 
 
@@ -23,20 +24,21 @@ public class MoveCustomerWin {
 	public MoveCustomerWin (Admin adm) throws IOException {
 		
 		JFrame moveFrame = new JFrame("Assign Customer");
+		moveFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(36, 47, 65));
 		GroupLayout groupLayout = new GroupLayout(moveFrame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addComponent(panel, GroupLayout.PREFERRED_SIZE, 728, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-		);	
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 195, Short.MAX_VALUE)
+					.addContainerGap())
+		);
 
 		moveFrame.getContentPane().setLayout(groupLayout);
 		
@@ -51,8 +53,8 @@ public class MoveCustomerWin {
 
 		// Source Nut Combo Box
 		JComboBox<Nutritionist> srcNutsComboBox = new JComboBox<>(nutsComboModel);
-		CustomerSearchDecorator<Nutritionist> nutDecorate = CustomerSearchDecorator.decorate(srcNutsComboBox,MoveCustomerWin::nutFilter);
-        srcNutsComboBox.setRenderer(new CustomComboRenderer(nutDecorate.getFilterLabel()));
+		CustomerSearchDecorator<Nutritionist> srcNutDecorate = CustomerSearchDecorator.decorate(srcNutsComboBox,MoveCustomerWin::nutFilter);
+        srcNutsComboBox.setRenderer(new CustomComboRenderer(srcNutDecorate.getFilterLabel()));
 		
 		JLabel custToMoveLbl = new JLabel("Pick a customer to assign:");
 		custToMoveLbl.setForeground(Color.WHITE);
@@ -65,13 +67,15 @@ public class MoveCustomerWin {
 		// Source Nut Combo Box
 		JComboBox<Customer> custComboBox = new JComboBox<>(custComboModel);
 		CustomerSearchDecorator<Customer> custDecorate = CustomerSearchDecorator.decorate(custComboBox,MoveCustomerWin::nutFilter);
-		srcNutsComboBox.setRenderer(new CustomComboRenderer(custDecorate.getFilterLabel()));
+		custComboBox.setRenderer(new CustomComboRenderer(custDecorate.getFilterLabel()));
 		
 		JLabel lblPickDieticianTo = new JLabel("Pick dietician to assign to:");
 		lblPickDieticianTo.setForeground(Color.WHITE);
 		lblPickDieticianTo.setFont(new Font("Dialog", Font.PLAIN, 13));
 		
-		JComboBox destNutComboBox = new JComboBox();
+		JComboBox<Nutritionist> destNutComboBox = new JComboBox<>(nutsComboModel);
+		CustomerSearchDecorator<Nutritionist> destNutDecorate = CustomerSearchDecorator.decorate(destNutComboBox,MoveCustomerWin::nutFilter);
+		destNutComboBox.setRenderer(new CustomComboRenderer(destNutDecorate.getFilterLabel()));
 		
 		JLabel lblNewLabel = new JLabel("Re-Assign Customer To Dietician");
 		lblNewLabel.setForeground(Color.WHITE);
@@ -81,58 +85,66 @@ public class MoveCustomerWin {
 		separator.setForeground(Color.WHITE);
 		
 		JButton cancelBtn = new JButton("Cancel");
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				moveFrame.dispose();
+			}
+		});
+		cancelBtn.setForeground(Color.WHITE);
+		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		cancelBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
+		cancelBtn.setBackground(new Color(97, 212, 195));
 		
 		JButton assignBtn = new JButton("Re-Assign");
+		assignBtn.setForeground(Color.WHITE);
+		assignBtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		assignBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
+		assignBtn.setBackground(new Color(97, 212, 195));
 		
-		JLabel lblNewLabel_1 = new JLabel("-------->");
-		lblNewLabel_1.setForeground(Color.WHITE);
+		JLabel arrows1 = new JLabel("-------->");
+		arrows1.setForeground(Color.WHITE);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("-------->");
-		lblNewLabel_1_1.setForeground(Color.WHITE);
+		JLabel arrows2 = new JLabel("-------->");
+		arrows2.setForeground(Color.WHITE);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addGap(217)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(227))
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(14)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(srcNutSelectLbl)
-							.addContainerGap())
+						.addComponent(srcNutSelectLbl)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(separator, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(srcNutsComboBox, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+									.addGap(246)
+									.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 									.addGap(18)
-									.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+									.addComponent(assignBtn, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+										.addComponent(custToMoveLbl)
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(srcNutsComboBox, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(arrows2, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+											.addGap(12)
+											.addComponent(custComboBox, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)))
 									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(custToMoveLbl, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addComponent(custComboBox, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addGap(6)
-											.addComponent(destNutComboBox, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblPickDieticianTo))))
-							.addGap(22))))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(263)
-					.addComponent(cancelBtn)
-					.addGap(18)
-					.addComponent(assignBtn)
-					.addContainerGap(227, Short.MAX_VALUE))
+									.addComponent(arrows1, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblPickDieticianTo, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+								.addComponent(destNutComboBox, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 698, GroupLayout.PREFERRED_SIZE))
+					.addGap(970))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(217)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(1192, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblNewLabel)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -140,20 +152,20 @@ public class MoveCustomerWin {
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(srcNutSelectLbl)
-						.addComponent(custToMoveLbl)
-						.addComponent(lblPickDieticianTo))
+						.addComponent(lblPickDieticianTo)
+						.addComponent(custToMoveLbl))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(srcNutsComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1)
-						.addComponent(lblNewLabel_1_1)
 						.addComponent(custComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(destNutComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(48)
+						.addComponent(destNutComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(arrows2)
+						.addComponent(arrows1))
+					.addGap(44)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(assignBtn)
-						.addComponent(cancelBtn))
-					.addContainerGap())
+						.addComponent(cancelBtn, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+						.addComponent(assignBtn, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+					.addGap(14))
 		);
 		panel.setLayout(gl_panel);
 		
