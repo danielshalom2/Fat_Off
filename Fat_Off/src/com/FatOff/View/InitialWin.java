@@ -7,6 +7,7 @@ import java.awt.Font;
 
 import javax.swing.*;
 
+import com.FatOff.Model.Admin;
 import com.FatOff.Model.Customer;
 import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.SaveRestore;
@@ -14,6 +15,7 @@ import com.FatOff.Model.SaveRestore;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
 
@@ -148,6 +150,16 @@ public class InitialWin {
 		adminMenu.add(createNut);
 		
 		JMenuItem moveCus = new JMenuItem("Move Customer");
+		moveCus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					new MoveCustomerWin((Admin) nut);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		adminMenu.add(moveCus);
 		
 		initailframe.setVisible(true);
