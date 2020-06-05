@@ -145,12 +145,19 @@ public class MoveCustomerWin {
 				try {
 					Files.move(new File(srcPath).toPath(), new File(destPath).toPath(),
 							StandardCopyOption.REPLACE_EXISTING);
+					((Nutritionist)srcNutsComboBox.getSelectedItem()).getCustomersList().remove(cst);
+					((Nutritionist) destNutComboBox.getSelectedItem()).getCustomersList().add(cst);
+					int choice = JOptionPane.showOptionDialog(assignBtn, "The customer was aasigned to " 
+												+ ((Nutritionist) destNutComboBox.getSelectedItem()).toString()
+												+ "..\nDo you want make another assignment?", 
+													"Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+													new ImageIcon("src/com/FatOff/View/IconFatOff.PNG"),null , null);
+					if(choice == JOptionPane.NO_OPTION) {
+						moveFrame.dispose();
+					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				
-				System.out.println(custs);
-
 			}
 		});
 		assignBtn.setForeground(Color.WHITE);
