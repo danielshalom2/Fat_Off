@@ -34,48 +34,36 @@ public class CustomerController {
 		return cust;
 	}
 
-	public static String pathToType(Nutritionist nut) {
+	public static String pathToType(Nutritionist nut , String custFolderName) {
 		String folderName = nut.getFirstName() + "_" + nut.getLastName() + "_" + nut.getId();
-		System.out.println(folderName);
-		File pathToDieticion = new File(SaveRestore.getPath() + "/Dieticion");
+		File pathToDieticion = new File(SaveRestore.getPath() + "/Dieticions");
 		File pathToAdmin = new File(SaveRestore.getPath() + "/Admin");
-		System.out.println(pathToAdmin.toString() + " " + pathToDieticion.toString());
 		String pathToReturn = "";
-		System.out.println("from path to type");
 		for (String desired : pathToAdmin.list()) {
-			System.out.println(desired);
 			if (desired.equals(".DS_Store")) {
-				System.out.println(desired);
 				continue;
 			}
 			if (desired.equals(folderName)) {
-				System.out.println(desired);
-				pathToReturn = pathToAdmin.toString() + "/" + folderName;
+				pathToReturn = pathToAdmin.toString() + "/" + folderName + "/Customers/" + custFolderName;
 				break;
 			}
 
 		}
-		System.out.println(pathToReturn);
 		if (pathToReturn.equals("")) {
 			for (String desired : pathToDieticion.list()) {
-				System.out.println(desired);
 				if (desired.equals(".DS_Store")) {
-					System.out.println(desired);
 					continue;
 				}
 
 				if (desired.equals(folderName)) {
-					System.out.println(desired);
-					pathToReturn = pathToDieticion.toString() + "/" + folderName;
+					pathToReturn = pathToDieticion.toString() + "/" + folderName + "/Customers/" + custFolderName;
 					break;
 				}
 
 			}
 
 		}
-		
-		System.out.println("print before leave function");
-		System.out.println(pathToReturn);
+
 		return pathToReturn;
 	}
 }

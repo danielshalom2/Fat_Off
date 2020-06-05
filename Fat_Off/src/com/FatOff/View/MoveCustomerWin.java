@@ -137,11 +137,12 @@ public class MoveCustomerWin {
 		JButton assignBtn = new JButton("Re-Assign");
 		assignBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Customer cst = (Customer)custComboBox.getSelectedItem();
+				String custFolderName = cst.getFirstName() + "_" + cst.getLastName() + "_" + cst.getId();
+				String srcPath = CustomerController.pathToType((Nutritionist)srcNutsComboBox.getSelectedItem(),custFolderName);
+				String destPath = CustomerController.pathToType((Nutritionist) destNutComboBox.getSelectedItem(),custFolderName);
+				
 				try {
-					String srcPath = CustomerController.pathToType((Nutritionist) srcNutsComboBox.getSelectedItem());
-					System.out.println(destNutComboBox.getSelectedItem());
-					String destPath = CustomerController.pathToType((Nutritionist) destNutComboBox.getSelectedItem());
-					System.out.println(destPath);
 					Files.move(new File(srcPath).toPath(), new File(destPath).toPath(),
 							StandardCopyOption.REPLACE_EXISTING);
 				} catch (IOException e1) {
