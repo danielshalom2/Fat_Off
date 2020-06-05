@@ -1,397 +1,361 @@
 
 package com.FatOff.View;
 import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle.ComponentPlacement;
 public class MainWin2 {
-	 
-	private JTextField txtEnterWeight;
-	private JTextField txtHeight;
-	private JTextField txtEnterAge;
-	private JTextField txtEnterWrist;
-	private JTextField txtEnterWaist;
-	private JTextField txtEnterThigh;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
-	private JLabel lblNewLabel_6;
-	private JButton btnClear;
-	private JButton btnCalculate;
-	private JSeparator separator;
-	private JMenuItem mntmNewMenuItem;
-	private JMenuItem mntmNewMenuItem_1;
-	private JLabel lblCustomersName;
-	private JTextField txtCustomerNameSholud;
-	private JLabel lblBmi;
-	private JLabel lblUpdatedEer;
-	private JTextField txtNewValue;
-	private JTextField txtNewValue_1;
-	private JSeparator separator_1;
-	private JTextField txtEnter;
-	private JLabel lblBreakfast;
-	private JLabel lblLunch;
-	private JLabel lblDinner;
-	private JLabel lblBreakfastSnack;
-	private JLabel lblSnack;
-	private JLabel lblSnack_2;
-	private JButton btnClear_1;
-	private JButton btnSave;
-	private JTextField txtEnterbreakfast;
-	private JTextField txtEnterLunch;
-	private JTextField txtEnterDinner;
-	private JTextField txtEnterSnack1;
-	private JTextField txtEnterSnack2;
-	private JTextField txtEnterSnack3;
+	private JTextField CustomerNametxt;
+	private JTextField weighttxt;
+	private JTextField heighttxt;
+	private JTextField agetxt;
+	private JTextField wristtxt;
+	private JTextField waisttxt;
+	private JTextField thightxt;
+	private JTextField calculatedBMItxt;
+	private JTextField calculatedEERtxt;
+	private JTextField txtEnterGeneralSummary;
+	private JTextField snack3txt;
+	private JTextField snack2txt;
+	private JTextField snack1txt;
+	private JTextField breakfasttxt;
+	private JTextField textField_1;
+	private JTextField textField_2;
 	
 	public MainWin2(Object cus, String type) {
+		///declare the frame
 		JFrame customerframe = new JFrame("custmer");
-		customerframe.getContentPane().setBackground(new Color(36, 47, 65));
 		customerframe.getContentPane().setLayout(null);
+		customerframe.setBounds(0,22,1081,900);
 		
-		///MenuBar + need to add  link to intrudactory meeting + help
+		///creating a panel for the window
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 22, 1081, 939);
+		customerframe.getContentPane().add(panel);
+		panel.setBackground((new Color(36,47,65)));
+		
+		//logo 
+		JLabel logoLbl = new JLabel("");
+		logoLbl.setBounds(0, 11, 139, 179);
+		logoLbl.setIcon(new ImageIcon(MainWin2.class.getResource("/com/FatOff/View/fat_off_white.png")));
+		
+		//introducing the 
+		JLabel custnameLbl = new JLabel("Customer Name :");
+		custnameLbl.setBounds(321, 31, 154, 23);
+		custnameLbl.setForeground(Color.WHITE);
+		custnameLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		
+		CustomerNametxt = new JTextField();
+		CustomerNametxt.setBounds(479, 28, 328, 29);
+		CustomerNametxt.setForeground(Color.WHITE);
+		CustomerNametxt.setHorizontalAlignment(SwingConstants.CENTER);
+		CustomerNametxt.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		CustomerNametxt.setText("Here will be the customer name");
+		CustomerNametxt.setEditable(false);
+		CustomerNametxt.setColumns(10);
+		CustomerNametxt.setBackground(null);
+	
+		JLabel measuresLbl = new JLabel("Measures :");
+		measuresLbl.setBounds(10, 228, 80, 21);
+		measuresLbl.setForeground(Color.WHITE);
+		measuresLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(0, 208, 214, 2);
+		
+		JLabel weightLbl = new JLabel("Weight :");
+		weightLbl.setBounds(10, 267, 89, 23);
+		weightLbl.setForeground(Color.WHITE);
+		weightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel heightLbl = new JLabel("Height :");
+		heightLbl.setBounds(10, 296, 89, 23);
+		heightLbl.setForeground(Color.WHITE);
+		heightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel ageLbl = new JLabel("Age :");
+		ageLbl.setBounds(10, 325, 89, 23);
+		ageLbl.setForeground(Color.WHITE);
+		ageLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel wristLbl = new JLabel("Wrist :");
+		wristLbl.setBounds(10, 354, 89, 23);
+		wristLbl.setForeground(Color.WHITE);
+		wristLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel waistLbl = new JLabel("Waist :");
+		waistLbl.setBounds(10, 383, 89, 23);
+		waistLbl.setForeground(Color.WHITE);
+		waistLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel thighLbl = new JLabel("Thigh :");
+		thighLbl.setBounds(10, 412, 89, 23);
+		thighLbl.setForeground(Color.WHITE);
+		thighLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		weighttxt = new JTextField();
+		weighttxt.setBounds(103, 269, 123, 21);
+		weighttxt.setText("Enter Weight");
+		weighttxt.setHorizontalAlignment(SwingConstants.CENTER);
+		weighttxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		weighttxt.setColumns(10);
+		
+		heighttxt = new JTextField();
+		heighttxt.setBounds(103, 298, 123, 21);
+		heighttxt.setText("Height");
+		heighttxt.setHorizontalAlignment(SwingConstants.CENTER);
+		heighttxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		heighttxt.setEditable(false);
+		heighttxt.setColumns(10);
+		
+		agetxt = new JTextField();
+		agetxt.setBounds(103, 327, 123, 21);
+		agetxt.setText("Age");
+		agetxt.setHorizontalAlignment(SwingConstants.CENTER);
+		agetxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		agetxt.setEditable(false);
+		agetxt.setColumns(10);
+		
+		wristtxt = new JTextField();
+		wristtxt.setBounds(103, 356, 123, 21);
+		wristtxt.setText("Enter Wrist");
+		wristtxt.setHorizontalAlignment(SwingConstants.CENTER);
+		wristtxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		wristtxt.setColumns(10);
+		
+		waisttxt = new JTextField();
+		waisttxt.setBounds(103, 385, 123, 21);
+		waisttxt.setText("Enter Waist");
+		waisttxt.setHorizontalAlignment(SwingConstants.CENTER);
+		waisttxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		waisttxt.setColumns(10);
+		
+		thightxt = new JTextField();
+		thightxt.setBounds(103, 414, 123, 21);
+		thightxt.setText("Enter Thigh");
+		thightxt.setHorizontalAlignment(SwingConstants.CENTER);
+		thightxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		thightxt.setColumns(10);
+		
+		JButton clearbtn = new JButton("Clear");
+		clearbtn.setBounds(22, 453, 81, 19);
+		clearbtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		clearbtn.setForeground(new Color(255, 255, 255));
+		clearbtn.setBorder(null);
+		clearbtn.setBackground(new Color(97,212,195));
+		clearbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+	
+		
+		JButton calculatebtn = new JButton("Calculate");
+		calculatebtn.setBounds(121, 453, 85, 19);
+		calculatebtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		calculatebtn.setForeground(new Color(255, 255, 255));
+		calculatebtn.setBorder(null);
+		calculatebtn.setBackground(new Color(97,212,195));
+		calculatebtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(0, 547, 0, 2);
+		
+		JLabel BMILbl = new JLabel("BMI update :");
+		BMILbl.setBounds(10, 608, 107, 23);
+		BMILbl.setForeground(Color.WHITE);
+		BMILbl.setFont(new Font("Dialog", Font.BOLD, 16));
+		
+		JLabel EERLbl = new JLabel("EER update :");
+		EERLbl.setBounds(10, 649, 107, 23);
+		EERLbl.setForeground(Color.WHITE);
+		EERLbl.setFont(new Font("Dialog", Font.BOLD, 16));
+		
+		calculatedBMItxt = new JTextField();
+		calculatedBMItxt.setForeground(Color.WHITE);
+		calculatedBMItxt.setBounds(135, 610, 149, 21);
+		calculatedBMItxt.setEditable(false);
+		calculatedBMItxt.setText("Calculated BMI");
+		calculatedBMItxt.setHorizontalAlignment(SwingConstants.CENTER);
+		calculatedBMItxt.setFont(new Font("Dialog", Font.PLAIN, 14));
+		calculatedBMItxt.setBackground(null);
+		calculatedBMItxt.setColumns(10);
+		
+		calculatedEERtxt = new JTextField();
+		calculatedEERtxt.setForeground(Color.WHITE);
+		calculatedEERtxt.setBounds(135, 651, 149, 21);
+		calculatedEERtxt.setEditable(false);
+		calculatedEERtxt.setText("Calculated EER");
+		calculatedEERtxt.setHorizontalAlignment(SwingConstants.CENTER);
+		calculatedEERtxt.setFont(new Font("Dialog", Font.PLAIN, 14));
+		calculatedEERtxt.setBackground(null);
+		calculatedEERtxt.setColumns(10);
+
+		
+		txtEnterGeneralSummary = new JTextField();
+		txtEnterGeneralSummary.setBounds(149, 89, 834, 98);
+		txtEnterGeneralSummary.setHorizontalAlignment(SwingConstants.CENTER);
+		txtEnterGeneralSummary.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		txtEnterGeneralSummary.setText("Enter general summary of the meeting");
+		txtEnterGeneralSummary.setColumns(10);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(10, 490, 214, 2);
+		
+		JLabel newMenuLbl = new JLabel("Enter new menu here :");
+		newMenuLbl.setBounds(499, 208, 329, 21);
+		newMenuLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		newMenuLbl.setForeground(Color.WHITE);
+		newMenuLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		JLabel breakfastLbl = new JLabel("Breakfast :");
+		breakfastLbl.setBounds(345, 250, 89, 23);
+		breakfastLbl.setForeground(Color.WHITE);
+		breakfastLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		JLabel lunchLbl = new JLabel("Lunch :");
+		lunchLbl.setBounds(345, 412, 89, 23);
+		lunchLbl.setForeground(Color.WHITE);
+		lunchLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		JLabel dinnerLbl = new JLabel("Dinner :");
+		dinnerLbl.setBounds(345, 570, 89, 23);
+		dinnerLbl.setForeground(Color.WHITE);
+		dinnerLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		JLabel snack1Lbl = new JLabel("Snack 1 :");
+		snack1Lbl.setBounds(374, 383, 89, 23);
+		snack1Lbl.setForeground(Color.WHITE);
+		snack1Lbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel snackLbl = new JLabel("Snack 2 :");
+		snackLbl.setBounds(374, 544, 89, 23);
+		snackLbl.setForeground(Color.WHITE);
+		snackLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel snack3Lbl = new JLabel("Snack 3 :");
+		snack3Lbl.setBounds(374, 713, 89, 23);
+		snack3Lbl.setForeground(Color.WHITE);
+		snack3Lbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		snack3txt = new JTextField();
+		snack3txt.setBounds(467, 714, 589, 21);
+		snack3txt.setText("Enter relevant snack");
+		snack3txt.setHorizontalAlignment(SwingConstants.CENTER);
+		snack3txt.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		snack3txt.setEditable(false);
+		snack3txt.setColumns(10);
+		
+		snack2txt = new JTextField();
+		snack2txt.setBounds(467, 545, 589, 21);
+		snack2txt.setText("Enter relevant snack");
+		snack2txt.setHorizontalAlignment(SwingConstants.CENTER);
+		snack2txt.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		snack2txt.setEditable(false);
+		snack2txt.setColumns(10);
+		
+		snack1txt = new JTextField();
+		snack1txt.setBounds(467, 384, 589, 21);
+		snack1txt.setText("Enter relevant snack");
+		snack1txt.setHorizontalAlignment(SwingConstants.CENTER);
+		snack1txt.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		snack1txt.setEditable(false);
+		snack1txt.setColumns(10);
+		panel.setLayout(null);
+		panel.add(logoLbl);
+		panel.add(txtEnterGeneralSummary);
+		panel.add(custnameLbl);
+		panel.add(CustomerNametxt);
+		panel.add(separator_1);
+		panel.add(EERLbl);
+		panel.add(calculatedEERtxt);
+		panel.add(BMILbl);
+		panel.add(calculatedBMItxt);
+		panel.add(clearbtn);
+		panel.add(calculatebtn);
+		panel.add(separator);
+		panel.add(separator_2);
+		panel.add(measuresLbl);
+		panel.add(newMenuLbl);
+		panel.add(snackLbl);
+		panel.add(waistLbl);
+		panel.add(waisttxt);
+		panel.add(snack1Lbl);
+		panel.add(snack3Lbl);
+		panel.add(snack1txt);
+		panel.add(snack2txt);
+		panel.add(snack3txt);
+		panel.add(weightLbl);
+		panel.add(weighttxt);
+		panel.add(thighLbl);
+		panel.add(thightxt);
+		panel.add(heightLbl);
+		panel.add(heighttxt);
+		panel.add(ageLbl);
+		panel.add(agetxt);
+		panel.add(wristLbl);
+		panel.add(wristtxt);
+		panel.add(dinnerLbl);
+		panel.add(lunchLbl);
+		panel.add(breakfastLbl);
+		
+		breakfasttxt = new JTextField();
+		breakfasttxt.setText("Enter");
+		breakfasttxt.setHorizontalAlignment(SwingConstants.CENTER);
+		breakfasttxt.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		breakfasttxt.setColumns(10);
+		breakfasttxt.setBounds(369, 276, 687, 98);
+		panel.add(breakfasttxt);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("Enter general summary of the meeting");
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		textField_1.setColumns(10);
+		textField_1.setBounds(374, 437, 682, 98);
+		panel.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setText("Enter general summary of the meeting");
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		textField_2.setColumns(10);
+		textField_2.setBounds(374, 604, 682, 98);
+		panel.add(textField_2);
+		
+		JButton clearbtn_1 = new JButton("Clear");
+		clearbtn_1.setForeground(Color.WHITE);
+		clearbtn_1.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		clearbtn_1.setBorder(null);
+		clearbtn_1.setBackground(new Color(97, 212, 195));
+		clearbtn_1.setBounds(331, 766, 154, 46);
+		panel.add(clearbtn_1);
+		
+		JButton savebtn = new JButton("Calculate");
+		savebtn.setForeground(Color.WHITE);
+		savebtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		savebtn.setBorder(null);
+		savebtn.setBackground(new Color(97, 212, 195));
+		savebtn.setBounds(512, 766, 154, 46);
+		panel.add(savebtn);
+		
+		
+		/// menu bar
 		JMenuBar menuBar = new JMenuBar();
-		customerframe.setJMenuBar(menuBar);
-		
-		mntmNewMenuItem = new JMenuItem("Open Intrudactory Meeting");
-		mntmNewMenuItem.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		menuBar.add(mntmNewMenuItem);
-		
-		mntmNewMenuItem_1 = new JMenuItem("Help");
-		mntmNewMenuItem_1.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		menuBar.add(mntmNewMenuItem_1);
-		
-		/// adding LOGO to window
-		JLabel Logolbl = new JLabel("");
-		Logolbl.setIcon(new ImageIcon(MainWin2.class.getResource("/com/FatOff/View/fat_off_white.png")));
-		Logolbl.setForeground(Color.WHITE);
-		Logolbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		Logolbl.setBounds(0, 0, 133, 199);
-		customerframe.getContentPane().add(Logolbl);
-		
-		///adding lable of MEASURES
-		JLabel lblNewLabel = new JLabel("Measures :");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblNewLabel.setBounds(10, 193, 102, 29);
-		customerframe.getContentPane().add(lblNewLabel);
-		
-		/// adding buttom CLEAR to MEASURES
-		btnClear = new JButton("Clear");
-		btnClear.setForeground(new Color(255, 255, 255));
-		btnClear.setBorder(null);
-		btnClear.setBackground(new Color(97,212,195));
-		btnClear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnClear.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnClear.setBounds(10, 471, 109, 33);
-		customerframe.getContentPane().add(btnClear);
-		
-		///adding buttom CALCULATE to MEASURES
-		btnCalculate = new JButton("Calculate");
-		btnCalculate.setForeground(new Color(255, 255, 255));
-		btnCalculate.setBorder(null);
-		btnCalculate.setBackground(new Color(97,212,195));
-		btnCalculate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnCalculate.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnCalculate.setBounds(164, 471, 106, 33);
-		customerframe.getContentPane().add(btnCalculate);
+		menuBar.setBounds(0, 0, 437, 22);
+		customerframe.getContentPane().add(menuBar);
+	
+		JMenuItem introMeetingLbl = new JMenuItem("Open Introductory Meeting");
+		menuBar.add(introMeetingLbl);
 		
 		
-		///adding lable of WEIGHT
-		lblNewLabel_1 = new JLabel("Weight :");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(53, 233, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_1);
-		
-		/// enter WEIGHT text 
-			///need to connect to the new session
-		txtEnterWeight = new JTextField();
-		txtEnterWeight.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterWeight.setText("Enter Weight");
-		txtEnterWeight.setBounds(139, 232, 96, 29);
-		customerframe.getContentPane().add(txtEnterWeight);
-		txtEnterWeight.setColumns(10);
-		
-		///adding lable of HEIGHT
-		lblNewLabel_2 = new JLabel("Height :");
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(53, 275, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_2);
-		
-		///enter HEIGHT text
-			/// need to be constant
-		txtHeight = new JTextField();
-		txtHeight.setForeground(new Color(0, 0, 0));
-		txtHeight.setEditable(false);
-		txtHeight.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtHeight.setText("Enter Height");
-		txtHeight.setColumns(10);
-		txtHeight.setBounds(139, 271, 96, 29);
-		customerframe.getContentPane().add(txtHeight);
-		
-		///adding lable of AGE
-		lblNewLabel_3 = new JLabel("Age :");
-		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_3.setBounds(53, 314, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_3);
-		
-		///enter AGE text
-			/// need to be constant
-		txtEnterAge = new JTextField();
-		txtEnterAge.setEditable(false);
-		txtEnterAge.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterAge.setText("Enter Age");
-		txtEnterAge.setColumns(10);
-		txtEnterAge.setBounds(139, 310, 96, 29);
-		customerframe.getContentPane().add(txtEnterAge);
-		
-		///adding lable of WRIST
-		lblNewLabel_4 = new JLabel("Wrist :");
-		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_4.setBounds(53, 353, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_4);
-		/// enter WRIST text 
-			///need to connect to the new session
-		txtEnterWrist = new JTextField();
-		txtEnterWrist.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterWrist.setText("Enter Wrist");
-		txtEnterWrist.setColumns(10);
-		txtEnterWrist.setBounds(139, 349, 96, 29);
-		customerframe.getContentPane().add(txtEnterWrist);
-		
-		///adding lable of WAIST
-		lblNewLabel_5 = new JLabel("Waist :");
-		lblNewLabel_5.setForeground(Color.WHITE);
-		lblNewLabel_5.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_5.setBounds(53, 392, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_5);
-		
-		/// enter WAIST text 
-			///need to connect to the new session
-		txtEnterWaist = new JTextField();
-		txtEnterWaist.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterWaist.setText("Enter Waist");
-		txtEnterWaist.setColumns(10);
-		txtEnterWaist.setBounds(139, 388, 96, 29);
-		customerframe.getContentPane().add(txtEnterWaist);
-		
-		///adding lable of THIGH
-		lblNewLabel_6 = new JLabel("Thigh:");
-		lblNewLabel_6.setForeground(Color.WHITE);
-		lblNewLabel_6.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_6.setBounds(53, 431, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_6);
-		
-		/// enter THIGH text 
-			///need to connect to the new session
-		txtEnterThigh = new JTextField();
-		txtEnterThigh.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterThigh.setText("Enter Thigh");
-		txtEnterThigh.setColumns(10);
-		txtEnterThigh.setBounds(139, 427, 96, 29);
-		customerframe.getContentPane().add(txtEnterThigh);
-		
-		///separator above measures
-		separator = new JSeparator();
-		separator.setBounds(0, 181, 270, 2);
-		customerframe.getContentPane().add(separator);
-		
-		///Parameters about the customer
-			///Name of Customer
-		lblCustomersName = new JLabel("Name of customer :");
-		lblCustomersName.setForeground(Color.WHITE);
-		lblCustomersName.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblCustomersName.setBounds(306, 31, 206, 29);
-		customerframe.getContentPane().add(lblCustomersName);
-		
-		txtCustomerNameSholud = new JTextField();
-		txtCustomerNameSholud.setEditable(false);
-		txtCustomerNameSholud.setHorizontalAlignment(SwingConstants.CENTER);
-		txtCustomerNameSholud.setForeground(new Color(255, 255, 255));
-		txtCustomerNameSholud.setText("Customer name sholud appear");
-		txtCustomerNameSholud.setBackground(null);
-		txtCustomerNameSholud.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtCustomerNameSholud.setColumns(10);
-		txtCustomerNameSholud.setBounds(487, 31, 234, 29);
-		customerframe.getContentPane().add(txtCustomerNameSholud);
-		
-			///Updated BMI
-		lblBmi = new JLabel("Updated BMI :");
-		lblBmi.setForeground(Color.WHITE);
-		lblBmi.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblBmi.setBounds(10, 563, 133, 29);
-		customerframe.getContentPane().add(lblBmi);
-		
-		txtNewValue = new JTextField();
-		txtNewValue.setText("New Value");
-		txtNewValue.setHorizontalAlignment(SwingConstants.CENTER);
-		txtNewValue.setForeground(Color.WHITE);
-		txtNewValue.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtNewValue.setEditable(false);
-		txtNewValue.setColumns(10);
-		txtNewValue.setBackground((Color) null);
-		txtNewValue.setBounds(145, 563, 125, 29);
-		customerframe.getContentPane().add(txtNewValue);
-		
-			///Updated EER
-		lblUpdatedEer = new JLabel("Updated EER :");
-		lblUpdatedEer.setForeground(Color.WHITE);
-		lblUpdatedEer.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblUpdatedEer.setBounds(10, 602, 133, 29);
-		customerframe.getContentPane().add(lblUpdatedEer);
-		
-		txtNewValue_1 = new JTextField();
-		txtNewValue_1.setText("New Value");
-		txtNewValue_1.setHorizontalAlignment(SwingConstants.CENTER);
-		txtNewValue_1.setForeground(Color.WHITE);
-		txtNewValue_1.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtNewValue_1.setEditable(false);
-		txtNewValue_1.setColumns(10);
-		txtNewValue_1.setBackground((Color) null);
-		txtNewValue_1.setBounds(145, 602, 125, 29);
-		customerframe.getContentPane().add(txtNewValue_1);
-		
-		separator_1 = new JSeparator();
-		separator_1.setBounds(0, 536, 270, 2);
-		customerframe.getContentPane().add(separator_1);
-		
-		/// general conclusion of the meeting
-		txtEnter = new JTextField();
-		txtEnter.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnter.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-		txtEnter.setText("Enter general summary of the meeting");
-		txtEnter.setBounds(143, 70, 864, 101);
-		customerframe.getContentPane().add(txtEnter);
-		txtEnter.setColumns(10);
-		 /// meals during the day 
-		lblBreakfast = new JLabel("Breakfast :");
-		lblBreakfast.setForeground(Color.WHITE);
-		lblBreakfast.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblBreakfast.setBounds(306, 193, 102, 29);
-		customerframe.getContentPane().add(lblBreakfast);
-		
-		lblLunch = new JLabel("Lunch :");
-		lblLunch.setForeground(Color.WHITE);
-		lblLunch.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblLunch.setBounds(306, 307, 102, 29);
-		customerframe.getContentPane().add(lblLunch);
-		
-		lblDinner = new JLabel("Dinner :");
-		lblDinner.setForeground(Color.WHITE);
-		lblDinner.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblDinner.setBounds(306, 432, 102, 29);
-		customerframe.getContentPane().add(lblDinner);
-		
-		lblBreakfastSnack = new JLabel("Snack 1 :");
-		lblBreakfastSnack.setForeground(Color.WHITE);
-		lblBreakfastSnack.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-		lblBreakfastSnack.setBounds(318, 268, 102, 29);
-		customerframe.getContentPane().add(lblBreakfastSnack);
-		
-		lblSnack = new JLabel("Snack 2 :");
-		lblSnack.setForeground(Color.WHITE);
-		lblSnack.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-		lblSnack.setBounds(318, 390, 102, 29);
-		customerframe.getContentPane().add(lblSnack);
-		
-		lblSnack_2 = new JLabel("Snack 3 :");
-		lblSnack_2.setForeground(Color.WHITE);
-		lblSnack_2.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-		lblSnack_2.setBounds(318, 509, 102, 29);
-		customerframe.getContentPane().add(lblSnack_2);
-		
-		///finish meeting buttons
-			///clear
-		btnClear_1 = new JButton("Clear");
-		btnClear_1.setForeground(new Color(255, 255, 255));
-		btnClear_1.setBorder(null);
-		btnClear_1.setBackground(new Color(97,212,195));
-		btnClear_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnClear_1.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnClear_1.setBounds(461, 609, 109, 33);
-		customerframe.getContentPane().add(btnClear_1);
-		
-		//save button, need to save as PDF and as a new session
-		btnSave = new JButton("Save");
-		btnSave.setForeground(new Color(255, 255, 255));
-		btnSave.setBorder(null);
-		btnSave.setBackground(new Color(97,212,195));
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSave.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnSave.setBounds(615, 609, 106, 33);
-		customerframe.getContentPane().add(btnSave);
-		
-		txtEnterbreakfast = new JTextField();
-		txtEnterbreakfast.setText("Enter relevant meal");
-		txtEnterbreakfast.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterbreakfast.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		txtEnterbreakfast.setColumns(10);
-		txtEnterbreakfast.setBounds(418, 202, 589, 50);
-		customerframe.getContentPane().add(txtEnterbreakfast);
-		
-		txtEnterLunch = new JTextField();
-		txtEnterLunch.setText("Enter relevant meal");
-		txtEnterLunch.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterLunch.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		txtEnterLunch.setColumns(10);
-		txtEnterLunch.setBounds(418, 316, 589, 50);
-		customerframe.getContentPane().add(txtEnterLunch);
-		
-		txtEnterDinner = new JTextField();
-		txtEnterDinner.setText("Enter relevant meal");
-		txtEnterDinner.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterDinner.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		txtEnterDinner.setColumns(10);
-		txtEnterDinner.setBounds(418, 441, 589, 50);
-		customerframe.getContentPane().add(txtEnterDinner);
-		
-		txtEnterSnack1 = new JTextField();
-		txtEnterSnack1.setText("Enter relevant snack");
-		txtEnterSnack1.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterSnack1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		txtEnterSnack1.setColumns(10);
-		txtEnterSnack1.setBounds(418, 275, 589, 21);
-		customerframe.getContentPane().add(txtEnterSnack1);
-		
-		txtEnterSnack2 = new JTextField();
-		txtEnterSnack2.setText("Enter relevant snack");
-		txtEnterSnack2.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterSnack2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		txtEnterSnack2.setColumns(10);
-		txtEnterSnack2.setBounds(418, 394, 589, 21);
-		customerframe.getContentPane().add(txtEnterSnack2);
-		
-		txtEnterSnack3 = new JTextField();
-		txtEnterSnack3.setText("Enter relevant snack");
-		txtEnterSnack3.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterSnack3.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		txtEnterSnack3.setColumns(10);
-		txtEnterSnack3.setBounds(418, 518, 589, 21);
-		customerframe.getContentPane().add(txtEnterSnack3);
-		
-
-		
-
 		
 	}
 }
