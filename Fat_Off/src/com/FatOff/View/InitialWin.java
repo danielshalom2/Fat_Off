@@ -133,8 +133,16 @@ public class InitialWin {
 		menuBar.add(nutriMenu);
 		
 		changePassNut2 = new JMenuItem("Change Password");
+		changePassNut2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new NutResetPass(nut);
+			}
+		});
 		nutriMenu.add(changePassNut2);
 		
+	if(nut.getClass().equals(Admin.class))
+	{
+		System.out.println(nut.getClass().equals(Admin.class));
 		JMenu adminMenu = new JMenu("Admin Menu");
 		menuBar.add(adminMenu);
 		
@@ -161,7 +169,7 @@ public class InitialWin {
 			}
 		});
 		adminMenu.add(moveCus);
-		
+	}
 		initailframe.setVisible(true);
 		initailframe.setSize(new Dimension(621, 351));
 		initailframe.setLocationRelativeTo(null);
