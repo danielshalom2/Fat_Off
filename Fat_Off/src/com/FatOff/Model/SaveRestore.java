@@ -266,8 +266,10 @@ public class SaveRestore<T> {
 
 	public static ArrayList<Customer> restoreCustomers(String pathToCust) throws IOException {
 		File path = new File(pathToCust);
+		System.out.println("was in restore cust");
 		ArrayList<Customer> custList = new ArrayList<Customer>();
 		if (path.list() == null) {
+			System.out.println(path.list());
 			return custList;
 		}
 		for (String file : path.list()) {

@@ -19,5 +19,4 @@ public class adminCreateWinTester {
 			new SignInWin();
 		}
 	}
-
 }
