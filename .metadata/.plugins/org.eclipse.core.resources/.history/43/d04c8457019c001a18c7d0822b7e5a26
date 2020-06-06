@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+package com.FatOff.View;
+
+/**
+ * @author borism
+ *
+ */
+public class MenuTableModel {
+
+	/**
+	 * 
+	 */
+	public MenuTableModel() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

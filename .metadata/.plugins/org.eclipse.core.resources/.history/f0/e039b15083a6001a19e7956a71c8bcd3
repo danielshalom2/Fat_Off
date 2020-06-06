@@ -1,0 +1,7 @@
+package com.FatOff.View;
+import javax.swing.*;
+
+public class MoveCustomerWin {
+	
+	JFrame moveFrame = new JFrame("Assign Customer");
+}

@@ -1,0 +1,171 @@
+
+package com.FatOff.View;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JTextField;
+
+import com.FatOff.Controller.AdminController;
+import com.FatOff.Controller.NutritionistController;
+import com.FatOff.Model.Admin;
+import com.FatOff.Model.Nutritionist;
+import com.FatOff.Model.SaveRestore;
+
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.awt.event.ActionEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JSeparator;
+
+public class ResetPassWin {
+	private final JButton ResetEmail = new JButton("Send Validation Code");
+	private JTextField validCode;
+	private JPasswordField newPass;
+	private JPasswordField confPass;
+	private String valCode;
+	private Object nut;
+	private JTextField IDreset;
+	private String type;
+
+	public ResetPassWin() {
+		JFrame resetFrame = new JFrame("PassReset");
+		resetFrame.getContentPane().setBackground(new Color(36, 47, 65));
+
+		JButton sendValidBtn = new JButton("Send Validation Code");
+		sendValidBtn.setForeground(Color.WHITE);
+		sendValidBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		sendValidBtn.setBorder(null);
+		sendValidBtn.setBackground(new Color(97, 212, 195));
+		sendValidBtn.setBounds(396, 18, 180, 38);
+		resetFrame.getContentPane().add(sendValidBtn);
+
+		sendValidBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (IDreset.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Your ID is required in order to identify you!");
+				} else {
+					boolean found = false;
+					String path = SaveRestore.getPath();
+					File pathToAdmin = new File(path + "/Admin");
+					File pathToDieticion = new File(path + "/Dieticions");
+					for (String desired : pathToAdmin.list()) {
+						if (desired.equals(".DS_Store")) {
+							continue;
+						}
+						String ID[] = desired.split("_");
+						if (ID[2].equals(IDreset.getText())) {
+							found = true;
+							type = "Admin";
+							nut = AdminController.restoreAdmin(desired);
+							valCode = ((Nutritionist) nut).resetPassword();
+							JOptionPane.showMessageDialog(null, "Validation code sent to your E-mail");
+						}
+					}
+					for (String desired : pathToDieticion.list()) {
+						if (desired.equals(".DS_Store")) {
+							continue;
+						}
+						String ID[] = desired.split("_");
+						if (ID[2].equals(IDreset.getText())) {
+							found = true;
+							type = "Nutritionist";
+							nut = NutritionistController.restoreNut(desired);
+							valCode = ((Nutritionist) nut).resetPassword();
+							JOptionPane.showMessageDialog(null, "Validation code sent to your E-mail");
+
+						}
+					}
+					if (!found) {
+						JOptionPane.showMessageDialog(null, "No such user found!");
+
+					}
+				}
+
+			}
+		});
+
+		JButton btnChange = new JButton("Change");
+		btnChange.setEnabled(false);
+		btnChange.setForeground(Color.WHITE);
+		btnChange.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		btnChange.setBorder(null);
+		btnChange.setBackground(new Color(97, 212, 195));
+		btnChange.setBounds(158, 201, 180, 38);
+		JButton validBtn = new JButton("Validate");
+		validBtn.setForeground(Color.WHITE);
+		validBtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		validBtn.setBorder(null);
+		validBtn.setBackground(new Color(97, 212, 195));
+		validBtn.setBounds(396, 106, 180, 38);
+		resetFrame.getContentPane().add(validBtn);
+
+		validBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (valCode.equals(validCode.getText())) {
+					newPass.setEnabled(true);
+					newPass.setEditable(true);
+					confPass.setEnabled(true);
+					confPass.setEditable(true);
+					btnChange.setEnabled(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "Wrong Validation Code");
+				}
+			}
+		});
+
+		resetFrame.getContentPane().add(btnChange);
+		btnChange.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (new String(newPass.getPassword()).equals(new String(confPass.getPassword()))) {
+					((Nutritionist) nut).setPassword(new String(newPass.getPassword()));
+					if (type.equals("Admin")) {
+						if (AdminController.storeAdmin((Admin) nut)) {
+							JOptionPane.showMessageDialog(null, "Your password has been changed");
+							resetFrame.dispose();
+						}
+					} else {
+						if (type.equals("Nutritionist")) {
+							if (NutritionistController.storeNutritionist((Nutritionist) nut)) {
+								JOptionPane.showMessageDialog(null, "Your password has been changed");
+								resetFrame.dispose();
+							}
+						}
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "The confirmation password didn't match");
+				}
+			}
+		});
+		btnChange.setBounds(158, 201, 180, 21);
+
+		JLabel lblNewLabel = new JLabel("Validation Code:");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		lblNewLabel.setBounds(16, 106, 138, 19);
+
+		validCode = new JTextField();
+		validCode.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		validCode.setBounds(158, 106, 192, 19);
+		validCode.setColumns(10);
+		
+		
+		resetFrame.setSize(new Dimension(600, 300));
+
+		resetFrame.setLocationRelativeTo(null);
+
+		resetFrame.setVisible(true);
+	}
+}
+

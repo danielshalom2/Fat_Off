@@ -1,0 +1,269 @@
+/**
+ * 
+ */
+package com.FatOff.View;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.MatteBorder;
+
+import com.FatOff.Controller.CustomerController;
+
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+/**
+ * @author Fat Off development team
+ *
+ */
+public class CreateCustomerWin {
+	private JTextField firstNameField;
+	private JTextField lastNameField;
+	private JTextField phoneField;
+	private JTextField emailField;
+	private JTextField idField;
+
+	public CreateCustomerWin() {
+		JFrame customerCrtFrame = new JFrame("Customer Creation");
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.GRAY));
+		
+		JLabel copyRightLbl = new JLabel("All Rights Reserved© Fat Off Developers 2020");
+		copyRightLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		GroupLayout groupLayout = new GroupLayout(customerCrtFrame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(100)
+					.addComponent(copyRightLbl, GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+					.addGap(105))
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(copyRightLbl)
+					.addContainerGap())
+		);
+		
+		JLabel logoLbl = new JLabel("");
+		logoLbl.setIcon(new ImageIcon(CreateCustomerWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
+		
+		JLabel lblWelcomeToFatoff = new JLabel("Fat-Off customer creation");
+		lblWelcomeToFatoff.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		
+		JLabel firstNameLbl = new JLabel("First Name:");
+		
+		JLabel lastNameLbl = new JLabel("Last Name:");
+		
+		JLabel emailLbl = new JLabel("Email:");
+		
+		JLabel phoneLbl = new JLabel("Phone:");
+		
+		JLabel idLbl = new JLabel("ID:");
+		
+		JLabel genderLbl = new JLabel("Gender:");
+		
+		JLabel phoneWarnLbl = new JLabel("");
+		phoneWarnLbl.setForeground(Color.RED);
+		phoneWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		
+		JLabel idWarnLbl = new JLabel("");
+		idWarnLbl.setForeground(Color.RED);
+		idWarnLbl.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		
+		firstNameField = new JTextField();
+		firstNameField.setColumns(10);
+		
+		lastNameField = new JTextField();
+		lastNameField.setColumns(10);
+		
+		phoneField = new JTextField();
+		phoneField.setColumns(10);
+		phoneField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
+					phoneField.setEditable(true);
+					phoneWarnLbl.setText("");
+				} else {
+					phoneField.setEditable(false);
+					phoneWarnLbl.setText("* Enter only numeric digits(0-9)");
+				}
+			}
+		});
+		
+		emailField = new JTextField();
+		emailField.setColumns(10);
+		
+		idField = new JTextField();
+		idField.setColumns(10);
+		idField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
+					idField.setEditable(true);
+					idWarnLbl.setText("");
+				} else {
+					idField.setEditable(false);
+					idWarnLbl.setText("* Enter only numeric digits(0-9)");
+				}
+			}
+		});
+		
+		ButtonGroup radios = new ButtonGroup();
+		JRadioButton maleRadio = new JRadioButton("Male");
+		JRadioButton femaleRadio = new JRadioButton("Female");
+		
+		radios.add(maleRadio);
+		radios.add(femaleRadio);
+		
+		JButton clearBtn = new JButton("Clear");
+		clearBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				firstNameField.setText("");
+				lastNameField.setText("");
+				phoneField.setText("");
+				emailField.setText("");
+				idField.setText("");
+				radios.clearSelection();
+			}
+		});
+		
+		JButton cancelBtn = new JButton("Cancel");
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				customerCrtFrame.dispose();
+			}
+		});
+		
+		JButton createBtn = new JButton("Create");
+		createBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(firstNameField.getText().equals("") || lastNameField.getText().contentEquals("") || phoneField.getText().contentEquals("")
+						|| idField.getText().contentEquals("") || emailField.getText().contentEquals("") || radios.getSelection() == null) {
+					JOptionPane.showMessageDialog(null, "All Fileds are required for customer creation!");
+				}
+				else if(idField.getText().length() != 9) {
+					JOptionPane.showMessageDialog(null, "Id must contain exactly 9 numeric characters -- " + radios.getSelection().toString());
+				}
+				else {
+					CustomerController.createCustomer(firstNameField.getText(), lastNameField.getText(), phoneField.getText(), 
+														emailField.getText(), idField.getText(), radios.getSelection().toString());
+				}
+			}
+		});
+		
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(logoLbl, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(106)
+							.addComponent(lblWelcomeToFatoff, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(38)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(firstNameLbl)
+										.addComponent(lastNameLbl)
+										.addComponent(phoneLbl)
+										.addComponent(idLbl)
+										.addComponent(genderLbl))
+									.addGap(18)
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(firstNameField)
+											.addGap(21))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(lastNameField)
+											.addGap(21))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(emailField)
+											.addGap(21))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(idField)
+											.addGap(21))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(phoneField)
+											.addGap(21))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(maleRadio)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(femaleRadio, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE))
+										.addComponent(phoneWarnLbl, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+										.addComponent(idWarnLbl, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(emailLbl)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(clearBtn)
+									.addGap(43)
+									.addComponent(cancelBtn)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(createBtn)))
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(114))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(logoLbl, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblWelcomeToFatoff, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+							.addGap(42)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(firstNameLbl)
+								.addComponent(firstNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lastNameLbl)
+								.addComponent(lastNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(phoneLbl)
+								.addComponent(phoneField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(phoneWarnLbl)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(emailLbl)
+								.addComponent(emailField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(idLbl)
+								.addComponent(idField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(idWarnLbl)
+							.addGap(16)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(genderLbl)
+								.addComponent(maleRadio)
+								.addComponent(femaleRadio))))
+					.addGap(24)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(clearBtn)
+						.addComponent(cancelBtn)
+						.addComponent(createBtn))
+					.addGap(5))
+		);
+		panel.setLayout(gl_panel);
+		customerCrtFrame.getContentPane().setLayout(groupLayout);
+		customerCrtFrame.pack();
+		customerCrtFrame.setVisible(true);
+	}
+}

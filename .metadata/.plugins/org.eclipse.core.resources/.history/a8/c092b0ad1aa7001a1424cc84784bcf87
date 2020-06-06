@@ -1,0 +1,237 @@
+package com.FatOff.View;
+
+import java.awt.Color;
+import static java.nio.file.StandardCopyOption.*;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+
+import com.FatOff.Controller.AdminController;
+import com.FatOff.Controller.CustomerController;
+import com.FatOff.Model.Admin;
+import com.FatOff.Model.Customer;
+import com.FatOff.Model.Nutritionist;
+import com.FatOff.Model.Person;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.MatteBorder;
+
+public class MoveCustomerWin {
+
+	public MoveCustomerWin(Admin adm) throws IOException {
+
+		JFrame moveFrame = new JFrame("Assign Customer");
+		moveFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(36, 47, 65));
+		GroupLayout groupLayout = new GroupLayout(moveFrame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.PREFERRED_SIZE, 728, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+		);
+
+		moveFrame.getContentPane().setLayout(groupLayout);
+
+		JLabel srcNutSelectLbl = new JLabel("Pick source a dietician:");
+		srcNutSelectLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		srcNutSelectLbl.setForeground(Color.WHITE);
+
+		// Nutritionist Combo Box Model
+		List<Nutritionist> nuts = AdminController.getNutsList();
+		nuts.add(adm);
+		final List<Customer> custs = new ArrayList<>();
+		
+		DefaultComboBoxModel<Customer> custComboModel = new DefaultComboBoxModel<Customer>();
+
+		DefaultComboBoxModel<Nutritionist> srcNutsComboModel = new DefaultComboBoxModel<Nutritionist>(
+				nuts.toArray(new Nutritionist[nuts.size()]));
+
+		
+		// Source Nut Combo Box
+		JComboBox<Nutritionist> srcNutsComboBox = new JComboBox<>(srcNutsComboModel);
+		srcNutsComboBox.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		CustomerSearchDecorator<Nutritionist> srcNutDecorate = CustomerSearchDecorator.decorate(srcNutsComboBox,
+				MoveCustomerWin::nutFilter);
+		srcNutsComboBox.setRenderer(new CustomComboRenderer(srcNutDecorate.getFilterLabel()));
+		srcNutsComboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Customer> tempList = (((Nutritionist) srcNutsComboBox.getSelectedItem()).getCustomersList());
+				custs.clear();
+				for (Customer cust:tempList)
+				{
+					custs.add(cust);
+				}
+				custComboModel.removeAllElements();
+				for (Customer cust:custs)
+				{
+					custComboModel.addElement(cust);
+				}
+				
+			}
+		});
+
+		JLabel custToMoveLbl = new JLabel("Pick a customer to assign:");
+		custToMoveLbl.setForeground(Color.WHITE);
+		custToMoveLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+
+		// Customer Combo Box Model
+		//List<Customer> custs = ((Nutritionist) srcNutsComboBox.getSelectedItem()).getCustomersList();
+		//DefaultComboBoxModel<Customer> custComboModel = new DefaultComboBoxModel<Customer>(
+				//custs.toArray(new Customer[custs.size()]));
+
+		// Source Nut Combo Box
+		JComboBox<Customer> custComboBox = new JComboBox<>(custComboModel);
+		custComboBox.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		CustomerSearchDecorator<Customer> custDecorate = CustomerSearchDecorator.decorate(custComboBox,
+				MoveCustomerWin::nutFilter);
+		custComboBox.setRenderer(new CustomComboRenderer(custDecorate.getFilterLabel()));
+
+		JLabel lblPickDieticianTo = new JLabel("Pick dietician to assign to:");
+		lblPickDieticianTo.setForeground(Color.WHITE);
+		lblPickDieticianTo.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+
+		
+		DefaultComboBoxModel<Nutritionist> destNutsComboModel = new DefaultComboBoxModel<Nutritionist>(
+				nuts.toArray(new Nutritionist[nuts.size()]));
+	
+		JComboBox<Nutritionist> destNutComboBox = new JComboBox<>(destNutsComboModel);
+		destNutComboBox.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		CustomerSearchDecorator<Nutritionist> destNutDecorate = CustomerSearchDecorator.decorate(destNutComboBox,
+				MoveCustomerWin::nutFilter);
+		destNutComboBox.setRenderer(new CustomComboRenderer(destNutDecorate.getFilterLabel()));
+
+		JLabel lblNewLabel = new JLabel("Re-Assign Customer To Dietician");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 14));
+
+		JSeparator separator = new JSeparator();
+		separator.setForeground(Color.WHITE);
+
+		JButton cancelBtn = new JButton("Cancel");
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				moveFrame.dispose();
+			}
+		});
+		cancelBtn.setForeground(Color.WHITE);
+		cancelBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		cancelBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
+		cancelBtn.setBackground(new Color(97, 212, 195));
+
+		JButton assignBtn = new JButton("Re-Assign");
+		assignBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String srcPath = CustomerController.pathToType((Nutritionist) srcNutsComboBox.getSelectedItem());
+				//String destPath = CustomerController.pathToType((Nutritionist) destNutComboBox.getSelectedItem());
+//				try {
+//					Files.move(new File(srcPath).toPath(), new File(destPath).toPath(),
+//							StandardCopyOption.REPLACE_EXISTING);
+//				} catch (IOException e1) {
+//					e1.printStackTrace();
+//				}
+				
+				System.out.println(custs);
+
+			}
+		});
+		assignBtn.setForeground(Color.WHITE);
+		assignBtn.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		assignBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
+		assignBtn.setBackground(new Color(97, 212, 195));
+
+		JLabel arrows1 = new JLabel("-------->");
+		arrows1.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		arrows1.setForeground(Color.WHITE);
+
+		JLabel arrows2 = new JLabel("-------->");
+		arrows2.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		arrows2.setForeground(Color.WHITE);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel
+				.createSequentialGroup().addGap(14)
+				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(srcNutSelectLbl)
+						.addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel
+								.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup().addGap(246)
+										.addComponent(
+												cancelBtn, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+										.addGap(18).addComponent(assignBtn, GroupLayout.PREFERRED_SIZE, 93,
+												GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel.createSequentialGroup()
+										.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+												.addComponent(custToMoveLbl)
+												.addGroup(gl_panel.createSequentialGroup()
+														.addComponent(srcNutsComboBox, GroupLayout.PREFERRED_SIZE, 157,
+																GroupLayout.PREFERRED_SIZE)
+														.addGap(18)
+														.addComponent(arrows2, GroupLayout.PREFERRED_SIZE, 79,
+																GroupLayout.PREFERRED_SIZE)
+														.addGap(12).addComponent(custComboBox,
+																GroupLayout.PREFERRED_SIZE, 157,
+																GroupLayout.PREFERRED_SIZE)))
+										.addGap(18).addComponent(arrows1, GroupLayout.PREFERRED_SIZE, 79,
+												GroupLayout.PREFERRED_SIZE)))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblPickDieticianTo, GroupLayout.DEFAULT_SIZE, 172,
+												Short.MAX_VALUE)
+										.addComponent(destNutComboBox, GroupLayout.PREFERRED_SIZE, 157,
+												GroupLayout.PREFERRED_SIZE)))
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 698, GroupLayout.PREFERRED_SIZE))
+				.addGap(970))
+				.addGroup(Alignment.LEADING,
+						gl_panel.createSequentialGroup().addGap(217)
+								.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(1192, Short.MAX_VALUE)));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel
+				.createSequentialGroup().addContainerGap().addComponent(lblNewLabel)
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(
+						separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addGap(18)
+				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(srcNutSelectLbl)
+						.addComponent(lblPickDieticianTo).addComponent(custToMoveLbl))
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(srcNutsComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addComponent(custComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addComponent(destNutComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addComponent(arrows2).addComponent(arrows1))
+				.addGap(44)
+				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(cancelBtn, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+						.addComponent(assignBtn, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+				.addGap(14)));
+		panel.setLayout(gl_panel);
+		moveFrame.setVisible(true);
+		moveFrame.setLocationRelativeTo(null);
+		moveFrame.pack();
+
+	}
+
+	private static boolean nutFilter(Person nut, String textToFilter) {
+		if (textToFilter.isEmpty()) {
+			return true;
+		}
+		return CustomComboRenderer.getCustomerDisplayText(nut).toLowerCase().contains(textToFilter.toLowerCase());
+	}
+}

@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package com.FatOff.View;
+
+import javax.swing.*;
+
+/**
+ * @author borism
+ *
+ */
+public class CreateCustomerWin {
+
+	public CreateCustomerWin() {
+		JFrame customerCrtFrame = new JFrame("Customer Creation");
+	}
+}

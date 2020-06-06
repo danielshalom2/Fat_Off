@@ -1,0 +1,91 @@
+package com.FatOff.View;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.List;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+
+import com.FatOff.Controller.AdminController;
+import com.FatOff.Model.Admin;
+import com.FatOff.Model.Customer;
+import com.FatOff.Model.Nutritionist;
+import com.FatOff.Model.Person;
+
+
+
+public class MoveCustomerWin {
+	
+	public MoveCustomerWin (Admin adm) throws IOException {
+		
+		JFrame moveFrame = new JFrame("Assign Customer");	
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(36, 47, 65));
+		GroupLayout groupLayout = new GroupLayout(moveFrame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+		);
+		
+		JLabel nutritionistSelectLbl = new JLabel("Pick a dietician");
+		nutritionistSelectLbl.setFont(new Font("Dialog", Font.PLAIN, 13));
+		nutritionistSelectLbl.setForeground(Color.WHITE);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(23)
+					.addComponent(nutritionistSelectLbl)
+					.addContainerGap(366, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(27)
+					.addComponent(nutritionistSelectLbl)
+					.addContainerGap(235, Short.MAX_VALUE))
+		);
+		//adm.setNutriList(AdminController.getNutsList());
+		
+//		List<Customer> customers = ((Nutritionist)nut).getCustomersList();
+//        JComboBox<Customer> comboBox = new JComboBox<>(
+//                customers.toArray(new Customer[customers.size()]));
+		List<Nutritionist> nuts = AdminController.getNutsList();
+		
+        JComboBox<Nutritionist> nutsComboBox = new JComboBox<>(nuts.toArray(new Nutritionist[nuts.size()]));
+
+        CustomerSearchDecorator<Nutritionist> decorate = CustomerSearchDecorator.decorate(nutsComboBox,MoveCustomerWin::nutFilter);
+
+        nutsComboBox.setRenderer(new CustomComboRenderer(decorate.getFilterLabel()));
+        
+        JButton selectBtn = new JButton("Select");
+        selectBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Nutritionist selected = (Nutritionist) nutsComboBox.getSelectedItem();
+        		}
+        });
+        JPanel comboPanel = new JPanel();
+        comboPanel.add(nutsComboBox);
+        comboPanel.add(selectBtn);
+        comboPanel.setLayout(gl_panel);
+        
+        panel.add(comboPanel);
+		moveFrame.getContentPane().setLayout(groupLayout);
+	}
+	
+	private static boolean nutFilter(Nutritionist nut, String textToFilter) {
+        if (textToFilter.isEmpty()) {
+            return true;
+        }
+        return CustomComboRenderer.getCustomerDisplayText(nut).toLowerCase()
+                                  .contains(textToFilter.toLowerCase());
+    }
+}

@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+package com.FatOff.View;
+
+import javax.swing.*;
+
+import com.FatOff.Model.Customer;
+
+/**
+ * @author borism
+ *
+ */
+public class InterviewWin {
+	
+	public InterviewWin(Customer cust) {
+		JFrame interviewFrame = new JFrame("Introductory Meeting");
+	}
+}

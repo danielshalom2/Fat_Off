@@ -1,0 +1,9 @@
+package com.FatOff.View;
+
+public class mainWinTest {
+
+	public mainWinTest() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

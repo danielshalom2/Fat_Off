@@ -1,0 +1,69 @@
+package com.FatOff.Controller;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
+import com.FatOff.Model.Admin;
+import com.FatOff.Model.Customer;
+import com.FatOff.Model.Nutritionist;
+import com.FatOff.Model.SaveRestore;
+import com.FatOff.View.InitialWin;
+
+public class CustomerController {
+
+	public CustomerController() {
+
+	}
+
+	public static Customer createCustomer(String fName, String lName, String phone, String email, String id,
+			String gender, String pathToCustomer) {
+		System.out.println("From customer controller + " + pathToCustomer);
+
+		Customer cust = new Customer(fName, lName, phone, email, id, gender);
+		SaveRestore<Customer> saveCust = new SaveRestore<Customer>(cust, pathToCustomer);
+
+		try {
+			saveCust.storeCustomer(pathToCustomer, cust);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return cust;
+	}
+
+	public static String pathToType(Nutritionist nut) {
+		String folderName = nut.getFirstName() + "_" + nut.getLastName() + "_" + nut.getId();
+		File pathToDieticion = new File(SaveRestore.getPath() + "/Dieticion");
+		File pathToAdmin = new File(SaveRestore.getPath() + "/Admin");
+		String pathToReturn = "";
+		for (String desired : pathToAdmin.list()) {
+			if (desired.equals(".DS_Store")) {
+				continue;
+			}
+			if (desired.equals(folderName)) {
+				pathToReturn = pathToAdmin.toString() + "/" + folderName;
+				break;
+			}
+
+		}
+		if (pathToReturn.equals("")) {
+			for (String desired : pathToDieticion.list()) {
+				if (desired.equals(".DS_Store")) {
+					continue;
+				}
+
+				if (desired.equals(folderName)) {
+					pathToReturn = pathToDieticion.toString() + "/" + folderName;
+					break;
+				}
+
+			}
+
+		}
+
+		return pathToReturn;
+	}
+}

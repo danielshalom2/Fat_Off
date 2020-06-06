@@ -1,0 +1,13 @@
+package com.FatOff.View;
+
+import javax.swing.*;
+import com.FatOff.Model.*;
+
+public class MainWinTest {
+
+	public MainWinTest(Nutritionist nut, Customer cust) {
+		
+		JFrame mainFrame = new JFrame();
+	
+	}
+}

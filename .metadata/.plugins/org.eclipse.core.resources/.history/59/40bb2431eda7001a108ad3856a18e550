@@ -1,0 +1,120 @@
+package com.FatOff.Model;
+
+import java.io.Serializable;
+
+/**
+ * This class represent any customer which will be created in the Fat_Off project
+ * 
+ * @author Fat_Off Development Team
+ *@version 1.0
+ */
+
+import java.util.*;
+
+public class Customer extends Person implements Serializable{
+	
+	private String gender;
+	private HashMap<Integer,Session> sessionsMap;
+	private HashMap<Integer, Measures> measuresMap;
+	private IntroductoryMeeting pesronalInterview;
+	private Date dateOfBirth;
+
+	/**
+	 * @param firstName the customers' first name
+	 * @param lastName the customers' last name
+	 * @param phoneNumber the customers' phone number
+	 * @param emailAddress the customers' email address
+	 * @param id the customers' is
+	 * @param gender the customers' gender
+	 */
+	public Customer(String firstName, String lastName, String phoneNumber, 
+							String emailAddress, String id, String gender, Date bDate) {
+		// super class constructor
+		super(firstName, lastName, phoneNumber, emailAddress, id);
+		//initialization of the local private variable
+		this.gender = gender;
+		sessionsMap = new HashMap<Integer,Session>();
+		measuresMap = new HashMap<Integer,Measures>();
+		this.addSession(new Session(1),1);
+		this.addMeasures(new Measures() , 1);
+		this.pesronalInterview = null;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the sessionsMap
+	 */
+	public HashMap<Integer,Session> getSessionsMap() {
+		return sessionsMap;
+	}
+	
+	/**
+	 * @param session The session to add
+	 */
+	public void addSession(Session sess , Integer serial) {
+		this.sessionsMap.put(serial, sess);
+	}
+
+	/**
+	 * @param sessionsMap the sessionsMap to set
+	 */
+	public void setSessionsMap(HashMap<Integer,Session> sessionsMap) {
+		this.sessionsMap = sessionsMap;
+	}
+
+	/**
+	 * @return the measuresMap
+	 */
+	public HashMap<Integer, Measures> getMeasuresMap() {
+		return measuresMap;
+	}
+
+	/**
+	 * @param measuresMap the measuresMap to set
+	 */
+	public void setMeasuresMap(HashMap<Integer, Measures> measuresMap) {
+		this.measuresMap = measuresMap;
+	}
+	
+	/**
+	 * @param measure the measures to add
+	 */
+	public void addMeasures(Measures meas , Integer serial) {
+		this.measuresMap.put(serial, meas);
+	}
+
+	/**
+	 * @return the pesronalInterview
+	 */
+	public IntroductoryMeeting getPesronalInterview() {
+		return pesronalInterview;
+	}
+
+	/**
+	 * @param pesronalInterview the pesronalInterview to set
+	 */
+	public void setPesronalInterview(IntroductoryMeeting pesronalInterview) {
+		this.pesronalInterview = pesronalInterview;
+	}
+	/**
+	 * @return a string representation of the customer object
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + "gender: " + gender ;
+	}
+
+}

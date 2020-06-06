@@ -1,0 +1,25 @@
+package com.FatOff.Testers;
+import java.io.File;
+import java.util.Date;
+
+import com.FatOff.Model.SaveRestore;
+import com.FatOff.View.*;
+
+public class adminCreateWinTester {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		String path;
+		final File pathToFatOff;
+		Date d = new Date();
+		System.out.println(d.getTime());
+		
+		pathToFatOff = new File(SaveRestore.getPath());
+		if(!pathToFatOff.exists()) {
+			new CreateAdminWin();
+		}
+		else {
+			new SignInWin();
+		}
+	}
+}

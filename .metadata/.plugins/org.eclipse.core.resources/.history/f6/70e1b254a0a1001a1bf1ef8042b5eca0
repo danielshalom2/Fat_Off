@@ -1,0 +1,304 @@
+/**
+ * 
+ */
+package com.FatOff.View;
+
+import javax.swing.*;
+
+import com.FatOff.Model.Customer;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.MatteBorder;
+import javax.swing.text.StyledEditorKit.UnderlineAction;
+
+import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.font.TextAttribute;
+import java.util.Map;
+import java.awt.Cursor;
+import java.awt.ComponentOrientation;
+import javax.swing.border.BevelBorder;
+import java.awt.Panel;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import java.awt.Dimension;
+
+/**
+ * @author borism
+ *
+ */
+public class InterviewWin {
+	
+	public InterviewWin(Customer cust) {
+		JFrame interviewFrame = new JFrame("Introductory Meeting");
+		interviewFrame.getContentPane().setPreferredSize(new Dimension(10, 0));
+		interviewFrame.getContentPane().setMaximumSize(new Dimension(32000, 32000));
+		
+		JPanel panel = new JPanel();
+		
+		JLabel copyRightLbl = new JLabel("All Rights Reserved© Fat Off Developers 2020");
+		
+		JScrollPane interviewScrollPane = new JScrollPane();
+		interviewScrollPane.setMaximumSize(new Dimension(32767, 30000));
+		interviewScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		GroupLayout groupLayout = new GroupLayout(interviewFrame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(434)
+							.addComponent(copyRightLbl))
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(interviewScrollPane, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+							.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)))
+					.addContainerGap(277, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(interviewScrollPane, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(copyRightLbl))
+		);
+		
+		JPanel interviewPanel = new JPanel();
+		interviewPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.GRAY));
+		interviewScrollPane.setViewportView(interviewPanel);
+		
+		JLabel decidionQuestLbl = new JLabel("Why have you decided to come to a dietician?");
+		decidionQuestLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		decidionQuestLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		
+		JLabel lblWhatIsYour = new JLabel("What is your goal?");
+		lblWhatIsYour.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		
+		JLabel lblHasSomeonePushed = new JLabel("Has someone pushed you to go to a dietician? Please elaborate..");
+		lblHasSomeonePushed.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane scrollPane_1_1 = new JScrollPane();
+		
+		JLabel lblHaveYouEver = new JLabel("Have you ever started a process with a dietician? Please elaborate..");
+		lblHaveYouEver.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane scrollPane_1_1_1 = new JScrollPane();
+		
+		JLabel lblHaveYouEver_1 = new JLabel("Do yuo have troubles with concentrating recently?");
+		lblHaveYouEver_1.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane scrollPane_1_1_1_1 = new JScrollPane();
+		
+		JLabel lblHaveYouEver_1_1 = new JLabel("Do yuo have troubles with concentrating recently?");
+		lblHaveYouEver_1_1.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane scrollPane_1_1_1_1_1 = new JScrollPane();
+		
+		JLabel lblHaveYouEver_1_1_1 = new JLabel("Do yuo have troubles with concentrating recently?");
+		lblHaveYouEver_1_1_1.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane scrollPane_1_2 = new JScrollPane();
+		
+		JLabel testLbl = new JLabel("Test?");
+		testLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane testScrl = new JScrollPane();
+		
+		JLabel test2Lbl = new JLabel("Test?");
+		test2Lbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane test2Scrl = new JScrollPane();
+		
+		JLabel test3Lbl = new JLabel("Test?");
+		test3Lbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane test3Scrl = new JScrollPane();
+		
+		JLabel test4Lbl = new JLabel("Test?");
+		test4Lbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		
+		JScrollPane test4Scrl = new JScrollPane();
+		
+		GroupLayout gl_interviewPanel = new GroupLayout(interviewPanel);
+		gl_interviewPanel.setHorizontalGroup(
+			gl_interviewPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_interviewPanel.createSequentialGroup()
+					.addGroup(gl_interviewPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(decidionQuestLbl))
+						.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblWhatIsYour, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addGap(38)
+							.addGroup(gl_interviewPanel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane_1_1, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane_1_1_1, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane_1_1_1_1, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane_1_1_1_1_1, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(scrollPane_1_2, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(testScrl, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(test2Scrl, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(test3Scrl, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+								.addComponent(test4Scrl, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblHaveYouEver, GroupLayout.PREFERRED_SIZE, 499, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblHaveYouEver_1, GroupLayout.PREFERRED_SIZE, 499, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblHaveYouEver_1_1, GroupLayout.PREFERRED_SIZE, 499, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblHaveYouEver_1_1_1, GroupLayout.PREFERRED_SIZE, 499, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(testLbl, GroupLayout.PREFERRED_SIZE, 499, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(test2Lbl, GroupLayout.PREFERRED_SIZE, 499, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(test3Lbl, GroupLayout.PREFERRED_SIZE, 499, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(test4Lbl, GroupLayout.PREFERRED_SIZE, 499, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_interviewPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblHasSomeonePushed, GroupLayout.PREFERRED_SIZE, 482, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(313, Short.MAX_VALUE))
+		);
+		gl_interviewPanel.setVerticalGroup(
+			gl_interviewPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_interviewPanel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(decidionQuestLbl)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblWhatIsYour, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblHasSomeonePushed, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_1_1, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblHaveYouEver, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_1_1_1, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblHaveYouEver_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_1_1_1_1, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblHaveYouEver_1_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_1_1_1_1_1, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblHaveYouEver_1_1_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_1_2, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(testLbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(testScrl, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(test2Lbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(test2Scrl, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(test3Lbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(test3Scrl, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(test4Lbl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(test4Scrl, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(219, Short.MAX_VALUE))
+		);
+		
+		JTextPane textPane_1_1_1_1_1 = new JTextPane();
+		scrollPane_1_1_1_1_1.setViewportView(textPane_1_1_1_1_1);
+		
+		JTextPane textPane_1_1_1_1 = new JTextPane();
+		scrollPane_1_1_1_1.setViewportView(textPane_1_1_1_1);
+		
+		JTextPane textPane_1_1_1 = new JTextPane();
+		scrollPane_1_1_1.setViewportView(textPane_1_1_1);
+		
+		JTextPane textPane_1_1 = new JTextPane();
+		scrollPane_1_1.setViewportView(textPane_1_1);
+		
+		JTextPane textPane_1 = new JTextPane();
+		scrollPane_1.setViewportView(textPane_1);
+		
+		JTextPane textPane = new JTextPane();
+		scrollPane.setViewportView(textPane);
+		
+		JTextPane testtextPane = new JTextPane();
+		testScrl.setViewportView(testtextPane);
+		interviewPanel.setLayout(gl_interviewPanel);
+		
+		JLabel logoLbl = new JLabel("");
+		logoLbl.setIcon(new ImageIcon(InterviewWin.class.getResource("/com/FatOff/View/imgonline-com-ua-resize-5aRADIEx30404X17.png")));
+		
+		JLabel introInterviewLbl = new JLabel("Fat-Off Introductory Interview");
+		introInterviewLbl.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		
+		JTextPane txtpnWelcomeToThe = new JTextPane();
+		txtpnWelcomeToThe.setBorder(new BevelBorder(BevelBorder.LOWERED, SystemColor.windowBorder, null, null, null));
+		txtpnWelcomeToThe.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		txtpnWelcomeToThe.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
+		txtpnWelcomeToThe.setText("Welcome to the introductory interivew window.\nThe purpose of this stage of the customer creation is the following:\n\n    * To introduce myself.\n    * To introduce my approach to the procedure.\n    * To explain about the procedure.\n    * To talk about payment arrangement.\n    * To get familiar with the customer.");
+		txtpnWelcomeToThe.setSelectionColor(SystemColor.textHighlight);
+		txtpnWelcomeToThe.setBackground(SystemColor.window);
+		txtpnWelcomeToThe.setEditable(false);
+		txtpnWelcomeToThe.setDropMode(DropMode.INSERT);
+
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(14)
+					.addComponent(logoLbl)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(171)
+							.addComponent(introInterviewLbl))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(18)
+							.addComponent(txtpnWelcomeToThe, GroupLayout.PREFERRED_SIZE, 455, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(11, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(introInterviewLbl)
+							.addGap(18)
+							.addComponent(txtpnWelcomeToThe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addComponent(logoLbl, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 190, Short.MAX_VALUE)))
+		);
+		panel.setLayout(gl_panel);
+		interviewFrame.getContentPane().setLayout(groupLayout);
+		interviewFrame.pack();
+		interviewFrame.setVisible(true);
+		
+	}
+}

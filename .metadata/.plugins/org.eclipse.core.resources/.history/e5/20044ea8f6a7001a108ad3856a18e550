@@ -1,0 +1,33 @@
+package com.FatOff.Testers;
+import java.io.File;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import com.FatOff.Model.SaveRestore;
+import com.FatOff.View.*;
+
+public class adminCreateWinTester {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		String path;
+		final File pathToFatOff;
+		
+		Date d = new Date();
+		Date bd = new Date("12/08/1989");
+		
+
+		
+		System.out.println(d.toString() + " " + bd.toString());
+		System.out.println(d.getTime() + " " + bd.getTime() + " " + (int)((d.getTime() - bd.getTime())/(24*60*60*1000)));
+		
+		pathToFatOff = new File(SaveRestore.getPath());
+		if(!pathToFatOff.exists()) {
+			new CreateAdminWin();
+		}
+		else {
+			new SignInWin();
+		}
+	}
+}
