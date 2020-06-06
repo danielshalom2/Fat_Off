@@ -6,6 +6,7 @@ package com.FatOff.View;
 import javax.swing.*;
 
 import com.FatOff.Model.Customer;
+import com.FatOff.Model.Nutritionist;
 import com.itextpdf.text.DocumentException;
 import com.FatOff.Controller.InterviewContoller;
 import java.awt.Font;
@@ -31,7 +32,7 @@ import java.awt.event.ActionEvent;
  */
 public class InterviewWin {
 
-	public InterviewWin(Customer cust, String pathToCust) {
+	public InterviewWin(Customer cust, String pathToCust, Nutritionist nut) {
 		JFrame interviewFrame = new JFrame("Introductory Meeting");
 		interviewFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		interviewFrame.getContentPane().setPreferredSize(new Dimension(10, 0));
@@ -351,7 +352,9 @@ public class InterviewWin {
 							typicalDayATPane.getText(), whatAteATPane.getText(), alergiesATPane.getText(),
 							foodNotLikeATPane.getText(), deseasMedATPane.getText(), concentrationATPane.getText(),
 							gainedLostATPane.getText(), cust, pathToCust);
+					new MainWin2(cust,nut);
 					interviewFrame.dispose();
+					
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

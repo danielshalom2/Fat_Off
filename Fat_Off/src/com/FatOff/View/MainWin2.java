@@ -9,6 +9,9 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import com.FatOff.Model.Customer;
+import com.FatOff.Model.Nutritionist;
 public class MainWin2 {
 	private JTextField CustomerNametxt;
 	private JTextField weighttxt;
@@ -27,31 +30,26 @@ public class MainWin2 {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	
-	public MainWin2(Object cus, String type) {
+	public MainWin2(Customer cust, Nutritionist nut) {
 		///declare the frame
 		JFrame customerframe = new JFrame("custmer");
-		customerframe.getContentPane().setLayout(null);
-		customerframe.setBounds(0,22,1081,900);
+		customerframe.setAlwaysOnTop(true);
+		customerframe.setBounds(0,22,1081,867);
 		
 		///creating a panel for the window
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 22, 1081, 939);
-		customerframe.getContentPane().add(panel);
 		panel.setBackground((new Color(36,47,65)));
 		
 		//logo 
 		JLabel logoLbl = new JLabel("");
-		logoLbl.setBounds(0, 11, 139, 179);
 		logoLbl.setIcon(new ImageIcon(MainWin2.class.getResource("/com/FatOff/View/fat_off_white.png")));
 		
 		//introducing the 
 		JLabel custnameLbl = new JLabel("Customer Name :");
-		custnameLbl.setBounds(321, 31, 154, 23);
 		custnameLbl.setForeground(Color.WHITE);
 		custnameLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		
 		CustomerNametxt = new JTextField();
-		CustomerNametxt.setBounds(479, 28, 328, 29);
 		CustomerNametxt.setForeground(Color.WHITE);
 		CustomerNametxt.setHorizontalAlignment(SwingConstants.CENTER);
 		CustomerNametxt.setFont(new Font("Century Gothic", Font.PLAIN, 18));
@@ -61,52 +59,42 @@ public class MainWin2 {
 		CustomerNametxt.setBackground(null);
 	
 		JLabel measuresLbl = new JLabel("Measures :");
-		measuresLbl.setBounds(10, 228, 80, 21);
 		measuresLbl.setForeground(Color.WHITE);
 		measuresLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 208, 214, 2);
 		
 		JLabel weightLbl = new JLabel("Weight :");
-		weightLbl.setBounds(10, 267, 89, 23);
 		weightLbl.setForeground(Color.WHITE);
 		weightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		
 		JLabel heightLbl = new JLabel("Height :");
-		heightLbl.setBounds(10, 296, 89, 23);
 		heightLbl.setForeground(Color.WHITE);
 		heightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		
 		JLabel ageLbl = new JLabel("Age :");
-		ageLbl.setBounds(10, 325, 89, 23);
 		ageLbl.setForeground(Color.WHITE);
 		ageLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		
 		JLabel wristLbl = new JLabel("Wrist :");
-		wristLbl.setBounds(10, 354, 89, 23);
 		wristLbl.setForeground(Color.WHITE);
 		wristLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		
 		JLabel waistLbl = new JLabel("Waist :");
-		waistLbl.setBounds(10, 383, 89, 23);
 		waistLbl.setForeground(Color.WHITE);
 		waistLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		
 		JLabel thighLbl = new JLabel("Thigh :");
-		thighLbl.setBounds(10, 412, 89, 23);
 		thighLbl.setForeground(Color.WHITE);
 		thighLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		
 		weighttxt = new JTextField();
-		weighttxt.setBounds(103, 269, 123, 21);
 		weighttxt.setText("Enter Weight");
 		weighttxt.setHorizontalAlignment(SwingConstants.CENTER);
 		weighttxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		weighttxt.setColumns(10);
 		
 		heighttxt = new JTextField();
-		heighttxt.setBounds(103, 298, 123, 21);
 		heighttxt.setText("Height");
 		heighttxt.setHorizontalAlignment(SwingConstants.CENTER);
 		heighttxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
@@ -114,7 +102,6 @@ public class MainWin2 {
 		heighttxt.setColumns(10);
 		
 		agetxt = new JTextField();
-		agetxt.setBounds(103, 327, 123, 21);
 		agetxt.setText("Age");
 		agetxt.setHorizontalAlignment(SwingConstants.CENTER);
 		agetxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
@@ -122,28 +109,24 @@ public class MainWin2 {
 		agetxt.setColumns(10);
 		
 		wristtxt = new JTextField();
-		wristtxt.setBounds(103, 356, 123, 21);
 		wristtxt.setText("Enter Wrist");
 		wristtxt.setHorizontalAlignment(SwingConstants.CENTER);
 		wristtxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		wristtxt.setColumns(10);
 		
 		waisttxt = new JTextField();
-		waisttxt.setBounds(103, 385, 123, 21);
 		waisttxt.setText("Enter Waist");
 		waisttxt.setHorizontalAlignment(SwingConstants.CENTER);
 		waisttxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		waisttxt.setColumns(10);
 		
 		thightxt = new JTextField();
-		thightxt.setBounds(103, 414, 123, 21);
 		thightxt.setText("Enter Thigh");
 		thightxt.setHorizontalAlignment(SwingConstants.CENTER);
 		thightxt.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		thightxt.setColumns(10);
 		
 		JButton clearbtn = new JButton("Clear");
-		clearbtn.setBounds(22, 453, 81, 19);
 		clearbtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		clearbtn.setForeground(new Color(255, 255, 255));
 		clearbtn.setBorder(null);
@@ -155,7 +138,6 @@ public class MainWin2 {
 	
 		
 		JButton calculatebtn = new JButton("Calculate");
-		calculatebtn.setBounds(121, 453, 85, 19);
 		calculatebtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		calculatebtn.setForeground(new Color(255, 255, 255));
 		calculatebtn.setBorder(null);
@@ -166,21 +148,17 @@ public class MainWin2 {
 		});
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(0, 547, 0, 2);
 		
 		JLabel BMILbl = new JLabel("BMI update :");
-		BMILbl.setBounds(10, 608, 107, 23);
 		BMILbl.setForeground(Color.WHITE);
 		BMILbl.setFont(new Font("Dialog", Font.BOLD, 16));
 		
 		JLabel EERLbl = new JLabel("EER update :");
-		EERLbl.setBounds(10, 649, 107, 23);
 		EERLbl.setForeground(Color.WHITE);
 		EERLbl.setFont(new Font("Dialog", Font.BOLD, 16));
 		
 		calculatedBMItxt = new JTextField();
 		calculatedBMItxt.setForeground(Color.WHITE);
-		calculatedBMItxt.setBounds(135, 610, 149, 21);
 		calculatedBMItxt.setEditable(false);
 		calculatedBMItxt.setText("Calculated BMI");
 		calculatedBMItxt.setHorizontalAlignment(SwingConstants.CENTER);
@@ -190,7 +168,6 @@ public class MainWin2 {
 		
 		calculatedEERtxt = new JTextField();
 		calculatedEERtxt.setForeground(Color.WHITE);
-		calculatedEERtxt.setBounds(135, 651, 149, 21);
 		calculatedEERtxt.setEditable(false);
 		calculatedEERtxt.setText("Calculated EER");
 		calculatedEERtxt.setHorizontalAlignment(SwingConstants.CENTER);
@@ -200,53 +177,43 @@ public class MainWin2 {
 
 		
 		txtEnterGeneralSummary = new JTextField();
-		txtEnterGeneralSummary.setBounds(149, 89, 834, 98);
 		txtEnterGeneralSummary.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEnterGeneralSummary.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		txtEnterGeneralSummary.setText("Enter general summary of the meeting");
 		txtEnterGeneralSummary.setColumns(10);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(10, 490, 214, 2);
 		
 		JLabel newMenuLbl = new JLabel("Enter new menu here :");
-		newMenuLbl.setBounds(499, 208, 329, 21);
 		newMenuLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		newMenuLbl.setForeground(Color.WHITE);
 		newMenuLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		
 		JLabel breakfastLbl = new JLabel("Breakfast :");
-		breakfastLbl.setBounds(345, 250, 89, 23);
 		breakfastLbl.setForeground(Color.WHITE);
 		breakfastLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		
 		JLabel lunchLbl = new JLabel("Lunch :");
-		lunchLbl.setBounds(345, 412, 89, 23);
 		lunchLbl.setForeground(Color.WHITE);
 		lunchLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		
 		JLabel dinnerLbl = new JLabel("Dinner :");
-		dinnerLbl.setBounds(345, 570, 89, 23);
 		dinnerLbl.setForeground(Color.WHITE);
 		dinnerLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		
 		JLabel snack1Lbl = new JLabel("Snack 1 :");
-		snack1Lbl.setBounds(374, 383, 89, 23);
 		snack1Lbl.setForeground(Color.WHITE);
 		snack1Lbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		
 		JLabel snackLbl = new JLabel("Snack 2 :");
-		snackLbl.setBounds(374, 544, 89, 23);
 		snackLbl.setForeground(Color.WHITE);
 		snackLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		
 		JLabel snack3Lbl = new JLabel("Snack 3 :");
-		snack3Lbl.setBounds(374, 713, 89, 23);
 		snack3Lbl.setForeground(Color.WHITE);
 		snack3Lbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		
 		snack3txt = new JTextField();
-		snack3txt.setBounds(467, 714, 589, 21);
 		snack3txt.setText("Enter relevant snack");
 		snack3txt.setHorizontalAlignment(SwingConstants.CENTER);
 		snack3txt.setFont(new Font("Century Gothic", Font.PLAIN, 14));
@@ -254,7 +221,6 @@ public class MainWin2 {
 		snack3txt.setColumns(10);
 		
 		snack2txt = new JTextField();
-		snack2txt.setBounds(467, 545, 589, 21);
 		snack2txt.setText("Enter relevant snack");
 		snack2txt.setHorizontalAlignment(SwingConstants.CENTER);
 		snack2txt.setFont(new Font("Century Gothic", Font.PLAIN, 14));
@@ -262,100 +228,272 @@ public class MainWin2 {
 		snack2txt.setColumns(10);
 		
 		snack1txt = new JTextField();
-		snack1txt.setBounds(467, 384, 589, 21);
 		snack1txt.setText("Enter relevant snack");
 		snack1txt.setHorizontalAlignment(SwingConstants.CENTER);
 		snack1txt.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		snack1txt.setEditable(false);
 		snack1txt.setColumns(10);
-		panel.setLayout(null);
-		panel.add(logoLbl);
-		panel.add(txtEnterGeneralSummary);
-		panel.add(custnameLbl);
-		panel.add(CustomerNametxt);
-		panel.add(separator_1);
-		panel.add(EERLbl);
-		panel.add(calculatedEERtxt);
-		panel.add(BMILbl);
-		panel.add(calculatedBMItxt);
-		panel.add(clearbtn);
-		panel.add(calculatebtn);
-		panel.add(separator);
-		panel.add(separator_2);
-		panel.add(measuresLbl);
-		panel.add(newMenuLbl);
-		panel.add(snackLbl);
-		panel.add(waistLbl);
-		panel.add(waisttxt);
-		panel.add(snack1Lbl);
-		panel.add(snack3Lbl);
-		panel.add(snack1txt);
-		panel.add(snack2txt);
-		panel.add(snack3txt);
-		panel.add(weightLbl);
-		panel.add(weighttxt);
-		panel.add(thighLbl);
-		panel.add(thightxt);
-		panel.add(heightLbl);
-		panel.add(heighttxt);
-		panel.add(ageLbl);
-		panel.add(agetxt);
-		panel.add(wristLbl);
-		panel.add(wristtxt);
-		panel.add(dinnerLbl);
-		panel.add(lunchLbl);
-		panel.add(breakfastLbl);
 		
 		breakfasttxt = new JTextField();
 		breakfasttxt.setText("Enter");
 		breakfasttxt.setHorizontalAlignment(SwingConstants.CENTER);
 		breakfasttxt.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		breakfasttxt.setColumns(10);
-		breakfasttxt.setBounds(369, 276, 687, 98);
-		panel.add(breakfasttxt);
 		
 		textField_1 = new JTextField();
 		textField_1.setText("Enter general summary of the meeting");
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		textField_1.setColumns(10);
-		textField_1.setBounds(374, 437, 682, 98);
-		panel.add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setText("Enter general summary of the meeting");
 		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		textField_2.setColumns(10);
-		textField_2.setBounds(374, 604, 682, 98);
-		panel.add(textField_2);
 		
 		JButton clearbtn_1 = new JButton("Clear");
 		clearbtn_1.setForeground(Color.WHITE);
 		clearbtn_1.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		clearbtn_1.setBorder(null);
 		clearbtn_1.setBackground(new Color(97, 212, 195));
-		clearbtn_1.setBounds(331, 766, 154, 46);
-		panel.add(clearbtn_1);
 		
 		JButton savebtn = new JButton("Calculate");
 		savebtn.setForeground(Color.WHITE);
 		savebtn.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		savebtn.setBorder(null);
 		savebtn.setBackground(new Color(97, 212, 195));
-		savebtn.setBounds(512, 766, 154, 46);
-		panel.add(savebtn);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(logoLbl, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(172)
+							.addComponent(custnameLbl, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(CustomerNametxt, GroupLayout.PREFERRED_SIZE, 328, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtEnterGeneralSummary, GroupLayout.PREFERRED_SIZE, 834, GroupLayout.PREFERRED_SIZE)))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(waistLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addComponent(waisttxt, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+					.addGap(148)
+					.addComponent(snack1Lbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addComponent(snack1txt, GroupLayout.PREFERRED_SIZE, 589, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(thighLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addComponent(thightxt, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+					.addGap(119)
+					.addComponent(lunchLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(12)
+							.addComponent(clearbtn, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(calculatebtn, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
+						.addComponent(separator_2, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE))
+					.addGap(150)
+					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 682, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(374)
+					.addComponent(snackLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addComponent(snack2txt, GroupLayout.PREFERRED_SIZE, 589, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(345)
+					.addComponent(dinnerLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(BMILbl, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+						.addComponent(EERLbl, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(calculatedBMItxt, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+						.addComponent(calculatedEERtxt, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
+					.addGap(90)
+					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 682, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(374)
+					.addComponent(snack3Lbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addComponent(snack3txt, GroupLayout.PREFERRED_SIZE, 589, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(331)
+					.addComponent(clearbtn_1, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
+					.addComponent(savebtn, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(separator, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+								.addComponent(measuresLbl, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
+							.addGap(285)
+							.addComponent(newMenuLbl, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(weightLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+								.addComponent(heightLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+								.addComponent(ageLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+								.addComponent(wristLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+							.addGap(4)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(weighttxt, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+								.addComponent(heighttxt, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+								.addComponent(agetxt, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+								.addComponent(wristtxt, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+							.addGap(119)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(breakfastLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(24)
+									.addComponent(breakfasttxt, GroupLayout.PREFERRED_SIZE, 687, GroupLayout.PREFERRED_SIZE))))))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(11)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(logoLbl)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(17)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(3)
+									.addComponent(custnameLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+								.addComponent(CustomerNametxt, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+							.addGap(32)
+							.addComponent(txtEnterGeneralSummary, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(measuresLbl, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+						.addComponent(newMenuLbl, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(17)
+							.addComponent(weightLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(heightLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(ageLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(wristLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(19)
+							.addComponent(weighttxt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addGap(8)
+							.addComponent(heighttxt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addGap(8)
+							.addComponent(agetxt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addGap(8)
+							.addComponent(wristtxt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(breakfastLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addGap(3)
+							.addComponent(breakfasttxt, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)))
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(waistLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(2)
+							.addComponent(waisttxt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+						.addComponent(snack1Lbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(1)
+							.addComponent(snack1txt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(thighLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(2)
+							.addComponent(thightxt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lunchLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(2)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(16)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(clearbtn, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+								.addComponent(calculatebtn, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addComponent(separator_2, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(3)
+							.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE))
+						.addComponent(snackLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(1)
+							.addComponent(snack2txt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))
+					.addGap(3)
+					.addComponent(dinnerLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(4)
+							.addComponent(BMILbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(EERLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(6)
+							.addComponent(calculatedBMItxt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addGap(20)
+							.addComponent(calculatedEERtxt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(snack3Lbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(1)
+							.addComponent(snack3txt, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))
+					.addGap(30)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(clearbtn_1, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+						.addComponent(savebtn, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)))
+		);
+		panel.setLayout(gl_panel);
 		
 		
 		/// menu bar
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 437, 22);
-		customerframe.getContentPane().add(menuBar);
 	
 		JMenuItem introMeetingLbl = new JMenuItem("Open Introductory Meeting");
 		menuBar.add(introMeetingLbl);
+		GroupLayout groupLayout = new GroupLayout(customerframe.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(menuBar, GroupLayout.PREFERRED_SIZE, 437, GroupLayout.PREFERRED_SIZE)
+				.addComponent(panel, GroupLayout.PREFERRED_SIZE, 1081, GroupLayout.PREFERRED_SIZE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 846, GroupLayout.PREFERRED_SIZE))
+		);
+		customerframe.getContentPane().setLayout(groupLayout);
 		
-		
+		customerframe.setLocationRelativeTo(null);
+		customerframe.pack();
 		
 	}
 }
