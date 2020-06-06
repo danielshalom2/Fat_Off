@@ -24,6 +24,7 @@ import javax.swing.text.AttributeSet.FontAttribute;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 
 /**
@@ -352,7 +353,8 @@ public class InterviewWin {
 							typicalDayATPane.getText(), whatAteATPane.getText(), alergiesATPane.getText(),
 							foodNotLikeATPane.getText(), deseasMedATPane.getText(), concentrationATPane.getText(),
 							gainedLostATPane.getText(), cust, pathToCust);
-					new MainWin2(cust,nut);
+					
+					new MainWin(nut,cust,getSelectedButtonText(radios));
 					interviewFrame.dispose();
 					
 				} catch (FileNotFoundException e1) {
@@ -438,5 +440,16 @@ public class InterviewWin {
 		interviewFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		interviewFrame.setVisible(true);
 
+	}
+	String getSelectedButtonText(ButtonGroup buttonGroup) {
+		for (Enumeration buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+			AbstractButton button = (AbstractButton) buttons.nextElement();
+
+			if (button.isSelected()) {
+				return button.getText();
+			}
+		}
+
+		return null;
 	}
 }
