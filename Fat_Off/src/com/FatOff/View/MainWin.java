@@ -1,419 +1,420 @@
 
 package com.FatOff.View;
+
 import javax.swing.*;
 
-import com.FatOff.Model.Customer;
-import com.FatOff.Model.Nutritionist;
-
+import com.FatOff.Controller.CustomerController;
+import com.FatOff.Model.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+
 public class MainWin {
-	 
-	private JTextField txtEnterWeight;
-	private JTextField txtHeight;
-	private JTextField txtEnterAge;
-	private JTextField txtEnterWrist;
-	private JTextField txtEnterWaist;
-	private JTextField txtEnterThigh;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
-	private JLabel lblNewLabel_6;
-	private JButton btnClear;
-	private JButton btnCalculate;
-	private JSeparator separator;
-	private JMenuItem mntmNewMenuItem;
-	private JMenuItem mntmNewMenuItem_1;
-	private JLabel lblCustomersName;
-	private JTextField txtCustomerNameSholud;
-	private JLabel lblBmi;
-	private JLabel lblUpdatedEer;
-	private JTextField txtNewValue;
-	private JTextField txtNewValue_1;
-	private JSeparator separator_1;
-	private JTextField txtEnter;
-	private JLabel lblBreakfast;
-	private JLabel lblLunch;
-	private JLabel lblDinner;
-	private JLabel lblBreakfastSnack;
-	private JLabel lblSnack;
-	private JLabel lblSnack_2;
-	private JButton btnClear_1;
-	private JButton btnSave;
-	private JTextField txtEnterbreakfast;
-	private JTextField txtEnterLunch;
-	private JTextField txtEnterDinner;
-	private JTextField txtEnterSnack1;
-	private JTextField txtEnterSnack2;
-	private JTextField txtEnterSnack3;
+	private JTextField customerNameField;
+	private JTextField wightTField;
+	private JTextField heightTField;
+	private JTextField wristTField;
+	private JTextField ageTFIeld;
+	private JTextField weistTField;
+	private JTextField thighTField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField bmiTField;
+	private JTextField textField_3;
+
+	public MainWin(Nutritionist nut, Customer cust , String activity) {
+		
+		JFrame mainFrame = new JFrame();
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBackground((new Color(36,47,65)));
+		GroupLayout groupLayout = new GroupLayout(mainFrame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
+		);
+		
+		JLabel logoLbl = new JLabel("");
+		logoLbl.setIcon(new ImageIcon(MainWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
+		
+		JLabel customerNameLbl = new JLabel("Customer Name: ");
+		customerNameLbl.setForeground(Color.WHITE);
+		customerNameLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		
+		customerNameField = new JTextField(cust.toString());
+		customerNameField.setForeground(Color.WHITE);
+		customerNameField.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		customerNameField.setFocusable(false);
+		customerNameField.setFocusTraversalKeysEnabled(false);
+		customerNameField.setDragEnabled(false);
+		customerNameField.setRequestFocusEnabled(false);
+		customerNameField.setVerifyInputWhenFocusTarget(false);
+		customerNameField.setEditable(false);
+		customerNameField.setAutoscrolls(false);
+		customerNameField.setColumns(10);
+		customerNameField.setBackground(null);
+		
+		JLabel measuresLbl = new JLabel("Measures:");
+		measuresLbl.setForeground(Color.WHITE);
+		measuresLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		wightTField = new JTextField();
+		wightTField.setText("Enter Weight");
+		wightTField.setHorizontalAlignment(SwingConstants.CENTER);
+		wightTField.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		wightTField.setColumns(10);
+		
+		JLabel weightLbl = new JLabel("Weight :");
+		weightLbl.setForeground(Color.WHITE);
+		weightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		heightTField = new JTextField();
+		heightTField.setText("Enter Height");
+		heightTField.setHorizontalAlignment(SwingConstants.CENTER);
+		heightTField.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		heightTField.setColumns(10);
+		
+		JLabel heightLbl = new JLabel("Height :");
+		heightLbl.setForeground(Color.WHITE);
+		heightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		wristTField = new JTextField();
+		wristTField.setText("Enter Wrist");
+		wristTField.setHorizontalAlignment(SwingConstants.CENTER);
+		wristTField.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		wristTField.setColumns(10);
+		
+		JLabel wristLbl = new JLabel("Wrist:");
+		wristLbl.setForeground(Color.WHITE);
+		wristLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		JLabel ageLbl = new JLabel("Age: ");
+		ageLbl.setForeground(Color.WHITE);
+		ageLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		
+		ageTFIeld = new JTextField(CustomerController.calcAge(cust));
+		ageTFIeld.setForeground(Color.WHITE);
+		ageTFIeld.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		ageTFIeld.setVerifyInputWhenFocusTarget(false);
+		ageTFIeld.setRequestFocusEnabled(false);
+		ageTFIeld.setFocusable(false);
+		ageTFIeld.setFocusTraversalKeysEnabled(false);
+		ageTFIeld.setDragEnabled(false);
+		ageTFIeld.setEditable(false);
+		ageTFIeld.setColumns(10);
+		ageTFIeld.setBackground((Color) null);
+		
+		JLabel weistLbl = new JLabel("Weist:");
+		weistLbl.setForeground(Color.WHITE);
+		weistLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		weistTField = new JTextField();
+		weistTField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		weistTField.setHorizontalAlignment(SwingConstants.CENTER);
+		weistTField.setText("Enter Weist");
+		weistTField.setColumns(10);
+		
+		JScrollPane summaryScrlPane = new JScrollPane();
+		
+		JLabel thighLbl = new JLabel("Thigh:");
+		thighLbl.setForeground(Color.WHITE);
+		thighLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		
+		thighTField = new JTextField();
+		thighTField.setHorizontalAlignment(SwingConstants.CENTER);
+		thighTField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		thighTField.setText("Enter Thigh");
+		thighTField.setColumns(10);
+		
+		JLabel menuLbl = new JLabel("Enter Menu Here:");
+		menuLbl.setForeground(Color.WHITE);
+		menuLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		JLabel breakfastLbl = new JLabel("Breakfast:");
+		breakfastLbl.setForeground(Color.WHITE);
+		breakfastLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		JScrollPane breakfastScrlPane = new JScrollPane();
+		
+		JLabel snack1Lbl = new JLabel("Snack 1:");
+		snack1Lbl.setForeground(Color.WHITE);
+		snack1Lbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		
+		JLabel lunchLbl = new JLabel("Lunch:");
+		lunchLbl.setForeground(Color.WHITE);
+		lunchLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		JScrollPane lunchfastScrlPane = new JScrollPane();
+		
+		JLabel snack2Lbl = new JLabel("Snack 2:");
+		snack2Lbl.setForeground(Color.WHITE);
+		snack2Lbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		
+		JLabel dinnerLbl = new JLabel("Dinner:");
+		dinnerLbl.setForeground(Color.WHITE);
+		dinnerLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		JScrollPane dinnerScrlPane = new JScrollPane();
+		
+		JTextPane gnrlSummTPane = new JTextPane();
+		gnrlSummTPane.setForeground(Color.WHITE);
+		gnrlSummTPane.setBackground(null);
+		gnrlSummTPane.setEditable(false);
+		gnrlSummTPane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		gnrlSummTPane.setText("General\nSummary");
+		gnrlSummTPane.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		JLabel bmiLbl = new JLabel("BMI:");
+		bmiLbl.setForeground(Color.WHITE);
+		bmiLbl.setFont(new Font("Dialog", Font.BOLD, 16));
+		
+		bmiTField = new JTextField();
+		bmiTField.setColumns(10);
+		
+		JLabel eerLbl = new JLabel("EER:");
+		eerLbl.setForeground(Color.WHITE);
+		eerLbl.setFont(new Font("Dialog", Font.BOLD, 16));
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		
+		JButton clearBtn = new JButton("Clear");
+		
+		JButton calcBtn = new JButton("Claculate");
+		
+		JButton emailSummBtn = new JButton("Save and Send");
+		
+		JButton btnNewButton = new JButton("Show Graph");
+		
+		JLabel dateLbl = new JLabel("Date:");
+		dateLbl.setForeground(Color.WHITE);
+		dateLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		
+		LocalDateTime now = LocalDateTime.now();
+		JLabel todayLbl = new JLabel(DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now).toString());
+		todayLbl.setForeground(Color.WHITE);
+		todayLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		
+		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
+		gl_mainPanel.setHorizontalGroup(
+			gl_mainPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_mainPanel.createSequentialGroup()
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addGap(24)
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(thighLbl)
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+												.addComponent(bmiLbl)
+												.addComponent(eerLbl))
+											.addGap(18)
+											.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+												.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addComponent(bmiTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+										.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
+											.addGroup(gl_mainPanel.createSequentialGroup()
+												.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+													.addComponent(heightLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+													.addComponent(weightLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+													.addComponent(measuresLbl))
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
+													.addComponent(heightTField, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+													.addComponent(wightTField, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)))
+											.addGroup(gl_mainPanel.createSequentialGroup()
+												.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+													.addComponent(wristLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+													.addComponent(weistLbl))
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+													.addComponent(weistTField, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+													.addComponent(wristTField, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+													.addComponent(thighTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(clearBtn)
+											.addGap(18)
+											.addComponent(calcBtn)))
+									.addGap(107))
+								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addComponent(logoLbl)
+									.addGap(41)
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(customerNameLbl)
+										.addComponent(ageLbl))))
+							.addGap(7)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addGap(20)
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING)
+										.addComponent(summaryScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+										.addComponent(lunchfastScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+										.addComponent(breakfastScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(snack1Lbl)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(snack2Lbl)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
+										.addComponent(dinnerScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(menuLbl)
+											.addGap(437))
+										.addComponent(breakfastLbl, Alignment.LEADING)
+										.addComponent(lunchLbl, Alignment.LEADING)
+										.addComponent(dinnerLbl, Alignment.LEADING)
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(btnNewButton)
+											.addGap(26)
+											.addComponent(emailSummBtn))))
+								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(ageTFIeld, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(customerNameField, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+											.addComponent(dateLbl)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(todayLbl)))))
+							.addGap(96))
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addGap(266)
+							.addComponent(gnrlSummTPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		gl_mainPanel.setVerticalGroup(
+			gl_mainPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_mainPanel.createSequentialGroup()
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(logoLbl)
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addContainerGap(15, Short.MAX_VALUE)
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+										.addComponent(customerNameLbl)
+										.addComponent(customerNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+										.addComponent(ageLbl)
+										.addComponent(ageTFIeld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addContainerGap()
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+										.addComponent(todayLbl)
+										.addComponent(dateLbl))
+									.addPreferredGap(ComponentPlacement.RELATED)))
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addGap(18)
+									.addComponent(summaryScrlPane, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addGap(32)
+									.addComponent(gnrlSummTPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+					.addGap(16)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addComponent(menuLbl)
+							.addGap(20)
+							.addComponent(breakfastLbl))
+						.addComponent(measuresLbl))
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(weightLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+								.addComponent(wightTField, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(heightLbl, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+								.addComponent(heightTField, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(wristLbl)
+								.addComponent(wristTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(13)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(weistLbl)
+								.addComponent(weistTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(thighLbl)
+								.addComponent(thighTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(clearBtn)
+								.addComponent(calcBtn)))
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(breakfastScrlPane, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(snack1Lbl)
+								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addComponent(lunchLbl)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lunchfastScrlPane, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(snack2Lbl)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(dinnerLbl)
+						.addComponent(bmiLbl)
+						.addComponent(bmiTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(12)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(dinnerScrlPane, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						.addComponent(eerLbl)
+						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(emailSummBtn)
+						.addComponent(btnNewButton))
+					.addGap(40))
+		);
+		
+		JTextArea dinnerArea = new JTextArea();
+		dinnerScrlPane.setViewportView(dinnerArea);
+		
+		JTextArea lunchArea = new JTextArea();
+		lunchfastScrlPane.setViewportView(lunchArea);
+		
+		JTextArea breakfastArea = new JTextArea();
+		breakfastScrlPane.setViewportView(breakfastArea);
+		
+		JTextArea summaryArea = new JTextArea();
+		summaryScrlPane.setViewportView(summaryArea);
+		mainPanel.setLayout(gl_mainPanel);
+		mainFrame.getContentPane().setLayout(groupLayout);
+		mainFrame.setVisible(true);
+		mainFrame.setLocationRelativeTo(null);
+		mainFrame.pack();
 	
-	public MainWin(Nutritionist nut , Customer cust) {
-		JFrame customerframe = new JFrame("custmer");
-		customerframe.setTitle("Session");
-		customerframe.getContentPane().setBackground(new Color(36, 47, 65));
-		customerframe.getContentPane().setLayout(null);
-		/////////////////////
-		
-		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/��IconFatOff.PNG");
-		customerframe.setIconImage(icon.getImage());
-		//////////////////////////////////////////////////////////////////////////
-		
-		///MenuBar + need to add  link to intrudactory meeting + help
-		JMenuBar menuBar = new JMenuBar();
-		customerframe.setJMenuBar(menuBar);
-		
-		mntmNewMenuItem = new JMenuItem("Open Intrudactory Meeting");
-		mntmNewMenuItem.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		menuBar.add(mntmNewMenuItem);
-		
-		mntmNewMenuItem_1 = new JMenuItem("Help");
-		mntmNewMenuItem_1.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		menuBar.add(mntmNewMenuItem_1);
-		
-		/// adding LOGO to window
-		JLabel Logolbl = new JLabel("");
-		Logolbl.setIcon(new ImageIcon(MainWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
-		Logolbl.setForeground(Color.WHITE);
-		Logolbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		Logolbl.setBounds(0, 0, 133, 199);
-		customerframe.getContentPane().add(Logolbl);
-		
-		///adding lable of MEASURES
-		JLabel lblNewLabel = new JLabel("Measures :");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblNewLabel.setBounds(10, 193, 102, 29);
-		customerframe.getContentPane().add(lblNewLabel);
-		
-		/// adding buttom CLEAR to MEASURES
-		btnClear = new JButton("Clear");
-		btnClear.setForeground(new Color(255, 255, 255));
-		btnClear.setBorder(null);
-		btnClear.setBackground(new Color(97,212,195));
-		btnClear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnClear.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnClear.setBounds(10, 471, 109, 33);
-		customerframe.getContentPane().add(btnClear);
-		
-		///adding buttom CALCULATE to MEASURES
-		btnCalculate = new JButton("Calculate");
-		btnCalculate.setForeground(new Color(255, 255, 255));
-		btnCalculate.setBorder(null);
-		btnCalculate.setBackground(new Color(97,212,195));
-		btnCalculate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnCalculate.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnCalculate.setBounds(164, 471, 106, 33);
-		customerframe.getContentPane().add(btnCalculate);
-		
-		
-		///adding lable of WEIGHT
-		lblNewLabel_1 = new JLabel("Weight :");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(53, 233, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_1);
-		
-		/// enter WEIGHT text 
-			///need to connect to the new session
-		txtEnterWeight = new JTextField();
-		txtEnterWeight.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterWeight.setText("Enter Weight");
-		txtEnterWeight.setBounds(139, 232, 96, 29);
-		customerframe.getContentPane().add(txtEnterWeight);
-		txtEnterWeight.setColumns(10);
-		
-		///adding lable of HEIGHT
-		lblNewLabel_2 = new JLabel("Height :");
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(53, 275, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_2);
-		
-		///enter HEIGHT text
-			/// need to be constant
-		txtHeight = new JTextField();
-		txtHeight.setForeground(new Color(0, 0, 0));
-		txtHeight.setEditable(false);
-		txtHeight.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtHeight.setText("Enter Height");
-		txtHeight.setColumns(10);
-		txtHeight.setBounds(139, 271, 96, 29);
-		customerframe.getContentPane().add(txtHeight);
-		
-		///adding lable of AGE
-		lblNewLabel_3 = new JLabel("Age :");
-		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_3.setBounds(53, 314, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_3);
-		
-		///enter AGE text
-			/// need to be constant
-		txtEnterAge = new JTextField();
-		txtEnterAge.setEditable(false);
-		txtEnterAge.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterAge.setText("Enter Age");
-		txtEnterAge.setColumns(10);
-		txtEnterAge.setBounds(139, 310, 96, 29);
-		customerframe.getContentPane().add(txtEnterAge);
-		
-		///adding lable of WRIST
-		lblNewLabel_4 = new JLabel("Wrist :");
-		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_4.setBounds(53, 353, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_4);
-		/// enter WRIST text 
-			///need to connect to the new session
-		txtEnterWrist = new JTextField();
-		txtEnterWrist.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterWrist.setText("Enter Wrist");
-		txtEnterWrist.setColumns(10);
-		txtEnterWrist.setBounds(139, 349, 96, 29);
-		customerframe.getContentPane().add(txtEnterWrist);
-		
-		///adding lable of WAIST
-		lblNewLabel_5 = new JLabel("Waist :");
-		lblNewLabel_5.setForeground(Color.WHITE);
-		lblNewLabel_5.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_5.setBounds(53, 392, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_5);
-		
-		/// enter WAIST text 
-			///need to connect to the new session
-		txtEnterWaist = new JTextField();
-		txtEnterWaist.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterWaist.setText("Enter Waist");
-		txtEnterWaist.setColumns(10);
-		txtEnterWaist.setBounds(139, 388, 96, 29);
-		customerframe.getContentPane().add(txtEnterWaist);
-		
-		///adding lable of THIGH
-		lblNewLabel_6 = new JLabel("Thigh:");
-		lblNewLabel_6.setForeground(Color.WHITE);
-		lblNewLabel_6.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		lblNewLabel_6.setBounds(53, 431, 76, 19);
-		customerframe.getContentPane().add(lblNewLabel_6);
-		
-		/// enter THIGH text 
-			///need to connect to the new session
-		txtEnterThigh = new JTextField();
-		txtEnterThigh.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtEnterThigh.setText("Enter Thigh");
-		txtEnterThigh.setColumns(10);
-		txtEnterThigh.setBounds(139, 427, 96, 29);
-		customerframe.getContentPane().add(txtEnterThigh);
-		
-		///separator above measures
-		separator = new JSeparator();
-		separator.setBounds(0, 181, 270, 2);
-		customerframe.getContentPane().add(separator);
-		
-		///Parameters about the customer
-			///Name of Customer
-		lblCustomersName = new JLabel("Name of customer :");
-		lblCustomersName.setForeground(Color.WHITE);
-		lblCustomersName.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblCustomersName.setBounds(306, 31, 206, 29);
-		customerframe.getContentPane().add(lblCustomersName);
-		
-		txtCustomerNameSholud = new JTextField();
-		txtCustomerNameSholud.setEditable(false);
-		txtCustomerNameSholud.setHorizontalAlignment(SwingConstants.CENTER);
-		txtCustomerNameSholud.setForeground(new Color(255, 255, 255));
-		txtCustomerNameSholud.setText(cust.getFirstName() + " " + cust.getLastName());
-		txtCustomerNameSholud.setBackground(null);
-		txtCustomerNameSholud.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		txtCustomerNameSholud.setColumns(10);
-		txtCustomerNameSholud.setBounds(487, 31, 234, 29);
-		customerframe.getContentPane().add(txtCustomerNameSholud);
-		
-			///Updated BMI
-		lblBmi = new JLabel("Updated BMI :");
-		lblBmi.setForeground(Color.WHITE);
-		lblBmi.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblBmi.setBounds(10, 563, 133, 29);
-		customerframe.getContentPane().add(lblBmi);
-		
-		txtNewValue = new JTextField();
-		txtNewValue.setText("New Value");
-		txtNewValue.setHorizontalAlignment(SwingConstants.CENTER);
-		txtNewValue.setForeground(Color.WHITE);
-		txtNewValue.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtNewValue.setEditable(false);
-		txtNewValue.setColumns(10);
-		txtNewValue.setBackground((Color) null);
-		txtNewValue.setBounds(145, 563, 125, 29);
-		customerframe.getContentPane().add(txtNewValue);
-		
-			///Updated EER
-		lblUpdatedEer = new JLabel("Updated EER :");
-		lblUpdatedEer.setForeground(Color.WHITE);
-		lblUpdatedEer.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblUpdatedEer.setBounds(10, 602, 133, 29);
-		customerframe.getContentPane().add(lblUpdatedEer);
-		
-		txtNewValue_1 = new JTextField();
-		txtNewValue_1.setText("New Value");
-		txtNewValue_1.setHorizontalAlignment(SwingConstants.CENTER);
-		txtNewValue_1.setForeground(Color.WHITE);
-		txtNewValue_1.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		txtNewValue_1.setEditable(false);
-		txtNewValue_1.setColumns(10);
-		txtNewValue_1.setBackground((Color) null);
-		txtNewValue_1.setBounds(145, 602, 125, 29);
-		customerframe.getContentPane().add(txtNewValue_1);
-		
-		separator_1 = new JSeparator();
-		separator_1.setBounds(0, 536, 270, 2);
-		customerframe.getContentPane().add(separator_1);
-		
-		/// general conclusion of the meeting
-		txtEnter = new JTextField();
-		txtEnter.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnter.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-		txtEnter.setText("Enter general summary of the meeting");
-		txtEnter.setBounds(143, 70, 864, 101);
-		customerframe.getContentPane().add(txtEnter);
-		txtEnter.setColumns(10);
-		 /// meals during the day 
-		lblBreakfast = new JLabel("Breakfast :");
-		lblBreakfast.setForeground(Color.WHITE);
-		lblBreakfast.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblBreakfast.setBounds(306, 193, 102, 29);
-		customerframe.getContentPane().add(lblBreakfast);
-		
-		lblLunch = new JLabel("Lunch :");
-		lblLunch.setForeground(Color.WHITE);
-		lblLunch.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblLunch.setBounds(306, 307, 102, 29);
-		customerframe.getContentPane().add(lblLunch);
-		
-		lblDinner = new JLabel("Dinner :");
-		lblDinner.setForeground(Color.WHITE);
-		lblDinner.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblDinner.setBounds(306, 432, 102, 29);
-		customerframe.getContentPane().add(lblDinner);
-		
-		lblBreakfastSnack = new JLabel("Snack 1 :");
-		lblBreakfastSnack.setForeground(Color.WHITE);
-		lblBreakfastSnack.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-		lblBreakfastSnack.setBounds(318, 268, 102, 29);
-		customerframe.getContentPane().add(lblBreakfastSnack);
-		
-		lblSnack = new JLabel("Snack 2 :");
-		lblSnack.setForeground(Color.WHITE);
-		lblSnack.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-		lblSnack.setBounds(318, 390, 102, 29);
-		customerframe.getContentPane().add(lblSnack);
-		
-		lblSnack_2 = new JLabel("Snack 3 :");
-		lblSnack_2.setForeground(Color.WHITE);
-		lblSnack_2.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-		lblSnack_2.setBounds(318, 509, 102, 29);
-		customerframe.getContentPane().add(lblSnack_2);
-		
-		///finish meeting buttons
-			///clear
-		btnClear_1 = new JButton("Clear");
-		btnClear_1.setForeground(new Color(255, 255, 255));
-		btnClear_1.setBorder(null);
-		btnClear_1.setBackground(new Color(97,212,195));
-		btnClear_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnClear_1.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnClear_1.setBounds(461, 609, 109, 33);
-		customerframe.getContentPane().add(btnClear_1);
-		
-		//save button, need to save as PDF and as a new session
-		btnSave = new JButton("Save");
-		btnSave.setForeground(new Color(255, 255, 255));
-		btnSave.setBorder(null);
-		btnSave.setBackground(new Color(97,212,195));
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSave.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnSave.setBounds(615, 609, 106, 33);
-		customerframe.getContentPane().add(btnSave);
-		
-		txtEnterbreakfast = new JTextField();
-		txtEnterbreakfast.setText("Enter relevant meal");
-		txtEnterbreakfast.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterbreakfast.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		txtEnterbreakfast.setColumns(10);
-		txtEnterbreakfast.setBounds(418, 202, 589, 50);
-		customerframe.getContentPane().add(txtEnterbreakfast);
-		
-		txtEnterLunch = new JTextField();
-		txtEnterLunch.setText("Enter relevant meal");
-		txtEnterLunch.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterLunch.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		txtEnterLunch.setColumns(10);
-		txtEnterLunch.setBounds(418, 316, 589, 50);
-		customerframe.getContentPane().add(txtEnterLunch);
-		
-		txtEnterDinner = new JTextField();
-		txtEnterDinner.setText("Enter relevant meal");
-		txtEnterDinner.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterDinner.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		txtEnterDinner.setColumns(10);
-		txtEnterDinner.setBounds(418, 441, 589, 50);
-		customerframe.getContentPane().add(txtEnterDinner);
-		
-		txtEnterSnack1 = new JTextField();
-		txtEnterSnack1.setText("Enter relevant snack");
-		txtEnterSnack1.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterSnack1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		txtEnterSnack1.setColumns(10);
-		txtEnterSnack1.setBounds(418, 275, 589, 21);
-		customerframe.getContentPane().add(txtEnterSnack1);
-		
-		txtEnterSnack2 = new JTextField();
-		txtEnterSnack2.setText("Enter relevant snack");
-		txtEnterSnack2.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterSnack2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		txtEnterSnack2.setColumns(10);
-		txtEnterSnack2.setBounds(418, 394, 589, 21);
-		customerframe.getContentPane().add(txtEnterSnack2);
-		
-		txtEnterSnack3 = new JTextField();
-		txtEnterSnack3.setText("Enter relevant snack");
-		txtEnterSnack3.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEnterSnack3.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		txtEnterSnack3.setColumns(10);
-		txtEnterSnack3.setBounds(418, 518, 589, 21);
-		customerframe.getContentPane().add(txtEnterSnack3);
-		
-		JButton btnGraph = new JButton("Graph");
-		btnGraph.setForeground(Color.WHITE);
-		btnGraph.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnGraph.setBorder(null);
-		btnGraph.setBackground(new Color(97, 212, 195));
-		btnGraph.setBounds(766, 609, 106, 33);
-		customerframe.getContentPane().add(btnGraph);
-
-		customerframe.setVisible(true);
-		
-
-		
-
-		
 	}
 }
-

@@ -130,7 +130,7 @@ public class CreateCustomerWin {
 		datePicker.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (((java.util.Date) datePicker.getModel().getValue()).compareTo(new java.util.Date()) >= 0) {
+				if (((Date) datePicker.getModel().getValue()).compareTo(new Date()) >= 0) {
 					JOptionPane.showMessageDialog(null, "Invalid date selected ");
 					datePicker.getModel().setValue(null);
 					datePicker.getModel().setSelected(false);
@@ -369,4 +369,5 @@ public class CreateCustomerWin {
 
 		return null;
 	}
+	//
 }

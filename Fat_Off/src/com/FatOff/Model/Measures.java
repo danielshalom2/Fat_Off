@@ -30,11 +30,11 @@ public class Measures implements Serializable{
 	 * @param thigh of the customer
 	 */
 	
-	public void Measures(float age, float weight, float height, float wrist, float waist, float thigh) {
+	public Measures(float age, float weight, float height, float wrist, float waist, float thigh) {
 		this.setAge(age);
 		this.setWeight(weight);
-		this.height = height;
-		this.wrist = wrist;
+		this.setHeight(height);
+		this.setWrist(wrist);
 		this.setWaist(waist);
 		this.setThigh(thigh);
 
@@ -205,6 +205,20 @@ public class Measures implements Serializable{
 	 */
 	public void setPhysique(String physique) {
 		this.physique = physique;
+	}
+	
+	/**
+	 * @return the wrist
+	 */
+	public float getWrist() {
+		return wrist;
+	}
+
+	/**
+	 * @param wrist the wrist to set
+	 */
+	public void setWrist(float wrist) {
+		this.wrist = wrist;
 	}
 
 }
