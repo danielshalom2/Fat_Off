@@ -39,6 +39,8 @@ public class Measures implements Serializable{
 		this.setThigh(thigh);
 
 	}
+	
+	public Measures() {}//default constructor
 
 	/**
 	 * this function calculate the BMI of the customer
