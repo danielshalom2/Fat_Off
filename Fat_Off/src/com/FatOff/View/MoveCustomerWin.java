@@ -1,15 +1,12 @@
 package com.FatOff.View;
 
 import java.awt.Color;
-import static java.nio.file.StandardCopyOption.*;
-
+import org.apache.commons.io.FileUtils;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,12 +136,11 @@ public class MoveCustomerWin {
 			public void actionPerformed(ActionEvent e) {
 				Customer cst = (Customer)custComboBox.getSelectedItem();
 				String custFolderName = cst.getFirstName() + "_" + cst.getLastName() + "_" + cst.getId();
-				String srcPath = CustomerController.pathToType((Nutritionist)srcNutsComboBox.getSelectedItem(),custFolderName);
-				String destPath = CustomerController.pathToType((Nutritionist) destNutComboBox.getSelectedItem(),custFolderName);
+				File srcPath = new File(CustomerController.pathToType((Nutritionist)srcNutsComboBox.getSelectedItem(),custFolderName));
+				File destPath = new File(CustomerController.pathToType((Nutritionist) destNutComboBox.getSelectedItem(),custFolderName));
 				
 				try {
-					Files.move(new File(srcPath).toPath(), new File(destPath).toPath(),
-							StandardCopyOption.REPLACE_EXISTING);
+					FileUtils.moveDirectory(srcPath, destPath);
 					((Nutritionist)srcNutsComboBox.getSelectedItem()).getCustomersList().remove(cst);
 					((Nutritionist) destNutComboBox.getSelectedItem()).getCustomersList().add(cst);
 					int choice = JOptionPane.showOptionDialog(assignBtn, "The customer was aasigned to " 
@@ -156,8 +152,11 @@ public class MoveCustomerWin {
 						moveFrame.dispose();
 					}
 				} catch (IOException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+
 			}
 		});
 		assignBtn.setForeground(Color.WHITE);
@@ -244,4 +243,6 @@ public class MoveCustomerWin {
 		}
 		return CustomComboRenderer.getCustomerDisplayText(nut).toLowerCase().contains(textToFilter.toLowerCase());
 	}
+	
+	
 }

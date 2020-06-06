@@ -12,6 +12,7 @@ import com.FatOff.Controller.AdminController;
 import com.FatOff.Model.Admin;
 import com.FatOff.Model.SaveRestore;
 
+
 /**
  * This is an email sender class. It responsible for creating an email SMTP
  * session. Setting all the required parameters for sending mails and confirming
@@ -30,7 +31,7 @@ public class MailSender {
 	private String password;
 	private Properties props;
 	private Session session;
-	private Authenticator auth;
+	private javax.mail.Authenticator auth;
 
 	/**
 	 * Constructor -- builds an MailSender object that initializes a session with
