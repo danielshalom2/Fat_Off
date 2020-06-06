@@ -2,6 +2,7 @@ package com.FatOff.Testers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import com.FatOff.Model.*;
 
@@ -94,8 +95,8 @@ public class SaveRestoreTester {
 		System.out.println("TEST 3 ----- TESTING SAVE RESTORE NUTRITIONIST WITH CUSTOMERS\n"
 				+ "##########################################################\n");
 		Nutritionist test3 = null;
-		test2.addCustomer(new Customer("Boris", "Mand", "0509588864", "borism@infinidat.com", "306953746", "male"));
-		test2.addCustomer(new Customer("Alex", "Les", "0509345345", "alexl@infinidat.com", "306953816", "male"));
+		test2.addCustomer(new Customer("Boris", "Mand", "0509588864", "borism@infinidat.com", "306953746", "male",new Date("07/10/1987")));
+		test2.addCustomer(new Customer("Alex", "Les", "0509345345", "alexl@infinidat.com", "306953816", "male",new Date("07/10/1987")));
 		
 		System.out.println("------> The Customers are: " + test2.getCustomersList());
 		

@@ -2,6 +2,8 @@ package com.FatOff.Controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -18,10 +20,10 @@ public class CustomerController {
 	}
 
 	public static Customer createCustomer(String fName, String lName, String phone, String email, String id,
-			String gender, String pathToCustomer) {
+			Date bDate,String gender, String pathToCustomer) {
 		System.out.println("From customer controller + " + pathToCustomer);
 
-		Customer cust = new Customer(fName, lName, phone, email, id, gender);
+		Customer cust = new Customer(fName, lName, phone, email, id, gender , bDate);
 		SaveRestore<Customer> saveCust = new SaveRestore<Customer>(cust, pathToCustomer);
 
 		try {
@@ -66,4 +68,17 @@ public class CustomerController {
 
 		return pathToReturn;
 	}
+	
+	public static String calcAge(Customer cust) {
+		
+		Date today = new Date();
+		Date custDate = cust.getDateOfBirth();
+		
+		int diff = (int)((today.getTime() - custDate.getTime())/(24*60*60*1000));
+		System.out.println(today.getTime());
+		System.out.println(custDate.getTime());
+		System.out.println(today.getTime() - custDate.getTime());
+		System.out.println(diff);
+		return new DecimalFormat("##.#").format((double)diff/365);
+		}
 }

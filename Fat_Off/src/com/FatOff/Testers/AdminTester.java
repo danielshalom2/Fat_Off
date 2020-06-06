@@ -2,6 +2,7 @@ package com.FatOff.Testers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import com.FatOff.Model.Admin;
 import com.FatOff.Model.Customer;
@@ -37,7 +38,7 @@ public class AdminTester {
 		
 		
 		adm.addCustomer(new Customer("vlad", "gasin", "1233", 
-							"boobies@gmail.com", "123", "Unknown"));
+							"boobies@gmail.com", "123", "Unknown" , new Date("12/08/1989")));
 		SaveRestore<Admin> temp = new SaveRestore<Admin>(adm,SaveRestore.getPath());
 		try {
 			temp.storeToFile("");

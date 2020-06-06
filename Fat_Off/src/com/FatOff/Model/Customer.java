@@ -17,6 +17,7 @@ public class Customer extends Person implements Serializable{
 	private HashMap<Integer,Session> sessionsMap;
 	private HashMap<Integer, Measures> measuresMap;
 	private IntroductoryMeeting pesronalInterview;
+	final private Date dateOfBirth;
 
 	/**
 	 * @param firstName the customers' first name
@@ -27,11 +28,12 @@ public class Customer extends Person implements Serializable{
 	 * @param gender the customers' gender
 	 */
 	public Customer(String firstName, String lastName, String phoneNumber, 
-							String emailAddress, String id, String gender) {
+							String emailAddress, String id, String gender, Date bDate) {
 		// super class constructor
 		super(firstName, lastName, phoneNumber, emailAddress, id);
 		//initialization of the local private variable
 		this.gender = gender;
+		dateOfBirth = bDate;
 		sessionsMap = new HashMap<Integer,Session>();
 		measuresMap = new HashMap<Integer,Measures>();
 		this.addSession(new Session(1),1);
@@ -109,11 +111,18 @@ public class Customer extends Person implements Serializable{
 		this.pesronalInterview = pesronalInterview;
 	}
 	/**
+	 * @return the dateOfBirth
+	 */
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	/**
 	 * @return a string representation of the customer object
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "gender: " + gender ;
+		return super.toString() ;
 	}
 
 }

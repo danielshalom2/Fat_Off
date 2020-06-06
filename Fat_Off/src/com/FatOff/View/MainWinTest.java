@@ -1,6 +1,8 @@
 package com.FatOff.View;
 
 import javax.swing.*;
+
+import com.FatOff.Controller.CustomerController;
 import com.FatOff.Model.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,7 +20,7 @@ public class MainWinTest {
 	private JTextField wightTField;
 	private JTextField heightTField;
 	private JTextField wristTField;
-	private JTextField textField;
+	private JTextField ageTFIeld;
 	private JTextField weistTField;
 	private JTextField thighTField;
 	private JTextField textField_1;
@@ -36,7 +38,7 @@ public class MainWinTest {
 		GroupLayout groupLayout = new GroupLayout(mainFrame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, 951, Short.MAX_VALUE)
+				.addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -50,7 +52,16 @@ public class MainWinTest {
 		customerNameLbl.setForeground(Color.WHITE);
 		customerNameLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		
-		customerNameField = new JTextField();
+		customerNameField = new JTextField(cust.toString());
+		customerNameField.setForeground(Color.WHITE);
+		customerNameField.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		customerNameField.setFocusable(false);
+		customerNameField.setFocusTraversalKeysEnabled(false);
+		customerNameField.setDragEnabled(false);
+		customerNameField.setRequestFocusEnabled(false);
+		customerNameField.setVerifyInputWhenFocusTarget(false);
+		customerNameField.setEditable(false);
+		customerNameField.setAutoscrolls(false);
 		customerNameField.setColumns(10);
 		customerNameField.setBackground(null);
 		
@@ -92,9 +103,17 @@ public class MainWinTest {
 		ageLbl.setForeground(Color.WHITE);
 		ageLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBackground((Color) null);
+		ageTFIeld = new JTextField(CustomerController.calcAge(cust));
+		ageTFIeld.setForeground(Color.WHITE);
+		ageTFIeld.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		ageTFIeld.setVerifyInputWhenFocusTarget(false);
+		ageTFIeld.setRequestFocusEnabled(false);
+		ageTFIeld.setFocusable(false);
+		ageTFIeld.setFocusTraversalKeysEnabled(false);
+		ageTFIeld.setDragEnabled(false);
+		ageTFIeld.setEditable(false);
+		ageTFIeld.setColumns(10);
+		ageTFIeld.setBackground((Color) null);
 		
 		JLabel weistLbl = new JLabel("Weist:");
 		weistLbl.setForeground(Color.WHITE);
@@ -190,17 +209,18 @@ public class MainWinTest {
 		
 		LocalDateTime now = LocalDateTime.now();
 		JLabel todayLbl = new JLabel(DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now).toString());
+		todayLbl.setForeground(Color.WHITE);
+		todayLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		
 		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
 		gl_mainPanel.setHorizontalGroup(
 			gl_mainPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_mainPanel.createSequentialGroup()
-					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_mainPanel.createSequentialGroup()
-							.addGap(24)
-							.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(measuresLbl)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addGap(24)
 									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(thighLbl)
 										.addGroup(gl_mainPanel.createSequentialGroup()
@@ -215,7 +235,8 @@ public class MainWinTest {
 											.addGroup(gl_mainPanel.createSequentialGroup()
 												.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
 													.addComponent(heightLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-													.addComponent(weightLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+													.addComponent(weightLbl, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+													.addComponent(measuresLbl))
 												.addPreferredGap(ComponentPlacement.RELATED)
 												.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
 													.addComponent(heightTField, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
@@ -233,55 +254,55 @@ public class MainWinTest {
 											.addComponent(clearBtn)
 											.addGap(18)
 											.addComponent(calcBtn)))
-									.addGap(107))))
-						.addGroup(gl_mainPanel.createSequentialGroup()
-							.addComponent(logoLbl)
-							.addGap(41)
+									.addGap(107))
+								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addComponent(logoLbl)
+									.addGap(41)
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(customerNameLbl)
+										.addComponent(ageLbl))))
+							.addGap(7)
 							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(customerNameLbl)
-								.addComponent(ageLbl))))
-					.addGap(7)
-					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_mainPanel.createSequentialGroup()
-							.addGap(20)
-							.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING)
-								.addComponent(summaryScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-								.addComponent(lunchfastScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-								.addComponent(breakfastScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
 								.addGroup(gl_mainPanel.createSequentialGroup()
-									.addComponent(snack1Lbl)
+									.addGap(20)
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING)
+										.addComponent(summaryScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+										.addComponent(lunchfastScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+										.addComponent(breakfastScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(snack1Lbl)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(snack2Lbl)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
+										.addComponent(dinnerScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(menuLbl)
+											.addGap(437))
+										.addComponent(breakfastLbl, Alignment.LEADING)
+										.addComponent(lunchLbl, Alignment.LEADING)
+										.addComponent(dinnerLbl, Alignment.LEADING)
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(btnNewButton)
+											.addGap(26)
+											.addComponent(emailSummBtn))))
+								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
-								.addGroup(gl_mainPanel.createSequentialGroup()
-									.addComponent(snack2Lbl)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
-								.addComponent(dinnerScrlPane, GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-								.addGroup(gl_mainPanel.createSequentialGroup()
-									.addComponent(menuLbl)
-									.addGap(437))
-								.addComponent(breakfastLbl, Alignment.LEADING)
-								.addComponent(lunchLbl, Alignment.LEADING)
-								.addComponent(dinnerLbl, Alignment.LEADING)
-								.addGroup(gl_mainPanel.createSequentialGroup()
-									.addComponent(btnNewButton)
-									.addGap(26)
-									.addComponent(emailSummBtn)))
-							.addGap(40))
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(ageTFIeld, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_mainPanel.createSequentialGroup()
+											.addComponent(customerNameField, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+											.addComponent(dateLbl)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(todayLbl)))))
+							.addGap(96))
 						.addGroup(gl_mainPanel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
-								.addComponent(customerNameField, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE))
-							.addGap(182)
-							.addComponent(dateLbl)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(todayLbl)
-							.addGap(70))))
-				.addGroup(gl_mainPanel.createSequentialGroup()
-					.addGap(266)
-					.addComponent(gnrlSummTPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(652, Short.MAX_VALUE))
+							.addGap(266)
+							.addComponent(gnrlSummTPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
 		);
 		gl_mainPanel.setVerticalGroup(
 			gl_mainPanel.createParallelGroup(Alignment.LEADING)
@@ -289,21 +310,22 @@ public class MainWinTest {
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(logoLbl)
 						.addGroup(gl_mainPanel.createSequentialGroup()
-							.addContainerGap(19, Short.MAX_VALUE)
-							.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addContainerGap(15, Short.MAX_VALUE)
 									.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 										.addComponent(customerNameLbl)
 										.addComponent(customerNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 										.addComponent(ageLbl)
-										.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(ageTFIeld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addContainerGap()
 									.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(dateLbl)
-										.addComponent(todayLbl))
-									.addGap(24)))
+										.addComponent(todayLbl)
+										.addComponent(dateLbl))
+									.addPreferredGap(ComponentPlacement.RELATED)))
 							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addGap(18)
@@ -312,11 +334,12 @@ public class MainWinTest {
 									.addGap(32)
 									.addComponent(gnrlSummTPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
 					.addGap(16)
-					.addComponent(menuLbl)
-					.addGap(18)
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(measuresLbl)
-						.addComponent(breakfastLbl))
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addComponent(menuLbl)
+							.addGap(20)
+							.addComponent(breakfastLbl))
+						.addComponent(measuresLbl))
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_mainPanel.createSequentialGroup()
 							.addGap(18)
