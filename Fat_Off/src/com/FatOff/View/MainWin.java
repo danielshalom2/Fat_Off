@@ -84,7 +84,7 @@ public class MainWin {
 		
 		JLabel weightLbl = new JLabel("Weight :");
 		weightLbl.setForeground(Color.WHITE);
-		weightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		weightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		
 		heightTField = new JTextField();
 		heightTField.setText("Enter Height");
@@ -94,7 +94,7 @@ public class MainWin {
 		
 		JLabel heightLbl = new JLabel("Height :");
 		heightLbl.setForeground(Color.WHITE);
-		heightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		heightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		
 		wristTField = new JTextField();
 		wristTField.setText("Enter Wrist");
@@ -104,7 +104,7 @@ public class MainWin {
 		
 		JLabel wristLbl = new JLabel("Wrist:");
 		wristLbl.setForeground(Color.WHITE);
-		wristLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		wristLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		
 		JLabel ageLbl = new JLabel("Age: ");
 		ageLbl.setForeground(Color.WHITE);
@@ -124,7 +124,7 @@ public class MainWin {
 		
 		JLabel weistLbl = new JLabel("Weist:");
 		weistLbl.setForeground(Color.WHITE);
-		weistLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		weistLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		
 		weistTField = new JTextField();
 		weistTField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
@@ -136,7 +136,7 @@ public class MainWin {
 		
 		JLabel thighLbl = new JLabel("Thigh:");
 		thighLbl.setForeground(Color.WHITE);
-		thighLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		thighLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		
 		thighTField = new JTextField();
 		thighTField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -190,14 +190,14 @@ public class MainWin {
 		
 		JLabel bmiLbl = new JLabel("BMI:");
 		bmiLbl.setForeground(Color.WHITE);
-		bmiLbl.setFont(new Font("Dialog", Font.BOLD, 16));
+		bmiLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		
 		bmiTField = new JTextField();
 		bmiTField.setColumns(10);
 		
 		JLabel eerLbl = new JLabel("EER:");
 		eerLbl.setForeground(Color.WHITE);
-		eerLbl.setFont(new Font("Dialog", Font.BOLD, 16));
+		eerLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
@@ -221,33 +221,33 @@ public class MainWin {
 		
 		JLabel lblActivity = new JLabel("Activity:");
 		lblActivity.setForeground(Color.WHITE);
-		lblActivity.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblActivity.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Sedentary");
 		buttonGroup.add(rdbtnNewRadioButton);
 		rdbtnNewRadioButton.setBackground(new Color(36, 47, 65));
-		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnNewRadioButton.setForeground(Color.WHITE);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Active");
 		buttonGroup.add(rdbtnNewRadioButton_1);
 		rdbtnNewRadioButton_1.setBackground(new Color(36, 47, 65));
-		rdbtnNewRadioButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnNewRadioButton_1.setForeground(Color.WHITE);
 		
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Very Active");
 		buttonGroup.add(rdbtnNewRadioButton_2);
 		rdbtnNewRadioButton_2.setBackground(new Color(36, 47, 65));
-		rdbtnNewRadioButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		rdbtnNewRadioButton_2.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnNewRadioButton_2.setForeground(Color.WHITE);
 		
 		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("Low Active");
 		buttonGroup.add(rdbtnNewRadioButton_3);
 		rdbtnNewRadioButton_3.setBackground(new Color(36, 47, 65));
-		rdbtnNewRadioButton_3.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton_3.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		rdbtnNewRadioButton_3.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnNewRadioButton_3.setForeground(Color.WHITE);
 		
