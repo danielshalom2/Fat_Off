@@ -84,8 +84,7 @@ public class InitialWin {
 				panel.add(comboBox);
 				panel.add(selectBtn);
 
-				
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 				frame.setSize(new Dimension(350, 200));
 				frame.getContentPane().add(panel);
 				frame.setLocationRelativeTo(null);

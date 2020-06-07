@@ -302,6 +302,10 @@ public class MainWin {
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Sedentary");
 		buttonGroup.add(rdbtnNewRadioButton);
 		rdbtnNewRadioButton.setBackground(new Color(36, 47, 65));
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 
 		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -309,6 +313,10 @@ public class MainWin {
 		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
 
@@ -332,6 +340,10 @@ public class MainWin {
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Very Active");
 		buttonGroup.add(rdbtnNewRadioButton_2);
 		rdbtnNewRadioButton_2.setBackground(new Color(36, 47, 65));
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 
 		rdbtnNewRadioButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		rdbtnNewRadioButton_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -343,6 +355,10 @@ public class MainWin {
 		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("Low Active");
 		buttonGroup.add(rdbtnNewRadioButton_3);
 		rdbtnNewRadioButton_3.setBackground(new Color(36, 47, 65));
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 
 		rdbtnNewRadioButton_3.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		rdbtnNewRadioButton_3.setHorizontalAlignment(SwingConstants.CENTER);
