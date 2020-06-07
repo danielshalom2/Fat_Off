@@ -11,6 +11,8 @@ import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 
@@ -197,6 +199,7 @@ public class SaveRestore<T> {
 			writeFile = new ObjectOutputStream(pathToObj);
 			writeFile.writeObject(cust.getMeasuresMap());
 			writeFile.close();
+			pathToObj.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -258,16 +261,30 @@ public class SaveRestore<T> {
 			e.printStackTrace();
 		}
 		if (type.equals("Nutritionist")) {
-			((Nutritionist) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
+			try {
+				((Nutritionist) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
+			} catch (ClassNotFoundException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
-			((Admin) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
+			try {
+				((Admin) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
+			} catch (ClassNotFoundException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return nut;
 	}
 
-	public static ArrayList<Customer> restoreCustomers(String pathToCust) throws IOException {
+	public static ArrayList<Customer> restoreCustomers(String pathToCust) throws IOException, ClassNotFoundException {
 		File path = new File(pathToCust);
 		ArrayList<Customer> custList = new ArrayList<Customer>();
+		FileInputStream mfis;
+		ObjectInputStream mois;
+		Customer cus;
+		HashMap<Integer,Measures> meas = null;
 		if (path.list() == null) {
 			System.out.println(path.list());
 			return custList;
@@ -278,14 +295,18 @@ public class SaveRestore<T> {
 			}
 			fis = new FileInputStream(path + "/" + file + "/" + file + ".txt");
 			ois = new ObjectInputStream(fis);
-			try {
-				custList.add((Customer) ois.readObject());
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mfis = new FileInputStream(path + "/" + file + "/" + "Measures.txt"); 
+			mois = new ObjectInputStream(mfis);
+			cus = (Customer) ois.readObject();
+			meas = (HashMap<Integer, Measures>) mois.readObject();
+			System.out.println(meas.toString());
+			cus.setMeasuresMap((HashMap<Integer, Measures>) meas);
+			mfis.close();
+			mois.close();
+			fis.close();
+			ois.close();
+			custList.add(cus);
+			
 		}
 		return custList;
 	}
@@ -300,6 +321,39 @@ public class SaveRestore<T> {
 			path = System.getProperty("user.home") + "/.fat_off";
 		return path;
 	}
+	
+	public static String getNutPath(Nutritionist nut) {
+		
+		String folderName = nut.getFirstName() + "" + nut.getLastName() + "" + nut.getId();
+		File pathToDieticion = new File(SaveRestore.getPath() + "/Dieticions");
+		File pathToAdmin = new File(SaveRestore.getPath() + "/Admin");
+		String pathToReturn = "";
+		for (String desired : pathToAdmin.list()) {
+			if (desired.equals(".DS_Store")) {
+				continue;
+			}
+			if (desired.equals(folderName)) {
+				pathToReturn = pathToAdmin.toString() + "/" + folderName + "/Customers";
+				break;
+			}
+
+		}
+		if (pathToReturn.equals("")) {
+			for (String desired : pathToDieticion.list()) {
+				if (desired.equals(".DS_Store")) {
+					continue;
+				}
+
+				if (desired.equals(folderName)) {
+					pathToReturn = pathToDieticion.toString() + "/" + folderName + "/Customers";
+					break;
+				}
+
+			}
+
+		}
+		return pathToReturn;
+}
 
 	
 

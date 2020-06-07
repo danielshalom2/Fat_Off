@@ -38,7 +38,7 @@ public class Customer extends Person implements Serializable{
 		sessionsMap = new HashMap<Integer,Session>();
 		measuresMap = new HashMap<Integer,Measures>();
 		this.addSession(new Session(1),1);
-		this.addMeasures(new Measures() , 1);
+		this.addMeasures(new Measures() , 0);
 		this.pesronalInterview = null;
 //		this.Active=active;
 	}
@@ -103,6 +103,7 @@ public class Customer extends Person implements Serializable{
 	 */
 	public void addMeasures(Measures meas , Integer serial) {
 		this.measuresMap.put(serial, meas);
+		System.out.println(this.measuresMap.toString());
 	}
 
 	/**

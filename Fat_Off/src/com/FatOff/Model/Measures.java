@@ -1,6 +1,7 @@
 package com.FatOff.Model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 /**
  * This class represent any Measures which will be created in the Fat_Off project
  * 
@@ -9,9 +10,7 @@ import java.io.Serializable;
  */
 import java.util.*;
 
-public class Measures implements Serializable{
-
-	private float age;
+public class Measures implements Serializable {
 	private float weight;
 	private float height;
 	private float wrist;
@@ -19,60 +18,66 @@ public class Measures implements Serializable{
 	private float thigh;
 	private float bmi;
 	private float eer;
+	private String activity;
 	private String physique;
 
 	/**
-	 * @param age of the customer 
-	 * @param weight  of the customer
+	 * @param age    of the customer
+	 * @param weight of the customer
 	 * @param height of the customer
-	 * @param wrist of the customer
-	 * @param waist of the customer
-	 * @param thigh of the customer
+	 * @param wrist  of the customer
+	 * @param waist  of the customer
+	 * @param thigh  of the customer
 	 */
-	
-	public Measures(float age, float weight, float height, float wrist, float waist, float thigh) {
-		this.setAge(age);
+
+	public Measures(int age, float weight, float height, float wrist, float waist, float thigh, String gender, String activity) {
 		this.setWeight(weight);
 		this.setHeight(height);
 		this.setWrist(wrist);
 		this.setWaist(waist);
 		this.setThigh(thigh);
-		calcBMI(weight,height);
+		this.setActivity(activity);
+		calcBMI();
+		calcEER(gender, age, calcPA(gender));
 	}
-	
-	public Measures() {}//default constructor
+
+	public Measures() {
+	}// default constructor
 
 	/**
 	 * this function calculate the BMI of the customer
-	 * @param weight of the customer 
-	 * @param height  of the customer
+	 * 
+	 * @param weight of the customer
+	 * @param height of the customer
 	 * 
 	 */
-	public void calcBMI(float weight, float height) {
-		this.setBmi(weight / (height * height));
+	public void calcBMI() {
+
+		this.setBmi(this.weight / (this.height * this.height));
 	}
-	
-	
+
 	/**
 	 * this function calculate the EER measure of the customer
-	 * @param gender of the customer 
-	 * @param age  of the customer (years)
-	 * @param PA of the customer
-	 * @param height  of the customer
+	 * 
+	 * @param gender of the customer
+	 * @param age    of the customer (years)
+	 * @param PA     of the customer
+	 * @param height of the customer
 	 * @param weight of the customer
 	 * 
 	 */
-	public void calcEER(String gender, int age, float PA, float height, float weight) {
+	public void calcEER(String gender, int age, float PA) {
 		if (gender.equalsIgnoreCase("Male")) {
-			this.setEer((float) (662.0 - (9.53 * age) + (PA * (15.91) * weight) + (539.6 * height)));
+			this.setEer((float) (662.0 - (9.53 * age) + (PA * (15.91) * this.weight) + (539.6 * this.height)));
 		} else {
-			this.setEer((float) (354.0 - (6.91 * age) + (PA * (9.36) * weight) + (726 * height)));
+			this.setEer((float) (354.0 - (6.91 * age) + (PA * (9.36) * this.weight) + (726 * this.height)));
 		}
 	}
 
 	/**
-	 * this function calculate the Physique  of the customer
-	 * @param gender of the customer 
+	 * this function calculate the Physique of the customer
+	 * 
+	 * @param gender of the customer
 	 */
 	public void calcPhysic(String gender) {
 		float physique = this.height / this.wrist;
@@ -95,7 +100,34 @@ public class Measures implements Serializable{
 
 	}
 
+	public float calcPA(String gender) {
+		float Pa = 0;
+		if (this.activity.equalsIgnoreCase("sedentary"))
+			Pa = 1;
+		else if (this.activity.equalsIgnoreCase("low active")) {
+			if (gender.equalsIgnoreCase("male")) {
+				Pa = (float) 1.11;
 
+			} else
+				Pa = (float) 1.12;
+		}
+
+		else if (this.activity.equalsIgnoreCase("active")) {
+			if (gender.equalsIgnoreCase("male")) {
+				Pa = (float) 1.25;
+
+			} else
+				Pa = (float) 1.27;
+		} else {
+			if (gender.equalsIgnoreCase("male")) {
+				Pa = (float) 1.48;
+
+			} else
+				Pa = (float) 1.45;
+		}
+
+		return Pa;
+	}
 
 	/**
 	 * @return the bmi
@@ -111,32 +143,24 @@ public class Measures implements Serializable{
 		this.bmi = bmi;
 	}
 
-	/**
-	 * @return the age
-	 */
-	public float getAge() {
-		return age;
-	}
 
-	/**
-	 * @param age the age to set
-	 */
-	public void setAge(float age) {
-		this.age = age;
-	}
-	
 	/**
 	 * @return the height
 	 */
 	public float getHeight() {
 		return height;
 	}
-	
+
 	/**
 	 * @param height the weight to set
 	 */
 	public void setHeight(float height) {
-		this.height = height;
+		if ((int) height > 3)
+
+			this.height = (float) (height / 100.0);
+
+		else
+			this.height = height;
 	}
 
 	/**
@@ -208,7 +232,7 @@ public class Measures implements Serializable{
 	public void setPhysique(String physique) {
 		this.physique = physique;
 	}
-	
+
 	/**
 	 * @return the wrist
 	 */
@@ -221,6 +245,14 @@ public class Measures implements Serializable{
 	 */
 	public void setWrist(float wrist) {
 		this.wrist = wrist;
+	}
+
+	public String getActivity() {
+		return activity;
+	}
+
+	public void setActivity(String activity) {
+		this.activity = activity;
 	}
 
 }
