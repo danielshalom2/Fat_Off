@@ -42,7 +42,7 @@ public class CreateNutritionistWin {
 		nutritionistCrtFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/��IconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
 		nutritionistCrtFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 

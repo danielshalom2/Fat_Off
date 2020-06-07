@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.MatteBorder;
 
@@ -31,6 +32,11 @@ public NutResetPass(Object nut) {
 	nutRestPass.getContentPane().setBackground(new Color(36, 47, 65));
 	nutRestPass.getContentPane().setLayout(null);
 //	nutRestPass.getContentPane().setLayout(null);
+	
+	/////////////////////////////// set icon //////////////////////////////////
+	ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
+	nutRestPass.setIconImage(icon.getImage());
+	//////////////////////////////////////////////////////////////////////////
 	
 	JLabel lblNewLabel = new JLabel("Current Pass:");
 	lblNewLabel.setForeground(Color.WHITE);
