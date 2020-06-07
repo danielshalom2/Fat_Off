@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Date;
 
+import org.apache.commons.io.FileUtils;
+
 import com.FatOff.Model.Customer;
 import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.SaveRestore;
@@ -73,4 +75,33 @@ public class CustomerController {
 		int diff = (int)((today.getTime() - custDate.getTime())/(24*60*60*1000));
 		return new DecimalFormat("##.#").format((double)diff/365);
 		}
+	
+
+	public static void moveFolder(File srcPath, File destPath) {
+		
+		try {
+			FileUtils.copyDirectory(srcPath, destPath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		File[] finlist = srcPath.listFiles();
+		for (int n = 0; n < finlist.length; n++) {
+			if (finlist[n].isFile()) {
+				System.gc();
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				finlist[n].delete();
+			}
+		}
+		try {
+			FileUtils.deleteDirectory(srcPath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

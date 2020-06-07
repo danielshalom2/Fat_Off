@@ -19,6 +19,7 @@ import com.FatOff.Model.Admin;
 import com.FatOff.Model.Customer;
 import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.Person;
+import com.FatOff.Model.SaveRestore.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.MatteBorder;
 
@@ -144,35 +145,17 @@ public class MoveCustomerWin {
 				File srcPath = new File(CustomerController.pathToType((Nutritionist)srcNutsComboBox.getSelectedItem(),custFolderName));
 				File destPath = new File(CustomerController.pathToType((Nutritionist) destNutComboBox.getSelectedItem(),custFolderName));
 				
-				try {
-					FileUtils.copyDirectory(srcPath, destPath);
-				    File[] finlist = srcPath.listFiles();       
-				    for (int n = 0; n < finlist.length; n++) {
-				        if (finlist[n].isFile()) {
-				        System.gc();
-				        try {
-							Thread.sleep(200);
-						} catch (InterruptedException e1) {
-							e1.printStackTrace();
-						}
-				            finlist[n].delete();
-				        }
-				    }  
-				    FileUtils.deleteDirectory(srcPath);
-					((Nutritionist)srcNutsComboBox.getSelectedItem()).getCustomersList().remove(cst);
-					((Nutritionist) destNutComboBox.getSelectedItem()).getCustomersList().add(cst);
-					int choice = JOptionPane.showOptionDialog(assignBtn, "The customer was aasigned to " 
-												+ ((Nutritionist) destNutComboBox.getSelectedItem()).toString()
-												+ "..\nDo you want make another assignment?", 
-													"Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-													new ImageIcon("src/com/FatOff/View/IconFatOff.PNG"),null , null);
-					if(choice == JOptionPane.NO_OPTION) {
-						moveFrame.dispose();
-					}
-					
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				CustomerController.moveFolder(srcPath, destPath);
+				
+				((Nutritionist)srcNutsComboBox.getSelectedItem()).getCustomersList().remove(cst);
+				((Nutritionist) destNutComboBox.getSelectedItem()).getCustomersList().add(cst);
+				int choice = JOptionPane.showOptionDialog(assignBtn, "The customer was aasigned to " 
+											+ ((Nutritionist) destNutComboBox.getSelectedItem()).toString()
+											+ "..\nDo you want make another assignment?", 
+												"Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+												new ImageIcon("src/com/FatOff/View/IconFatOff.PNG"),null , null);
+				if(choice == JOptionPane.NO_OPTION) {
+					moveFrame.dispose();
 				}
 				
 //				try {
