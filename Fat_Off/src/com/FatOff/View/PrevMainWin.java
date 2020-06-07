@@ -1,5 +1,6 @@
 
 package com.FatOff.View;
+
 import javax.swing.*;
 
 import com.FatOff.Model.Customer;
@@ -10,8 +11,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 public class PrevMainWin {
-	 
+
 	private JTextField txtEnterWeight;
 	private JTextField txtHeight;
 	private JTextField txtEnterAge;
@@ -51,7 +53,7 @@ public class PrevMainWin {
 	private JTextField txtEnterSnack1;
 	private JTextField txtEnterSnack2;
 	private JTextField txtEnterSnack3;
-	
+
 	public PrevMainWin(Nutritionist nut , Customer cust) {
 		JFrame customerframe = new JFrame("custmer");
 		customerframe.setTitle("Session");
@@ -416,4 +418,3 @@ public class PrevMainWin {
 		
 	}
 }
-
