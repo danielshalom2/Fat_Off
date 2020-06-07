@@ -14,6 +14,7 @@ import java.util.*;
 public class Customer extends Person implements Serializable{
 	
 	private String gender;
+	private String Active;
 	private HashMap<Integer,Session> sessionsMap;
 	private HashMap<Integer, Measures> measuresMap;
 	private IntroductoryMeeting pesronalInterview;
@@ -39,6 +40,7 @@ public class Customer extends Person implements Serializable{
 		this.addSession(new Session(1),1);
 		this.addMeasures(new Measures() , 1);
 		this.pesronalInterview = null;
+//		this.Active=active;
 	}
 
 	/**
@@ -47,7 +49,13 @@ public class Customer extends Person implements Serializable{
 	public String getGender() {
 		return gender;
 	}
-
+//public void setActive(String active){
+//	this.Active=active;
+//}
+//
+//public void getActive(){
+//	return Active;
+//}
 	/**
 	 * @param gender the gender to set
 	 */
