@@ -24,15 +24,15 @@ public class InitialWin {
 	///need to check what need to be X
 	public InitialWin(File path,Object nut) {
 	
-		JFrame initailframe =new JFrame("Initial Window - FatOff");
-		initailframe.setResizable(false);
-		initailframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		initailframe.getContentPane().setBackground(new Color(36, 47, 65));
-		initailframe.getContentPane().setLayout(null);
+		JFrame initialframe =new JFrame("Initial Window - FatOff");
+		initialframe.setResizable(false);
+		initialframe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		initialframe.getContentPane().setBackground(new Color(36, 47, 65));
+		initialframe.getContentPane().setLayout(null);
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/��IconFatOff.PNG");
-		initailframe.setIconImage(icon.getImage());
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
+		initialframe.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 		
 		
@@ -41,21 +41,21 @@ public class InitialWin {
 		Logolbl.setForeground(Color.WHITE);
 		Logolbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		Logolbl.setBounds(0, 44, 133, 199);
-		initailframe.getContentPane().add(Logolbl, BorderLayout.NORTH);
+		initialframe.getContentPane().add(Logolbl, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel = new JLabel("Welcome to Fat Off");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
 		lblNewLabel.setBounds(194, 22, 296, 45);
-		initailframe.getContentPane().add(lblNewLabel);
+		initialframe.getContentPane().add(lblNewLabel);
 		
 		JLabel lblPleaseChooseYour = new JLabel("Please choose your action");
 		lblPleaseChooseYour.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPleaseChooseYour.setForeground(Color.WHITE);
 		lblPleaseChooseYour.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		lblPleaseChooseYour.setBounds(194, 57, 296, 45);
-		initailframe.getContentPane().add(lblPleaseChooseYour);
+		initialframe.getContentPane().add(lblPleaseChooseYour);
 		
 		JButton openCus = new JButton("Open Existing Customer");
 		openCus.addActionListener(new ActionListener() {
@@ -75,7 +75,7 @@ public class InitialWin {
 		        	public void actionPerformed(ActionEvent e) {
 		        		Customer selected = (Customer) comboBox.getSelectedItem();
 		        		new MainWinTest(((Nutritionist)nut),selected);
-		        		initailframe.dispose();	
+		        		initialframe.dispose();	
 		        		frame.dispose();
 		        		}
 		        });
@@ -98,7 +98,7 @@ public class InitialWin {
 		openCus.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		openCus.setBackground(new Color(97, 212, 195));
 		openCus.setBounds(241, 112, 199, 45);
-		initailframe.getContentPane().add(openCus);
+		initialframe.getContentPane().add(openCus);
 		
 		JButton createCus = new JButton("Create New Customer");
 		createCus.addActionListener(new ActionListener() {
@@ -111,12 +111,12 @@ public class InitialWin {
 		createCus.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		createCus.setBackground(new Color(97, 212, 195));
 		createCus.setBounds(241, 168, 199, 45);
-		initailframe.getContentPane().add(createCus);
+		initialframe.getContentPane().add(createCus);
 		
 		JButton quitbtn = new JButton("Quit");
 		quitbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				initailframe.dispose();
+				initialframe.dispose();
 			}
 		});
 		quitbtn.setForeground(Color.WHITE);
@@ -124,10 +124,10 @@ public class InitialWin {
 		quitbtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
 		quitbtn.setBackground(new Color(97, 212, 195));
 		quitbtn.setBounds(489, 251, 67, 19);
-		initailframe.getContentPane().add(quitbtn);
+		initialframe.getContentPane().add(quitbtn);
 		
 		JMenuBar menuBar = new JMenuBar();
-		initailframe.setJMenuBar(menuBar);
+		initialframe.setJMenuBar(menuBar);
 		
 		JMenu nutriMenu = new JMenu("Nutritionist Menu");
 		menuBar.add(nutriMenu);
@@ -170,9 +170,9 @@ public class InitialWin {
 		});
 		adminMenu.add(moveCus);
 	}
-		initailframe.setVisible(true);
-		initailframe.setSize(new Dimension(621, 351));
-		initailframe.setLocationRelativeTo(null);
+		initialframe.setVisible(true);
+		initialframe.setSize(new Dimension(621, 351));
+		initialframe.setLocationRelativeTo(null);
 	}		
 		
 	private static boolean customerFilter(Customer cust, String textToFilter) {

@@ -38,6 +38,11 @@ public class CreateAdminWin {
 		JFrame adminCrtFrame = new JFrame("Admin Creation");
 		adminCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		adminCrtFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
+		adminCrtFrame.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
 
 		JPanel formPanel = new JPanel();
 		formPanel.setBackground(new Color(36, 47, 65));

@@ -34,6 +34,11 @@ public class MainWin {
 		JFrame mainFrame = new JFrame();
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
+		mainFrame.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
+		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground((new Color(36,47,65)));
 		GroupLayout groupLayout = new GroupLayout(mainFrame.getContentPane());

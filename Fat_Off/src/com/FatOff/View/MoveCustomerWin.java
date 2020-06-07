@@ -28,6 +28,11 @@ public class MoveCustomerWin {
 
 		JFrame moveFrame = new JFrame("Assign Customer");
 		moveFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		/////////////////////////////// set icon //////////////////////////////////
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
+		moveFrame.setIconImage(icon.getImage());
+		//////////////////////////////////////////////////////////////////////////
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(36, 47, 65));
@@ -140,7 +145,6 @@ public class MoveCustomerWin {
 				File destPath = new File(CustomerController.pathToType((Nutritionist) destNutComboBox.getSelectedItem(),custFolderName));
 				
 				try {
-					//FileUtils.copyDirectory(srcPath, destPath);
 					FileUtils.copyDirectory(srcPath, destPath);
 				    File[] finlist = srcPath.listFiles();       
 				    for (int n = 0; n < finlist.length; n++) {
@@ -149,7 +153,6 @@ public class MoveCustomerWin {
 				        try {
 							Thread.sleep(200);
 						} catch (InterruptedException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 				            finlist[n].delete();

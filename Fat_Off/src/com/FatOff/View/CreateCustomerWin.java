@@ -45,7 +45,7 @@ public class CreateCustomerWin {
 		customerCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		customerCrtFrame.setBackground(new Color(36, 47, 65));
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/��IconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
 		customerCrtFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 

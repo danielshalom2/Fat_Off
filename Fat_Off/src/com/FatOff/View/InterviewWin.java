@@ -40,7 +40,7 @@ public class InterviewWin {
 		interviewFrame.getContentPane().setMaximumSize(new Dimension(32000, 32000));
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/��IconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
 		interviewFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 

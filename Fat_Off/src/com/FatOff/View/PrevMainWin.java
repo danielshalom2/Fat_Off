@@ -60,7 +60,7 @@ public class PrevMainWin {
 		/////////////////////
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/��IconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
 		customerframe.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 		

@@ -44,7 +44,7 @@ public class ResetPassWin {
 		resetFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		
 		/////////////////////////////// set icon //////////////////////////////////
-		ImageIcon icon = new ImageIcon("src/com/FatOff/View/��IconFatOff.PNG");
+		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
 		resetFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 		
