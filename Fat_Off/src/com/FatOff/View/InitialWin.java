@@ -122,9 +122,23 @@ public class InitialWin {
 		quitbtn.setForeground(Color.WHITE);
 		quitbtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		quitbtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
-		quitbtn.setBackground(new Color(97, 212, 195));
+		quitbtn.setBackground(new Color(255, 51, 0));
 		quitbtn.setBounds(489, 251, 67, 19);
 		initialframe.getContentPane().add(quitbtn);
+		
+		JButton logOffbtn = new JButton("Log Off");
+		logOffbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SignInWin();
+				initialframe.dispose();
+			}
+		});
+		logOffbtn.setForeground(Color.WHITE);
+		logOffbtn.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		logOffbtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.WHITE));
+		logOffbtn.setBackground(new Color(97, 212, 195));
+		logOffbtn.setBounds(412, 249, 67, 21);
+		initialframe.getContentPane().add(logOffbtn);
 		
 		JMenuBar menuBar = new JMenuBar();
 		initialframe.setJMenuBar(menuBar);
@@ -182,5 +196,4 @@ public class InitialWin {
         return CustomComboRenderer.getCustomerDisplayText(cust).toLowerCase()
                                   .contains(textToFilter.toLowerCase());
     }
-
 }
