@@ -10,11 +10,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Enumeration;
+import java.util.HashMap;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainWin {
 	private JTextField customerNameField;
@@ -205,6 +209,30 @@ public class MainWin {
 		JButton clearBtn = new JButton("Clear");
 		
 		JButton calcBtn = new JButton("Claculate");
+		calcBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Measures temp = new Measures (
+						
+						Float.parseFloat(ageTFIeld.getText()),
+						Float.parseFloat(wightTField.getText()),
+						Float.parseFloat( heightTField.getText()),
+						Float.parseFloat(wristTField.getText()),
+						Float.parseFloat( weistTField.getText()),
+						Float.parseFloat( thighTField.getText())
+						);
+				System.out.println("test");
+				System.out.println(temp.getBmi());
+				if(cust.getMeasuresMap().size()==1)
+				{
+					cust.addMeasures(temp,1);
+				}
+				else {
+					cust.addMeasures(temp,cust.getMeasuresMap().size()+1);
+				}
+//				System.out.println(temp.getBmi());
+				bmiTField.setText(Double.toString(temp.getBmi()));
+			}
+		});
 		
 		JButton emailSummBtn = new JButton("Save and Send");
 		
@@ -452,6 +480,8 @@ public class MainWin {
 					.addGap(40))
 		);
 		
+		
+		
 		JTextArea dinnerArea = new JTextArea();
 		dinnerScrlPane.setViewportView(dinnerArea);
 		
@@ -468,6 +498,16 @@ public class MainWin {
 		mainFrame.setVisible(true);
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.pack();
-	
 	}
-}
+		String getSelectedButtonText(ButtonGroup buttonGroup) {
+			for (Enumeration buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+				AbstractButton button = (AbstractButton) buttons.nextElement();
+
+				if (button.isSelected()) {
+					return button.getText();
+				}
+			}
+
+			return null;
+		}
+	}

@@ -37,7 +37,7 @@ public class Measures implements Serializable{
 		this.setWrist(wrist);
 		this.setWaist(waist);
 		this.setThigh(thigh);
-
+		calcBMI(weight,height);
 	}
 	
 	public Measures() {}//default constructor
