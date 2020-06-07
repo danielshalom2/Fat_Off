@@ -11,6 +11,9 @@ import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import org.apache.commons.io.FileUtils;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -39,8 +42,6 @@ public class SaveRestore<T> {
 	private FileOutputStream pathToObj;
 	private static FileInputStream fis;
 	private static ObjectInputStream ois;
-	
-	 
 
 	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
 	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.NORMAL, BaseColor.BLACK);
@@ -191,7 +192,7 @@ public class SaveRestore<T> {
 	private void storeMeasures(String path, Customer cust) throws IOException {
 
 		try {
-			
+
 			pathToObj = new FileOutputStream(path + "Measures.txt");
 			writeFile = new ObjectOutputStream(pathToObj);
 			writeFile.writeObject(cust.getMeasuresMap());
@@ -299,6 +300,8 @@ public class SaveRestore<T> {
 			path = System.getProperty("user.home") + "/.fat_off";
 		return path;
 	}
+
+	
 
 	// ############################################### PDF Writer
 	// #################################################
