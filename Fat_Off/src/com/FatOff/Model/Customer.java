@@ -14,9 +14,7 @@ import java.util.*;
 public class Customer extends Person implements Serializable{
 	
 	private String gender;
-	private String Active;
-	private HashMap<Integer,Session> sessionsMap;
-	private HashMap<Integer, Measures> measuresMap;
+	private ArrayList<Session> sessions;
 	private IntroductoryMeeting pesronalInterview;
 	final private Date dateOfBirth;
 
@@ -35,12 +33,8 @@ public class Customer extends Person implements Serializable{
 		//initialization of the local private variable
 		this.gender = gender;
 		dateOfBirth = bDate;
-		sessionsMap = new HashMap<Integer,Session>();
-		measuresMap = new HashMap<Integer,Measures>();
-		this.addSession(new Session(1),1);
-		this.addMeasures(new Measures() , 0);
+		this.setSessions(new ArrayList<Session>());
 		this.pesronalInterview = null;
-//		this.Active=active;
 	}
 
 	/**
@@ -49,61 +43,12 @@ public class Customer extends Person implements Serializable{
 	public String getGender() {
 		return gender;
 	}
-//public void setActive(String active){
-//	this.Active=active;
-//}
-//
-//public void getActive(){
-//	return Active;
-//}
+
 	/**
 	 * @param gender the gender to set
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-
-	/**
-	 * @return the sessionsMap
-	 */
-	public HashMap<Integer,Session> getSessionsMap() {
-		return sessionsMap;
-	}
-	
-	/**
-	 * @param session The session to add
-	 */
-	public void addSession(Session sess , Integer serial) {
-		this.sessionsMap.put(serial, sess);
-	}
-
-	/**
-	 * @param sessionsMap the sessionsMap to set
-	 */
-	public void setSessionsMap(HashMap<Integer,Session> sessionsMap) {
-		this.sessionsMap = sessionsMap;
-	}
-
-	/**
-	 * @return the measuresMap
-	 */
-	public HashMap<Integer, Measures> getMeasuresMap() {
-		return measuresMap;
-	}
-
-	/**
-	 * @param measuresMap the measuresMap to set
-	 */
-	public void setMeasuresMap(HashMap<Integer, Measures> measuresMap) {
-		this.measuresMap = measuresMap;
-	}
-	
-	/**
-	 * @param measure the measures to add
-	 */
-	public void addMeasures(Measures meas , Integer serial) {
-		this.measuresMap.put(serial, meas);
-		System.out.println(this.measuresMap.toString());
 	}
 
 	/**
@@ -124,6 +69,20 @@ public class Customer extends Person implements Serializable{
 	 */
 	public Date getDateOfBirth() {
 		return dateOfBirth;
+	}
+
+	/**
+	 * @return the session
+	 */
+	public ArrayList<Session> getSessions() {
+		return sessions;
+	}
+
+	/**
+	 * @param session the session to set
+	 */
+	public void setSessions(ArrayList<Session> session) {
+		this.sessions = session;
 	}
 
 	/**

@@ -11,8 +11,6 @@ import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 
@@ -145,15 +143,10 @@ public class SaveRestore<T> {
 	public void storeCustomer(String path, Customer cust) throws IOException {
 		String tempCustPath = cust.getFirstName() + "_" + cust.getLastName() + "_" + cust.getId();
 		File custDir = new File(path + "/" + tempCustPath);
+		File custSessions = new File(custDir + "/Sessions");
 		if (!custDir.exists()) {
 			custDir.mkdir();
-		}
-		try {
-			this.storeSessions(path + "/" + tempCustPath + "/", cust);
-			this.storeMeasures(path + "/" + tempCustPath + "/", cust);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			custSessions.mkdir();		
 		}
 		try {
 			pathToObj = new FileOutputStream(custDir + "/" + tempCustPath + ".txt");
@@ -172,16 +165,23 @@ public class SaveRestore<T> {
 	 * @param cust
 	 * @throws IOException
 	 */
-	private void storeSessions(String path, Customer cust) throws IOException {
-
+	public boolean storeSessions(String path, Session session) throws IOException {
+		File sessionFolder = new File(path + "/Session_" + session.getSessionNum());
+		System.out.println(sessionFolder.toString());
+		sessionFolder.mkdir();
 		try {
-			pathToObj = new FileOutputStream(path + "Sessions.txt");
+			pathToObj = new FileOutputStream(sessionFolder + "/Session_" + session.getSessionNum() + ".txt");
 			writeFile = new ObjectOutputStream(pathToObj);
-			writeFile.writeObject(cust.getSessionsMap());
+			writeFile.writeObject(session);
 			writeFile.close();
+			if(!storeMeasures(sessionFolder, session.getMeasures())) {
+				return false;
+			}
+			return true;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 
@@ -191,17 +191,16 @@ public class SaveRestore<T> {
 	 * @param cust
 	 * @throws IOException
 	 */
-	private void storeMeasures(String path, Customer cust) throws IOException {
-
+	private boolean storeMeasures(File path, Measures meas) throws IOException {
 		try {
-
-			pathToObj = new FileOutputStream(path + "Measures.txt");
+			pathToObj = new FileOutputStream(path + "/Measures.txt");
 			writeFile = new ObjectOutputStream(pathToObj);
-			writeFile.writeObject(cust.getMeasuresMap());
+			writeFile.writeObject(meas);
 			writeFile.close();
-			pathToObj.close();
+			return true;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
@@ -261,30 +260,16 @@ public class SaveRestore<T> {
 			e.printStackTrace();
 		}
 		if (type.equals("Nutritionist")) {
-			try {
-				((Nutritionist) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
-			} catch (ClassNotFoundException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			((Nutritionist) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
 		} else {
-			try {
-				((Admin) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
-			} catch (ClassNotFoundException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			((Admin) nut).setCustomersList(restoreCustomers(pathToCustomers.toString()));
 		}
 		return nut;
 	}
 
-	public static ArrayList<Customer> restoreCustomers(String pathToCust) throws IOException, ClassNotFoundException {
+	public static ArrayList<Customer> restoreCustomers(String pathToCust) throws IOException {
 		File path = new File(pathToCust);
 		ArrayList<Customer> custList = new ArrayList<Customer>();
-		FileInputStream mfis;
-		ObjectInputStream mois;
-		Customer cus;
-		HashMap<Integer,Measures> meas = null;
 		if (path.list() == null) {
 			System.out.println(path.list());
 			return custList;
@@ -295,18 +280,14 @@ public class SaveRestore<T> {
 			}
 			fis = new FileInputStream(path + "/" + file + "/" + file + ".txt");
 			ois = new ObjectInputStream(fis);
-			mfis = new FileInputStream(path + "/" + file + "/" + "Measures.txt"); 
-			mois = new ObjectInputStream(mfis);
-			cus = (Customer) ois.readObject();
-			meas = (HashMap<Integer, Measures>) mois.readObject();
-			System.out.println(meas.toString());
-			cus.setMeasuresMap((HashMap<Integer, Measures>) meas);
-			mfis.close();
-			mois.close();
-			fis.close();
-			ois.close();
-			custList.add(cus);
-			
+			try {
+				custList.add((Customer) ois.readObject());
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return custList;
 	}
@@ -321,10 +302,10 @@ public class SaveRestore<T> {
 			path = System.getProperty("user.home") + "/.fat_off";
 		return path;
 	}
-	
+
 	public static String getNutPath(Nutritionist nut) {
-		
-		String folderName = nut.getFirstName() + "" + nut.getLastName() + "" + nut.getId();
+
+		String folderName = nut.getFirstName() + "_" + nut.getLastName() + "_" + nut.getId();
 		File pathToDieticion = new File(SaveRestore.getPath() + "/Dieticions");
 		File pathToAdmin = new File(SaveRestore.getPath() + "/Admin");
 		String pathToReturn = "";
@@ -333,7 +314,7 @@ public class SaveRestore<T> {
 				continue;
 			}
 			if (desired.equals(folderName)) {
-				pathToReturn = pathToAdmin.toString() + "/" + folderName + "/Customers";
+				pathToReturn = pathToAdmin.toString() + "/" + folderName + "/Customers/";
 				break;
 			}
 
@@ -345,7 +326,7 @@ public class SaveRestore<T> {
 				}
 
 				if (desired.equals(folderName)) {
-					pathToReturn = pathToDieticion.toString() + "/" + folderName + "/Customers";
+					pathToReturn = pathToDieticion.toString() + "/" + folderName + "/Customers/";
 					break;
 				}
 
@@ -353,9 +334,8 @@ public class SaveRestore<T> {
 
 		}
 		return pathToReturn;
-}
+	}
 
-	
 
 	// ############################################### PDF Writer
 	// #################################################

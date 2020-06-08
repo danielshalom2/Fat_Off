@@ -3,46 +3,46 @@ import com.FatOff.MailSender.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 
 public class Session implements Serializable{
 	
-	private String SessionDate;
+	private LocalDateTime sessionDate;
 	private int sessionNum;
+	private Measures measures;
+	private String sessionSummary;
+	private String breakfast;
+	private String snack1;
+	private String lunch;
+	private String snack2;
+	private String dinner;
 	
 	public Session(int sessionNum) {
-		LocalDateTime now = LocalDateTime.now();
-		setSessionDate(DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now));
-		setSessionNum(sessionNum);
-		
+		sessionDate = LocalDateTime.now();
+		setSessionNum(sessionNum);	
 	}
 	
-	public void AddCustomerMeasures(Customer cust , Measures meas)// need to write.
-	{
-		cust.addMeasures(meas, this.sessionNum);
-	}
+	
 	
 	public void SendEmail()// need to write.
 	{
 		//MailSender mail = new MailSender();
 	}
 	
-	public void SummarySession()// need to write.
-	{
-		
-	}
+	
 	
 	/**
 	 * @return the sessionDate
 	 */
-	public String getSessionDate() {
-		return SessionDate;
+	public LocalDateTime getSessionDate() {
+		return sessionDate;
 	}
 	/**
 	 * @param string the sessionDate to set
 	 */
-	public void setSessionDate(String string) {
-		SessionDate = string;
+	public void setSessionDate(LocalDateTime date) {
+		sessionDate = date;
 	}
 
 	/**
@@ -57,6 +57,120 @@ public class Session implements Serializable{
 	 */
 	public void setSessionNum(int sessionNum) {
 		this.sessionNum = sessionNum;
+	}
+
+	/**
+	 * @return the measures
+	 */
+	public Measures getMeasures() {
+		return measures;
+	}
+
+	/**
+	 * @param measures the measures to set
+	 */
+	public void setMeasures(Measures measures) {
+		this.measures = measures;
+	}
+
+	/**
+	 * @return the sessionSummary
+	 */
+	public String getSessionSummary() {
+		return sessionSummary;
+	}
+
+	/**
+	 * @param sessionSummary the sessionSummary to set
+	 */
+	public void setSessionSummary(String sessionSummary) {
+		this.sessionSummary = sessionSummary;
+	}
+
+	/**
+	 * @return the breakfast
+	 */
+	public String getBreakfast() {
+		return breakfast;
+	}
+
+	/**
+	 * @param breakfast the breakfast to set
+	 */
+	public void setBreakfast(String breakfast) {
+		this.breakfast = breakfast;
+	}
+
+
+
+	/**
+	 * @return the snack1
+	 */
+	public String getSnack1() {
+		return snack1;
+	}
+
+
+
+	/**
+	 * @param snack1 the snack1 to set
+	 */
+	public void setSnack1(String snack1) {
+		this.snack1 = snack1;
+	}
+
+
+
+	/**
+	 * @return the lunch
+	 */
+	public String getLunch() {
+		return lunch;
+	}
+
+
+
+	/**
+	 * @param lunch the lunch to set
+	 */
+	public void setLunch(String lunch) {
+		this.lunch = lunch;
+	}
+
+
+
+	/**
+	 * @return the snack2
+	 */
+	public String getSnack2() {
+		return snack2;
+	}
+
+
+
+	/**
+	 * @param snack2 the snack2 to set
+	 */
+	public void setSnack2(String snack2) {
+		this.snack2 = snack2;
+	}
+
+
+
+	/**
+	 * @return the dinner
+	 */
+	public String getDinner() {
+		return dinner;
+	}
+
+
+
+	/**
+	 * @param dinner the dinner to set
+	 */
+	public void setDinner(String dinner) {
+		this.dinner = dinner;
 	}
 
 
