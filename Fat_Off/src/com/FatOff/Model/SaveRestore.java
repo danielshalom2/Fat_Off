@@ -225,7 +225,29 @@ public class SaveRestore<T> {
 		}
 		addInterviewContent(newDoc, ((Customer) obj).getPesronalInterview());
 		newDoc.close();
-
+	}
+	
+	public void storeSessionToPdf(Session sess, String pathToSession) throws FileNotFoundException, DocumentException {
+		String temp_path = pathToSession + "/Session_" + sess.getSessionNum();
+		String sessDate = DateTimeFormatter.ofPattern("dd-MM-YYYY").format(sess.getSessionDate()).toString();
+		FileOutputStream fos = new FileOutputStream(temp_path + "/Session_" + sessDate +".pdf");
+		Document newDoc = new Document();
+		PdfWriter.getInstance(newDoc, fos);
+		newDoc.open();
+		try {
+			addTitlePage(newDoc, (Customer) obj);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		addSessionContent(newDoc, sess);
+		newDoc.close();
 	}
 
 	public static Object restoreFromFile(String name, String type) throws IOException {
@@ -449,81 +471,53 @@ public class SaveRestore<T> {
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//		Section subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getWhyGoToNut()));
-////
-//		subPara = new Paragraph("What is your goal?", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getWhatTarget()));
+
 		catPart = new Paragraph(new Paragraph("2. What is your goal?", subFont));
 		subPara = new Paragraph(intro.getWhatTarget(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
-//		subPara = new Paragraph("Has someone pushed you to go to a dietician? Please elaborate..", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getSomeoneSentYou()));
+
 		catPart = new Paragraph(
 				new Paragraph("3. Has someone pushed you to go to a dietician? Please elaborate..", subFont));
 		subPara = new Paragraph(intro.getSomeoneSentYou(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
-//		subPara = new Paragraph("Have you ever started a process with a dietician? Please elaborate..", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getHaveYouBeenToNut()));
+
 		catPart = new Paragraph(
 				new Paragraph("4. Have you ever started a process with a dietician? Please elaborate..", subFont));
 		subPara = new Paragraph(intro.getHaveYouBeenToNut(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
-//		subPara = new Paragraph("Do you have troubles with concentrating recently?", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getConcentrationIssue()));
+
 		catPart = new Paragraph(new Paragraph("5. Do you have troubles with concentrating recently?", subFont));
 		subPara = new Paragraph(intro.getConcentrationIssue(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
-//		subPara = new Paragraph("Have you recently gained or lost weight unexpectedly?", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getGainedLostWeight()));
+
 		catPart = new Paragraph(new Paragraph("6. Have you recently gained or lost weight unexpectedly?", subFont));
 		subPara = new Paragraph(intro.getGainedLostWeight(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
-//		subPara = new Paragraph("Where there any digestion problems (diarrhea, vomiting, Lack of appetite)?", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getStomackIssue()));
+
 		catPart = new Paragraph(new Paragraph(
 				"7. Where there any digestion problems (diarrhea, vomiting, Lack of appetite)?", subFont));
 		subPara = new Paragraph(intro.getStomackIssue(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
-//		subPara = new Paragraph("Typical day (Wakeup time, daily activity, work hours, work type," + "\n"
-//				+ "sport actvity (How often))...", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getTypicalDay()));
+
 		catPart = new Paragraph(new Paragraph("8. Typical day (Wakeup time, daily activity, work hours, work type,"
 				+ "\n" + "sport actvity (How often))...", subFont));
 		subPara = new Paragraph(intro.getTypicalDay(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
 
-//		subPara = new Paragraph("Describe what you ate yesterday (or any other specific day).", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getYesterdayEat()));
 		catPart = new Paragraph(
 				new Paragraph("9. Describe what you ate yesterday (or any other specific day).", subFont));
 		subPara = new Paragraph(intro.getYesterdayEat(), blackFont);
@@ -531,28 +525,19 @@ public class SaveRestore<T> {
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
 
-//		subPara = new Paragraph("Do you have any alergies? Please elaborate..", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getAllergies()));
 		catPart = new Paragraph(new Paragraph("10. Do you have any alergies? Please elaborate..", subFont));
 		subPara = new Paragraph(intro.getAllergies(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
-//		subPara = new Paragraph("Are there any food product you don't like? Please elaborate..", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getDislikeFood()));
+
 		catPart = new Paragraph(
 				new Paragraph("11. Are there any food product you don't like? Please elaborate..", subFont));
 		subPara = new Paragraph(intro.getDislikeFood(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
-//
-//		subPara = new Paragraph("Are there any backgroud diseases? Any medications you take?", subFont);
-//		subCatPart = catPart.addSection(subPara);
-//		subCatPart.add(new Paragraph(intro.getMedication()));
+
 		catPart = new Paragraph(
 				new Paragraph("12. Are there any backgroud diseases? Any medications you take?", subFont));
 		subPara = new Paragraph(intro.getMedication(), blackFont);
@@ -561,6 +546,81 @@ public class SaveRestore<T> {
 		addEmptyLine(subPara, 1);
 
 	}
+	
+	private static void addSessionContent(Document document, Session sess) throws DocumentException {
+		Measures meas = sess.getMeasures();
+
+		try {
+			Image image = Image.getInstance("Image/imgonline-com-ua-resize-5aRADIEx30404X17.png");
+			document.add(image);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Paragraph preface = new Paragraph();
+		// We add one empty line
+		addEmptyLine(preface, 1);
+		// Lets write a big header
+		preface.add(new Paragraph("Customer Measures:", catFont));
+
+		addEmptyLine(preface, 1);
+
+		preface.add(new Paragraph("Weight: " + meas.getWeight(), blackFont));
+		preface.add(new Paragraph("Height: " + meas.getHeight(), blackFont));
+		preface.add(new Paragraph("Waist: " + meas.getWeight(), blackFont));
+		preface.add(new Paragraph("Thigh: " + meas.getThigh(), blackFont));
+		preface.add(new Paragraph("Wrist: " + meas.getWrist(), blackFont));
+		
+		addEmptyLine(preface, 1);
+		
+		preface.add(new Paragraph("BMI: " + meas.getBmi(), blackFont));
+		preface.add(new Paragraph("EER: " + meas.getEer(), blackFont));
+		preface.add(new Paragraph("Activity Level: " + meas.getActivity(), blackFont));
+		preface.add(new Paragraph("Physique: " + meas.getPhysique(), blackFont));
+		
+		addEmptyLine(preface, 3);
+
+		document.add(preface);
+
+		// Second parameter is the number of the chapter
+		Paragraph catPart = new Paragraph(new Paragraph("Session " + sess.getSessionNum() + " Summary", subFont));
+		Paragraph subPara = new Paragraph(sess.getSessionSummary(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara, 3);
+		
+		catPart = new Paragraph(new Paragraph("1. Breakfast suggestion:", subFont));
+		subPara = new Paragraph(sess.getBreakfast(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara, 1);
+
+		catPart = new Paragraph(new Paragraph("2. Snack 1 suggestion:", subFont));
+		subPara = new Paragraph(sess.getSnack1(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara, 1);
+
+		catPart = new Paragraph("3. Lunch suggestion:", subFont);
+		subPara = new Paragraph(sess.getLunch(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara, 1);
+	
+		catPart = new Paragraph("4. Snack 2 suggestion:", subFont);
+		subPara = new Paragraph(sess.getSnack2(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara, 1);
+
+		catPart = new Paragraph(new Paragraph("5. Dinner suggestion:", subFont));
+		subPara = new Paragraph(sess.getDinner(), blackFont);
+		document.add(catPart);
+		document.add(subPara);
+		addEmptyLine(subPara, 1);
+
+	}
+
 
 	// add a list
 //        createList(subCatPart);

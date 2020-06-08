@@ -6,6 +6,8 @@ import javax.swing.*;
 import com.FatOff.Controller.CustomerController;
 import com.FatOff.Controller.SessionMeasureController;
 import com.FatOff.Model.*;
+import com.itextpdf.text.DocumentException;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -40,6 +42,7 @@ public class MainWin {
 	private JTextField bmiTField;
 	private JTextField eerTField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTextField physiqueTField;
 
 	public MainWin(Nutritionist nut, Customer cust, String activity) {
 
@@ -242,6 +245,26 @@ public class MainWin {
 		eerTField = new JTextField();
 		eerTField.setEditable(false);
 		eerTField.setColumns(10);
+		
+		JLabel physiqueLbl = new JLabel("Physique:");
+		physiqueLbl.setForeground(Color.WHITE);
+		physiqueLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		physiqueTField = new JTextField();
+		physiqueTField.setEditable(false);
+		physiqueTField.setColumns(10);
+		
+		JTextArea dinnerArea = new JTextArea();
+		dinnerScrlPane.setViewportView(dinnerArea);
+
+		JTextArea lunchArea = new JTextArea();
+		lunchfastScrlPane.setViewportView(lunchArea);
+
+		JTextArea breakfastArea = new JTextArea();
+		breakfastScrlPane.setViewportView(breakfastArea);
+
+		JTextArea summaryArea = new JTextArea();
+		summaryScrlPane.setViewportView(summaryArea);
 
 		JButton clearBtn = new JButton("Clear");
 		clearBtn.setFont(new Font("Century Gothic", Font.PLAIN, 10));
@@ -260,6 +283,7 @@ public class MainWin {
 				
 				bmiTField.setText(new DecimalFormat("##.##").format((float) temp.getBmi()));
 				eerTField.setText(new DecimalFormat("##.##").format((float) temp.getEer()));
+				physiqueTField.setText(temp.getPhysique());
 				
 				sess.setMeasures(temp);
 			}
@@ -271,7 +295,15 @@ public class MainWin {
 				boolean succeed;
 				String pathToNut = SaveRestore.getNutPath(nut);
 				try {
-					succeed = SessionMeasureController.storeSession(sess , cust , pathToNut);
+					try {
+						succeed = SessionMeasureController.storeSession(sess , cust , pathToNut, summaryArea.getText(),
+								breakfastArea.getText(), textField_1.getText(), lunchArea.getText(), 
+								textField_2.getText(), dinnerArea.getText());
+					} catch (DocumentException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						succeed = false;
+					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -374,50 +406,51 @@ public class MainWin {
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_mainPanel.createSequentialGroup()
 							.addGap(24)
-							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(thighLbl)
-								.addGroup(gl_mainPanel.createSequentialGroup()
-									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(bmiLbl)
-										.addComponent(eerLbl))
-									.addGap(18)
-									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(eerTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(bmiTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addComponent(clearBtn)
 									.addGap(18)
 									.addComponent(calcBtn))
 								.addComponent(measuresLbl)
 								.addGroup(gl_mainPanel.createSequentialGroup()
-									.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING)
-										.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-											.addComponent(weistLbl)
-											.addComponent(lblActivity, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-											.addComponent(wristLbl, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
-										.addGroup(Alignment.LEADING, gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
+									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(weistLbl)
+										.addComponent(lblActivity, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+										.addComponent(wristLbl, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+										.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
 											.addComponent(heightLbl, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 											.addComponent(weightLbl, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-										.addGroup(Alignment.TRAILING, gl_mainPanel.createSequentialGroup()
+										.addGroup(gl_mainPanel.createSequentialGroup()
 											.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_mainPanel.createSequentialGroup()
-													.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-														.addComponent(rdbtnNewRadioButton)
-														.addComponent(rdbtnNewRadioButton_1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-													.addGap(18)
-													.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
-														.addComponent(rdbtnNewRadioButton_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(rdbtnNewRadioButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-												.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
-													.addComponent(thighTField, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-													.addComponent(weistTField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
-											.addGap(20))
-										.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
-											.addComponent(heightTField, 0, 0, Short.MAX_VALUE)
+												.addComponent(rdbtnNewRadioButton)
+												.addComponent(rdbtnNewRadioButton_1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+											.addGap(18)
+											.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
+												.addComponent(rdbtnNewRadioButton_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(rdbtnNewRadioButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+										.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
+											.addComponent(thighTField, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+											.addComponent(weistTField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
 											.addComponent(weightTField, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-											.addComponent(wristTField, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))))))
+											.addComponent(heightTField, Alignment.LEADING, 0, 0, Short.MAX_VALUE))
+										.addComponent(wristTField, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
+									.addGap(20))
+								.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
+									.addGroup(gl_mainPanel.createSequentialGroup()
+										.addComponent(physiqueLbl)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(physiqueTField, 0, 0, Short.MAX_VALUE))
+									.addGroup(Alignment.LEADING, gl_mainPanel.createSequentialGroup()
+										.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+											.addComponent(bmiLbl)
+											.addComponent(eerLbl))
+										.addGap(18)
+										.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+											.addComponent(eerTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(bmiTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))))
 						.addGroup(gl_mainPanel.createSequentialGroup()
 							.addComponent(logoLbl)
 							.addGap(41)
@@ -441,16 +474,16 @@ public class MainWin {
 									.addComponent(todayLbl))))
 						.addGroup(gl_mainPanel.createSequentialGroup()
 							.addGap(20)
-							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(dinnerScrlPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-								.addComponent(summaryScrlPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-								.addComponent(lunchfastScrlPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-								.addComponent(breakfastScrlPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-								.addGroup(Alignment.TRAILING, gl_mainPanel.createSequentialGroup()
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(dinnerScrlPane, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+								.addComponent(summaryScrlPane, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+								.addComponent(lunchfastScrlPane, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+								.addComponent(breakfastScrlPane, GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addComponent(snack1Lbl)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
-								.addGroup(Alignment.TRAILING, gl_mainPanel.createSequentialGroup()
+								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addComponent(snack2Lbl)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
@@ -461,7 +494,7 @@ public class MainWin {
 								.addComponent(breakfastLbl)
 								.addComponent(lunchLbl)
 								.addComponent(dinnerLbl)
-								.addGroup(Alignment.TRAILING, gl_mainPanel.createSequentialGroup()
+								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addComponent(btnNewButton)
 									.addGap(26)
 									.addComponent(emailSummBtn)))))
@@ -486,22 +519,18 @@ public class MainWin {
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 										.addComponent(ageLbl)
-										.addComponent(ageTFIeld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGap(0, 0, Short.MAX_VALUE))
+										.addComponent(ageTFIeld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addContainerGap()
 									.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 										.addComponent(todayLbl)
 										.addComponent(dateLbl))
 									.addGap(39)
-									.addComponent(openIntroMeetBtn, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)))
-							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(openIntroMeetBtn, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(summaryScrlPane, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_mainPanel.createSequentialGroup()
-									.addGap(18)
-									.addComponent(summaryScrlPane, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.TRAILING, gl_mainPanel.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 									.addComponent(gnrlSummTPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addGap(19)))))
 					.addGap(16)
@@ -511,7 +540,7 @@ public class MainWin {
 							.addGap(20)
 							.addComponent(breakfastLbl))
 						.addComponent(measuresLbl))
-					.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_mainPanel.createSequentialGroup()
 							.addGap(18)
 							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
@@ -543,7 +572,7 @@ public class MainWin {
 								.addComponent(rdbtnNewRadioButton_1)
 								.addComponent(rdbtnNewRadioButton_3))
 							.addGap(12))
-						.addGroup(Alignment.TRAILING, gl_mainPanel.createSequentialGroup()
+						.addGroup(gl_mainPanel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(breakfastScrlPane, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
@@ -568,11 +597,15 @@ public class MainWin {
 						.addComponent(bmiTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(12)
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(eerLbl)
-						.addComponent(eerTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_mainPanel.createSequentialGroup()
-							.addComponent(dinnerScrlPane, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(eerLbl)
+								.addComponent(eerTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(physiqueLbl)
+								.addComponent(physiqueTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(dinnerScrlPane, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
 					.addGap(61)
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(emailSummBtn)
@@ -580,17 +613,7 @@ public class MainWin {
 					.addGap(40))
 		);
 
-		JTextArea dinnerArea = new JTextArea();
-		dinnerScrlPane.setViewportView(dinnerArea);
-
-		JTextArea lunchArea = new JTextArea();
-		lunchfastScrlPane.setViewportView(lunchArea);
-
-		JTextArea breakfastArea = new JTextArea();
-		breakfastScrlPane.setViewportView(breakfastArea);
-
-		JTextArea summaryArea = new JTextArea();
-		summaryScrlPane.setViewportView(summaryArea);
+		
 		mainPanel.setLayout(gl_mainPanel);
 		mainFrame.getContentPane().setLayout(groupLayout);
 		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);

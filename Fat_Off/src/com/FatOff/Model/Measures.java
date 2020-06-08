@@ -39,6 +39,7 @@ public class Measures implements Serializable {
 		this.setActivity(activity);
 		calcBMI();
 		calcEER(gender, age, calcPA(gender));
+		calcPhysic(gender);
 	}
 
 	public Measures() {
