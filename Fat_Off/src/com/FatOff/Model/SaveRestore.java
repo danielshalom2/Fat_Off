@@ -267,8 +267,9 @@ public class SaveRestore<T> {
 		return nut;
 	}
 
-	public static ArrayList<Customer> restoreCustomers(String pathToCust) throws IOException {
+	private static ArrayList<Customer> restoreCustomers(String pathToCust) throws IOException {
 		File path = new File(pathToCust);
+		Customer cust;
 		ArrayList<Customer> custList = new ArrayList<Customer>();
 		if (path.list() == null) {
 			System.out.println(path.list());
@@ -281,7 +282,9 @@ public class SaveRestore<T> {
 			fis = new FileInputStream(path + "/" + file + "/" + file + ".txt");
 			ois = new ObjectInputStream(fis);
 			try {
-				custList.add((Customer) ois.readObject());
+				cust = (Customer) ois.readObject();
+				cust.setSessions(restoreSessions(path + "/" + file + "/Sessions"));
+				custList.add(cust);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
@@ -290,6 +293,37 @@ public class SaveRestore<T> {
 			}
 		}
 		return custList;
+	}
+	
+	private static ArrayList<Session> restoreSessions(String pathToSessions) throws IOException{
+		File path = new File(pathToSessions);
+		ArrayList<Session> sessList = new ArrayList<Session>();
+		Session sess;
+		if (path.list() == null) {
+			System.out.println(path.list());
+			return sessList;
+		}
+		for (String file : path.list()) {
+			if (file.equals(".DS_Store")) {
+				continue;
+			}
+			fis = new FileInputStream(path + "/" + file + "/" + file + ".txt");
+			ois = new ObjectInputStream(fis);
+			FileInputStream mfis = new FileInputStream(path + "/" + file + "/Measures.txt");
+			ObjectInputStream mois = new ObjectInputStream(mfis);
+			try {
+				sess = (Session)ois.readObject();
+				sess.setMeasures((Measures)mois.readObject());
+				sessList.add(sess);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return sessList;
 	}
 
 	public static String getPath() {
