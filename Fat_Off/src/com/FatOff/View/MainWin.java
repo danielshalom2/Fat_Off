@@ -1,6 +1,7 @@
 
 package com.FatOff.View;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
 
 import com.FatOff.Controller.CustomerController;
@@ -296,10 +297,10 @@ public class MainWin {
 				String pathToNut = SaveRestore.getNutPath(nut);
 				try {
 					try {
-						succeed = SessionMeasureController.storeSession(sess , cust , pathToNut, summaryArea.getText(),
+						succeed = SessionMeasureController.storeSession(sess, cust, pathToNut, summaryArea.getText(),
 								breakfastArea.getText(), textField_1.getText(), lunchArea.getText(), 
-								textField_2.getText(), dinnerArea.getText());
-					} catch (DocumentException e1) {
+								textField_2.getText(), dinnerArea.getText(), nut.getFirstName() + " " + nut.getLastName(), nut.getEmailAddress(), nut.getPhoneNumber());
+					} catch (DocumentException | MessagingException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 						succeed = false;
@@ -310,7 +311,7 @@ public class MainWin {
 					succeed = false;
 				}
 				if(succeed) {
-					JOptionPane.showMessageDialog(null, "This session was saved successfuly");
+					JOptionPane.showMessageDialog(null, "This session was saved and sent successfuly");
 				}
 			}
 		});
