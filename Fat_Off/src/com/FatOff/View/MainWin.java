@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 
@@ -317,7 +318,15 @@ public class MainWin {
 		});
 		emailSummBtn.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 
-		JButton btnNewButton = new JButton("Show Graph");
+		JButton btnNewButton = new JButton("Show Progress");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("From Main " + cust.getSessions().size());
+				ArrayList<Double> bmiReport = SessionMeasureController.generateBmiProgressReport(cust.getSessions());
+				ArrayList<Double> waistReport = SessionMeasureController.generateWaistProgressReport(cust.getSessions());
+				new ProgressReportWin(bmiReport , waistReport);
+			}
+		});
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 
 		JLabel dateLbl = new JLabel("Date:");
@@ -439,12 +448,12 @@ public class MainWin {
 											.addComponent(heightTField, Alignment.LEADING, 0, 0, Short.MAX_VALUE))
 										.addComponent(wristTField, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
 									.addGap(20))
-								.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING, false)
 									.addGroup(gl_mainPanel.createSequentialGroup()
 										.addComponent(physiqueLbl)
 										.addPreferredGap(ComponentPlacement.RELATED)
 										.addComponent(physiqueTField, 0, 0, Short.MAX_VALUE))
-									.addGroup(Alignment.LEADING, gl_mainPanel.createSequentialGroup()
+									.addGroup(gl_mainPanel.createSequentialGroup()
 										.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)
 											.addComponent(bmiLbl)
 											.addComponent(eerLbl))
@@ -492,13 +501,13 @@ public class MainWin {
 									.addGap(25)
 									.addComponent(menuLbl)
 									.addGap(437))
-								.addComponent(breakfastLbl)
-								.addComponent(lunchLbl)
-								.addComponent(dinnerLbl)
 								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addComponent(btnNewButton)
 									.addGap(26)
-									.addComponent(emailSummBtn)))))
+									.addComponent(emailSummBtn))
+								.addComponent(breakfastLbl, Alignment.LEADING)
+								.addComponent(lunchLbl, Alignment.LEADING)
+								.addComponent(dinnerLbl, Alignment.LEADING))))
 					.addGap(63))
 				.addGroup(gl_mainPanel.createSequentialGroup()
 					.addGap(299)
@@ -580,9 +589,9 @@ public class MainWin {
 							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(snack1Lbl)
 								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
+							.addGap(24)
 							.addComponent(lunchLbl)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lunchfastScrlPane, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 							.addGap(21)))
 					.addGap(10)
@@ -592,11 +601,15 @@ public class MainWin {
 						.addComponent(clearBtn)
 						.addComponent(calcBtn))
 					.addGap(18)
-					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(dinnerLbl)
-						.addComponent(bmiLbl)
-						.addComponent(bmiTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(12)
+					.addGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(bmiLbl)
+								.addComponent(bmiTField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(12))
+						.addGroup(gl_mainPanel.createSequentialGroup()
+							.addComponent(dinnerLbl)
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 						.addGroup(gl_mainPanel.createSequentialGroup()
 							.addGroup(gl_mainPanel.createParallelGroup(Alignment.LEADING)

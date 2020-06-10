@@ -3,6 +3,10 @@ package com.FatOff.Controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -43,5 +47,51 @@ public class SessionMeasureController {
 		SaveRestore<Customer> save = new SaveRestore<Customer>(cust , "");
 		
 		return save.storeSessionToPdf(sess,pathToSession);
+	}
+	
+	public static ArrayList<Double> generateBmiProgressReport(ArrayList<Session> sessList) {
+		
+		ArrayList<Double> progress = new ArrayList<>();
+		System.out.println(sessList.size());
+		Collections.sort(sessList);
+		System.out.println(sessList.size());
+		Object[] sessArray = sessList.toArray();
+		System.out.println(sessArray.length);
+		
+		for(int i = 1 ; i < sessArray.length ; i++) {
+			double bmiDiff = ((Session)sessArray[i]).getMeasures().getBmi() - ((Session)sessArray[i-1]).getMeasures().getBmi();
+			double precentDiff = (bmiDiff/((Session)sessArray[i-1]).getMeasures().getBmi())*100;
+			
+			progress.add(new Double(precentDiff));
+		}
+		double totalDiff = ((Session)sessArray[sessArray.length-1]).getMeasures().getBmi() - ((Session)sessArray[0]).getMeasures().getBmi();
+		double totalPrecentDiff = (totalDiff/((Session)sessArray[0]).getMeasures().getBmi())*100;
+		
+		progress.add(new Double(totalPrecentDiff));
+		System.out.println(progress.size());
+		return progress;
+	}
+	
+public static ArrayList<Double> generateWaistProgressReport(ArrayList<Session> sessList) {
+		
+		ArrayList<Double> progress = new ArrayList<>();
+		System.out.println(sessList.size());
+		Collections.sort(sessList);
+		System.out.println(sessList.size());
+		Object[] sessArray = sessList.toArray();
+		System.out.println(sessArray.length);
+		
+		for(int i = 1 ; i < sessArray.length ; i++) {
+			double bmiDiff = ((Session)sessArray[i]).getMeasures().getWaist() - ((Session)sessArray[i-1]).getMeasures().getWaist();
+			double precentDiff = (bmiDiff/((Session)sessArray[i-1]).getMeasures().getWeight())*100;
+			
+			progress.add(new Double(precentDiff));
+		}
+		double totalDiff = ((Session)sessArray[sessArray.length-1]).getMeasures().getWaist() - ((Session)sessArray[0]).getMeasures().getWaist();
+		double totalPrecentDiff = (totalDiff/((Session)sessArray[0]).getMeasures().getWaist())*100;
+		
+		progress.add(new Double(totalPrecentDiff));
+		System.out.println(progress.size());
+		return progress;
 	}
 }
