@@ -250,8 +250,8 @@ public class MoveCustomerWin {
 				.addGap(14)));
 		panel.setLayout(gl_panel);
 		moveFrame.setVisible(true);
-		moveFrame.setLocationRelativeTo(null);
 		moveFrame.pack();
+		moveFrame.setLocationRelativeTo(null);
 
 	}
 

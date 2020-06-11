@@ -52,11 +52,8 @@ public class SessionMeasureController {
 	public static ArrayList<Double> generateBmiProgressReport(ArrayList<Session> sessList) {
 		
 		ArrayList<Double> progress = new ArrayList<>();
-		System.out.println(sessList.size());
 		Collections.sort(sessList);
-		System.out.println(sessList.size());
 		Object[] sessArray = sessList.toArray();
-		System.out.println(sessArray.length);
 		
 		for(int i = 1 ; i < sessArray.length ; i++) {
 			double bmiDiff = ((Session)sessArray[i]).getMeasures().getBmi() - ((Session)sessArray[i-1]).getMeasures().getBmi();
@@ -68,18 +65,14 @@ public class SessionMeasureController {
 		double totalPrecentDiff = (totalDiff/((Session)sessArray[0]).getMeasures().getBmi())*100;
 		
 		progress.add(new Double(totalPrecentDiff));
-		System.out.println(progress.size());
 		return progress;
 	}
 	
 public static ArrayList<Double> generateWaistProgressReport(ArrayList<Session> sessList) {
 		
 		ArrayList<Double> progress = new ArrayList<>();
-		System.out.println(sessList.size());
 		Collections.sort(sessList);
-		System.out.println(sessList.size());
 		Object[] sessArray = sessList.toArray();
-		System.out.println(sessArray.length);
 		
 		for(int i = 1 ; i < sessArray.length ; i++) {
 			double bmiDiff = ((Session)sessArray[i]).getMeasures().getWaist() - ((Session)sessArray[i-1]).getMeasures().getWaist();
@@ -91,7 +84,6 @@ public static ArrayList<Double> generateWaistProgressReport(ArrayList<Session> s
 		double totalPrecentDiff = (totalDiff/((Session)sessArray[0]).getMeasures().getWaist())*100;
 		
 		progress.add(new Double(totalPrecentDiff));
-		System.out.println(progress.size());
 		return progress;
 	}
 }

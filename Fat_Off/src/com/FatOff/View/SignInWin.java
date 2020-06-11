@@ -38,7 +38,6 @@ public class SignInWin {
 		JFrame signInFrame = new JFrame("Sign In");
 		signInFrame.setResizable(false);
 		signInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		signInFrame.setLocationRelativeTo(null);
 		/////////////////////////////// set icon //////////////////////////////////
 		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
 		signInFrame.setIconImage(icon.getImage());
@@ -274,6 +273,7 @@ public class SignInWin {
 		signInFrame.getContentPane().add(contentPane);
 		signInFrame.setSize(new Dimension(657, 476));
 		signInFrame.setVisible(true);
+		signInFrame.setLocationRelativeTo(null);
 	
 
 

@@ -352,11 +352,14 @@ public class SaveRestore<T> {
 	public static String getPath() {
 		String path;
 		String os = System.getProperty("os.name");
-		if (!os.toLowerCase().startsWith("windows"))
+		if (!os.toLowerCase().startsWith("windows")) {
 			path = System.getProperty("user.home") + "/Documents/.fat_off";
-
-		else
+			//path = System.getProperty("user.home") + "/Documents/.fat_off_test";
+		}
+		else {
 			path = System.getProperty("user.home") + "/.fat_off";
+			//path = System.getProperty("user.home") + "/.fat_off_test";
+		}
 		return path;
 	}
 

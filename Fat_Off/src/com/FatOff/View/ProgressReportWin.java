@@ -62,6 +62,11 @@ public class ProgressReportWin {
 		JScrollPane reportScrlPane = new JScrollPane();
 		
 		JButton closeBtn = new JButton("Close");
+		closeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				progressReportFrame.dispose();
+			}
+		});
 		
 		JLabel totalLbl = new JLabel("Total Progress: ");
 		totalLbl.setForeground(Color.WHITE);
@@ -245,6 +250,7 @@ public class ProgressReportWin {
 		progressPanel.setLayout(gl_progressPanel);
 		progressReportFrame.getContentPane().setLayout(groupLayout);
 		progressReportFrame.pack();
+		progressReportFrame.setLocationRelativeTo(null);
 		progressReportFrame.setVisible(true);
 		
 	}

@@ -75,8 +75,7 @@ public class InitialWin {
 		        	public void actionPerformed(ActionEvent e) {
 		        		Customer selected = (Customer) comboBox.getSelectedItem();
 		        		new MainWin(((Nutritionist)nut),selected,"null");
-		        		System.out.println("Test open MainWin");
-		        		initialframe.dispose();	
+		        		//initialframe.dispose();	
 		        		frame.dispose();
 		        		}
 		        });
@@ -156,7 +155,6 @@ public class InitialWin {
 		
 	if(nut.getClass().equals(Admin.class))
 	{
-		System.out.println(nut.getClass().equals(Admin.class));
 		JMenu adminMenu = new JMenu("Admin Menu");
 		menuBar.add(adminMenu);
 		

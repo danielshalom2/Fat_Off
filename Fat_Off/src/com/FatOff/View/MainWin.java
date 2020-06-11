@@ -288,6 +288,7 @@ public class MainWin {
 				physiqueTField.setText(temp.getPhysique());
 				
 				sess.setMeasures(temp);
+				cust.getSessions().add(sess);
 			}
 		});
 
@@ -321,7 +322,6 @@ public class MainWin {
 		JButton btnNewButton = new JButton("Show Progress");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("From Main " + cust.getSessions().size());
 				ArrayList<Double> bmiReport = SessionMeasureController.generateBmiProgressReport(cust.getSessions());
 				ArrayList<Double> waistReport = SessionMeasureController.generateWaistProgressReport(cust.getSessions());
 				new ProgressReportWin(bmiReport , waistReport);
