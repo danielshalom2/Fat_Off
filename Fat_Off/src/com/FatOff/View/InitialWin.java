@@ -157,10 +157,7 @@ public class InitialWin {
 	{
 		JMenu adminMenu = new JMenu("Admin Menu");
 		menuBar.add(adminMenu);
-		
-		JMenuItem resetPassNut1 = new JMenuItem("Reset Password Nutritionist");
-		adminMenu.add(resetPassNut1);
-		
+
 		JMenuItem createNut = new JMenuItem("Create Nutritionist");
 		createNut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

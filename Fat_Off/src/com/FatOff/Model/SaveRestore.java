@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -574,8 +575,8 @@ public class SaveRestore<T> {
 		
 		addEmptyLine(preface, 1);
 		
-		preface.add(new Paragraph("BMI: " + meas.getBmi(), blackFont));
-		preface.add(new Paragraph("EER: " + meas.getEer(), blackFont));
+		preface.add(new Paragraph("BMI: " + (new DecimalFormat("##.##").format((double) meas.getBmi())), blackFont));
+		preface.add(new Paragraph("EER: " + (new DecimalFormat("##.##").format((double) meas.getEer())), blackFont));
 		preface.add(new Paragraph("Activity Level: " + meas.getActivity(), blackFont));
 		preface.add(new Paragraph("Physique: " + meas.getPhysique(), blackFont));
 		
