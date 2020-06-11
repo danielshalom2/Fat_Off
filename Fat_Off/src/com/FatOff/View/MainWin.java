@@ -15,6 +15,7 @@ import java.awt.Font;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 
@@ -47,6 +48,11 @@ public class MainWin {
 	private JTextField physiqueTField;
 
 	public MainWin(Nutritionist nut, Customer cust, String activity) {
+		
+		UIManager UI=new UIManager();
+		  UI.put("OptionPane.background", new Color(36, 47, 65));
+		  UI.put("Panel.background", new Color(36, 47, 65));
+		  UI.put("OptionPane.messageForeground", Color.WHITE);
 
 		Session sess = new Session(cust.getSessions().size()+1);
 		
@@ -314,6 +320,7 @@ public class MainWin {
 				}
 				if(succeed) {
 					JOptionPane.showMessageDialog(null, "This session was saved and sent successfuly");
+					mainFrame.dispose();
 				}
 			}
 		});
@@ -408,6 +415,53 @@ public class MainWin {
 			}
 		});
 		openIntroMeetBtn.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		
+		JButton prevSessionBtn = new JButton("Open Previous Session");
+		prevSessionBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 
+				ArrayList<String> sessions = new ArrayList<String>();
+				Desktop desktop = Desktop.getDesktop();
+				File specSess;
+				JPanel selectionPanel = new JPanel();
+				selectionPanel.setLayout(new BoxLayout(selectionPanel, BoxLayout.Y_AXIS));
+				String selectedSess;
+				selectionPanel.setBackground((new Color(36, 47, 65)));
+				
+				File sesses = new File(CustomerController.pathToType(nut, cust.getFirstName()+"_" + cust.getLastName() 
+										+"_" + cust.getId() + "/Sessions"));
+				
+				for (String item : sesses.list()) {
+					if(!(item.equalsIgnoreCase(".DS_Store")))
+						sessions.add(item);
+				}
+				Collections.sort(sessions);
+				DefaultComboBoxModel<String> sessionComboModel = new DefaultComboBoxModel<String>(
+						sessions.toArray(new String[sessions.size()]));
+				JComboBox<String> sessionComboBox = new JComboBox<>(sessionComboModel);
+				selectionPanel.add(sessionComboBox);
+				
+				int selected = JOptionPane.showConfirmDialog(null, selectionPanel, "Session Selection", JOptionPane.OK_CANCEL_OPTION);
+				if (selected == 0) {
+					selectedSess = (String) sessionComboBox.getSelectedItem();
+					String[] files = new File(sesses + "/" + selectedSess).list();
+					String pdfName = "";
+					for (String name : files) {
+						if(name.substring(name.length() - 3).equals("pdf")) {
+							pdfName = name;
+							break;
+						}
+					}
+					try {
+						desktop.open(new File(sesses + "/" + selectedSess + "/" + pdfName));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+			}
+		});
 
 		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
 		gl_mainPanel.setHorizontalGroup(
@@ -502,6 +556,8 @@ public class MainWin {
 									.addComponent(menuLbl)
 									.addGap(437))
 								.addGroup(gl_mainPanel.createSequentialGroup()
+									.addComponent(prevSessionBtn)
+									.addGap(18)
 									.addComponent(btnNewButton)
 									.addGap(26)
 									.addComponent(emailSummBtn))
@@ -623,7 +679,8 @@ public class MainWin {
 					.addGap(61)
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(emailSummBtn)
-						.addComponent(btnNewButton))
+						.addComponent(btnNewButton)
+						.addComponent(prevSessionBtn))
 					.addGap(40))
 		);
 
