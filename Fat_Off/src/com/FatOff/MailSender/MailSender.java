@@ -142,7 +142,6 @@ public class MailSender {
 
 		// Send the message
 		Transport.send(message);
-
 	}
 
 	private String getAdminAppPass() {

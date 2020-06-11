@@ -44,6 +44,7 @@ public class CreateCustomerWin {
 		customerCrtFrame.setResizable(false);
 		customerCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		customerCrtFrame.setBackground(new Color(36, 47, 65));
+		customerCrtFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		/////////////////////////////// set icon //////////////////////////////////
 		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
 		customerCrtFrame.setIconImage(icon.getImage());
@@ -355,6 +356,7 @@ public class CreateCustomerWin {
 		panel.add(lblNewLabel);
 		customerCrtFrame.setSize(new Dimension(557, 392));
 		customerCrtFrame.setVisible(true);
+		customerCrtFrame.setLocationRelativeTo(null);
 
 	}
 

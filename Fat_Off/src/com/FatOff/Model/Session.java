@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 
-public class Session implements Serializable{
+public class Session implements Serializable,Comparable<Session>{
 	
 	private LocalDateTime sessionDate;
 	private int sessionNum;
@@ -171,6 +171,14 @@ public class Session implements Serializable{
 	 */
 	public void setDinner(String dinner) {
 		this.dinner = dinner;
+	}
+
+
+
+	@Override
+	public int compareTo(Session sess) {
+		// TODO Auto-generated method stub
+		return this.sessionNum-sess.sessionNum;
 	}
 
 

@@ -305,5 +305,6 @@ public class CreateNutritionistWin {
 		nutritionistCrtFrame.getContentPane().setLayout(groupLayout);
 		nutritionistCrtFrame.setVisible(true);
 		nutritionistCrtFrame.pack();
+		nutritionistCrtFrame.setLocationRelativeTo(null);
 	}
 }

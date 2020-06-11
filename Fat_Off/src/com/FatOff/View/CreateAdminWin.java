@@ -320,6 +320,7 @@ public class CreateAdminWin {
 	
 		adminCrtFrame.getContentPane().setLayout(groupLayout);
 		adminCrtFrame.setVisible(true);
+		adminCrtFrame.setLocationRelativeTo(null);
 		adminCrtFrame.pack();
 	}
 }
