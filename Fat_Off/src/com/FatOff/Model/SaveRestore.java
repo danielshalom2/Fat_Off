@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import org.apache.commons.io.FileUtils;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -96,16 +94,13 @@ public class SaveRestore<T> {
 		File pathToFatOff;
 		File pathToDieticion;
 		File pathToAdmin;
-		File customersPathList;
 		String path = getPath();
 
 		pathToFatOff = new File(path);
-		customersPathList = new File(pathToFatOff + "/custPathList.txt");
 		pathToDieticion = new File(path + "/Dieticions");
 		pathToAdmin = new File(path + "/Admin");
 		if (!pathToFatOff.exists()) {
 			pathToFatOff.mkdir();
-			customersPathList.createNewFile();
 			pathToAdmin.mkdir();
 			pathToDieticion.mkdir();
 		}
@@ -168,7 +163,6 @@ public class SaveRestore<T> {
 	 */
 	public boolean storeSessions(String path, Session session) throws IOException {
 		File sessionFolder = new File(path + "/Session_" + session.getSessionNum());
-		System.out.println(sessionFolder.toString());
 		sessionFolder.mkdir();
 		try {
 			pathToObj = new FileOutputStream(sessionFolder + "/Session_" + session.getSessionNum() + ".txt");
@@ -334,6 +328,7 @@ public class SaveRestore<T> {
 			fis = new FileInputStream(path + "/" + file + "/" + file + ".txt");
 			ois = new ObjectInputStream(fis);
 			FileInputStream mfis = new FileInputStream(path + "/" + file + "/Measures.txt");
+			@SuppressWarnings("resource")
 			ObjectInputStream mois = new ObjectInputStream(mfis);
 			try {
 				sess = (Session)ois.readObject();
@@ -623,71 +618,6 @@ public class SaveRestore<T> {
 
 	}
 
-
-	// add a list
-//        createList(subCatPart);
-//        Paragraph paragraph = new Paragraph();
-//        addEmptyLine(paragraph, 5);
-//        subCatPart.add(paragraph);
-//
-//        // add a table
-//        //createTable(subCatPart);
-//
-//        // now add all this to the document
-//        document.add(catPart);
-//
-//        // Second parameter is the number of the chapter
-//        catPart = new Chapter(new Paragraph(anchor), 1);
-//
-//        subPara = new Paragraph("Subcategory", subFont);
-//        subCatPart = catPart.addSection(subPara);
-//        subCatPart.add(new Paragraph("This is a very important message"));
-//
-//        // now add all this to the document
-//        document.add(catPart);
-
-//    }
-
-//    private static void createTable(Section subCatPart)
-//            throws BadElementException {
-//        PdfPTable table = new PdfPTable(3);
-//
-//        // t.setBorderColor(BaseColor.GRAY);
-//        // t.setPadding(4);
-//        // t.setSpacing(4);
-//        // t.setBorderWidth(1);
-//
-//        PdfPCell c1 = new PdfPCell(new Phrase("Table Header 1"));
-//        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-//        table.addCell(c1);
-//
-//        c1 = new PdfPCell(new Phrase("Table Header 2"));
-//        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-//        table.addCell(c1);
-//
-//        c1 = new PdfPCell(new Phrase("Table Header 3"));
-//        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-//        table.addCell(c1);
-//        table.setHeaderRows(1);
-//
-//        table.addCell("1.0");
-//        table.addCell("1.1");
-//        table.addCell("1.2");
-//        table.addCell("2.1");
-//        table.addCell("2.2");
-//        table.addCell("2.3");
-//
-//        subCatPart.add(table);
-//
-//    }
-
-//    private static void createList(Section subCatPart) {
-//        List list = new List(true, false, 10);
-//        list.add(new ListItem("First point"));
-//        list.add(new ListItem("Second point"));
-//        list.add(new ListItem("Third point"));
-//        subCatPart.add(list);
-//    }
 
 	private static void addEmptyLine(Paragraph paragraph, int number) {
 		for (int i = 0; i < number; i++) {

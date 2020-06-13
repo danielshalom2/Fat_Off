@@ -7,6 +7,7 @@ import com.FatOff.Model.Nutritionist;
 
 public class NutritionistTester {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Nutritionist test1 = new Nutritionist("Olga", "Yerishev", "0526550000", "Olgay@gmail.com", "319588888", 50886, "123456");

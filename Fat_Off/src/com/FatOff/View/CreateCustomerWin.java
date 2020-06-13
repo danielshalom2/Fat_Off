@@ -4,7 +4,6 @@
 package com.FatOff.View;
 
 import javax.swing.*;
-import org.jdatepicker.*;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -39,7 +38,6 @@ public class CreateCustomerWin {
 	private JTextField idField;
 
 	public CreateCustomerWin(String path, Object nut) {
-		System.out.println("from create customer, " + path);
 		JFrame customerCrtFrame = new JFrame("Customer Creation");
 		customerCrtFrame.setResizable(false);
 		customerCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
@@ -355,7 +353,7 @@ public class CreateCustomerWin {
 	}
 
 	String getSelectedButtonText(ButtonGroup buttonGroup) {
-		for (Enumeration buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+		for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
 			AbstractButton button = (AbstractButton) buttons.nextElement();
 
 			if (button.isSelected()) {

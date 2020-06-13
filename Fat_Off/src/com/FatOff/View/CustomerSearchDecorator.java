@@ -4,9 +4,6 @@ import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
-import com.FatOff.Model.Customer;
-import com.FatOff.Model.Nutritionist;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,7 +29,7 @@ public class CustomerSearchDecorator<T> {
 
     public static <T> CustomerSearchDecorator<T> decorate(JComboBox<T> comboBox,
                                                           BiPredicate<T, String> userFilter) {
-    	CustomerSearchDecorator decorator = new CustomerSearchDecorator(comboBox, userFilter);
+    	CustomerSearchDecorator<T> decorator = new CustomerSearchDecorator<T>(comboBox, userFilter);
         decorator.init();
         return decorator;
     }

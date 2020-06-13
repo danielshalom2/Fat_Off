@@ -6,8 +6,6 @@ package com.FatOff.Model;
  *@version 1.0
  */
 
-import java.util.*;
-
 public class IntroductoryMeeting {
 	
 	private String WhyGoToNut;

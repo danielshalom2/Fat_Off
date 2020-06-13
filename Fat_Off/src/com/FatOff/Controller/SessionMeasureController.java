@@ -44,6 +44,7 @@ public class SessionMeasureController {
 		return save.storeSessionToPdf(sess,pathToSession);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static ArrayList<Double> generateBmiProgressReport(ArrayList<Session> sessList) {
 		
 		ArrayList<Double> progress = new ArrayList<>();
@@ -63,6 +64,7 @@ public class SessionMeasureController {
 		return progress;
 	}
 	
+@SuppressWarnings("deprecation")
 public static ArrayList<Double> generateWaistProgressReport(ArrayList<Session> sessList) {
 		
 		ArrayList<Double> progress = new ArrayList<>();

@@ -19,8 +19,6 @@ public class CustomerController {
 
 	public static Customer createCustomer(String fName, String lName, String phone, String email, String id,
 			Date bDate,String gender, String pathToCustomer) {
-		System.out.println("From customer controller + " + pathToCustomer);
-
 		Customer cust = new Customer(fName, lName, phone, email, id, gender , bDate);
 		SaveRestore<Customer> saveCust = new SaveRestore<Customer>(cust, pathToCustomer);
 
@@ -90,7 +88,7 @@ public class CustomerController {
 			if (finlist[n].isFile()) {
 				System.gc();
 				try {
-					Thread.sleep(200);
+					Thread.sleep(1000);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}

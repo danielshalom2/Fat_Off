@@ -10,6 +10,7 @@ import com.FatOff.Model.SaveRestore;
 
 public class AdminTester {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		
 		String path;
@@ -47,7 +48,6 @@ public class AdminTester {
 			e.printStackTrace();
 		}
 		Admin adm2 = null;
-		Admin artem = null;
 		try {
 			adm2 = (Admin)SaveRestore.restoreFromFile("danie_sdfa_123456", "Admin");
 		} catch (IOException e) {

@@ -19,12 +19,9 @@ import java.awt.Cursor;
 import java.awt.ComponentOrientation;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.AttributeSet.FontAttribute;
-
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 
 /**
@@ -401,16 +398,5 @@ public class InterviewWin {
 		interviewFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		interviewFrame.setVisible(true);
 
-	}
-	String getSelectedButtonText(ButtonGroup buttonGroup) {
-		for (Enumeration buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
-			AbstractButton button = (AbstractButton) buttons.nextElement();
-
-			if (button.isSelected()) {
-				return button.getText();
-			}
-		}
-
-		return null;
 	}
 }

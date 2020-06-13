@@ -12,6 +12,7 @@ import java.util.*;
  *
  */
 
+@SuppressWarnings("serial")
 public class Nutritionist extends Person implements Serializable {
 
 
@@ -95,23 +96,7 @@ public class Nutritionist extends Person implements Serializable {
 		return password;
 	}
 
-	/**
-	 * @param emailAppPass the emailAppPass to set
-	 */
-//	public void setEmailAppPass(String emailAppPass) {
-//		this.emailAppPass = emailAppPass;
-//	}
-
-//	public String getEmailAppPass() {
-//		return emailAppPass;
-//	}
-
-	/**
-	 * 
-	 * @param customerToAdd the customer that need to be added to the list
-	 */
 	public void addCustomer(Customer customerToAdd) {
-		System.out.println("Adding Cust");
 		this.customersList.add(customerToAdd);
 	}
 

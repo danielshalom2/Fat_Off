@@ -11,7 +11,8 @@ import java.io.Serializable;
  */
 
 
-public class Person implements Serializable{
+@SuppressWarnings("serial")
+public abstract class Person implements Serializable{
 
 	
 	private String firstName;
