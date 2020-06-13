@@ -39,7 +39,7 @@ class CustController_Test {
 
 	@Test
 	void testCalcAge() {
-		Assertions.assertEquals(32.9,Double.parseDouble(CustomerController.calcAge(testC)) ,"Test calcAge");
+		Assertions.assertEquals(32.9,Double.parseDouble(CustomerController.calcAge(testC)) ,0.2);
 	}
 
 }

@@ -40,7 +40,7 @@ public class CreateNutritionistWin {
 		JFrame nutritionistCrtFrame = new JFrame("Nutritionist Creation");
 		nutritionistCrtFrame.getContentPane().setBackground(new Color(36, 47, 65));
 		nutritionistCrtFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+
 		/////////////////////////////// set icon //////////////////////////////////
 		ImageIcon icon = new ImageIcon("src/com/FatOff/View/IconFatOff.PNG");
 		nutritionistCrtFrame.setIconImage(icon.getImage());
@@ -68,8 +68,7 @@ public class CreateNutritionistWin {
 
 		JLabel logoLbl = new JLabel("");
 		logoLbl.setBounds(11, 11, 121, 191);
-		logoLbl.setIcon(new ImageIcon(
-				CreateNutritionistWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
+		logoLbl.setIcon(new ImageIcon(CreateNutritionistWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
 
 		JLabel fNameLbl = new JLabel("First Name: ");
 		fNameLbl.setForeground(new Color(255, 255, 255));
@@ -95,13 +94,12 @@ public class CreateNutritionistWin {
 		idLbl.setForeground(new Color(255, 255, 255));
 		idLbl.setBounds(130, 196, 133, 17);
 		idLbl.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		
+
 		JLabel idWarnLbl_1 = new JLabel("");
 		idWarnLbl_1.setForeground(Color.RED);
 		idWarnLbl_1.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		idWarnLbl_1.setBounds(263, 212, 277, 17);
 		formPanel.add(idWarnLbl_1);
-		
 
 		JLabel headerLbl = new JLabel("Fat-Off nutritionist creation");
 		headerLbl.setForeground(new Color(255, 255, 255));
@@ -160,23 +158,15 @@ public class CreateNutritionistWin {
 		idField = new JTextField();
 		idField.setBounds(263, 196, 277, 19);
 		idField.setColumns(10);
-		
+
 		idField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
+				if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
+						&& idField.getText().length() < 9) {
 					idField.setEditable(true);
 					idWarnLbl_1.setText("");
 				} else {
-					idField.setEditable(false);
-					idWarnLbl_1.setText("* Enter only numeric digits(0-9)");
-				}
-				if (idField.getText().length() < 9 || e.getKeyChar() == '\b')
-				{
-					idField.setEditable(true);
-					idWarnLbl_1.setText("");
-				}
-				else {
 					idField.setEditable(false);
 					idWarnLbl_1.setText("ID must contain exactly 9 numeric characters!");
 				}
@@ -253,24 +243,22 @@ public class CreateNutritionistWin {
 		createBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (fNameField.getText().equals("") || lNameField.getText().equals("") || phoneNumField.getText().equals("")
-						|| emailAddrField.getText().equals("") || idField.getText().equals("") || licenseIdField.getText().equals("")
+				if (fNameField.getText().equals("") || lNameField.getText().equals("")
+						|| phoneNumField.getText().equals("") || emailAddrField.getText().equals("")
+						|| idField.getText().equals("") || licenseIdField.getText().equals("")
 						|| passField.getPassword().length == 0 || passConfirmField.getPassword().length == 0) {
 					JOptionPane.showMessageDialog(null, "All the fields are required for nutritionist creation!");
-				} 
-				else if(!new String(passField.getPassword()).equals(new String(passConfirmField.getPassword()))) {
+				} else if (!new String(passField.getPassword()).equals(new String(passConfirmField.getPassword()))) {
 					JOptionPane.showMessageDialog(null, "The password confirmation does not match");
 					passField.setText("");
 					passConfirmField.setText("");
-				}
-				else {
-					if(NutritionistController.createNutritionist(fNameField.getText(), lNameField.getText(), phoneNumField.getText(), 
-							emailAddrField.getText(), idField.getText(), Integer.parseInt(licenseIdField.getText()), 
-							new String(passField.getPassword()))) {
+				} else {
+					if (NutritionistController.createNutritionist(fNameField.getText(), lNameField.getText(),
+							phoneNumField.getText(), emailAddrField.getText(), idField.getText(),
+							Integer.parseInt(licenseIdField.getText()), new String(passField.getPassword()))) {
 						JOptionPane.showMessageDialog(null, "Nutritionist was created succesfully");
 						nutritionistCrtFrame.dispose();
-					}
-					else {
+					} else {
 						JOptionPane.showMessageDialog(null, "Nutritionist Creation Failed");
 					}
 				}
@@ -300,8 +288,7 @@ public class CreateNutritionistWin {
 		formPanel.add(passLbl);
 		formPanel.add(passField);
 		formPanel.add(passConfirmField);
-		
-		
+
 		nutritionistCrtFrame.getContentPane().setLayout(groupLayout);
 		nutritionistCrtFrame.setVisible(true);
 		nutritionistCrtFrame.pack();

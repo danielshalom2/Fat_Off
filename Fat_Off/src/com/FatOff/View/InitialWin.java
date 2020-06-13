@@ -74,7 +74,7 @@ public class InitialWin {
 		        selectBtn.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
 		        		Customer selected = (Customer) comboBox.getSelectedItem();
-		        		new MainWin(((Nutritionist)nut),selected,"null");
+		        		new MainWin(((Nutritionist)nut),selected);
 		        		//initialframe.dispose();	
 		        		frame.dispose();
 		        		}

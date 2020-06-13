@@ -172,19 +172,11 @@ public class CreateAdminWin {
 		idField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
+				if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
+						&& idField.getText().length() < 9) {
 					idField.setEditable(true);
 					idWarnLbl_1.setText("");
 				} else {
-					idField.setEditable(false);
-					idWarnLbl_1.setText("* Enter only numeric digits(0-9)");
-				}
-				if (idField.getText().length() < 9 || e.getKeyChar() == '\b')
-				{
-					idField.setEditable(true);
-					idWarnLbl_1.setText("");
-				}
-				else {
 					idField.setEditable(false);
 					idWarnLbl_1.setText("ID must contain exactly 9 numeric characters!");
 				}
@@ -320,7 +312,7 @@ public class CreateAdminWin {
 	
 		adminCrtFrame.getContentPane().setLayout(groupLayout);
 		adminCrtFrame.setVisible(true);
-		adminCrtFrame.setLocationRelativeTo(null);
 		adminCrtFrame.pack();
+		adminCrtFrame.setLocationRelativeTo(null);
 	}
 }

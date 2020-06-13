@@ -101,65 +101,77 @@ public class InterviewWin {
 		interviewScrollPane.setViewportView(interviewPanel);
 
 		JLabel decisionQtLbl = new JLabel("Why have you decided to come to a dietician?");
+		decisionQtLbl.setForeground(Color.BLACK);
 		decisionQtLbl.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		decisionQtLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		decisionQtLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane decisionAScroll = new JScrollPane();
 
 		JLabel yourGoalQLbl = new JLabel("What is your goal?");
-		yourGoalQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		yourGoalQLbl.setForeground(Color.BLACK);
+		yourGoalQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane goalAScroll = new JScrollPane();
 
 		JLabel someonePushedQLbl = new JLabel("Has someone pushed you to go to a dietician? Please elaborate..");
-		someonePushedQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		someonePushedQLbl.setForeground(Color.BLACK);
+		someonePushedQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane someonePushedAScroll = new JScrollPane();
 
 		JLabel hadDieticianQLbl = new JLabel("Have you ever started a process with a dietician? Please elaborate..");
-		hadDieticianQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		hadDieticianQLbl.setForeground(Color.BLACK);
+		hadDieticianQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane hadDieticianAScroll = new JScrollPane();
 
 		JLabel concentrationQLbl = new JLabel("Do you have troubles with concentrating recently?");
-		concentrationQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		concentrationQLbl.setForeground(Color.BLACK);
+		concentrationQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane concentrationAScroll = new JScrollPane();
 
 		JLabel gainedLostQLbl = new JLabel("Have you recently gained or lost weight unexpectedly?");
-		gainedLostQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		gainedLostQLbl.setForeground(Color.BLACK);
+		gainedLostQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane gainedLostAScroll = new JScrollPane();
 
 		JLabel digestionQLbl = new JLabel("Where there any digestion problems (diarrhea, vomiting, Lack of appetite)?");
-		digestionQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		digestionQLbl.setForeground(Color.BLACK);
+		digestionQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane digestionAScroll = new JScrollPane();
 
 		JLabel typicalDayQLbl = new JLabel("Typical day (Wakeup time, daily activity, work hours, work type," + "\n"
 				+ "sport actvity (How often))...");
-		typicalDayQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		typicalDayQLbl.setForeground(Color.BLACK);
+		typicalDayQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane typicalDayAScroll = new JScrollPane();
 		
 
 		JLabel whatAteQLbl = new JLabel("Describe what you ate yesterday (or any other specific day).");
-		whatAteQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		whatAteQLbl.setForeground(Color.BLACK);
+		whatAteQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane whatAteAScroll = new JScrollPane();
 
 		JLabel alergiesQLbl = new JLabel("Do you have any alergies? Please elaborate..");
-		alergiesQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		alergiesQLbl.setForeground(Color.BLACK);
+		alergiesQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane alergiesAScroll = new JScrollPane();
 
 		JLabel foodNotLikeQLbl = new JLabel("Are there any food product you don't like? Please elaborate..");
-		foodNotLikeQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		foodNotLikeQLbl.setForeground(Color.BLACK);
+		foodNotLikeQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane foodNotLikeAScroll = new JScrollPane();
 
 		JLabel deseasMedQLbl = new JLabel("Are there any backgroud deseases? Any medications you take?");
-		deseasMedQLbl.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 14));
+		deseasMedQLbl.setForeground(Color.BLACK);
+		deseasMedQLbl.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 14));
 
 		JScrollPane deseasMedAScroll = new JScrollPane();
 
@@ -314,32 +326,6 @@ public class InterviewWin {
 			}
 		});
 
-		ButtonGroup radios = new ButtonGroup();
-
-		JRadioButton sedentaryRadio = new JRadioButton("Sedentary");
-		sedentaryRadio.setBackground(new Color(36, 47, 65));
-		sedentaryRadio.setForeground(new Color(255, 255, 255));
-		radios.add(sedentaryRadio);
-
-		JRadioButton lowActiveRadio = new JRadioButton("Low Active");
-		lowActiveRadio.setBackground(new Color(36, 47, 65));
-		lowActiveRadio.setForeground(new Color(255, 255, 255));
-		radios.add(lowActiveRadio);
-
-		JRadioButton activeRadio = new JRadioButton("Active");
-		activeRadio.setBackground(new Color(36, 47, 65));
-		activeRadio.setForeground(new Color(255, 255, 255));
-		radios.add(activeRadio);
-
-		JRadioButton veryActiveRadio = new JRadioButton("Very Active");
-		veryActiveRadio.setBackground(new Color(36, 47, 65));
-		veryActiveRadio.setForeground(new Color(255, 255, 255));
-		radios.add(veryActiveRadio);
-
-		JLabel activityLevelLbl = new JLabel("Activity Level:");
-		activityLevelLbl.setBackground(new Color(36, 47, 65));
-		activityLevelLbl.setForeground(new Color(255, 255, 255));
-
 		JButton saveBtn = new JButton("Save");
 		saveBtn.setForeground(new Color(255, 255, 255));
 		saveBtn.setBackground(new Color(97, 212, 195));
@@ -354,7 +340,7 @@ public class InterviewWin {
 							foodNotLikeATPane.getText(), deseasMedATPane.getText(), concentrationATPane.getText(),
 							gainedLostATPane.getText(), cust, pathToCust);
 					
-					new MainWin(nut,cust,getSelectedButtonText(radios));
+					new MainWin(nut,cust);
 					interviewFrame.dispose();
 					
 				} catch (FileNotFoundException e1) {
@@ -373,31 +359,20 @@ public class InterviewWin {
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(activityLevelLbl)
-							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(sedentaryRadio)
-								.addComponent(activeRadio))
-							.addGap(22)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(veryActiveRadio)
-								.addComponent(lowActiveRadio))
-							.addGap(215)
 							.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(interviewScrollPane, GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE))
+							.addComponent(interviewScrollPane, GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(14)
 							.addComponent(logoLbl)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(18)
-									.addComponent(txtpnWelcomeToThe, GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE))
+									.addComponent(txtpnWelcomeToThe, GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE))
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(74)
 									.addComponent(introInterviewLbl, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)))))
@@ -414,25 +389,11 @@ public class InterviewWin {
 							.addComponent(txtpnWelcomeToThe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(logoLbl, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(interviewScrollPane, GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+					.addComponent(interviewScrollPane, GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-								.addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lowActiveRadio)
-								.addComponent(sedentaryRadio))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(veryActiveRadio)
-								.addComponent(activeRadio)))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(26)
-							.addComponent(activityLevelLbl)))
+						.addComponent(cancelBtn, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 					.addGap(10))
 		);
 		panel.setLayout(gl_panel);

@@ -172,14 +172,7 @@ public class SignInWin {
 		yourIdField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
-					yourIdField.setEditable(true);
-					yourIdWarnLbl.setText("");
-				} else {
-					yourIdField.setEditable(false);
-					yourIdWarnLbl.setText("* Enter only numeric digits(0-9)");
-				}
-				if (yourIdField.getText().length() < 9 || e.getKeyChar() == '\b') {
+				if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') && yourIdField.getText().length() < 9) {
 					yourIdField.setEditable(true);
 					yourIdWarnLbl.setText("");
 				} else {
