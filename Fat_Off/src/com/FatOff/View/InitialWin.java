@@ -115,7 +115,7 @@ public class InitialWin {
 		JButton quitbtn = new JButton("Quit");
 		quitbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				initialframe.dispose();
+				System.exit(0);
 			}
 		});
 		quitbtn.setForeground(Color.WHITE);

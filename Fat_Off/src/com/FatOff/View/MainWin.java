@@ -9,7 +9,6 @@ import com.FatOff.Controller.SessionMeasureController;
 import com.FatOff.Model.*;
 import com.itextpdf.text.DocumentException;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.time.LocalDateTime;
@@ -17,11 +16,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.HashMap;
-
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Desktop;
 import java.awt.event.ActionListener;
@@ -33,6 +29,33 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class MainWin {
+	
+	private final LocalDateTime now = LocalDateTime.now();
+	
+	// Labels
+	private final JLabel logoLbl = new JLabel("");
+	private final JLabel customerNameLbl = new JLabel("Customer Name: ");
+	private final JLabel measuresLbl = new JLabel("Measures:");
+	private final JLabel weightLbl = new JLabel("Weight :");
+	private final JLabel heightLbl = new JLabel("Height :");
+	private final JLabel wristLbl = new JLabel("Wrist:");
+	private final JLabel ageLbl = new JLabel("Age: ");
+	private final JLabel weistLbl = new JLabel("Weist:");
+	private final JLabel thighLbl = new JLabel("Thigh:");
+	private final JLabel menuLbl = new JLabel("Enter Menu Here:");
+	private final JLabel breakfastLbl = new JLabel("Breakfast:");
+	private final JLabel snack1Lbl = new JLabel("Snack 1:");
+	private final JLabel lunchLbl = new JLabel("Lunch:");
+	private final JLabel snack2Lbl = new JLabel("Snack 2:");
+	private final JLabel dinnerLbl = new JLabel("Dinner:");
+	private final JLabel bmiLbl = new JLabel("BMI:");
+	private final JLabel eerLbl = new JLabel("EER:");
+	private final JLabel physiqueLbl = new JLabel("Physique:");
+	private final JLabel dateLbl = new JLabel("Date:");
+	private final JLabel lblActivity = new JLabel("Activity:");
+	private final JLabel todayLbl = new JLabel(DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now).toString());
+	
+	// Text Fields
 	private JTextField customerNameField;
 	private JTextField weightTField;
 	private JTextField heightTField;
@@ -40,22 +63,48 @@ public class MainWin {
 	private JTextField ageTFIeld;
 	private JTextField weistTField;
 	private JTextField thighTField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField snack1TField;
+	private JTextField snack2TField;
 	private JTextField bmiTField;
 	private JTextField eerTField;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField physiqueTField;
+	
+	// Radio Buttons
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final JRadioButton rdbtnNewRadioButton = new JRadioButton("Sedentary");
+	private final JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Active");
+	private final JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Very Active");
+	private final JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("Low Active");
+	
+	// Regular Buttons
+	private final JButton openIntroMeetBtn = new JButton("Open Introductory Meeting");
+	private final JButton emailSummBtn = new JButton("Save and Send");
+	private final JButton btnNewButton = new JButton("Show Progress");
+	private final JButton calcBtn = new JButton("Claculate");
+	private final JButton clearBtn = new JButton("Clear");
+	private final JButton prevSessionBtn = new JButton("Open Previous Session");
+	
+	// Scroll Panes
+	private final JScrollPane summaryScrlPane = new JScrollPane();
+	private final JScrollPane breakfastScrlPane = new JScrollPane();
+	private final JScrollPane lunchfastScrlPane = new JScrollPane();
+	private final JScrollPane dinnerScrlPane = new JScrollPane();
+	
+	// Text Panes
+	private JTextPane gnrlSummTPane;
 
 	public MainWin(Nutritionist nut, Customer cust, String activity) {
 		
+		
+		Session sess = new Session(cust.getSessions().size()+1);
+		
+		// Initialize the UI manager to configure Panel and Otion Panes UI
 		UIManager UI=new UIManager();
 		  UI.put("OptionPane.background", new Color(36, 47, 65));
 		  UI.put("Panel.background", new Color(36, 47, 65));
 		  UI.put("OptionPane.messageForeground", Color.WHITE);
 
-		Session sess = new Session(cust.getSessions().size()+1);
-		
+		// Initialize the main frame of the window
 		JFrame mainFrame = new JFrame();
 		mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -64,6 +113,7 @@ public class MainWin {
 		mainFrame.setIconImage(icon.getImage());
 		//////////////////////////////////////////////////////////////////////////
 
+		// Initialize the main window panel, set its color and layout
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground((new Color(36, 47, 65)));
 		GroupLayout groupLayout = new GroupLayout(mainFrame.getContentPane());
@@ -72,35 +122,97 @@ public class MainWin {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(mainPanel,
 				GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE));
 
-		JLabel logoLbl = new JLabel("");
+		
+		/////////////////////////////// Labels Configurations //////////////////////////////////
+		
 		logoLbl.setIcon(new ImageIcon(MainWin.class.getResource("/com/FatOff/View/fat_off_white.png")));
-
-		JLabel customerNameLbl = new JLabel("Customer Name: ");
+		
+		// GENERAL INFO LABELS 
 		customerNameLbl.setForeground(Color.WHITE);
 		customerNameLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		
+		ageLbl.setForeground(Color.WHITE);
+		ageLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		
+		dateLbl.setForeground(Color.WHITE);
+		dateLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		
+		todayLbl.setForeground(Color.WHITE);
+		todayLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		
+		// CUSTOMER MEASURES LABELS
+		measuresLbl.setForeground(Color.WHITE);
+		measuresLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		weightLbl.setForeground(Color.WHITE);
+		weightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		
+		heightLbl.setForeground(Color.WHITE);
+		heightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		
+		wristLbl.setForeground(Color.WHITE);
+		wristLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		
+		thighLbl.setForeground(Color.WHITE);
+		thighLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		
+		weistLbl.setForeground(Color.WHITE);
+		weistLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		
+		bmiLbl.setForeground(Color.WHITE);
+		bmiLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		eerLbl.setForeground(Color.WHITE);
+		eerLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		physiqueLbl.setForeground(Color.WHITE);
+		physiqueLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		lblActivity.setForeground(Color.WHITE);
+		lblActivity.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		
+		// MENU LABELS
+		menuLbl.setForeground(Color.WHITE);
+		menuLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		
+		breakfastLbl.setForeground(Color.WHITE);
+		breakfastLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		snack1Lbl.setForeground(Color.WHITE);
+		snack1Lbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		lunchLbl.setForeground(Color.WHITE);
+		lunchLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
 
+		snack2Lbl.setForeground(Color.WHITE);
+		snack2Lbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		dinnerLbl.setForeground(Color.WHITE);
+		dinnerLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		
+		//////////////////////////////Text Field Configurations ////////////////////////////////		
+
+		// CUSTOMER INFO TEXT FIELDS
 		customerNameField = new JTextField(cust.toString());
 		customerNameField.setForeground(Color.WHITE);
 		customerNameField.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		customerNameField.setFocusable(false);
-		customerNameField.setFocusTraversalKeysEnabled(false);
-		customerNameField.setDragEnabled(false);
-		customerNameField.setRequestFocusEnabled(false);
-		customerNameField.setVerifyInputWhenFocusTarget(false);
 		customerNameField.setEditable(false);
-		customerNameField.setAutoscrolls(false);
-		customerNameField.setColumns(10);
 		customerNameField.setBackground(null);
+		
+		ageTFIeld = new JTextField(CustomerController.calcAge(cust));
+		ageTFIeld.setForeground(Color.WHITE);
+		ageTFIeld.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		ageTFIeld.setEditable(false);
+		ageTFIeld.setColumns(10);
+		ageTFIeld.setBackground((Color) null);
 
-		JLabel measuresLbl = new JLabel("Measures:");
-		measuresLbl.setForeground(Color.WHITE);
-		measuresLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
-
+		// MEASURES TEXT FIELDS
 		weightTField = new JTextField();
 		weightTField.setText("Enter Weight");
 		weightTField.setHorizontalAlignment(SwingConstants.CENTER);
 		weightTField.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		weightTField.setColumns(10);
+		// Clear the text when mouse clicked
 		weightTField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -108,15 +220,12 @@ public class MainWin {
 			}
 		});
 
-		JLabel weightLbl = new JLabel("Weight :");
-		weightLbl.setForeground(Color.WHITE);
-		weightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-
 		heightTField = new JTextField();
 		heightTField.setText("Enter Height");
 		heightTField.setHorizontalAlignment(SwingConstants.CENTER);
 		heightTField.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		heightTField.setColumns(10);
+		// Clear the text when mouse clicked
 		heightTField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -124,15 +233,12 @@ public class MainWin {
 			}
 		});
 
-		JLabel heightLbl = new JLabel("Height :");
-		heightLbl.setForeground(Color.WHITE);
-		heightLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-
 		wristTField = new JTextField();
 		wristTField.setText("Enter Wrist");
 		wristTField.setHorizontalAlignment(SwingConstants.CENTER);
 		wristTField.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		wristTField.setColumns(10);
+		// Clear the text when mouse clicked
 		wristTField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -140,35 +246,12 @@ public class MainWin {
 			}
 		});
 
-		JLabel wristLbl = new JLabel("Wrist:");
-		wristLbl.setForeground(Color.WHITE);
-		wristLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-
-		JLabel ageLbl = new JLabel("Age: ");
-		ageLbl.setForeground(Color.WHITE);
-		ageLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
-
-		ageTFIeld = new JTextField(CustomerController.calcAge(cust));
-		ageTFIeld.setForeground(Color.WHITE);
-		ageTFIeld.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		ageTFIeld.setVerifyInputWhenFocusTarget(false);
-		ageTFIeld.setRequestFocusEnabled(false);
-		ageTFIeld.setFocusable(false);
-		ageTFIeld.setFocusTraversalKeysEnabled(false);
-		ageTFIeld.setDragEnabled(false);
-		ageTFIeld.setEditable(false);
-		ageTFIeld.setColumns(10);
-		ageTFIeld.setBackground((Color) null);
-
-		JLabel weistLbl = new JLabel("Weist:");
-		weistLbl.setForeground(Color.WHITE);
-		weistLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-
 		weistTField = new JTextField();
 		weistTField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		weistTField.setHorizontalAlignment(SwingConstants.CENTER);
 		weistTField.setText("Enter Weist");
 		weistTField.setColumns(10);
+		// Clear the text when mouse clicked
 		weistTField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -176,61 +259,41 @@ public class MainWin {
 			}
 		});
 
-		JScrollPane summaryScrlPane = new JScrollPane();
-
-		JLabel thighLbl = new JLabel("Thigh:");
-		thighLbl.setForeground(Color.WHITE);
-		thighLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-
 		thighTField = new JTextField();
 		thighTField.setHorizontalAlignment(SwingConstants.CENTER);
 		thighTField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		thighTField.setText("Enter Thigh");
 		thighTField.setColumns(10);
+		// Clear the text when mouse clicked
 		thighTField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				thighTField.setText("");
 			}
 		});
+		
+		bmiTField = new JTextField();
+		bmiTField.setEditable(false);
+		bmiTField.setColumns(10);
 
-		JLabel menuLbl = new JLabel("Enter Menu Here:");
-		menuLbl.setForeground(Color.WHITE);
-		menuLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		eerTField = new JTextField();
+		eerTField.setEditable(false);
+		eerTField.setColumns(10);
 
-		JLabel breakfastLbl = new JLabel("Breakfast:");
-		breakfastLbl.setForeground(Color.WHITE);
-		breakfastLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		physiqueTField = new JTextField();
+		physiqueTField.setEditable(false);
+		physiqueTField.setColumns(10);
 
-		JScrollPane breakfastScrlPane = new JScrollPane();
+		// SNACKS TEXT FIELDS
+		snack1TField = new JTextField();
+		snack1TField.setColumns(10);
 
-		JLabel snack1Lbl = new JLabel("Snack 1:");
-		snack1Lbl.setForeground(Color.WHITE);
-		snack1Lbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		snack2TField = new JTextField();
+		snack2TField.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		////////// Text Panes and Areas and Scroll Panes Configurations ///////////////
 
-		JLabel lunchLbl = new JLabel("Lunch:");
-		lunchLbl.setForeground(Color.WHITE);
-		lunchLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
-
-		JScrollPane lunchfastScrlPane = new JScrollPane();
-
-		JLabel snack2Lbl = new JLabel("Snack 2:");
-		snack2Lbl.setForeground(Color.WHITE);
-		snack2Lbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
-
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-
-		JLabel dinnerLbl = new JLabel("Dinner:");
-		dinnerLbl.setForeground(Color.WHITE);
-		dinnerLbl.setFont(new Font("Century Gothic", Font.BOLD, 14));
-
-		JScrollPane dinnerScrlPane = new JScrollPane();
-
-		JTextPane gnrlSummTPane = new JTextPane();
+		gnrlSummTPane = new JTextPane();
 		gnrlSummTPane.setForeground(Color.WHITE);
 		gnrlSummTPane.setBackground(null);
 		gnrlSummTPane.setEditable(false);
@@ -238,30 +301,6 @@ public class MainWin {
 		gnrlSummTPane.setText("General\nSummary");
 		gnrlSummTPane.setFont(new Font("Century Gothic", Font.BOLD, 14));
 
-		JLabel bmiLbl = new JLabel("BMI:");
-		bmiLbl.setForeground(Color.WHITE);
-		bmiLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
-
-		bmiTField = new JTextField();
-		bmiTField.setEditable(false);
-		bmiTField.setColumns(10);
-
-		JLabel eerLbl = new JLabel("EER:");
-		eerLbl.setForeground(Color.WHITE);
-		eerLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
-
-		eerTField = new JTextField();
-		eerTField.setEditable(false);
-		eerTField.setColumns(10);
-		
-		JLabel physiqueLbl = new JLabel("Physique:");
-		physiqueLbl.setForeground(Color.WHITE);
-		physiqueLbl.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		
-		physiqueTField = new JTextField();
-		physiqueTField.setEditable(false);
-		physiqueTField.setColumns(10);
-		
 		JTextArea dinnerArea = new JTextArea();
 		dinnerScrlPane.setViewportView(dinnerArea);
 
@@ -273,11 +312,9 @@ public class MainWin {
 
 		JTextArea summaryArea = new JTextArea();
 		summaryScrlPane.setViewportView(summaryArea);
-
-		JButton clearBtn = new JButton("Clear");
-		clearBtn.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-
-		JButton calcBtn = new JButton("Claculate");
+		
+		////////////////////////////// Buttons Configurations ////////////////////////////////
+		
 		calcBtn.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		calcBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -295,10 +332,31 @@ public class MainWin {
 				
 				sess.setMeasures(temp);
 				cust.getSessions().add(sess);
+				calcBtn.setEnabled(false);
+				emailSummBtn.setEnabled(true);
 			}
 		});
 
-		JButton emailSummBtn = new JButton("Save and Send");
+		clearBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				weightTField.setText("");
+				heightTField.setText("");
+				weistTField.setText("");
+				wristTField.setText("");
+				thighTField.setText("");
+				bmiTField.setText("");
+				eerTField.setText("");
+				physiqueTField.setText("");
+				if (cust.getSessions().contains(sess)) {
+					cust.getSessions().remove(sess);
+				}
+				calcBtn.setEnabled(true);
+				emailSummBtn.setEnabled(false);
+			}
+		});
+		clearBtn.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+
+		emailSummBtn.setEnabled(false);
 		emailSummBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean succeed;
@@ -306,8 +364,9 @@ public class MainWin {
 				try {
 					try {
 						succeed = SessionMeasureController.storeSession(sess, cust, pathToNut, summaryArea.getText(),
-								breakfastArea.getText(), textField_1.getText(), lunchArea.getText(), 
-								textField_2.getText(), dinnerArea.getText(), nut.getFirstName() + " " + nut.getLastName(), nut.getEmailAddress(), nut.getPhoneNumber());
+								breakfastArea.getText(), snack1TField.getText(), lunchArea.getText(), 
+								snack2TField.getText(), dinnerArea.getText(), nut.getFirstName() + " " 
+								+ nut.getLastName(), nut.getEmailAddress(), nut.getPhoneNumber());
 					} catch (DocumentException | MessagingException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -326,7 +385,6 @@ public class MainWin {
 		});
 		emailSummBtn.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 
-		JButton btnNewButton = new JButton("Show Progress");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Double> bmiReport = SessionMeasureController.generateBmiProgressReport(cust.getSessions());
@@ -335,77 +393,12 @@ public class MainWin {
 			}
 		});
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-
-		JLabel dateLbl = new JLabel("Date:");
-		dateLbl.setForeground(Color.WHITE);
-		dateLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
-
-		LocalDateTime now = LocalDateTime.now();
-		JLabel todayLbl = new JLabel(DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now).toString());
-		todayLbl.setForeground(Color.WHITE);
-		todayLbl.setFont(new Font("Century Gothic", Font.BOLD, 18));
-
-		JLabel lblActivity = new JLabel("Activity:");
-		lblActivity.setForeground(Color.WHITE);
-		lblActivity.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Sedentary");
-		buttonGroup.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setBackground(new Color(36, 47, 65));
-
-		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
-
-		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
-
-		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
-
-		rdbtnNewRadioButton.setForeground(Color.WHITE);
-
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Active");
-		buttonGroup.add(rdbtnNewRadioButton_1);
-		rdbtnNewRadioButton_1.setBackground(new Color(36, 47, 65));
-
-		rdbtnNewRadioButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.CENTER);
-
-		rdbtnNewRadioButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.LEFT);
-
-		rdbtnNewRadioButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.LEFT);
-
-		rdbtnNewRadioButton_1.setForeground(Color.WHITE);
-
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Very Active");
-		buttonGroup.add(rdbtnNewRadioButton_2);
-		rdbtnNewRadioButton_2.setBackground(new Color(36, 47, 65));
-
-		rdbtnNewRadioButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-		rdbtnNewRadioButton_2.setHorizontalAlignment(SwingConstants.CENTER);
-
-		rdbtnNewRadioButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-		rdbtnNewRadioButton_2.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnNewRadioButton_2.setForeground(Color.WHITE);
-
-		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("Low Active");
-		buttonGroup.add(rdbtnNewRadioButton_3);
-		rdbtnNewRadioButton_3.setBackground(new Color(36, 47, 65));
-
-		rdbtnNewRadioButton_3.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-		rdbtnNewRadioButton_3.setHorizontalAlignment(SwingConstants.CENTER);
-
-		rdbtnNewRadioButton_3.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-		rdbtnNewRadioButton_3.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnNewRadioButton_3.setForeground(Color.WHITE);
 		
-		JButton openIntroMeetBtn = new JButton("Open Introductory Meeting");
 		openIntroMeetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Desktop desktop = Desktop.getDesktop();
-				File file = new File(CustomerController.pathToType(nut, cust.getFirstName()+"_" + cust.getLastName() +"_" + cust.getId()) + "/Interview.pdf");
+				File file = new File(CustomerController.pathToType(nut, cust.getFirstName()
+						+"_" + cust.getLastName() +"_" + cust.getId()) + "/Interview.pdf");
 				try {
 					desktop.open(file);
 				} catch (IOException e1) {
@@ -416,7 +409,7 @@ public class MainWin {
 		});
 		openIntroMeetBtn.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		
-		JButton prevSessionBtn = new JButton("Open Previous Session");
+
 		prevSessionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 
@@ -437,11 +430,14 @@ public class MainWin {
 				}
 				Collections.sort(sessions);
 				DefaultComboBoxModel<String> sessionComboModel = new DefaultComboBoxModel<String>(
-						sessions.toArray(new String[sessions.size()]));
+											sessions.toArray(new String[sessions.size()]));
+				
 				JComboBox<String> sessionComboBox = new JComboBox<>(sessionComboModel);
 				selectionPanel.add(sessionComboBox);
 				
-				int selected = JOptionPane.showConfirmDialog(null, selectionPanel, "Session Selection", JOptionPane.OK_CANCEL_OPTION);
+				int selected = JOptionPane.showConfirmDialog(null, selectionPanel, 
+								"Session Selection", JOptionPane.OK_CANCEL_OPTION);
+				
 				if (selected == 0) {
 					selectedSess = (String) sessionComboBox.getSelectedItem();
 					String[] files = new File(sesses + "/" + selectedSess).list();
@@ -463,6 +459,57 @@ public class MainWin {
 			}
 		});
 
+		buttonGroup.add(rdbtnNewRadioButton);
+		rdbtnNewRadioButton.setBackground(new Color(36, 47, 65));
+
+		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
+
+		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
+
+		rdbtnNewRadioButton.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
+
+		rdbtnNewRadioButton.setForeground(Color.WHITE);
+
+		buttonGroup.add(rdbtnNewRadioButton_1);
+		rdbtnNewRadioButton_1.setBackground(new Color(36, 47, 65));
+
+		rdbtnNewRadioButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.CENTER);
+
+		rdbtnNewRadioButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.LEFT);
+
+		rdbtnNewRadioButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.LEFT);
+
+		rdbtnNewRadioButton_1.setForeground(Color.WHITE);
+
+
+		buttonGroup.add(rdbtnNewRadioButton_2);
+		rdbtnNewRadioButton_2.setBackground(new Color(36, 47, 65));
+
+		rdbtnNewRadioButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		rdbtnNewRadioButton_2.setHorizontalAlignment(SwingConstants.CENTER);
+
+		rdbtnNewRadioButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton_2.setHorizontalAlignment(SwingConstants.LEFT);
+		rdbtnNewRadioButton_2.setForeground(Color.WHITE);
+
+
+		buttonGroup.add(rdbtnNewRadioButton_3);
+		rdbtnNewRadioButton_3.setBackground(new Color(36, 47, 65));
+
+		rdbtnNewRadioButton_3.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		rdbtnNewRadioButton_3.setHorizontalAlignment(SwingConstants.CENTER);
+
+		rdbtnNewRadioButton_3.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		rdbtnNewRadioButton_3.setHorizontalAlignment(SwingConstants.LEFT);
+		rdbtnNewRadioButton_3.setForeground(Color.WHITE);
+		
+		//////////////////////////////Layout and window design ////////////////////////////////
 		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
 		gl_mainPanel.setHorizontalGroup(
 			gl_mainPanel.createParallelGroup(Alignment.TRAILING)
@@ -546,11 +593,11 @@ public class MainWin {
 								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addComponent(snack1Lbl)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
+									.addComponent(snack1TField, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
 								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addComponent(snack2Lbl)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
+									.addComponent(snack2TField, GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
 								.addGroup(gl_mainPanel.createSequentialGroup()
 									.addGap(25)
 									.addComponent(menuLbl)
@@ -644,7 +691,7 @@ public class MainWin {
 							.addGap(18)
 							.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(snack1Lbl)
-								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(snack1TField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(24)
 							.addComponent(lunchLbl)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -653,7 +700,7 @@ public class MainWin {
 					.addGap(10)
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(snack2Lbl)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(snack2TField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(clearBtn)
 						.addComponent(calcBtn))
 					.addGap(18)
@@ -684,7 +731,7 @@ public class MainWin {
 					.addGap(40))
 		);
 
-		
+		////////////////////////////// Final window settings ////////////////////////////////
 		mainPanel.setLayout(gl_mainPanel);
 		mainFrame.getContentPane().setLayout(groupLayout);
 		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -692,7 +739,8 @@ public class MainWin {
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.pack();
 	}
-
+	
+	// Helper method to get the selected radio button
 	String getSelectedButtonText(ButtonGroup buttonGroup) {
 		for (Enumeration buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
 			AbstractButton button = (AbstractButton) buttons.nextElement();

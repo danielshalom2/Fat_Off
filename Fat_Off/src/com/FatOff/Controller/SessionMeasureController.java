@@ -1,19 +1,14 @@
 package com.FatOff.Controller;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import com.FatOff.MailSender.MailSender;
 import com.FatOff.Model.Customer;
-import com.FatOff.Model.Measures;
 import com.FatOff.Model.SaveRestore;
 import com.FatOff.Model.Session;
 import com.itextpdf.text.DocumentException;
