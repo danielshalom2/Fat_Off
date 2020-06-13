@@ -581,6 +581,7 @@ public class MainWin {
 
 		////////////////////////////// Layout and window design  //////////////////////////////
 
+
 		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
 		gl_mainPanel.setHorizontalGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING).addGroup(gl_mainPanel
 				.createSequentialGroup()
@@ -787,6 +788,7 @@ public class MainWin {
 				.addGap(40)));
 
 		////////////////////////////// Final window settings //////////////////////////////
+
 		mainPanel.setLayout(gl_mainPanel);
 		mainFrame.getContentPane().setLayout(groupLayout);
 		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
