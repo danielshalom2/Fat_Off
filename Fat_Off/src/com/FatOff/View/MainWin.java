@@ -23,7 +23,6 @@ import java.awt.Desktop;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -100,11 +99,9 @@ public class MainWin {
 
 		Session sess = new Session(cust.getSessions().size() + 1);
 
-		// Initialize the UI manager to configure Panel and Otion Panes UI
-		UIManager UI = new UIManager();
-		UI.put("OptionPane.background", new Color(36, 47, 65));
-		UI.put("Panel.background", new Color(36, 47, 65));
-		UI.put("OptionPane.messageForeground", Color.WHITE);
+		UIManager.put("OptionPane.background", new Color(36, 47, 65));
+		UIManager.put("Panel.background", new Color(36, 47, 65));
+		UIManager.put("OptionPane.messageForeground", Color.WHITE);
 
 		// Initialize the main frame of the window
 		JFrame mainFrame = new JFrame();
@@ -491,7 +488,6 @@ public class MainWin {
 
 				ArrayList<String> sessions = new ArrayList<String>();
 				Desktop desktop = Desktop.getDesktop();
-				File specSess;
 				JPanel selectionPanel = new JPanel();
 				selectionPanel.setLayout(new BoxLayout(selectionPanel, BoxLayout.Y_AXIS));
 				String selectedSess;
@@ -583,8 +579,9 @@ public class MainWin {
 		rdbtnNewRadioButton_3.setHorizontalAlignment(SwingConstants.LEFT);
 		rdbtnNewRadioButton_3.setForeground(Color.WHITE);
 
-		////////////////////////////// Layout and window design
-		////////////////////////////// ////////////////////////////////
+		////////////////////////////// Layout and window design  //////////////////////////////
+
+
 		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
 		gl_mainPanel.setHorizontalGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING).addGroup(gl_mainPanel
 				.createSequentialGroup()
@@ -790,8 +787,8 @@ public class MainWin {
 						.addComponent(btnNewButton).addComponent(prevSessionBtn))
 				.addGap(40)));
 
-		////////////////////////////// Final window settings
-		////////////////////////////// ////////////////////////////////
+		////////////////////////////// Final window settings //////////////////////////////
+
 		mainPanel.setLayout(gl_mainPanel);
 		mainFrame.getContentPane().setLayout(groupLayout);
 		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -802,7 +799,7 @@ public class MainWin {
 
 	// Helper method to get the selected radio button
 	String getSelectedButtonText(ButtonGroup buttonGroup) {
-		for (Enumeration buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+		for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
 			AbstractButton button = (AbstractButton) buttons.nextElement();
 
 			if (button.isSelected()) {

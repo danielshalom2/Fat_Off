@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 import java.util.*;
 
+@SuppressWarnings("serial")
 public class Customer extends Person implements Serializable{
 	
 	private String gender;

@@ -1,4 +1,3 @@
-
 package com.FatOff.View;
 import java.util.*;
 import java.awt.Color;
@@ -10,8 +9,6 @@ import javax.swing.*;
 import com.FatOff.Model.Admin;
 import com.FatOff.Model.Customer;
 import com.FatOff.Model.Nutritionist;
-import com.FatOff.Model.SaveRestore;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.io.File;

@@ -2,11 +2,11 @@ package com.FatOff.View;
 
 import javax.swing.*;
 
-import com.FatOff.Model.Customer;
 import com.FatOff.Model.Person;
 
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class CustomComboRenderer extends DefaultListCellRenderer {
     public static final Color background = new Color(250, 250, 255);
     private static final Color defaultBackground = (Color) UIManager.get("List.background");
@@ -38,6 +38,6 @@ public class CustomComboRenderer extends DefaultListCellRenderer {
         if (pers == null) {
             return "";
         }
-        return String.format("%s,  [%s]", ((Person)pers).getFirstName() + "_" + ((Person)pers).getLastName(), ((Person)pers).getId());
+        return String.format("%s,  [%s]", ((Person)pers).toString(), ((Person)pers).getId());
     }
 }

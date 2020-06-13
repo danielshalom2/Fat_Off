@@ -2,7 +2,6 @@ package com.FatOff.View;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -23,8 +22,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class CreateNutritionistWin {
 	private JPasswordField passConfirmField;
@@ -142,8 +139,6 @@ public class CreateNutritionistWin {
 		licenseIdField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				String value = licenseIdField.getText();
-				int l = value.length();
 				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
 					licenseIdField.setEditable(true);
 					licidWarnLbl.setText("");
@@ -183,8 +178,6 @@ public class CreateNutritionistWin {
 		phoneNumField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				String value = phoneNumField.getText();
-				int l = value.length();
 				if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b') {
 					phoneNumField.setEditable(true);
 					phoneWarnLbl.setText("");

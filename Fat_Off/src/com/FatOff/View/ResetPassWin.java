@@ -2,7 +2,6 @@ package com.FatOff.View;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JTextField;
@@ -13,7 +12,6 @@ import com.FatOff.Model.Admin;
 import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.SaveRestore;
 
-import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -21,10 +19,7 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JSeparator;

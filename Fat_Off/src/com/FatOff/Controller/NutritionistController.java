@@ -2,7 +2,6 @@ package com.FatOff.Controller;
 
 import java.io.IOException;
 
-import com.FatOff.Model.Admin;
 import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.SaveRestore;
 

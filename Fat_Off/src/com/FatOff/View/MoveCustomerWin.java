@@ -1,7 +1,6 @@
 package com.FatOff.View;
 
 import java.awt.Color;
-import org.apache.commons.io.FileUtils;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +18,6 @@ import com.FatOff.Model.Admin;
 import com.FatOff.Model.Customer;
 import com.FatOff.Model.Nutritionist;
 import com.FatOff.Model.Person;
-import com.FatOff.Model.SaveRestore.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.MatteBorder;
 
@@ -93,11 +91,6 @@ public class MoveCustomerWin {
 		custToMoveLbl.setForeground(Color.WHITE);
 		custToMoveLbl.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 
-		// Customer Combo Box Model
-		//List<Customer> custs = ((Nutritionist) srcNutsComboBox.getSelectedItem()).getCustomersList();
-		//DefaultComboBoxModel<Customer> custComboModel = new DefaultComboBoxModel<Customer>(
-				//custs.toArray(new Customer[custs.size()]));
-
 		// Source Nut Combo Box
 		JComboBox<Customer> custComboBox = new JComboBox<>(custComboModel);
 		custComboBox.setFont(new Font("Century Gothic", Font.PLAIN, 12));
@@ -157,24 +150,6 @@ public class MoveCustomerWin {
 				if(choice == JOptionPane.NO_OPTION) {
 					moveFrame.dispose();
 				}
-				
-//				try {
-//					
-//					Files.move(new File(srcPath).toPath(), new File(destPath).toPath(),
-//							StandardCopyOption.REPLACE_EXISTING);
-//					((Nutritionist)srcNutsComboBox.getSelectedItem()).getCustomersList().remove(cst);
-//					((Nutritionist) destNutComboBox.getSelectedItem()).getCustomersList().add(cst);
-//					int choice = JOptionPane.showOptionDialog(assignBtn, "The customer was aasigned to " 
-//												+ ((Nutritionist) destNutComboBox.getSelectedItem()).toString()
-//												+ "..\nDo you want make another assignment?", 
-//													"Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-//													new ImageIcon("src/com/FatOff/View/IconFatOff.PNG"),null , null);
-//					if(choice == JOptionPane.NO_OPTION) {
-//						moveFrame.dispose();
-//					}
-//				} catch (IOException e1) {
-//					e1.printStackTrace();
-//				}
 			}
 		});
 		assignBtn.setForeground(Color.WHITE);

@@ -1,15 +1,8 @@
 package com.FatOff.Model;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
-/**
- * This class represent any Measures which will be created in the Fat_Off project
- * 
- * @author Fat_Off Development Team
- *@version 1.0
- */
-import java.util.*;
 
+@SuppressWarnings("serial")
 public class Measures implements Serializable {
 	private float weight;
 	private float height;

@@ -1,11 +1,9 @@
 package com.FatOff.Model;
-import com.FatOff.MailSender.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 
+@SuppressWarnings("serial")
 public class Session implements Serializable,Comparable<Session>{
 	
 	private LocalDateTime sessionDate;
