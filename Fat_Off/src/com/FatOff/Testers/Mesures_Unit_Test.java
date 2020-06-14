@@ -12,7 +12,7 @@ import com.FatOff.Model.Measures;
 public final class Mesures_Unit_Test   {
 	
 	private static Measures testM=new Measures(18,(float) 75.0,180,50,50,50,"Male","active");;
-		
+	private static Measures testF=new Measures(18,(float) 75.0,180,50,50,50,"Female","active");
 //	Measures testM=new Measures(18,(float) 75.0,180,50,50,50,"Male","active");
 	
 	
@@ -28,29 +28,26 @@ public final class Mesures_Unit_Test   {
 		System.out.println("Test class measures finish");
 	}
 
-//	@BeforeEach
-//	void setUp() throws Exception {
-//		System.out.println("start test");
-//	}
-//
-//	@AfterEach
-//	void tearDown() throws Exception {
-//		System.out.println("end test");
-//	}
-
 	
 	@Test
 	void testCalcBMI() {
 		Assertions.assertEquals(23.1,Double.parseDouble(new DecimalFormat("##.#").format(testM.getBmi())),"Test Bmi Calc");
 }
 	@Test
-	void testCalcEER() {
+	void testCalcMaleEER() {
 		Assertions.assertEquals(2953.3,Double.parseDouble(new DecimalFormat("##.#").format(testM.getEer())),"Test Bmi Eer");
+	}
+	@Test
+	void testCalcFemaleEER() {
+		Assertions.assertEquals(2428.0,Double.parseDouble(new DecimalFormat("##.#").format(testF.getEer())),"Test Bmi Eer");
 	}
 
 	@Test
-	void testCalcPhysic() {
+	void testCalcPhysicMale() {
 		Assertions.assertEquals("Wide",testM.getPhysique(),"Test Bmi Physique");
+	}
+	void testCalcPhysicFemale() {
+		Assertions.assertEquals("Wide",testF.getPhysique(),"Test Bmi Physique");
 	}
 
 }
