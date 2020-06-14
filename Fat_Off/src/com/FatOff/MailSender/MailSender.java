@@ -1,4 +1,3 @@
-
 package com.FatOff.MailSender;
 
 import java.io.File;
@@ -20,9 +19,11 @@ import com.FatOff.Model.SaveRestore;
 /**
  * This is an email sender class. It responsible for creating an email SMTP
  * session. Setting all the required parameters for sending mails and confirming
- * that it was sent.
+ * that it was sent. In this version, only admin is allowed to send and only his
+ * mail address will be used by default
  * 
  * @author FatOff development team
+ * @version 1.0
  */
 public class MailSender {
 
@@ -41,10 +42,8 @@ public class MailSender {
 	 * Constructor -- builds an MailSender object that initializes a session with
 	 * the SMTP server and initializes the required parameters
 	 * 
-	 * @param from        The sender address
 	 * @param to          The recipient address
 	 * @param displayName The sender display name
-	 * @param password    The GMail application password
 	 */
 
 	public MailSender(String displayName, String to) {
@@ -74,28 +73,42 @@ public class MailSender {
 		session = Session.getDefaultInstance(props, this.auth);
 	}
 
+	/**
+	 * This method is responsible for sending a validation code to the Nutritionist
+	 * which asks for password reset. This option available only if the nutritionist
+	 * forgot his password.
+	 * 
+	 * @param validationCode The validation code for the password reset
+	 */
 	public void sendValidationCode(int validationCode) {
 
 		try
 
 		{
+			// Creating a message an setting its mail session
 			MimeMessage message = new MimeMessage(this.session);
+
+			// Set the sender and the recipient details for the mail
 			message.setFrom(new InternetAddress(this.from, this.displayName));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.to));
-			message.setSubject("Fat_Off Reset Password Requeuest");
 
+			// Set the message subject and body including the validation code
+			message.setSubject("Fat_Off Reset Password Requeuest");
 			message.setText("This is a reset password request for Fat_Off project!\r" + "Your validation code is: "
 					+ validationCode + "\r\r" + "Wish you all the best\rThe Fat_Off Project");
 
+			// Initialize the transport application instance
 			Transport transport;
 			try {
+				// Attaching the transport to the relevant session and sending the message
 				transport = session.getTransport("smtp");
 				transport.connect(this.HOST, from, password);
 				transport.close();
 				Transport.send(message);
-				System.out.println("message sent successfully....");
 			} catch (AuthenticationFailedException e) {
+				// Print stack error if there is an authentication error
 				System.out.println("Connection unsuccessful");
+				e.printStackTrace();
 			}
 
 		} catch (MessagingException | UnsupportedEncodingException mex) {
@@ -103,6 +116,22 @@ public class MailSender {
 		}
 	}
 
+	/**
+	 * This method is responsible for sending a session summary to a customer.
+	 * 
+	 * @param pathToFile The path to the PDF file to send
+	 * @param custName   The name of the customer to send to (Used in the message
+	 *                   body)
+	 * @param nutName    The name of the dietitian who sends the email (for the
+	 *                   signature)
+	 * @param nutEmail   The email address of the dietitian who sends the email (for
+	 *                   the signature)
+	 * @param nutPhone   The phone number of the dietitian who sends the email (for
+	 *                   the signature)
+	 * @throws AddressException
+	 * @throws MessagingException
+	 * @throws UnsupportedEncodingException
+	 */
 	public void sendSessionSummary(String pathToFile, String custName, String nutName, String nutEmail, String nutPhone)
 			throws AddressException, MessagingException, UnsupportedEncodingException {
 
@@ -134,7 +163,8 @@ public class MailSender {
 		messageBodyPart = new MimeBodyPart();
 		DataSource source = new FileDataSource(pathToFile);
 		messageBodyPart.setDataHandler(new DataHandler(source));
-		messageBodyPart.setFileName("Session_" + DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now).toString()+".pdf");
+		messageBodyPart
+				.setFileName("Session_" + DateTimeFormatter.ofPattern("dd/MM/YYYY").format(now).toString() + ".pdf");
 		multipart.addBodyPart(messageBodyPart);
 
 		// Send the complete message parts
@@ -144,6 +174,12 @@ public class MailSender {
 		Transport.send(message);
 	}
 
+	/**
+	 * This method is responsible for retrieving the second factor password for the
+	 * mail
+	 * 
+	 * @return The application second factor password
+	 */
 	private String getAdminAppPass() {
 		String adminName = "";
 		File adminToRestore = new File(SaveRestore.getPath() + "/Admin");
@@ -156,6 +192,12 @@ public class MailSender {
 		return adm.getEmailAppPass();
 	}
 
+	/**
+	 * This method is responsible for retrieving the email address that allowed to
+	 * send mails
+	 * 
+	 * @return The email address of the admin
+	 */
 	private String getAdminEmailAddress() {
 		String adminName = "";
 		File adminToRestore = new File(SaveRestore.getPath() + "/Admin");

@@ -24,7 +24,6 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
 public class ResetPassWin {
 	private final JButton ResetEmail = new JButton("Send Validation Code");

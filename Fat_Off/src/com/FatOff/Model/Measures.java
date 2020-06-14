@@ -2,6 +2,13 @@ package com.FatOff.Model;
 
 import java.io.Serializable;
 
+/**
+ * This class represents the measures that will be taken from a customer in each his session with a nutritionist.
+ * 
+ * @author Fat Off Development Team
+ * @version 1.0
+ *
+ */
 @SuppressWarnings("serial")
 public class Measures implements Serializable {
 	private float weight;
@@ -15,14 +22,15 @@ public class Measures implements Serializable {
 	private String physique;
 
 	/**
-	 * @param age    of the customer
-	 * @param weight of the customer
-	 * @param height of the customer
-	 * @param wrist  of the customer
-	 * @param waist  of the customer
-	 * @param thigh  of the customer
+	 * Constructor -- Initializes a session instance.
+	 * 
+	 * @param age    The age of the customer
+	 * @param weight The weight of the customer
+	 * @param height The height of the customer
+	 * @param wrist  The wrist of the customer
+	 * @param waist  The waist of the customer
+	 * @param thigh  The thigh of the customer
 	 */
-
 	public Measures(int age, float weight, float height, float wrist, float waist, float thigh, String gender, String activity) {
 		this.setWeight(weight);
 		this.setHeight(height);
@@ -35,8 +43,10 @@ public class Measures implements Serializable {
 		calcPhysic(gender);
 	}
 
-	public Measures() {
-	}// default constructor
+	/**
+	 * Default Constructor -- Initializes an empty session instance.
+	 */
+	public Measures() {}
 
 	/**
 	 * this function calculate the BMI of the customer
