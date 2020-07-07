@@ -34,7 +34,7 @@ public class AdminTester {
 			pathToDieticion.mkdir();
 		}
 		
-		Admin adm = new Admin("danie", "sdfa", "1243155111", "dasdas@gmasil.com", "123456", 123,
+		Admin adm = Admin.getAdmin("danie", "sdfa", "1243155111", "dasdas@gmasil.com", "123456", 123,
 				"dgsadfgasdfgasfdg", "123456");
 		
 		

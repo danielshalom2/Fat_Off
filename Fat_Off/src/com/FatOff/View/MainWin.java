@@ -219,8 +219,8 @@ public class MainWin {
 				weightTField.setText("");
 			}
 		});
-		
-		//disable typing non-numeric charecters
+
+		// disable typing non-numeric charecters
 		weightTField.addKeyListener(new KeyAdapter() {
 
 			@Override
@@ -246,21 +246,20 @@ public class MainWin {
 				heightTField.setText("");
 			}
 		});
-		
-		//disable typing non-numeric charecters
-				heightTField.addKeyListener(new KeyAdapter() {
 
-					@Override
-					public void keyPressed(KeyEvent e) {
-						if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
-								|| e.getKeyChar() == '.') {
-							heightTField.setEditable(true);
-						} else {
-							heightTField.setEditable(false);
-						}
-					}
-				});
+		// disable typing non-numeric charecters
+		heightTField.addKeyListener(new KeyAdapter() {
 
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
+						|| e.getKeyChar() == '.') {
+					heightTField.setEditable(true);
+				} else {
+					heightTField.setEditable(false);
+				}
+			}
+		});
 
 		wristTField = new JTextField();
 		wristTField.setText("Enter Wrist");
@@ -274,21 +273,20 @@ public class MainWin {
 				wristTField.setText("");
 			}
 		});
-		
-		//disable typing non-numeric charecters
-				wristTField.addKeyListener(new KeyAdapter() {
 
-					@Override
-					public void keyPressed(KeyEvent e) {
-						if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
-								|| e.getKeyChar() == '.') {
-							wristTField.setEditable(true);
-						} else {
-							wristTField.setEditable(false);
-						}
-					}
-				});
+		// disable typing non-numeric charecters
+		wristTField.addKeyListener(new KeyAdapter() {
 
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
+						|| e.getKeyChar() == '.') {
+					wristTField.setEditable(true);
+				} else {
+					wristTField.setEditable(false);
+				}
+			}
+		});
 
 		weistTField = new JTextField();
 		weistTField.setFont(new Font("Century Gothic", Font.PLAIN, 12));
@@ -302,21 +300,20 @@ public class MainWin {
 				weistTField.setText("");
 			}
 		});
-		
-		//disable typing non-numeric charecters
-				weistTField.addKeyListener(new KeyAdapter() {
 
-					@Override
-					public void keyPressed(KeyEvent e) {
-						if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
-								|| e.getKeyChar() == '.') {
-							weistTField.setEditable(true);
-						} else {
-							weistTField.setEditable(false);
-						}
-					}
-				});
+		// disable typing non-numeric charecters
+		weistTField.addKeyListener(new KeyAdapter() {
 
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
+						|| e.getKeyChar() == '.') {
+					weistTField.setEditable(true);
+				} else {
+					weistTField.setEditable(false);
+				}
+			}
+		});
 
 		thighTField = new JTextField();
 		thighTField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -330,21 +327,20 @@ public class MainWin {
 				thighTField.setText("");
 			}
 		});
-		
-		//disable typing non-numeric charecters
-				thighTField.addKeyListener(new KeyAdapter() {
 
-					@Override
-					public void keyPressed(KeyEvent e) {
-						if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
-								|| e.getKeyChar() == '.') {
-							thighTField.setEditable(true);
-						} else {
-							thighTField.setEditable(false);
-						}
-					}
-				});
+		// disable typing non-numeric charecters
+		thighTField.addKeyListener(new KeyAdapter() {
 
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == '\b')
+						|| e.getKeyChar() == '.') {
+					thighTField.setEditable(true);
+				} else {
+					thighTField.setEditable(false);
+				}
+			}
+		});
 
 		bmiTField = new JTextField();
 		bmiTField.setEditable(false);
@@ -511,20 +507,24 @@ public class MainWin {
 						JOptionPane.OK_CANCEL_OPTION);
 
 				if (selected == 0) {
-					selectedSess = (String) sessionComboBox.getSelectedItem();
-					String[] files = new File(sesses + "/" + selectedSess).list();
-					String pdfName = "";
-					for (String name : files) {
-						if (name.substring(name.length() - 3).equals("pdf")) {
-							pdfName = name;
-							break;
+					if (sessionComboBox.getSelectedItem() == null) {
+						JOptionPane.showMessageDialog(null, "No Session Selected!");
+					} else {
+						selectedSess = (String) sessionComboBox.getSelectedItem();
+						String[] files = new File(sesses + "/" + selectedSess).list();
+						String pdfName = "";
+						for (String name : files) {
+							if (name.substring(name.length() - 3).equals("pdf")) {
+								pdfName = name;
+								break;
+							}
 						}
-					}
-					try {
-						desktop.open(new File(sesses + "/" + selectedSess + "/" + pdfName));
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						try {
+							desktop.open(new File(sesses + "/" + selectedSess + "/" + pdfName));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 				}
 
@@ -579,8 +579,8 @@ public class MainWin {
 		rdbtnNewRadioButton_3.setHorizontalAlignment(SwingConstants.LEFT);
 		rdbtnNewRadioButton_3.setForeground(Color.WHITE);
 
-		////////////////////////////// Layout and window design  //////////////////////////////
-
+		////////////////////////////// Layout and window design
+		////////////////////////////// //////////////////////////////
 
 		GroupLayout gl_mainPanel = new GroupLayout(mainPanel);
 		gl_mainPanel.setHorizontalGroup(gl_mainPanel.createParallelGroup(Alignment.TRAILING).addGroup(gl_mainPanel
@@ -787,7 +787,8 @@ public class MainWin {
 						.addComponent(btnNewButton).addComponent(prevSessionBtn))
 				.addGap(40)));
 
-		////////////////////////////// Final window settings //////////////////////////////
+		////////////////////////////// Final window settings
+		////////////////////////////// //////////////////////////////
 
 		mainPanel.setLayout(gl_mainPanel);
 		mainFrame.getContentPane().setLayout(groupLayout);

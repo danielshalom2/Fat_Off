@@ -271,7 +271,7 @@ public class SaveRestore<T> {
 			if (type.equals("Nutritionist")) {
 				nut = new Nutritionist((Nutritionist) ois.readObject());
 			} else
-				nut = new Admin((Admin) ois.readObject());
+				nut = Admin.getCopiedAdmin((Admin) ois.readObject());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -502,7 +502,7 @@ public class SaveRestore<T> {
 		addEmptyLine(subPara, 1);
 
 		catPart = new Paragraph(new Paragraph(
-				"7. Where there any digestion problems (diarrhea, vomiting, Lack of appetite)?", subFont));
+				"7. Where there any digestion problems (diarhea, vomiting, Lack of appetite)?", subFont));
 		subPara = new Paragraph(intro.getStomackIssue(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
@@ -515,14 +515,13 @@ public class SaveRestore<T> {
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
 
-		catPart = new Paragraph(
-				new Paragraph("9. Describe what you ate yesterday (or any other specific day).", subFont));
+		catPart = new Paragraph("9. Describe what you ate yesterday (or any other specific day).", subFont);
 		subPara = new Paragraph(intro.getYesterdayEat(), blackFont);
 		document.add(catPart);
 		document.add(subPara);
 		addEmptyLine(subPara, 1);
 
-		catPart = new Paragraph(new Paragraph("10. Do you have any alergies? Please elaborate..", subFont));
+		catPart = new Paragraph("10. Do you have any alergies? Please elaborate..", subFont);
 		subPara = new Paragraph(intro.getAllergies(), blackFont);
 		document.add(catPart);
 		document.add(subPara);

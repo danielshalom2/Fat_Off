@@ -14,6 +14,7 @@ public class Admin extends Nutritionist {
 
 	private ArrayList<Nutritionist> nutriList;
 	private String emailAppPass;
+	private static Admin adm = null;
 
 	/**
 	 * Constructor -- Initializes an Admin instance.
@@ -28,7 +29,7 @@ public class Admin extends Nutritionist {
 	 * @param password     the Admin password to the system
 	 */
 
-	public Admin(String firstName, String lastName, String phoneNumber, String emailAddress, String id, int licenseId,
+	private Admin(String firstName, String lastName, String phoneNumber, String emailAddress, String id, int licenseId,
 			String emailAppPass, String password) {
 		super(firstName, lastName, phoneNumber, emailAddress, id, licenseId, password);
 		setNutriList(new ArrayList<Nutritionist>());
@@ -41,7 +42,7 @@ public class Admin extends Nutritionist {
 	 * 
 	 * @param other Another Admin instance to copy the attributes from
 	 */
-	public Admin(Admin other) {
+	private Admin(Admin other) {
 		// Initialize super object
 		super(other.getFirstName(), other.getLastName(), other.getPhoneNumber(), other.getEmailAddress(), other.getId(),
 				other.getLicenseId(), other.getPassword());
@@ -49,6 +50,21 @@ public class Admin extends Nutritionist {
 		// Initialize local private variables
 		setNutriList(new ArrayList<Nutritionist>());
 		this.emailAppPass = other.getEmailAppPass();
+	}
+	
+	public static Admin getAdmin(String firstName, String lastName, String phoneNumber, String emailAddress, String id, int licenseId,
+			String emailAppPass, String password) {
+		if(adm == null) {
+			adm = new Admin(firstName, lastName, phoneNumber, emailAddress, id, licenseId, emailAppPass, password);
+		}
+		return adm;
+	}
+	
+	public static Admin getCopiedAdmin(Admin other) {
+		if(adm == null) {
+			adm = new Admin(other);
+		}
+		return adm;
 	}
 
 	/**

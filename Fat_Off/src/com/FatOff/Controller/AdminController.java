@@ -37,7 +37,7 @@ public class AdminController {
 			String id, int licenseId, String emailAppPass, String password) {
 
 		// Creating an Admin instance
-		Admin adm = new Admin(firstName, lastName, phoneNumber, emailAddress, id, licenseId, emailAppPass, password);
+		Admin adm = Admin.getAdmin(firstName, lastName, phoneNumber, emailAddress, id, licenseId, emailAppPass, password);
 
 		// Initiating store to file procedure
 		return storeAdmin(adm);
