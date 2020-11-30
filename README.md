@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
 Fat_Off is a Nutrition and customer management software.
 
   - Nutrition management
